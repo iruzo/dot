@@ -1,0 +1,9 @@
+[core]
+  editor = nvim
+[user]
+  email = hidden
+  name = iruzo
+[credential]
+  helper = store
+[init]
+  defaultBranch = main

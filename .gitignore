@@ -1,0 +1,65 @@
+/*
+!.gitignore
+
+# general
+!.profile
+!.shrc
+!.yashrc
+!.bash_profile
+!.gitconfig
+
+# config
+!.local/
+.local/*
+!.local/bin
+
+# config
+!.config/
+.config/*
+
+# nix
+!.config/nix
+
+# foot
+!.config/foot
+.config/foot/*
+!.config/foot/foot.ini
+
+# wezterm
+!.config/wezterm
+.config/wezterm/*
+!.config/wezterm/wezterm.lua
+
+# dunst
+!.config/dunst
+.config/dunst/*
+!.config/dunst/dunstrc
+
+# nvim
+!.config/nvim
+.config/nvim/*
+!.config/nvim/vimrc.sh
+!.config/nvim/init.lua
+!.config/nvim/lua
+!.config/nvim/ftplugin
+!.config/nvim/lang-servers
+
+# sway
+!.config/sway
+.config/sway/*
+!.config/sway/config
+
+# xinitrc
+!.xinitrc
+
+# sway
+!.config/i3
+.config/i3/*
+!.config/i3/config
+
+# qutebrowser
+!.config/qutebrowser
+.config/qutebrowser/*
+!.config/qutebrowser/config.py
+!.config/qutebrowser/theme.py
+!.config/qutebrowser/greasemonkey/

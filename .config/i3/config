@@ -1,0 +1,169 @@
+exec pipewire
+exec pipewire-pulse
+
+# Mod 1 for Alt.
+set $mod Mod4
+
+font pango: Fira Code 10
+
+set $emptymenu BEMENU_BACKEND=x11 bemenu
+
+# mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# basic
+bindsym $mod+c kill
+bindsym $mod+f fullscreen toggle
+bindsym $mod+space floating toggle
+bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm
+bindsym $mod+d exec BEMENU_BACKEND=x11 bemenu-run
+
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exit
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# split in horizontal orientation
+bindsym $mod+Shift+v split h
+bindsym $mod+v split v
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+  # These bindings trigger as soon as you enter the resize mode
+  bindsym h resize shrink width 10 px or 10 ppt
+  bindsym j resize grow height 10 px or 10 ppt
+  bindsym k resize shrink height 10 px or 10 ppt
+  bindsym l resize grow width 10 px or 10 ppt
+
+  # same bindings, but for the arrow keys
+  bindsym Left resize shrink width 10 px or 10 ppt
+  bindsym Down resize grow height 10 px or 10 ppt
+  bindsym Up resize shrink height 10 px or 10 ppt
+  bindsym Right resize grow width 10 px or 10 ppt
+
+  # back to normal: Enter or Escape or $mod+r
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# bar {
+#   position top
+#   font pango: Fira Code 7
+#   mode hide
+# }
+exec pkill i3bar
+
+#### personal ####
+
+default_border pixel 1
+default_floating_border pixel 1
+
+# monitor
+exec_always if [  ! -f ~/.local/script/autoxrandr.sh ]; then $(mkdir -p ~/.local/script && curl https://raw.githubusercontent.com/iruzo/autoxrandr/main/autoxrandr.sh > ~/.local/script/autoxrandr.sh) && chmod +x ~/.local/script/autoxrandr.sh; fi
+exec_always ~/.local/script/autoxrandr.sh
+
+# catppuccin
+exec_always if [ ! -e ~/.themes/Catppuccin-Frappe ]; then \
+  mkdir -p ~/.themes \
+  && curl -L https://github.com/catppuccin/gtk/releases/download/v0.4.1/Catppuccin-Frappe-Standard-Rosewater-Dark.zip -o ~/.themes/catppuccin.zip \
+  && unzip ~/.themes/catppuccin.zip -d ~/.themes/  \
+  && rm -rf ~/.themes/catppuccin.zip; fi
+
+# lock screen
+bindsym $mod+q exec i3lock -u -c 000000
+
+# volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym $mod+n exec pactl set-sink-volume @DEFAULT_SINK@ +05%
+bindsym $mod+Shift+n exec pactl set-sink-volume @DEFAULT_SINK@ -05%
+bindsym $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym $mod+Shift+m exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+p exec pavucontrol
+bindsym $mod+Shift+p exec helvum
+# push to talk
+# bindsym --no-repeat $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# bindsym --no-repeat --release $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# screenshot
+bindsym --release $mod+Shift+s exec mkdir -p ~/media && scrot -s ~/media/$(date +'%Y%m%d_%H%M%S').png 2> /home/a/log
+
+# nav
+bindsym $mod+o exec qutebrowser
+bindsym $mod+Shift+o exec cat ~/iruzo/quickmarks | $emptymenu | awk -F' ' '{print $NF}' | xclip -sel clip
+
+# vm
+bindsym $mod+i exec virt-manager
+
+# keepassxc
+bindsym $mod+u exec keepassxc
+bindsym $mod+Shift+u exec cat '' 2> /dev/null | $emptymenu -p "password" | gpg --batch --yes --passphrase-fd 0 -d ~/iruzo/contacts.gpg | $emptymenu | awk -F'+' '{print $NF}' | xclip -sel clip
+
+# steam
+# bindsym $mod+y exec flatpak run com.valvesoftware.Steam
+bindsym $mod+y exec steam
+
+# osm
+bindsym XF86AudioRaiseVolume exec bash -c '[[ $(ps -aux | grep bemenu | grep -v "grep") ]] && pkill bemenu-run || BEMENU_BACKEND=x11 bemenu-run'
+
+# ost
+bindsym XF86AudioLowerVolume exec bash -c '[[ $(ps -aux | grep wvkbd | grep -v "grep") ]] && pkill wvkbd-mobintl || wvkbd-mobintl -l full,special'
+
+# phonelock
+# bindsym XF86PowerOff exec swaymsg output $focusedMonitor dpms toggle
