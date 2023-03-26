@@ -19,7 +19,7 @@ return {
   },
   {
     'nvim-telescope/telescope.nvim',
-    cmd = "Telescope",
+    cmd = 'Telescope',
     config = function()
       require('telescope').setup {
         defaults = {
@@ -39,25 +39,12 @@ return {
     end
   },
   {
-    'nvim-tree/nvim-tree.lua',
-    cmd = 'NvimTreeToggle',
-    config = function()
-      require("nvim-tree").setup({
-        sort_by = "case_sensitive",
-        view = {
-          adaptive_size = true,
-          mappings = {
-            list = {
-              { key = "u", action = "dir_up" },
-            },
-          },
-        },
-        renderer = {
-          group_empty = true,
-        },
-      })
-
-    end
+    'nvim-neo-tree/neo-tree.nvim',
+    cmd = 'NeoTreeRevealToggle',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+    },
   },
   { 'sanfusu/neovim-undotree', cmd = 'UndotreeToggle' },
 

@@ -95,7 +95,7 @@ vim.api.nvim_set_keymap('n', '<C-b>', ':Telescope buffers<CR>', { noremap = true
 vim.api.nvim_set_keymap('n', '<C-t>', ':Telescope diagnostics<CR>', { noremap = true })
 
 --explorer
-vim.api.nvim_set_keymap('n', 'ee', ':NvimTreeToggle<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', 'ee', ':NeoTreeRevealToggle<CR>', { noremap = true })
 
 --undotree
 vim.api.nvim_set_keymap('n', 'U', ':UndotreeToggle<CR>', { noremap = true })
