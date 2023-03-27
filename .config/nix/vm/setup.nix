@@ -41,7 +41,7 @@
   console.keyMap = "us";
   i18n.defaultLocale = "en_US.UTF-8";
 
-  time.timeZone = "Europe/Paris";
+  time.timeZone = "Europe/Madrid";
 
   # Use the systemd-timesyncd SNTP client to sync the system clock (enabled by default)
   services.timesyncd.enable = true;
