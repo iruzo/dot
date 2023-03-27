@@ -39,9 +39,6 @@ vim.api.nvim_set_keymap('i', '*', '**<Left>', { noremap = true })
 vim.api.nvim_set_keymap('v', '>', '>><Esc>gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '<', '<<<Esc>gv', { noremap = true })
 
--- undo
--- vim.api.nvim_set_keymap('n', 'U', ':undolist<enter>', { noremap = true })
-
 --replace
 vim.api.nvim_set_keymap('n', '<C-/>', ':%s///g<Left><Left>', { noremap = true })
 vim.api.nvim_set_keymap('v', '/', 'y/<C-R>=escape(@",\'/\\\')<CR><CR>', { noremap = true })
@@ -61,6 +58,9 @@ vim.api.nvim_set_keymap('n', 'gt', ':tag <c-r>=expand("<cword>")<cr> <enter>', {
 
 --plugins
 vim.api.nvim_set_keymap('n', 'W', '<Plug>(DBUI_SaveQuery)', { noremap = true })
+
+vim.api.nvim_set_keymap('n', 'fb', ':lua require"treesj".toggle({ split = { recursive = true } })<CR>', { noremap = true })
+vim.api.nvim_set_keymap('x', 'fb', ':lua require"treesj".toggle({ split = { recursive = true } })<CR>', { noremap = true })
 
 function superformat()
   if vim.lsp.buf.format() then
