@@ -275,11 +275,10 @@ bindsym $mod+Shift+u exec cat '' 2> /dev/null | $emptymenu -x -p "password" | gp
 bindsym $mod+y exec steam
 
 # osm
-# bindsym XF86AudioRaiseVolume exec bash -c '[[ $(ps -aux | grep bemenu | grep -v "grep") ]] && pkill bemenu-run || bemenu-run'
-bindsym XF86AudioRaiseVolume exec swaymsg output $focusedMonitor toggle
+bindsym XF86AudioRaiseVolume exec sh -c 'if pgrep bemenu; then pkill bemenu; else bemenu-run; fi'
 
 # ost
-bindsym XF86AudioLowerVolume exec bash -c '[[ $(ps -aux | grep wvkbd | grep -v "grep") ]] && pkill wvkbd-mobintl || wvkbd-mobintl -l full,special'
+bindsym XF86AudioLowerVolume exec sh -c 'if pgrep wvkbd; then pkill wvkbd; else wvkbd-mobintl; fi'
 
 # phonelock
 bindsym XF86PowerOff exec swaymsg output $focusedMonitor dpms toggle
