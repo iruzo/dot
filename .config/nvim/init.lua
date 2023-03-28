@@ -1,6 +1,7 @@
 local present, impatient = pcall(require, "impatient")
 require("config")
 require("keymaps")
+require("gui")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
