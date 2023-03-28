@@ -44,7 +44,7 @@
 
       wezterm
       neovim
-      # qutebrowser
+      qutebrowser
     ];
 
   };
