@@ -1,7 +1,8 @@
 import os
 from urllib.request import urlopen
 
-os.system('if [ $(xdg-settings get default-web-browser) != "org.qutebrowser.qutebrowser.desktop" ]; then xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop; fi')
+# set default browser
+# os.system('if [ $(xdg-settings get default-web-browser) != "org.qutebrowser.qutebrowser.desktop" ]; then xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop; fi')
 
 config.load_autoconfig()
 if not os.path.exists(os.getcwd() + os.sep + 'download'):
