@@ -146,7 +146,7 @@ return {
     dependencies = {
       {
         'tpope/vim-dadbod',
-        config = function() vim.g.db_ui_save_location = '~/.config/nvim/dbui' end,
+        config = function() vim.g.db_ui_save_location = '~/.local/data/nvim/dbui' end,
         dependencies = {
           { 'kristijanhusak/vim-dadbod-completion', after = 'vim-dadbod' },
         }
