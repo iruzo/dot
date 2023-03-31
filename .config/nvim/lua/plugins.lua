@@ -35,14 +35,17 @@ return {
         defaults = {
           file_ignore_patterns = {
             -- linux
-            '.git/', '.cache/', '.local/', 'venv/',
+            '.git/', '.cache/', '.local/', 'venv/', 'svn/',
             -- windows
-            '.git\\', '.cache\\', '.local\\', 'venv\\'
+            '.git\\', '.cache\\', '.local\\', 'venv\\', 'svn\\'
           }
         },
         pickers = {
           find_files = {
             hidden = 'true'
+          },
+          find_files = {
+            theme = "ivy",
           }
         }
       }
@@ -71,15 +74,16 @@ return {
   --   end
   -- }
   {
-    'luisiacc/gruvbox-baby',
+    'ellisonleao/gruvbox.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-      vim.g.gruvbox_baby_telescope_theme = 1
-      vim.api.nvim_command "colorscheme gruvbox-baby"
+      vim.o.background = "dark" -- or "light" for light mode
+      vim.api.nvim_command "colorscheme gruvbox"
     end
   },
   { 'nvim-lualine/lualine.nvim', event = "BufRead", config = function() require("lualine").setup() end },
+  { 'nanozuki/tabby.nvim', event = "BufRead", config = function() require('tabby.tabline').set() end },
   { -- highlight
     'nvim-treesitter/nvim-treesitter',
     event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
