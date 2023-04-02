@@ -50,7 +50,7 @@ config.source('theme.py')
 if not os.path.exists(config.configdir / "style.css"):
     styles = [
             "https://raw.githubusercontent.com/alphapapa/solarized-everything-css/master/css/gruvbox/gruvbox-all-sites.css",
-            # "https://raw.githubusercontent.com/joinemm/discord-css/master/gruvbox.css",
+            "https://raw.githubusercontent.com/joinemm/discord-css/master/gruvbox.css",
             ]
     if len(styles) > 0:
         for style in styles:
