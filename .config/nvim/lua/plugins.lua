@@ -7,6 +7,23 @@ return {
 
   -- general
   {
+    'folke/which-key.nvim',
+    event = "BufRead",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 0
+      require("which-key").setup()
+    end
+  },
+  {
+    'phaazon/hop.nvim',
+    event = "BufRead",
+    config = function()
+      vim.api.nvim_set_keymap('n', '<space>s', ':HopChar1<CR>', { noremap = true })
+      require('hop').setup()
+    end
+  },
+  {
     "jamessan/vim-gnupg",
     config = function()
       vim.g.GPGPreferSymmetric=1
@@ -18,19 +35,12 @@ return {
     config = function() require('Comment').setup() end
   },
   {
-    'Wansmer/treesj',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    config = function()
-      require('treesj').setup({
-        use_default_keymaps = false,
-        max_join_length = 1000000,
-      })
-    end,
-  },
-  {
     'nvim-telescope/telescope.nvim',
-    cmd = 'Telescope',
     config = function()
+      vim.api.nvim_set_keymap('n', '<space>h', ':Telescope live_grep<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<space>f', ':Telescope find_files<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<space>b', ':Telescope buffers<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<space>t', ':Telescope diagnostics<CR>', { noremap = true })
       require('telescope').setup {
         defaults = {
           file_ignore_patterns = {
@@ -53,13 +63,22 @@ return {
   },
   {
     'nvim-neo-tree/neo-tree.nvim',
-    cmd = 'NeoTreeRevealToggle',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
       'MunifTanjim/nui.nvim',
     },
+    config = function()
+      vim.api.nvim_set_keymap('n', 'ee', ':NeoTreeRevealToggle<CR>', { noremap = true })
+      require("neo-tree").setup()
+    end
   },
-  { 'sanfusu/neovim-undotree', cmd = 'UndotreeToggle' },
+  {
+    'sanfusu/neovim-undotree',
+    event = 'BufRead',
+    config = function()
+      vim.api.nvim_set_keymap('n', 'U', ':UndotreeToggle<CR>', { noremap = true })
+    end
+  },
 
   -- visual
   -- {
@@ -83,7 +102,17 @@ return {
     end
   },
   { 'nvim-lualine/lualine.nvim', event = "BufRead", config = function() require("lualine").setup() end },
-  { 'nanozuki/tabby.nvim', event = "BufRead", config = function() require('tabby.tabline').set() end },
+  {
+    'nanozuki/tabby.nvim',
+    event = "BufRead",
+    config = function()
+      vim.api.nvim_set_keymap('n', '<C-h>', ':tabprevious<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<C-j>', ':tabnew<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<C-k>', ':tabclose<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<C-l>', ':tabnext<CR>', { noremap = true })
+      require('tabby.tabline').set()
+    end
+  },
   { -- highlight
     'nvim-treesitter/nvim-treesitter',
     event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
@@ -115,6 +144,10 @@ return {
     'lewis6991/gitsigns.nvim',
     config = function()
       if vim.fn.isdirectory ".git" ~= 0 then
+        vim.api.nvim_set_keymap('n', '<C-g>', ':Gitsigns preview_hunk <enter>', { noremap = true })
+        vim.api.nvim_set_keymap('n', '<C-r>', ':Gitsigns reset_hunk <enter>', { noremap = true })
+        vim.api.nvim_set_keymap('n', '<C-n>', ':Gitsigns next_hunk <enter>', { noremap = true })
+        vim.api.nvim_set_keymap('n', '<C-p>', ':Gitsigns prev_hunk <enter>', { noremap = true })
         require('gitsigns').setup {
           current_line_blame = true
         }
@@ -125,13 +158,22 @@ return {
   --dap
   {
     'mfussenegger/nvim-dap',
-    cmd = "DapToggleBreakpoint",
+    event = "BufRead",
     dependencies = {
       { 'theHamsta/nvim-dap-virtual-text', config = function() require'nvim-dap-virtual-text'.setup() end },
       { 'rcarriga/nvim-dap-ui', config = function() require'dapui'.setup() end },
       {
         'jayp0521/mason-nvim-dap.nvim',
         config = function()
+          vim.api.nvim_set_keymap('n', 'W', '<Plug>(DBUI_SaveQuery)', { noremap = true })
+          vim.api.nvim_set_keymap('n', '<F1>', ':DapToggleBreakpoint<CR>', { noremap = true })
+          vim.api.nvim_set_keymap('n', '<F2>', ':lua require"dap".step_over()<CR>', { noremap = true })
+          vim.api.nvim_set_keymap('n', '<F3>', ':lua require"dap".step_back()<CR>', { noremap = true })
+          vim.api.nvim_set_keymap('n', '<F4>', ':lua require"dap".step_into()<CR>', { noremap = true })
+          vim.api.nvim_set_keymap('n', '<F5>', ':lua require"dap".step_out()<CR>', { noremap = true })
+          vim.api.nvim_set_keymap('n', '<F6>', ':lua require"dap".continue()<CR>', { noremap = true })
+          vim.api.nvim_set_keymap('n', '<F7>', ':lua require"dap".terminate()<CR>', { noremap = true })
+          vim.api.nvim_set_keymap('n', '<F9>', ':lua require"dapui".toggle()<CR>', { noremap = true })
           require'mason-nvim-dap'.setup({ automatic_setup = true })
           require'mason-nvim-dap'.setup_handlers {
             function(source_name)
@@ -184,6 +226,15 @@ return {
       'rafamadriz/friendly-snippets',
     },
     config = function()
+      vim.api.nvim_set_keymap('n', 'mm', ':lua vim.lsp.buf.hover()<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', 'gr', ':lua vim.lsp.buf.references()<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', 'rr', ':lua vim.lsp.buf.rename()<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', 'ca', ':lua vim.lsp.buf.code_action()<CR>', { noremap = true }) --open code actions using the default lsp UI
+      vim.api.nvim_set_keymap('x', 'ca', ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true }) --open code actions for the selected visual range
+      -- vim.fn.nvim_command('inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\\<CR>"')
+
       local lsp = require("lsp-zero")
       lsp.preset("recommended")
 
@@ -203,13 +254,6 @@ return {
 
       lsp.on_attach(function(client, bufnr)
         local opts = {buffer = bufnr, remap = false}
-
-        --lsp
-        vim.api.nvim_set_keymap('n', 'mm', ':lua vim.lsp.buf.hover()<CR>', { noremap = true })
-        vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true })
-        vim.api.nvim_set_keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', { noremap = true })
-        vim.api.nvim_set_keymap('n', 'gr', ':lua vim.lsp.buf.references()<CR>', { noremap = true })
-        vim.api.nvim_set_keymap('n', 'rr', ':lua vim.lsp.buf.rename()<CR>', { noremap = true })
       end)
 
       lsp.setup()

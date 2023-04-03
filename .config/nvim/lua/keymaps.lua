@@ -1,4 +1,3 @@
-vim.api.nvim_set_keymap('i', '<C-c>', '<ESC>', { noremap = true })
 vim.api.nvim_set_keymap('n', '?', ':noh <enter>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<S-s>', ':%sort u', { noremap = true })
 vim.api.nvim_set_keymap('n', 'tt', ':split<enter> :wincmd j<enter> :terminal<enter> i', { noremap = true })
@@ -46,22 +45,13 @@ vim.api.nvim_set_keymap('i', '<C-s>', '<esc> <esc> :w <enter>', { noremap = true
 
 --exit
 vim.api.nvim_set_keymap('n', '<C-q>', ':q <enter>', { noremap = true })
-vim.api.nvim_set_keymap('i', '<C-q>', '<C-c> :q <enter>', { noremap = true })
+vim.api.nvim_set_keymap('i', '<C-q>', '<ESC> :q <enter>', { noremap = true })
 vim.api.nvim_set_keymap('t', '<C-q>', '<C-\\><C-n>', { noremap = true })
 
 --tags
 vim.api.nvim_set_keymap('n', 'gt', ':tag <c-r>=expand("<cword>")<cr> <enter>', { noremap = true })
 
 --plugins
---tabby
-vim.api.nvim_set_keymap('n', '<C-h>', ':tabprevious<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-j>', ':tabnew<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-k>', ':tabclose<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-l>', ':tabnext<CR>', { noremap = true })
-
---treesj
-vim.api.nvim_set_keymap('n', 'fb', ':lua require"treesj".toggle({ split = { recursive = true } })<CR>', { noremap = true })
-vim.api.nvim_set_keymap('x', 'fb', ':lua require"treesj".toggle({ split = { recursive = true } })<CR>', { noremap = true })
 
 --lsp
 function superformat()
@@ -71,36 +61,6 @@ function superformat()
   end
 end
 vim.api.nvim_set_keymap('n', 'ff', ':lua superformat()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', 'ca', ':lua vim.lsp.buf.code_action()<CR>', { noremap = true }) --open code actions using the default lsp UI
-vim.api.nvim_set_keymap('x', 'ca', ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true }) --open code actions for the selected visual range
-
---dap
-vim.api.nvim_set_keymap('n', 'W', '<Plug>(DBUI_SaveQuery)', { noremap = true })
-vim.api.nvim_set_keymap('n', '<F1>', ':DapToggleBreakpoint<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<F2>', ':lua require"dap".step_over()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<F3>', ':lua require"dap".step_back()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<F4>', ':lua require"dap".step_into()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<F5>', ':lua require"dap".step_out()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<F6>', ':lua require"dap".continue()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<F7>', ':lua require"dap".terminate()<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<F9>', ':lua require"dapui".toggle()<CR>', { noremap = true })
-
---git
-vim.api.nvim_set_keymap('n', '<C-g>', ':Gitsigns preview_hunk <enter>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-r>', ':Gitsigns reset_hunk <enter>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-n>', ':Gitsigns next_hunk <enter>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-p>', ':Gitsigns prev_hunk <enter>', { noremap = true })
-
---telescope
-vim.api.nvim_set_keymap('n', '<C-f>', ':Telescope find_files<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-b>', ':Telescope buffers<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<C-t>', ':Telescope diagnostics<CR>', { noremap = true })
-
---explorer
-vim.api.nvim_set_keymap('n', 'ee', ':NeoTreeRevealToggle<CR>', { noremap = true })
-
---undotree
-vim.api.nvim_set_keymap('n', 'U', ':UndotreeToggle<CR>', { noremap = true })
 
 --netrw
 -- vim.api.nvim_set_keymap('n', 'ee', ':Lexplore <CR>', { noremap = true })
