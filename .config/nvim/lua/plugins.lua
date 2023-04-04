@@ -202,11 +202,13 @@ return {
 
   --ai
   -- 'github/copilot.vim'
-  -- { 'tzachar/cmp-tabnine', run = './install.sh', config = 'require("cmp_tabnine.config")' }
-  --
+  -- { 'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp', }
+  -- { 'tzachar/cmp-tabnine', build = 'powershell ./install.ps1', dependencies = 'hrsh7th/nvim-cmp', }
+  -- { 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
 
   {
     'VonHeikemen/lsp-zero.nvim',
+	  branch = 'v1.x',
     dependencies = {
       -- LSP Support
       'neovim/nvim-lspconfig',
@@ -233,7 +235,6 @@ return {
       vim.api.nvim_set_keymap('n', 'rr', ':lua vim.lsp.buf.rename()<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', 'ca', ':lua vim.lsp.buf.code_action()<CR>', { noremap = true }) --open code actions using the default lsp UI
       vim.api.nvim_set_keymap('x', 'ca', ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true }) --open code actions for the selected visual range
-      -- vim.fn.nvim_command('inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\\<CR>"')
 
       local lsp = require("lsp-zero")
       lsp.preset("recommended")
@@ -247,7 +248,6 @@ return {
       local cmp_mappings = lsp.defaults.cmp_mappings({
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
       })
       cmp.setup({experimental = { ghost_text = true }})
