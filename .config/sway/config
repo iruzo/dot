@@ -217,7 +217,7 @@ client.focused #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2
 # gtk theme
 
 # gruvbox
-exec_always if [ ! -e ~/.themes/gruvbox ]; then $(mkdir -p ~/.themes && git clone https://github.com/jmattheis/gruvbox-dark-gtk ~/.themes/gruvbox); fi
+# exec_always if [ ! -e ~/.themes/gruvbox ]; then $(mkdir -p ~/.themes && git clone https://github.com/jmattheis/gruvbox-dark-gtk ~/.themes/gruvbox); fi
 
 # catppuccin
 # exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Rosewater-Dark ]; then \
