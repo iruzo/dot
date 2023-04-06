@@ -68,7 +68,7 @@ return {
       'MunifTanjim/nui.nvim',
     },
     config = function()
-      vim.api.nvim_set_keymap('n', 'ee', ':NeoTreeRevealToggle<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<space>e', ':NeoTreeRevealToggle<CR>', { noremap = true })
       require("neo-tree").setup()
     end
   },
@@ -110,7 +110,20 @@ return {
       vim.api.nvim_set_keymap('n', '<C-j>', ':tabnew<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<C-k>', ':tabclose<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<C-l>', ':tabnext<CR>', { noremap = true })
-      require('tabby.tabline').set()
+      require("tabby.tabline").use_preset("active_wins_at_tail", {
+        theme = {
+          fill = "TabLineFill", -- tabline background
+          head = "TabLine", -- head element highlight
+          current_tab = "TabLineSel", -- current tab label highlight
+          tab = "TabLine", -- other tab label highlight
+          win = "TabLine", -- window highlight
+          tail = "TabLine", -- tail element highlight
+        },
+        nerdfont = true, -- whether use nerdfont
+        buf_name = {
+          mode = "'unique'|'relative'|'tail'|'shorten'",
+        },
+      })
     end
   },
   { -- highlight

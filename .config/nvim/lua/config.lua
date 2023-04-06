@@ -49,7 +49,7 @@ vim.opt.wildmode = 'list:longest,full'
 vim.opt.wildignorecase = true
 vim.opt.viminfo = ''
 
--- vim.opt.guicursor = ""
+vim.opt.guicursor = ""
 vim.g.multi_cursor_exit_from_visual_mode = 0
 
 -- -- netrw
