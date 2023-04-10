@@ -81,26 +81,26 @@ return {
   },
 
   -- visual
-  -- {
-  --   "catppuccin/nvim",
-  --   as = "catppuccin",
-  --   config = function()
-  --     require("catppuccin").setup {
-  --       -- transparent_background = true,
-  --       flavour = "frappe", -- mocha, macchiato, frappe, latte
-  --     }
-  --     vim.api.nvim_command "colorscheme catppuccin"
-  --   end
-  -- }
   {
-    'ellisonleao/gruvbox.nvim',
-    lazy = false,
-    priority = 1000,
+    "catppuccin/nvim",
+    as = "catppuccin",
     config = function()
-      vim.o.background = "dark" -- or "light" for light mode
-      vim.api.nvim_command "colorscheme gruvbox"
+      require("catppuccin").setup {
+        -- transparent_background = true,
+        flavour = "mocha", -- mocha, macchiato, frappe, latte
+      }
+      vim.api.nvim_command "colorscheme catppuccin"
     end
   },
+  -- {
+  --   'ellisonleao/gruvbox.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     vim.o.background = "dark" -- or "light" for light mode
+  --     vim.api.nvim_command "colorscheme gruvbox"
+  --   end
+  -- },
   { 'nvim-lualine/lualine.nvim', event = "BufRead", config = function() require("lualine").setup() end },
   {
     'nanozuki/tabby.nvim',
@@ -188,11 +188,11 @@ return {
           vim.api.nvim_set_keymap('n', '<F7>', ':lua require"dap".terminate()<CR>', { noremap = true })
           vim.api.nvim_set_keymap('n', '<F9>', ':lua require"dapui".toggle()<CR>', { noremap = true })
           require'mason-nvim-dap'.setup({ automatic_setup = true })
-          require'mason-nvim-dap'.setup_handlers {
-            function(source_name)
-              require('mason-nvim-dap.automatic_setup')(source_name)
-            end,
-          }
+          -- require'mason-nvim-dap'.setup_handlers {
+          --   function(source_name)
+          --     require('mason-nvim-dap.automatic_setup')(source_name)
+          --   end,
+          -- }
         end
       },
     }

@@ -31,13 +31,8 @@ export QEMU='-vga none -device virtio-gpu-pci -display gtk,gl=on'
 export EDITOR='nvim'
 export GTK_THEME='Adwaita:dark'
 
-# catppuccin
 # export GTK_THEME='Catppuccin-Frappe-Standard-Rosewater-Dark:dark'
-# export BEMENU_OPTS='-i -l 20 --fn "Fira Code, bold" --fb "#303446" --ff "#81c8be" --nb "#303446" --nf "#f2d5cf" --tb "#303446" --hb "#303446" --tf "#ca9ee6" --hf "#8caaee" --nf "#f2d5cf" --af "#f2d5cf" --ab "#303446"'
-
-# gruvbox
-# export GTK_THEME='gruvbox:dark'
-export BEMENU_OPTS='-i -l 20 --fn "Fira Code, bold" --fb "#282828" --ff "#ebdbb2" --nb "#282828" --nf "#ebdbb2" --tb "#282828" --hb "#282828" --tf "#fb4934" --hf "#fabd2f" --nf "#ebdbb2" --af "#ebdbb2" --ab "#282828"'
+export BEMENU_OPTS='-i -l 20 --fn "Fira Code, bold" --fb "#1e1e2e" --ff "#94e2d5" --nb "#1e1e2e" --nf "#f5e0dc" --tb "#1e1e2e" --hb "#1e1e2e" --tf "#cba6f7" --hf "#89b4fa" --nf "#f5e0dc" --af "#f5e0dc" --ab "#1e1e2e"'
 
 export GPG_TTY=$(tty)
 
@@ -100,5 +95,23 @@ superstatus() {
 }
 
 termbin() {
-  $1 | nc termbin.com 9999
+  # if no args are passed, read stdin to check if they come from pipe
+  if [ $# = 0 ]; then
+    while read x
+    do
+      args="$args\n$x"
+    done
+  else
+    args=$@
+    # if args is a file, cat the content of that file into args
+    if [ -f "$args" ]; then
+      file="$args"
+      args=""
+      while read l
+      do
+        args="$args\n$l"
+      done < $file
+    fi
+  fi
+  echo $args | nc termbin.com 9999
 }

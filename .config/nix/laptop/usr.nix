@@ -146,17 +146,17 @@
       };
       ExtensionSettings = {
         # catppuccin
-        # "{5ee380f7-abda-467c-ae9a-d30bf8f0d1d6}" = {
-        #   allowed_types = "theme";
-        #   installation_mode = "force_installed";
-        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-frappe-lavender/latest.xpi";
-        # };
-        # gruvbox
-        "{08d5243b-4236-4a27-984b-1ded22ce01c3}" = {
+        "{1cd0d6ef-d4bf-4fd1-9d80-4a9811a84647}" = {
           allowed_types = "theme";
           installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvboxgruvboxgruvboxgruvboxgr/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-peach/latest.xpi";
         };
+        # gruvbox
+        # "{08d5243b-4236-4a27-984b-1ded22ce01c3}" = {
+        #   allowed_types = "theme";
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvboxgruvboxgruvboxgruvboxgr/latest.xpi";
+        # };
         # ublock
         "uBlock0@raymondhill.net" = {
           allowed_types = "extension";
