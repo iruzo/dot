@@ -209,9 +209,9 @@ default_border pixel 1
 default_floating_border pixel 1
 # hide_edge_borders smart
 # gruvbox
-# client.focused #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2
+client.focused #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2
 # catppuccin
-client.focused #fab387 #fab387 #fab387 #fab387 #fab387
+# client.focused #fab387 #fab387 #fab387 #fab387 #fab387
 
 # gaps
 # gaps inner 20

@@ -32,7 +32,7 @@ export EDITOR='nvim'
 export GTK_THEME='Adwaita:dark'
 
 # export GTK_THEME='Catppuccin-Frappe-Standard-Rosewater-Dark:dark'
-export BEMENU_OPTS='-i -l 20 --fn "Fira Code, bold" --fb "#1e1e2e" --ff "#94e2d5" --nb "#1e1e2e" --nf "#f5e0dc" --tb "#1e1e2e" --hb "#1e1e2e" --tf "#cba6f7" --hf "#89b4fa" --nf "#f5e0dc" --af "#f5e0dc" --ab "#1e1e2e"'
+export BEMENU_OPTS='-i -l 20 --fn "Fira Code, bold" --fb "#282828" --ff "#ebdbb2" --nb "#282828" --nf "#ebdbb2" --tb "#282828" --hb "#282828" --tf "#fb4934" --hf "#fabd2f" --nf "#ebdbb2" --af "#ebdbb2" --ab "#282828"'
 
 export GPG_TTY=$(tty)
 

@@ -12,6 +12,7 @@ local function get_os()
 end
 
 if get_os() == "windows" then
+  -- default_prog = { 'powershell.exe', '-NoLogo' }
   default_prog = { 'wsl.exe', '~', '-d', 'Ubuntu-22.04' }
   default_domain = 'WSL:Ubuntu-20.04'
 end
@@ -24,8 +25,8 @@ return {
   -- window_background_opacity = 0.9,
   font = wezterm.font('Fira Code', { weight = 'Bold' }),
   font_size = 10,
-	color_scheme = "Catppuccin Mocha",
-  -- color_scheme = "Gruvbox dark, medium (base16)",
+	-- color_scheme = "Catppuccin Mocha",
+  color_scheme = "Gruvbox dark, medium (base16)",
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
   keys = {
