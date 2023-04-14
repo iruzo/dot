@@ -5,6 +5,7 @@
   networking.hostName = "iruzo-phone";
   networking.wireless.enable = false;
   networking.networkmanager.enable = true;
+  networking.networkmanager.enableFccUnlock = true;
   # networking.dhcpcd.enable = true;
 
   # Simple stateful dual-stack firewall
