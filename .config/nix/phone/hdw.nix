@@ -4,10 +4,9 @@
 
   boot.loader.grub = {
     enable = true;
-    devices = [ "nodev" ];
-    efiInstallAsRemovable = true;
-    efiSupport = true;
-    useOSProber = true;
+    version = 2;
+    devices = [ "/dev/mmcblk2boot0" ];
+    # useOSProber = true;
   };
 
   # Check S.M.A.R.T status of all disks and notify in case of errors
