@@ -14,5 +14,6 @@
       ./hardware-configuration.nix
       # ./vm/setup.nix
       # ./laptop/setup.nix
+      # ./phone/setup.nix
     ];
 }
