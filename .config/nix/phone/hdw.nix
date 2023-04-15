@@ -2,6 +2,11 @@
 
 {
 
+  boot.loader.grub = {
+    enable = true;
+    version = 2;
+  };
+
   # Check S.M.A.R.T status of all disks and notify in case of errors
   services.smartd = {
     enable = true;
