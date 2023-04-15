@@ -5,7 +5,7 @@
   boot.loader.grub = {
     enable = true;
     version = 2;
-    devices = [ "/dev/mmcblk2boot0" ];
+    devices = [ "/dev/mmcblk2p1" ];
     # useOSProber = true;
   };
 
