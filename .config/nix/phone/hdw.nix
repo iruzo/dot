@@ -72,16 +72,13 @@
     vaapiVdpau
     libvdpau-va-gl
   ];
+  hardware.opengl.driSupport = true; # vulkan
   # amdvlk
   # vaapiIntel
   # amd
-  hardware.opengl.driSupport = true; # vulkan
-  hardware.opengl.driSupport32Bit = true; # vulkan 32 bit
   # services.xserver.enable = true;
   # services.xserver.videoDrivers = [ "amdgpu" ];
 
-  # Thermals and cooling
-  services.thermald.enable = true;
   # This includes support for suspend-to-RAM and powersave features on laptops
   powerManagement.enable = true;
   zramSwap.enable = true;
