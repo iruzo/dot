@@ -8,6 +8,7 @@ return {
   -- general
   {
     'folke/which-key.nvim',
+	  tag = 'stable',
     event = "BufRead",
     config = function()
       vim.o.timeout = true
