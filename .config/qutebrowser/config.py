@@ -34,8 +34,8 @@ c.window.transparent=True
 # themes
 if not os.path.exists(config.configdir / "theme.py"):
     themes = [
-            "https://raw.githubusercontent.com/The-Compiler/dotfiles/master/qutebrowser/gruvbox.py",
-            # "https://raw.githubusercontent.com/catppuccin/qutebrowser/main/setup.py",
+            # "https://raw.githubusercontent.com/The-Compiler/dotfiles/master/qutebrowser/gruvbox.py",
+            "https://raw.githubusercontent.com/catppuccin/qutebrowser/main/setup.py",
             ]
     if len(themes) > 0:
         for theme in themes:
@@ -43,9 +43,9 @@ if not os.path.exists(config.configdir / "theme.py"):
                 with open(config.configdir / "theme.py", "a") as file:
                     file.writelines(themehtml.read().decode("utf-8"))
 if os.path.exists(config.configdir / "theme.py"):
-    # import theme
-    # theme.setup(c, 'mocha', True)
-    config.source('theme.py')
+    import theme
+    theme.setup(c, 'macchiato', True)
+    # config.source('theme.py')
 
 # styles
 if not os.path.exists(config.configdir / "style.css"):
