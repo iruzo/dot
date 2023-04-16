@@ -147,10 +147,10 @@
       };
       ExtensionSettings = {
         # catppuccin
-        "{1cd0d6ef-d4bf-4fd1-9d80-4a9811a84647}" = {
+        "{15cb5e64-94bd-41aa-91cf-751bb1a84972}" = {
           allowed_types = "theme";
           installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-peach/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-macchiato-lavender2/latest.xpi";
         };
         # gruvbox
         # "{08d5243b-4236-4a27-984b-1ded22ce01c3}" = {

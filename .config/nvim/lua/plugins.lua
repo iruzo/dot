@@ -81,26 +81,26 @@ return {
   },
 
   -- visual
-  -- {
-  --   "catppuccin/nvim",
-  --   as = "catppuccin",
-  --   config = function()
-  --     require("catppuccin").setup {
-  --       -- transparent_background = true,
-  --       flavour = "mocha", -- mocha, macchiato, frappe, latte
-  --     }
-  --     vim.api.nvim_command "colorscheme catppuccin"
-  --   end
-  -- },
   {
-    'ellisonleao/gruvbox.nvim',
-    lazy = false,
-    priority = 1000,
+    "catppuccin/nvim",
+    as = "catppuccin",
     config = function()
-      vim.o.background = "dark" -- or "light" for light mode
-      vim.api.nvim_command "colorscheme gruvbox"
+      require("catppuccin").setup {
+        -- transparent_background = true,
+        flavour = "macchiato", -- mocha, macchiato, frappe, latte
+      }
+      vim.api.nvim_command "colorscheme catppuccin"
     end
   },
+  -- {
+  --   'ellisonleao/gruvbox.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     vim.o.background = "dark" -- or "light" for light mode
+  --     vim.api.nvim_command "colorscheme gruvbox"
+  --   end
+  -- },
   { 'nvim-lualine/lualine.nvim', event = "BufRead", config = function() require("lualine").setup() end },
   {
     'nanozuki/tabby.nvim',
