@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, options, ... }:
 
 {
 
@@ -48,15 +48,37 @@
       foot
       neovim
       # qutebrowser
+
+      # phone apps
+      chatty              # IM and SMS
+      megapixels          # Camera
     ];
 
   };
 
   programs.noisetorch.enable = true;
 
+  # phone config
+  hardware.sensor.iio.enable = true;
+
+  mobile.beautification = {
+    silentBoot = lib.mkDefault true;
+    splash = lib.mkDefault true;
+  };
   services.xserver.desktopManager.phosh = {
+    enable = true;
+    group = "users";
     user = "iruzo";
   };
+  programs.calls.enable = true;
+  assertions = [
+    { assertion = options.services.xserver.desktopManager.phosh.user.isDefined;
+    message = ''
+      `services.xserver.desktopManager.phosh.user` not set.
+        When importing the phosh configuration in your system, you need to set `services.xserver.desktopManager.phosh.user` to the username of the session user.
+    '';
+    }
+  ];
 
   # programs.sway = {
   #   enable = true;

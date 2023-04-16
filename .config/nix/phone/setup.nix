@@ -3,6 +3,7 @@
 {
   imports =
     [
+      (import <pine64-pinephone>)
       ./hdw.nix
       ./net.nix
       ./usr.nix
