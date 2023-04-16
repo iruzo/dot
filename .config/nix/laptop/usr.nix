@@ -30,6 +30,7 @@
       "wheel" # Enable ‘sudo’ for the user.
       "video"
       "audio"
+      "networkmanager"
       # "docker" "lxd" # Allow access to the sockets without root
     ];
 
