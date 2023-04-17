@@ -12,9 +12,9 @@ local function get_os()
 end
 
 if get_os() == "windows" then
-  -- default_prog = { 'powershell.exe', '-NoLogo' }
-  default_prog = { 'wsl.exe', '~', '-d', 'Ubuntu-22.04' }
-  default_domain = 'WSL:Ubuntu-20.04'
+  default_prog = { 'powershell.exe', '-NoLogo' }
+  -- default_prog = { 'wsl.exe', '~', '-d', 'Ubuntu-22.04' }
+  -- default_domain = 'WSL:Ubuntu-20.04'
 end
 
 return {
