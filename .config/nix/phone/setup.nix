@@ -3,6 +3,7 @@
 {
   imports =
     [
+      ./p64.nix
       ./pine64-pinephone
       ./hdw.nix
       ./net.nix
