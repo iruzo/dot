@@ -107,6 +107,7 @@
       DisplayBookmarksToolbar = "never";
       NoDefaultBookmarks = true;
       SearchSuggestEnabled = true;
+      HardwareAcceleration = false;
       SanitizeOnShutdown = {
         Cache = false;
         Cookies = false;
