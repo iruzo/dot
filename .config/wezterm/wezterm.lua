@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 -- color_scheme = "Catppuccin Macchiato",
 -- color_scheme = "Gruvbox dark, medium (base16)",
-local custom = wezterm.color.get_builtin_schemes()["Gruvbox Dark"]
+-- local custom = wezterm.color.get_builtin_schemes()["Gruvbox Dark"]
 -- custom.background = "#000000"
 
 local function get_os()
@@ -28,10 +28,11 @@ return {
   default_prog = default_prog,
   default_domain = default_domain,
   -- window_background_opacity = 0.9,
+  color_scheme = "Gruvbox dark, hard (base16)",
+  -- color_schemes = { ["custom"] = custom },
+  -- color_scheme = "custom",
   font = wezterm.font('Fira Code', { weight = 'Bold' }),
   font_size = 10,
-  color_schemes = { ["custom"] = custom },
-  color_scheme = "custom",
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
   keys = {
