@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 -- color_scheme = "Catppuccin Macchiato",
 -- color_scheme = "Gruvbox dark, medium (base16)",
 local custom = wezterm.color.get_builtin_schemes()["Gruvbox Dark"]
-custom.background = "#000000"
+-- custom.background = "#000000"
 
 local function get_os()
   local target = wezterm.target_triple

@@ -19,8 +19,11 @@ return {
   {
     'phaazon/hop.nvim',
     event = "BufRead",
+    event = "VeryLazy",
+    keys = {
+      { "f", ":HopChar1<CR>", silent = true, desc = "Hop" },
+    },
     config = function()
-      vim.api.nvim_set_keymap('n', '<space>s', ':HopChar1<CR>', { noremap = true })
       require('hop').setup()
     end
   },
@@ -68,8 +71,11 @@ return {
       'nvim-tree/nvim-web-devicons',
       'MunifTanjim/nui.nvim',
     },
+    event = "VeryLazy",
+    keys = {
+      { "<space>e", ":NeoTreeRevealToggle<CR>", silent = true, desc = "File Explorer" },
+    },
     config = function()
-      vim.api.nvim_set_keymap('n', '<space>e', ':NeoTreeRevealToggle<CR>', { noremap = true })
       require("neo-tree").setup()
     end
   },
@@ -93,18 +99,37 @@ return {
   --     vim.api.nvim_command "colorscheme catppuccin"
   --   end
   -- },
+  -- {
+  --   'sainnhe/gruvbox-material',
+  --   config = function()
+  --     vim.o.background="dark"
+  --     vim.g.gruvbox_material_background='hard' -- soft medium hard
+  --     vim.g.gruvbox_material_foreground='mix'
+  --     vim.g.gruvbox_material_better_performance=1
+  --     vim.api.nvim_command "colorscheme gruvbox-material"
+  --   end
+  -- },
+  -- {
+  --   'ellisonleao/gruvbox.nvim',
+  --   lazy = false,
+  --   priority = 1000,
+  --   config = function()
+  --     vim.o.background = "dark" -- or "light" for light mode
+  --     require("gruvbox").setup({
+  --       contrast = "hard"
+  --       -- transparent_mode = true,
+  --     })
+  --     vim.api.nvim_command "colorscheme gruvbox"
+  --   end
+  -- },
   {
-    'ellisonleao/gruvbox.nvim',
-    lazy = false,
-    priority = 1000,
+    'luisiacc/gruvbox-baby',
     config = function()
-      vim.o.background = "dark" -- or "light" for light mode
-      require("gruvbox").setup({
-        transparent_mode = true,
-      })
-      vim.api.nvim_command "colorscheme gruvbox"
+      vim.g.gruvbox_baby_background_color = "dark"
+      vim.api.nvim_command "colorscheme gruvbox-baby"
     end
   },
+
   { 'nvim-lualine/lualine.nvim', event = "BufRead", config = function() require("lualine").setup() end },
   {
     'nanozuki/tabby.nvim',
