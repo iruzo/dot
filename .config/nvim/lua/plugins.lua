@@ -99,37 +99,14 @@ return {
   --     vim.api.nvim_command "colorscheme catppuccin"
   --   end
   -- },
-  -- {
-  --   'sainnhe/gruvbox-material',
-  --   config = function()
-  --     vim.o.background="dark"
-  --     vim.g.gruvbox_material_background='hard' -- soft medium hard
-  --     vim.g.gruvbox_material_foreground='mix'
-  --     vim.g.gruvbox_material_better_performance=1
-  --     vim.api.nvim_command "colorscheme gruvbox-material"
-  --   end
-  -- },
-  -- {
-  --   'ellisonleao/gruvbox.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     vim.o.background = "dark" -- or "light" for light mode
-  --     require("gruvbox").setup({
-  --       contrast = "hard"
-  --       -- transparent_mode = true,
-  --     })
-  --     vim.api.nvim_command "colorscheme gruvbox"
-  --   end
-  -- },
   {
-    'luisiacc/gruvbox-baby',
+    'navarasu/onedark.nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      vim.g.gruvbox_baby_background_color = "dark"
-      vim.api.nvim_command "colorscheme gruvbox-baby"
+      require("onedark").load()
     end
   },
-
   { 'nvim-lualine/lualine.nvim', event = "BufRead", config = function() require("lualine").setup() end },
   {
     'nanozuki/tabby.nvim',

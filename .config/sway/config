@@ -208,8 +208,10 @@ output * bg #000000 solid_color
 default_border pixel 1
 default_floating_border pixel 1
 # hide_edge_borders smart
+# one dark
+client.focused #e5c07b #e5c07b #e5c07b #e5c07b #e5c07b
 # gruvbox
-client.focused #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2
+# client.focused #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2
 # catppuccin
 # client.focused #fab387 #fab387 #fab387 #fab387 #fab387
 

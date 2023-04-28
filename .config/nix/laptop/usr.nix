@@ -147,12 +147,18 @@
         extensions.activeThemeID = "{5ee380f7-abda-467c-ae9a-d30bf8f0d1d6}";
       };
       ExtensionSettings = {
-        # ayu
-        "{893ac7d8-44d2-4f3c-8a40-d42cef042076}" = {
+        # one dark
+        "{2db5ae19-2e89-4a71-a5f2-da0e2bf69917}" = {
           allowed_types = "theme";
           installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/ayu-dark-theme/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/onedark-vim/latest.xpi";
         };
+        # ayu
+        # "{893ac7d8-44d2-4f3c-8a40-d42cef042076}" = {
+        #   allowed_types = "theme";
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/ayu-dark-theme/latest.xpi";
+        # };
         # catppuccin
         # "{15cb5e64-94bd-41aa-91cf-751bb1a84972}" = {
         #   allowed_types = "theme";

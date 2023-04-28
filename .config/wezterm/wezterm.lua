@@ -28,7 +28,7 @@ return {
   default_prog = default_prog,
   default_domain = default_domain,
   -- window_background_opacity = 0.9,
-  color_scheme = "Gruvbox dark, hard (base16)",
+  color_scheme = "OneHalfDark",
   -- color_schemes = { ["custom"] = custom },
   -- color_scheme = "custom",
   font = wezterm.font('Fira Code', { weight = 'Bold' }),
