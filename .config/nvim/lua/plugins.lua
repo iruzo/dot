@@ -279,4 +279,26 @@ return {
     end
   },
 
+  {
+    "simrat39/rust-tools.nvim",
+    lazy = true,
+    ft = "rust",
+    pin = true,
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local f=io.open("Cargo.toml","r")
+      if f~=nil then io.close(f)
+        local rt = require("rust-tools")
+        rt.setup({
+          server = {
+            on_attach = function(_, bufnr)
+              -- Hover actions
+              vim.keymap.set("n", "<space>ca", rt.hover_actions.hover_actions, { buffer = bufnr })
+            end,
+          },
+        })
+      end
+    end,
+  },
+
 }
