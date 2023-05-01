@@ -53,10 +53,6 @@ alias fg='coincidence=$(find / 2>/dev/null | bemenu); if [ -f $coincidence ]; th
 alias monitor-mem='ps axch -o cmd:15,rss --sort=-rss | numfmt --from-unit=1024 --to=iec --field 2 2> /dev/null'
 alias monitor-mempercent='ps axch -o cmd:15,%mem --sort=-%mem'
 alias monitor-cpu='ps axch -o cmd:15,%cpu --sort=-%cpu'
-# git
-alias gs='git status -s'
-alias gc='git commit -m'
-alias gp='git push'
 
 fetch() {
   # distro
