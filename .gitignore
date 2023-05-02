@@ -9,11 +9,6 @@
 !.gitconfig
 
 # config
-!.local/
-.local/*
-!.local/bin
-
-# config
 !.config/
 .config/*
 
