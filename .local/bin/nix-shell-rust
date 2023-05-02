@@ -1,2 +1,0 @@
-#!/bin/sh
-nix-shell -p rustc cargo rust-analyzer
