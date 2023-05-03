@@ -132,8 +132,11 @@ return {
       })
     end
   },
-  { -- highlight
+  {
     'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-context',
+    },
     event = { 'BufRead', 'BufNewFile', 'InsertEnter' },
     run = function()
       require('nvim-treesitter.install').update({ with_sync = true })
@@ -146,18 +149,21 @@ return {
       }
     end
   },
-  { -- after doesn't work inside require
-    'nvim-treesitter/nvim-treesitter-context',
-    after = "nvim-treesitter",
-  },
   {
     'norcalli/nvim-colorizer.lua',
     -- event = "BufRead",
     cmd = { 'ColorizerToggle' },
     config = function() require("colorizer").setup() end,
-  }, --show colors in code
+  },
+  {
+    'ellisonleao/glow.nvim',cmd = { 'Glow' },
+    config = function ()
+      require("glow").setup({
+        pager = true
+      })
+    end
+  },
 
-  --git
   { 'TimUntersberger/neogit', cmd = 'Neogit' }, -- git menu
   { -- show git changes in files
     'lewis6991/gitsigns.nvim',
@@ -174,7 +180,6 @@ return {
     end,
   },
 
-  --dap
   {
     'mfussenegger/nvim-dap',
     event = "BufRead",
@@ -204,7 +209,6 @@ return {
     }
   },
 
-  --db
   {
     'kristijanhusak/vim-dadbod-ui',
     cmd = 'DBUI',
