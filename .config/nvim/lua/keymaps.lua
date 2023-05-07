@@ -60,7 +60,7 @@ function superformat()
     vim.api.nvim_command('normal gg=G')
   end
 end
-vim.api.nvim_set_keymap('n', 'ff', ':lua superformat()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-f>', ':lua superformat()<CR>', { noremap = true })
 
 --netrw
 -- vim.api.nvim_set_keymap('n', 'ee', ':Lexplore <CR>', { noremap = true })

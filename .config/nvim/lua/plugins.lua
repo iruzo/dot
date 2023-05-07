@@ -45,6 +45,10 @@ return {
       vim.api.nvim_set_keymap('n', '<space>f', ':Telescope find_files<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<space>b', ':Telescope buffers<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<space>t', ':Telescope diagnostics<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<space>g', ':Telescope git_commits<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<space>c', ':Telescope git_bcommits<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<space>b', ':Telescope git_branches<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<space>s', ':Telescope git_status<CR>', { noremap = true })
       require('telescope').setup {
         defaults = {
           file_ignore_patterns = {
@@ -256,8 +260,8 @@ return {
       vim.api.nvim_set_keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', 'gr', ':lua vim.lsp.buf.references()<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', 'rr', ':lua vim.lsp.buf.rename()<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', 'ca', ':lua vim.lsp.buf.code_action()<CR>', { noremap = true }) --open code actions using the default lsp UI
-      vim.api.nvim_set_keymap('x', 'ca', ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true }) --open code actions for the selected visual range
+      vim.api.nvim_set_keymap('n', '<space>a', ':lua vim.lsp.buf.code_action()<CR>', { noremap = true }) --open code actions using the default lsp UI
+      vim.api.nvim_set_keymap('x', '<space>a', ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true }) --open code actions for the selected visual range
 
       local lsp = require("lsp-zero")
       lsp.preset("recommended")
@@ -297,7 +301,7 @@ return {
           server = {
             on_attach = function(_, bufnr)
               -- Hover actions
-              vim.keymap.set("n", "<space>ca", rt.hover_actions.hover_actions, { buffer = bufnr })
+              vim.keymap.set("n", "<space>a", rt.hover_actions.hover_actions, { buffer = bufnr })
             end,
           },
         })
