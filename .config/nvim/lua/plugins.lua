@@ -43,7 +43,7 @@ return {
     config = function()
       vim.api.nvim_set_keymap('n', '<space>h', ':Telescope live_grep<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<space>f', ':Telescope find_files<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '<space>b', ':Telescope buffers<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<space>F', ':Telescope buffers<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<space>t', ':Telescope diagnostics<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<space>g', ':Telescope git_commits<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<space>c', ':Telescope git_bcommits<CR>', { noremap = true })
