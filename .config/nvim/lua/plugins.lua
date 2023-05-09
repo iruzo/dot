@@ -262,6 +262,8 @@ return {
       vim.api.nvim_set_keymap('n', 'rr', ':lua vim.lsp.buf.rename()<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<space>a', ':lua vim.lsp.buf.code_action()<CR>', { noremap = true }) --open code actions using the default lsp UI
       vim.api.nvim_set_keymap('x', '<space>a', ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true }) --open code actions for the selected visual range
+      vim.api.nvim_set_keymap('n', '<M-p>', ':lua vim.diagnostic.goto_prev()<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<M-n>', ':lua vim.diagnostic.goto_next()<CR>', { noremap = true })
 
       local lsp = require("lsp-zero")
       lsp.preset("recommended")

@@ -35,7 +35,10 @@ return {
   font_size = 13,
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
+  disable_default_key_bindings = false,
   keys = {
+    { key = 'n', mods = 'CTRL|SHIFT', action = 'DisableDefaultAssignment' },
+
     { key = 'q', mods = 'CTRL|SHIFT', action = wezterm.action.CloseCurrentPane{ confirm = true } },
     { key = 'p', mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom('Clipboard') },
 
