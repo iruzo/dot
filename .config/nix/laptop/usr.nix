@@ -231,6 +231,12 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
         };
+        # twitch
+        "firefox@betterttv.net" = {
+          allowed_types = "extension";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/betterttv/latest.xpi";
+        };
       };
     };
   };
