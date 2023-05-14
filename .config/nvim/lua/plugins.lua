@@ -53,9 +53,9 @@ return {
         defaults = {
           file_ignore_patterns = {
             -- linux
-            '.git/', '.cache/', '.local/', 'venv/', 'svn/',
+            '.git/', '.cache/', '.local/', 'venv/', 'svn/', 'target/',
             -- windows
-            '.git\\', '.cache\\', '.local\\', 'venv\\', 'svn\\'
+            '.git\\', '.cache\\', '.local\\', 'venv\\', 'svn\\', 'target\\'
           }
         },
         pickers = {

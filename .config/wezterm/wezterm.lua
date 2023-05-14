@@ -32,7 +32,7 @@ return {
   -- color_schemes = { ["custom"] = custom },
   -- color_scheme = "custom",
   font = wezterm.font('Fira Code', { weight = 'Bold' }),
-  font_size = 13,
+  font_size = 10,
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
   disable_default_key_bindings = false,
