@@ -12,8 +12,8 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./laptop/setup.nix
       # ./vm/setup.nix
-      # ./laptop/setup.nix
       # ./phone/setup.nix
     ];
 }
