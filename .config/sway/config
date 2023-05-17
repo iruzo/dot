@@ -117,7 +117,7 @@ bindsym $mod+r mode "resize"
 
 # bar {
 #   position top
-#   font "Fira Code bold 11"
+#   font "Fira Code bold 10"
 #
 #   height 18
 #
@@ -148,17 +148,30 @@ bindsym $mod+r mode "resize"
 #     # urgent_workspace   #2f343aAA #EB4D4BAA #FFFFFF
 #     # binding_mode       #2f343aAA #FF0000AA #FFFFFF
 #
-#     # catppuccin
-#     background #303446AA
-#     statusline #f4b8e4
-#     focused_statusline #f2d5cf
-#     active_workspace #303446AA #303446AA #81c8be
-#     focused_separator  #303446AA
-#     focused_workspace  #303446AA #303446AA #81c8be
-#     active_workspace   #303446AA #303446AA #81c8be
-#     inactive_workspace #303446AA #303446AA #f4b8e4
-#     urgent_workspace   #303446AA #303446AA #f4b8e4
-#     binding_mode       #303446AA #303446AA #f4b8e4
+#     # # catppuccin
+#     # background         #303446AA
+#     # statusline         #f4b8e4
+#     # focused_statusline #f2d5cf
+#     # active_workspace   #303446AA #303446AA #81c8be
+#     # focused_separator  #303446AA
+#     # focused_workspace  #303446AA #303446AA #81c8be
+#     # active_workspace   #303446AA #303446AA #81c8be
+#     # inactive_workspace #303446AA #303446AA #f4b8e4
+#     # urgent_workspace   #303446AA #303446AA #f4b8e4
+#     # binding_mode       #303446AA #303446AA #f4b8e4
+#
+#
+#     # onedark
+#     background         #282C34
+#     statusline         #c678DD
+#     focused_statusline #e5c07b
+#     active_workspace   #282C34 #abb2bf #61AFEF
+#     focused_separator  #282C34
+#     focused_workspace  #abb2bf #282C34 #61AFEF
+#     active_workspace   #abb2bf #282C34 #61AFEF
+#     inactive_workspace #abb2bf #282C34 #c678DD
+#     urgent_workspace   #abb2bf #282C34 #c678DD
+#     binding_mode       #abb2bf #282C34 #c678DD
 #
 #   }
 #
