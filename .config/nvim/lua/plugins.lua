@@ -98,7 +98,15 @@ return {
   --   config = function()
   --     require("catppuccin").setup {
   --       -- transparent_background = true,
-  --       flavour = "macchiato", -- mocha, macchiato, frappe, latte
+  --       flavour = "mocha", -- mocha, macchiato, frappe, latte
+  --       transparent_background = true,
+  --       integrations = {
+  --         hop = true,
+  --         mason = true,
+  --         neotree = true,
+  --         which_key = true,
+  --         dap = { enable = true, enable_ui = true }
+  --       },
   --     }
   --     vim.api.nvim_command "colorscheme catppuccin"
   --   end
