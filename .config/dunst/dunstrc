@@ -11,7 +11,7 @@
     word_wrap = yes
     ignore_newline = no
     geometry = "200x5-6+30"
-    browser = /usr/bin/firefox -new-tab
+    browser = /bin/sh -c "firefox -new-tab"
     transparency = 0
     idle_threshold = 120
     monitor = 0
