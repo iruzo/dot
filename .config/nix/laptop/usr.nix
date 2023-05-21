@@ -68,6 +68,7 @@
       slurp
     ];
   };
+  programs.xwayland.enable = true;
 
   services.dbus.enable = true;
   xdg.portal = {

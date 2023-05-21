@@ -41,7 +41,9 @@
       };
     };
 
-    kernelParams  = [ "acpi_rev_override=5" ];
+    # kernelParams  = [
+    #   "acpi_rev_override=5"
+    # ];
 
   };
 
@@ -66,19 +68,22 @@
   # Enable all the firmware with a license allowing redistribution. (i.e. free firmware and firmware-linux-nonfree)
   hardware.enableRedistributableFirmware = true;
 
-  # Enable OpenGL drivers
-  hardware.opengl.enable = true;
-  hardware.opengl.extraPackages = with pkgs; [
-    amdvlk
-    vaapiVdpau
-    libvdpau-va-gl
-  ];
   # amdvlk
   # vaapiIntel
   # amd
-  hardware.opengl.driSupport = true; # vulkan
-  hardware.opengl.driSupport32Bit = true; # vulkan 32 bit
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  hardware.opengl = {
+    enable = true;
+    driSupport = true; # vulkan
+    driSupport32Bit = true; # vulkan 32 bit
+    extraPackages = with pkgs; [
+      amdvlk
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
+  };
   # services.xserver.enable = true;
   # services.xserver.videoDrivers = [ "amdgpu" ];
 
