@@ -4,6 +4,7 @@
 # general
 !.profile
 !.shrc
+!.bashrc
 !.yashrc
 !.bash_profile
 !.gitconfig
