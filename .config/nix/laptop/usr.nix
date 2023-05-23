@@ -23,7 +23,7 @@
   users.users.iruzo = {
     # group to users, createHome to true, home to /home/username, useDefaultShell to true, and isSystemUser to false.
     isNormalUser = true;
-    shell = pkgs.yash;
+    shell = pkgs.bash;
     password = "a";
 
     extraGroups = [
@@ -58,22 +58,42 @@
     # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
-  programs.sway = {
-    enable = true;
-    extraPackages = with pkgs; [
-      swaylock
-      wl-clipboard
-      bemenu
-      grim
-      slurp
-    ];
-  };
-  programs.xwayland.enable = true;
+  # programs.sway = {
+  #   enable = true;
+  #   extraPackages = with pkgs; [
+  #     swaylock
+  #     wl-clipboard
+  #     bemenu
+  #     grim
+  #     slurp
+  #   ];
+  # };
+  # programs.xwayland.enable = true;
 
-  services.dbus.enable = true;
-  xdg.portal = {
+  # services.dbus.enable = true;
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr.enable = true;
+  # };
+
+  environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
+  services.xserver = {
     enable = true;
-    wlr.enable = true;
+    desktopManager = {
+      xterm.enable = false;
+    };
+    displayManager = {
+        defaultSession = "none+i3";
+    };
+    windowManager.i3 = {
+      enable = true;
+      extraPackages = with pkgs; [
+        dmenu #application launcher most people use
+        i3status # gives you the default i3 status bar
+        i3lock #default i3 screen locker
+        i3blocks #if you are planning on using i3blocks over i3status
+     ];
+    };
   };
 
   # fetching and compiling from source example
