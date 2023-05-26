@@ -1,3 +1,3 @@
 if vim.g.neovide then
-  vim.o.guifont = "Fira Code:h10:b"
+  vim.o.guifont = "Fira Code:h8:b"
 end

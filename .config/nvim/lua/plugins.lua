@@ -16,6 +16,7 @@ return {
       require("which-key").setup()
     end
   },
+
   {
     'phaazon/hop.nvim',
     event = "BufRead",
@@ -27,23 +28,26 @@ return {
       require('hop').setup()
     end
   },
+
   {
     "jamessan/vim-gnupg",
     config = function()
       vim.g.GPGPreferSymmetric=1
     end
   },
+
   {
     'numToStr/Comment.nvim',
     keys = { "gc", "gb" },
     config = function() require('Comment').setup() end
   },
+
   {
     'nvim-telescope/telescope.nvim',
     config = function()
       vim.api.nvim_set_keymap('n', '<space>h', ':Telescope live_grep<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '<space>f', ':Telescope find_files<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '<space>F', ':Telescope buffers<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<space>f', ':Telescope buffers<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<space>F', ':Telescope find_files<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<space>t', ':Telescope diagnostics<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<space>g', ':Telescope git_commits<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<space>c', ':Telescope git_bcommits<CR>', { noremap = true })
@@ -56,7 +60,22 @@ return {
             '.git/', '.cache/', '.local/', 'venv/', 'svn/', 'target/',
             -- windows
             '.git\\', '.cache\\', '.local\\', 'venv\\', 'svn\\', 'target\\'
-          }
+          },
+          vimgrep_arguments = {
+              "grep",
+              "--extended-regexp",
+              "--color=never",
+              "--with-filename",
+              "--line-number",
+              "-b", -- grep doesn't support a `--column` option :(
+              "--ignore-case",
+              "--recursive",
+              "--no-messages",
+              "--binary-files=without-match"
+              -- git grep also works but limits to only git directories,the above works perfectly
+              -- "git", "grep", "--full-name", "--line-number", "--column", "--extended-regexp", "--ignore-case",
+              -- "--no-color", "--recursive", "--recurse-submodules", "-I"
+          },
         },
         pickers = {
           find_files = {
@@ -69,6 +88,7 @@ return {
       }
     end
   },
+
   {
     'nvim-neo-tree/neo-tree.nvim',
     dependencies = {
@@ -83,6 +103,7 @@ return {
       require("neo-tree").setup()
     end
   },
+
   {
     'sanfusu/neovim-undotree',
     event = 'BufRead',
@@ -119,7 +140,9 @@ return {
       require("onedark").load()
     end
   },
+
   { 'nvim-lualine/lualine.nvim', event = "BufRead", config = function() require("lualine").setup() end },
+
   {
     'nanozuki/tabby.nvim',
     event = "BufRead",
@@ -144,6 +167,7 @@ return {
       })
     end
   },
+
   {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
@@ -161,12 +185,14 @@ return {
       }
     end
   },
+
   {
     'norcalli/nvim-colorizer.lua',
     -- event = "BufRead",
     cmd = { 'ColorizerToggle' },
     config = function() require("colorizer").setup() end,
   },
+
   {
     'ellisonleao/glow.nvim',cmd = { 'Glow' },
     config = function ()
@@ -177,6 +203,7 @@ return {
   },
 
   { 'TimUntersberger/neogit', cmd = 'Neogit' }, -- git menu
+
   { -- show git changes in files
     'lewis6991/gitsigns.nvim',
     config = function()
@@ -201,7 +228,6 @@ return {
       {
         'jayp0521/mason-nvim-dap.nvim',
         config = function()
-          vim.api.nvim_set_keymap('n', 'W', '<Plug>(DBUI_SaveQuery)', { noremap = true })
           vim.api.nvim_set_keymap('n', '<F1>', ':DapToggleBreakpoint<CR>', { noremap = true })
           vim.api.nvim_set_keymap('n', '<F2>', ':lua require"dap".step_over()<CR>', { noremap = true })
           vim.api.nvim_set_keymap('n', '<F3>', ':lua require"dap".step_back()<CR>', { noremap = true })
@@ -227,7 +253,10 @@ return {
     dependencies = {
       {
         'tpope/vim-dadbod',
-        config = function() vim.g.db_ui_save_location = '~/.local/data/nvim/dbui' end,
+        config = function()
+          vim.g.db_ui_save_location = '~/.local/data/nvim/dbui'
+          vim.api.nvim_set_keymap('n', 'W', '<Plug>(DBUI_SaveQuery)', { noremap = true })
+        end,
         dependencies = {
           { 'kristijanhusak/vim-dadbod-completion', after = 'vim-dadbod' },
         }
@@ -240,6 +269,20 @@ return {
   -- { 'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp', }
   -- { 'tzachar/cmp-tabnine', build = 'powershell ./install.ps1', dependencies = 'hrsh7th/nvim-cmp', }
   -- { 'codota/tabnine-nvim', build = "./dl_binaries.sh" },
+
+  {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup({
+          sources = {
+              null_ls.builtins.formatting.stylua,
+              null_ls.builtins.diagnostics.eslint,
+              null_ls.builtins.completion.spell,
+          },
+      })
+    end
+  },
 
   {
     'VonHeikemen/lsp-zero.nvim',
