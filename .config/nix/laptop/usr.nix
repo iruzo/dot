@@ -39,6 +39,7 @@
       curl
       git
       unzip
+      btop
       keepassxc
       helvum
       pavucontrol
@@ -70,7 +71,7 @@
       slurp
     ];
   };
-  programs.xwayland.enable = true;
+  # programs.xwayland.enable = true;
   services.dbus.enable = true;
   xdg.portal = {
     enable = true;

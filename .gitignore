@@ -26,6 +26,11 @@
 .config/wezterm/*
 !.config/wezterm/wezterm.lua
 
+# btop
+!.config/btop
+.config/btop/*
+!.config/btop/btop.conf
+
 # dunst
 !.config/dunst
 .config/dunst/*
