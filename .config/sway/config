@@ -191,6 +191,7 @@ input "type:keyboard" {
 
 # output
 output * res 1920x1080
+output DP-2 transform 270
 # output Virtual-1 res 1920x1080
 
 # output eDP-1 pos 0 0 res 1920x1080
@@ -281,7 +282,7 @@ bindsym $mod+o exec firefox
 bindsym $mod+Shift+o exec cat ~/iruzo/quickmarks | $emptymenu | awk -F' ' '{print $NF}' | wl-copy $(cat)
 
 # vm
-bindsym $mod+i exec virt-manager
+bindsym $mod+i exec gnome-boxes
 
 # keepassxc
 bindsym $mod+u exec keepassxc

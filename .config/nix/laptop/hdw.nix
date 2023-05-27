@@ -111,13 +111,13 @@
   # Install VB
   # virtualisation.virtualbox.host.enable = true;
   # Libvirtd (Qemu)
-  # virtualisation.libvirtd.enable = true;
-  # programs.dconf.enable = true;
-  # environment.systemPackages = with pkgs; [
-  #   virt-manager
-  #   iproute2
-  #   iptables
-  # ];
+  virtualisation.libvirtd.enable = true;
+  programs.dconf.enable = true;
+  environment.systemPackages = with pkgs; [
+    gnome.gnome-boxes
+    iproute2
+    iptables
+  ];
 
   # Enable Pulseaudio
   # hardware.pulseaudio = {
