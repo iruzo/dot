@@ -44,6 +44,7 @@ return {
 
   {
     'nvim-telescope/telescope.nvim',
+	  tag = '0.1.1',
     config = function()
       vim.api.nvim_set_keymap('n', '<space>h', ':Telescope live_grep<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<space>f', ':Telescope buffers<CR>', { noremap = true })
@@ -81,9 +82,6 @@ return {
           find_files = {
             hidden = 'true'
           },
-          find_files = {
-            theme = "ivy",
-          }
         }
       }
     end
@@ -194,12 +192,9 @@ return {
   },
 
   {
-    'ellisonleao/glow.nvim',cmd = { 'Glow' },
-    config = function ()
-      require("glow").setup({
-        pager = true
-      })
-    end
+    'ellisonleao/glow.nvim',
+    cmd = { 'Glow' },
+    config = true
   },
 
   { 'TimUntersberger/neogit', cmd = 'Neogit' }, -- git menu
