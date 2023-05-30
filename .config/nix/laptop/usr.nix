@@ -224,23 +224,11 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/istilldontcareaboutcookies/latest.xpi";
         };
-        # languagetool
-        "languagetool-webextension@languagetool.org" = {
-          allowed_types = "extension";
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/languagetool/latest.xpi";
-        };
         # multi-account-containers
         "@testpilot-containers" = {
           allowed_types = "extension";
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi";
-        };
-        # refined-github
-        "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = {
-          allowed_types = "extension";
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/refined-github-/latest.xpi";
         };
         # temporary-containers
         "{c607c8df-14a7-4f28-894f-29e8722976af}" = {
@@ -248,11 +236,29 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/temporary-containers/latest.xpi";
         };
+        # tab-volume
+        "{a8e99fca-eb8f-410f-84e9-142eb055c162}" = {
+          allowed_types = "extension";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/tab-volume/latest.xpi";
+        };
         # vimium-ff
         "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
           allowed_types = "theme";
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
+        };
+        # languagetool
+        "languagetool-webextension@languagetool.org" = {
+          allowed_types = "extension";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/languagetool/latest.xpi";
+        };
+        # refined-github
+        "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = {
+          allowed_types = "extension";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/refined-github-/latest.xpi";
         };
         # twitch
         "firefox@betterttv.net" = {
