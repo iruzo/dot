@@ -27,7 +27,8 @@ return {
   -- wezterm.default_wsl_domains()
   default_prog = default_prog,
   default_domain = default_domain,
-  -- window_background_opacity = 0.9,
+  window_background_opacity = 0.8,
+  -- window_background_image = '/home/iruzo/wallpaper.png',
   color_scheme = "OneHalfDark",
   -- color_schemes = { ["custom"] = custom },
   -- color_scheme = "custom",
