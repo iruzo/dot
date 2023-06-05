@@ -21,7 +21,7 @@ vim.opt.autoread = true
 vim.opt.errorbells = false
 vim.opt.termguicolors = true
 vim.opt.background = 'dark'
--- vim.opt.wrap = false
+vim.opt.wrap = false
 
 vim.opt.swapfile = false
 vim.opt.backup = false
