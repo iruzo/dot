@@ -84,6 +84,8 @@
       driversi686Linux.amdvlk
     ];
   };
+  # enable opencl support
+  services.xmr-stak.openclSupport = true;
   # services.xserver.enable = true;
   # services.xserver.videoDrivers = [ "amdgpu" ];
 
