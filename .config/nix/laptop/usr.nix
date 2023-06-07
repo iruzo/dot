@@ -236,12 +236,12 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/temporary-containers/latest.xpi";
         };
-        # tab-volume
-        "{a8e99fca-eb8f-410f-84e9-142eb055c162}" = {
-          allowed_types = "extension";
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/tab-volume/latest.xpi";
-        };
+        # # tab-volume
+        # "{a8e99fca-eb8f-410f-84e9-142eb055c162}" = {
+        #   allowed_types = "extension";
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/tab-volume/latest.xpi";
+        # };
         # vimium-ff
         "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
           allowed_types = "theme";
@@ -259,12 +259,6 @@
           allowed_types = "extension";
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/refined-github-/latest.xpi";
-        };
-        # twitch
-        "firefox@betterttv.net" = {
-          allowed_types = "extension";
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/betterttv/latest.xpi";
         };
       };
     };
