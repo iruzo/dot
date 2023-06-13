@@ -1,10 +1,5 @@
 local wezterm = require("wezterm")
 
--- color_scheme = "Catppuccin Macchiato",
--- color_scheme = "Gruvbox dark, medium (base16)",
--- local custom = wezterm.color.get_builtin_schemes()["Gruvbox Dark"]
--- custom.background = "#000000"
-
 local function get_os()
   local target = wezterm.target_triple
   if string.find(target, "linux") then
@@ -27,12 +22,7 @@ return {
   -- wezterm.default_wsl_domains()
   default_prog = default_prog,
   default_domain = default_domain,
-  window_background_opacity = 0.8,
-  -- window_background_image = '/home/iruzo/wallpaper.png',
   color_scheme = "OneHalfDark",
-  -- color_schemes = { ["custom"] = custom },
-  -- color_scheme = "custom",
-  font = wezterm.font('Fira Code', { weight = 'Bold' }),
   font_size = 10,
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
