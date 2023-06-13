@@ -260,6 +260,24 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/refined-github-/latest.xpi";
         };
+        # mailvelope
+        "jid1-AQqSMBYb0a8ADg@jetpack" = {
+          allowed_types = "extension";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/mailvelope/latest.xpi";
+        };
+        # discord container
+        "@contain-discord" = {
+          allowed_types = "extension";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/discord-container/latest.xpi";
+        };
+        # SimpleDiscordCrypt
+        "{8166255e-a47b-45ee-89be-28bd3f71d6ad}" = {
+          allowed_types = "extension";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/simplediscordcrypt/latest.xpi";
+        };
       };
     };
   };
