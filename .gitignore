@@ -45,6 +45,11 @@
 !.config/nvim/ftplugin
 !.config/nvim/lang-servers
 
+# emacs
+!.config/emacs
+.config/emacs/*
+!.config/emacs/init.el
+
 # sway
 !.config/sway
 .config/sway/*

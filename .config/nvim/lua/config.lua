@@ -48,6 +48,7 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = 'list:longest,full'
 vim.opt.wildignorecase = true
 vim.opt.viminfo = ''
+vim.opt.laststatus = 0
 
 vim.opt.guicursor = ""
 vim.g.multi_cursor_exit_from_visual_mode = 0

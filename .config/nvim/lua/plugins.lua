@@ -80,7 +80,29 @@ return {
         },
         pickers = {
           find_files = {
-            hidden = 'true'
+            hidden = 'true',
+            theme = "ivy",
+          },
+          buffers = {
+            theme = "ivy",
+          },
+          live_grep = {
+            theme = "ivy",
+          },
+          diagnostic = {
+            theme = "ivy",
+          },
+          git_commits = {
+            theme = "ivy",
+          },
+          git_bcommits = {
+            theme = "ivy",
+          },
+          git_branches = {
+            theme = "ivy",
+          },
+          git_status = {
+            theme = "ivy",
           },
         }
       }
@@ -142,7 +164,7 @@ return {
     end
   },
 
-  { 'nvim-lualine/lualine.nvim', event = "BufRead", config = function() require("lualine").setup() end },
+  -- { 'nvim-lualine/lualine.nvim', event = "BufRead", config = function() require("lualine").setup() end },
 
   {
     'nanozuki/tabby.nvim',
