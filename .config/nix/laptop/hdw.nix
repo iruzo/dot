@@ -41,9 +41,11 @@
       };
     };
 
-    # kernelParams  = [
-    #   "acpi_rev_override=5"
-    # ];
+    kernelParams  = [
+      # "acpi_rev_override=5"
+      "rhgb"
+      "quiet"
+    ];
 
   };
 
