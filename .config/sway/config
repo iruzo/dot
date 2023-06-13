@@ -214,11 +214,10 @@ output DP-2 transform 270
 # set $wallpaper https://cdn.discordapp.com/attachments/923640537356070972/1065009034643644547/shuttle.mocha.jpg
 # set $wallpaper https://cdn.discordapp.com/attachments/923640537356070972/1065009034131931226/nebula.mocha.jpg
 
-set $wallpaper https://gitlab.com/iruzo-setup/wm/wallpaper/-/raw/main/anime-hk416.png
-exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
+# exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 
-output * bg ~/.local/share/sway/wallpaper fill
-# output * bg #000000 solid_color
+# output * bg ~/.local/share/sway/wallpaper fill
+output * bg #282c34 solid_color
 
 # window
 default_border pixel 1
