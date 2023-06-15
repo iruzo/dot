@@ -42,7 +42,6 @@
     };
 
     kernelParams  = [
-      # "acpi_rev_override=5"
       "rhgb"
       "quiet"
     ];
