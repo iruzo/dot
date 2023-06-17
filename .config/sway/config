@@ -15,7 +15,7 @@ set $down j
 set $up k
 set $right l
 
-set $emptymenu BEMENU_BACKEND=wayland bemenu
+set $emptymenu BEMENU_BACKEND=wayland BEMENU_OPTS='-i -l 20 --fb "#282C34" --ff "#abb2bf" --nb "#282C34" --nf "#abb2bf" --tb "#282C34" --hb "#282C34" --tf "#e06c75" --hf "#e5c07b" --nf "#abb2bf" --af "#abb2bf" --ab "#282C34"' bemenu
 
 set $focusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=name": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
 set $transformFocusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=transform": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
@@ -28,8 +28,8 @@ bindsym $mod+f fullscreen
 bindsym $mod+t exec test $transformFocusedMonitor = 'normal' && swaymsg output $focusedMonitor transform 90 || swaymsg output $focusedMonitor transform normal
 bindsym $mod+b exec swaymsg bar mode toggle
 bindsym $mod+space floating toggle
-bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm
-bindsym $mod+d exec BEMENU_BACKEND=wayland bemenu-run
+bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm || LIBGL_ALWAYS_SOFTWARE=1 flatpak run org.wezfurlong.wezterm
+bindsym $mod+d exec BEMENU_BACKEND=wayland BEMENU_OPTS='-i -l 20 --fb "#282C34" --ff "#abb2bf" --nb "#282C34" --nf "#abb2bf" --tb "#282C34" --hb "#282C34" --tf "#e06c75" --hf "#e5c07b" --nf "#abb2bf" --af "#abb2bf" --ab "#282C34"' bemenu-run
 
 bindsym $mod+Shift+r reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway ?' -b 'Yes' 'swaymsg exit'
@@ -50,11 +50,6 @@ bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
-# Ditto, with arrow keys
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
 
 # workspaces:
 # Switch to workspace
@@ -115,69 +110,83 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# bar {
-#   position top
-#   font "Fira Code bold 10"
-#
-#   height 18
-#
-#   status_command while ( echo \
-#         $(swaymsg -t get_tree | grep -oP \'(?<=name": ").*(?=",)\' | sed \"$(swaymsg -t get_tree | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d\")  \| \
-#         $(top -b -n1 | grep \"Cpu(s)\" | awk \'{print $2 + $4}\')% \| \
-#         $(free -m | awk \'NR==2{printf \"%.2f%%\t\t\", $3*100/$2 }\') \| \
-#         $(($(cat /sys/class/thermal/thermal_zone0/temp || echo 1) / 1000))°C \| \
-#         $(df -h | awk \'$NF=="/"{printf \"%s\t\t\", $5}\') \| \
-#         $(pactl get-source-mute @DEFAULT_SOURCE@) \| \
-#       墳 $(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '(?<=front-left: ).*(?=front-right: )' | grep -oP '(?<=/ ).*(?= /)') \| \
-#         $(cat /sys/class/backlight/$(ls -1 /sys/class/backlight)/brightness) \| \
-#         $(uname -r | cut -d '-' -f1) \| \
-#         $(cat /sys/class/power_supply/BAT0/capacity)% \| \
-#         $(date +'%a %Y-%m-%d %H:%M:%S') \
-#   ); do sleep 1; done
-#
-#   colors {
-#
-#     # # gruvbox
-#     # background         #282828AA
-#     # statusline         #E1F5A9AA
-#     # focused_separator  #6A0888AA
-#     # focused_statusline #EBDBB2AA
-#     # focused_workspace  #EBDBB2AA #282828AA #FFFFFF
-#     # active_workspace   #333333AA #331A00AA #FFFFFF
-#     # inactive_workspace #333333AA #222222AA #888888
-#     # urgent_workspace   #2f343aAA #EB4D4BAA #FFFFFF
-#     # binding_mode       #2f343aAA #FF0000AA #FFFFFF
-#
-#     # # catppuccin
-#     # background         #303446AA
-#     # statusline         #f4b8e4
-#     # focused_statusline #f2d5cf
-#     # active_workspace   #303446AA #303446AA #81c8be
-#     # focused_separator  #303446AA
-#     # focused_workspace  #303446AA #303446AA #81c8be
-#     # active_workspace   #303446AA #303446AA #81c8be
-#     # inactive_workspace #303446AA #303446AA #f4b8e4
-#     # urgent_workspace   #303446AA #303446AA #f4b8e4
-#     # binding_mode       #303446AA #303446AA #f4b8e4
-#
-#
-#     # onedark
-#     background         #282C34
-#     statusline         #c678DD
-#     focused_statusline #e5c07b
-#     active_workspace   #282C34 #abb2bf #61AFEF
-#     focused_separator  #282C34
-#     focused_workspace  #abb2bf #282C34 #61AFEF
-#     active_workspace   #abb2bf #282C34 #61AFEF
-#     inactive_workspace #abb2bf #282C34 #c678DD
-#     urgent_workspace   #abb2bf #282C34 #c678DD
-#     binding_mode       #abb2bf #282C34 #c678DD
-#
-#   }
-#
-#   mode dock
-# }
-exec pkill swaybar
+bar {
+  position top
+  font "Fira Code bold 10"
+
+  height 18
+
+  # status_command while ( echo \
+  #       $(swaymsg -t get_tree | grep -oP \'(?<=name": ").*(?=",)\' | sed \"$(swaymsg -t get_tree | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d\")  \| \
+  #       $(top -b -n1 | grep \"Cpu(s)\" | awk \'{print $2 + $4}\')% \| \
+  #       $(free -m | awk \'NR==2{printf \"%.2f%%\t\t\", $3*100/$2 }\') \| \
+  #       $(($(cat /sys/class/thermal/thermal_zone0/temp || echo 1) / 1000))°C \| \
+  #       $(df -h | awk \'$NF=="/"{printf \"%s\t\t\", $5}\') \| \
+  #       $(pactl get-source-mute @DEFAULT_SOURCE@) \| \
+  #     墳 $(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '(?<=front-left: ).*(?=front-right: )' | grep -oP '(?<=/ ).*(?= /)') \| \
+  #       $(cat /sys/class/backlight/$(ls -1 /sys/class/backlight)/brightness) \| \
+  #       $(uname -r | cut -d '-' -f1) \| \
+  #       $(cat /sys/class/power_supply/BAT0/capacity)% \| \
+  #       $(date +'%a %Y-%m-%d %H:%M:%S') \
+  # ); do sleep 1; done
+
+  status_command while ( echo \
+      $(swaymsg -t get_tree | grep -oP \'(?<=name": ").*(?=",)\' | sed \"$(swaymsg -t get_tree | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d\")  \| \
+      CPU: $(top -b -n1 | grep \"Cpu(s)\" | awk \'{print $2 + $4}\')% \| \
+      MEM: $(free -m | awk \'NR==2{printf \"%.2f%%\t\t\", $3*100/$2 }\') \| \
+      TEMP: $(($(cat /sys/class/thermal/thermal_zone0/temp || echo 1) / 1000))°C \| \
+      DISK: $(df -h | awk \'$NF=="/"{printf \"%s\t\t\", $5}\') \| \
+      $(pactl get-source-mute @DEFAULT_SOURCE@) \| \
+      VOL: $(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '(?<=front-left: ).*(?=front-right: )' | grep -oP '(?<=/ ).*(?= /)') \| \
+      BRIGHTNESS: $(cat /sys/class/backlight/$(ls -1 /sys/class/backlight)/brightness) \| \
+      KERNEL: $(uname -r | cut -d '-' -f1) \| \
+      BAT: $(cat /sys/class/power_supply/BAT0/capacity)% \| \
+      $(date +'%a %Y-%m-%d %H:%M:%S') \
+  ); do sleep 1; done
+
+  colors {
+
+    # # gruvbox
+    # background         #282828AA
+    # statusline         #E1F5A9AA
+    # focused_separator  #6A0888AA
+    # focused_statusline #EBDBB2AA
+    # focused_workspace  #EBDBB2AA #282828AA #FFFFFF
+    # active_workspace   #333333AA #331A00AA #FFFFFF
+    # inactive_workspace #333333AA #222222AA #888888
+    # urgent_workspace   #2f343aAA #EB4D4BAA #FFFFFF
+    # binding_mode       #2f343aAA #FF0000AA #FFFFFF
+
+    # # catppuccin
+    # background         #303446AA
+    # statusline         #f4b8e4
+    # focused_statusline #f2d5cf
+    # active_workspace   #303446AA #303446AA #81c8be
+    # focused_separator  #303446AA
+    # focused_workspace  #303446AA #303446AA #81c8be
+    # active_workspace   #303446AA #303446AA #81c8be
+    # inactive_workspace #303446AA #303446AA #f4b8e4
+    # urgent_workspace   #303446AA #303446AA #f4b8e4
+    # binding_mode       #303446AA #303446AA #f4b8e4
+
+
+    # onedark
+    background         #282C34
+    statusline         #61AFEF
+    focused_statusline #abb2bf
+    active_workspace   #282C34 #abb2bf #61AFEF
+    focused_separator  #282C34
+    focused_workspace  #abb2bf #282C34 #61AFEF
+    active_workspace   #abb2bf #282C34 #61AFEF
+    inactive_workspace #abb2bf #282C34 #c678DD
+    urgent_workspace   #abb2bf #282C34 #c678DD
+    binding_mode       #abb2bf #282C34 #c678DD
+
+  }
+
+  mode dock
+}
+# exec pkill swaybar
 
 # input
 input "type:keyboard" {
@@ -256,8 +265,8 @@ bindsym $mod+n exec pactl set-sink-volume @DEFAULT_SINK@ +05%
 bindsym $mod+Shift+n exec pactl set-sink-volume @DEFAULT_SINK@ -05%
 bindsym $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym $mod+Shift+m exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym $mod+p exec pavucontrol
-bindsym $mod+Shift+p exec helvum
+bindsym $mod+p exec GTK_THEME='Adwaita:dark' pavucontrol
+bindsym $mod+Shift+p exec GTK_THEME='Adwaita:dark' helvum
 # push to talk
 bindsym --no-repeat $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym --no-repeat --release $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
@@ -286,12 +295,11 @@ bindsym $mod+Shift+o exec cat ~/iruzo/quickmarks | $emptymenu | awk -F' ' '{prin
 bindsym $mod+i exec gnome-boxes
 
 # keepassxc
-bindsym $mod+u exec keepassxc
+bindsym $mod+u exec keepassxc || flatpak run org.keepassxc.KeePassXC
 bindsym $mod+Shift+u exec cat '' 2> /dev/null | $emptymenu -x -p "password" | gpg --batch --yes --passphrase-fd 0 -d ~/iruzo/contacts.gpg | $emptymenu | awk -F'+' '{print $NF}' | wl-copy $(cat)
 
 # steam
-# bindsym $mod+y exec flatpak run com.valvesoftware.Steam
-bindsym $mod+y exec steam
+bindsym $mod+y exec steam || flatpak run com.valvesoftware.Steam
 
 # osm
 bindsym XF86AudioRaiseVolume exec sh -c 'if pgrep bemenu; then pkill bemenu; else bemenu-run; fi'

@@ -13,9 +13,12 @@ COLOR_BCYAN="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || prin
 COLOR_BWHITE="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || printf '\033[1;37m')"
 PS1=$(echo "\n${COLOR_BBLUE}\$(git status -s 2> /dev/null)${COLOR_RESET}\n ${COLOR_BGREEN}·${COLOR_RESET} ${COLOR_BYELLOW}\$(date +"%H:%M")${COLOR_RESET} ${COLOR_BRED}\$(gitrepo)${COLOR_RESET} ${COLOR_BCYAN}\$(pwd | sed "s:${HOME}:~:g")${COLOR_RESET}\n ${COLOR_BGREEN}·${COLOR_RESET} ")
 
+export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/usr/sbin"
+export PATH="$PATH:/usr/bin"
 export PATH="$PATH:/sbin"
+export PATH="$PATH:/bin"
 
 # runtime-dir
 if test -z "${XDG_RUNTIME_DIR}"; then
@@ -31,15 +34,13 @@ export QEMU='-vga none -device virtio-gpu-pci -display gtk,gl=on'
 export EDITOR='nvim'
 export GTK_THEME='Adwaita:dark'
 
-# export GTK_THEME='Catppuccin-Frappe-Standard-Rosewater-Dark:dark'
-export BEMENU_OPTS='-i -l 20 --fn "Fira Code, bold" --fb "#282C34" --ff "#abb2bf" --nb "#282C34" --nf "#abb2bf" --tb "#282C34" --hb "#282C34" --tf "#e06c75" --hf "#e5c07b" --nf "#abb2bf" --af "#abb2bf" --ab "#282C34"'
-
-export GPG_TTY=$(tty)
+# export GPG_TTY=$(tty)
 
 # alias sway='WLR_RENDERER=vulkan WLR_DRM_DEVICES=/dev/dri/card0:/dev/dri/card1 sway'
 alias xwayland="env -u WAYLAND_DISPLAY"
 alias grubupdate="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias killwindows="ps -aux | grep windows | awk -Fa '{ print $2 }' | awk -F0.0 '{ print $1 }' | xargs kill -9"
+alias bemenu="BEMENU_OPTS='-i -l 20 --fb \"#282C34\" --ff \"#abb2bf\" --nb \"#282C34\" --nf \"#abb2bf\" --tb \"#282C34\" --hb \"#282C34\" --tf \"#e06c75\" --hf \"#e5c07b\" --nf \"#abb2bf\" --af \"#abb2bf\" --ab \"#282C34\"' bemenu"
 
 alias cat='cat -n'
 alias grep='grep -i --color=auto'

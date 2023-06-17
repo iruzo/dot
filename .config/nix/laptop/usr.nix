@@ -238,6 +238,12 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/temporary-containers/latest.xpi";
         };
+        "firefox@tampermonkey.net" = {
+          allowed_types = "extension";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi";
+        };
+        # tampermonkey
         # # tab-volume
         # "{a8e99fca-eb8f-410f-84e9-142eb055c162}" = {
         #   allowed_types = "extension";
