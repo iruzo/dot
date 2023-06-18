@@ -1,6 +1,6 @@
 {
 
-  description = "iruzo's flake"
+  description = "iruzo's flake";
 
   inputs = {
 
