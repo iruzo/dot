@@ -5,7 +5,7 @@
   inputs = {
 
     # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11"
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
 
   };
 
@@ -20,7 +20,7 @@
          imports =
            [
              ./.config/nix/laptop/setup.nix
-           ] ;
+           ];
         })
       ];
     }
@@ -32,7 +32,7 @@
          imports =
            [
              ./.config/nix/vm/setup.nix
-           ] ;
+           ];
         })
       ];
     }
