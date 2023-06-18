@@ -4,41 +4,41 @@
 
   boot = {
 
-    # initrd = {
-    #   # encrypt
-    #   luks.devices = {
-    #     luksroot = {
-    #       device = "/dev/nvme0n1p2";
-    #       allowDiscards = true;
-    #       # luksOpen will be attempted before LVM scan
-    #       preLVM = true;
-    #     };
-    #   };
-    #   # display ownership notice before luks
-    #   preLVMCommands = ''
-    #     echo "--- OWNERSHIP NOTICE ---"
-    #     echo "This device is property of iruzo"
-    #     echo "If lost please contact at contact@iruzo.dev"
-    #     echo "--- OWNERSHIP NOTICE ---"
-    #   '';
-    # };
+    initrd = {
+      # encrypt
+      luks.devices = {
+        luksroot = {
+          device = "/dev/nvme0n1p2";
+          allowDiscards = true;
+          # luksOpen will be attempted before LVM scan
+          preLVM = true;
+        };
+      };
+      # display ownership notice before luks
+      preLVMCommands = ''
+        echo "--- OWNERSHIP NOTICE ---"
+        echo "This device is property of iruzo"
+        echo "If lost please contact at contact@iruzo.dev"
+        echo "--- OWNERSHIP NOTICE ---"
+      '';
+    };
 
     loader = {
-      # grub = {
-      #   enable = true;
-      #   version = 2;
-      #   device = "/dev/nvme0n1";
-      #   efiSupport = true;
-      #   # efiInstallAsRemovable = true;
-      #   splashMode = "stretch";
-      # };
-      systemd-boot = {
+      grub = {
         enable = true;
+        version = 2;
+        device = "/dev/vda1";
+        # efiSupport = true;
+        # efiInstallAsRemovable = true;
+        splashMode = "stretch";
       };
-      efi = {
-        efiSysMountPoint = "/boot/efi";
-        canTouchEfiVariables = true;
-      };
+      # systemd-boot = {
+      #   enable = true;
+      # };
+      # efi = {
+      #   efiSysMountPoint = "/boot/efi";
+      #   canTouchEfiVariables = true;
+      # };
     };
 
     kernelParams  = [
