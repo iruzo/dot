@@ -26,7 +26,7 @@ floating_modifier $mod normal
 bindsym $mod+c kill
 bindsym $mod+f fullscreen
 bindsym $mod+t exec test $transformFocusedMonitor = 'normal' && swaymsg output $focusedMonitor transform 90 || swaymsg output $focusedMonitor transform normal
-bindsym $mod+b exec swaymsg bar mode toggle
+# bindsym $mod+b exec swaymsg bar mode toggle
 bindsym $mod+space floating toggle
 bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm || LIBGL_ALWAYS_SOFTWARE=1 flatpak run org.wezfurlong.wezterm
 bindsym $mod+d exec BEMENU_BACKEND=wayland BEMENU_OPTS='-i -l 20 --fb "#282C34" --ff "#abb2bf" --nb "#282C34" --nf "#abb2bf" --tb "#282C34" --hb "#282C34" --tf "#e06c75" --hf "#e5c07b" --nf "#abb2bf" --af "#abb2bf" --ab "#282C34"' bemenu-run
@@ -146,30 +146,6 @@ bar {
 
   colors {
 
-    # # gruvbox
-    # background         #282828AA
-    # statusline         #E1F5A9AA
-    # focused_separator  #6A0888AA
-    # focused_statusline #EBDBB2AA
-    # focused_workspace  #EBDBB2AA #282828AA #FFFFFF
-    # active_workspace   #333333AA #331A00AA #FFFFFF
-    # inactive_workspace #333333AA #222222AA #888888
-    # urgent_workspace   #2f343aAA #EB4D4BAA #FFFFFF
-    # binding_mode       #2f343aAA #FF0000AA #FFFFFF
-
-    # # catppuccin
-    # background         #303446AA
-    # statusline         #f4b8e4
-    # focused_statusline #f2d5cf
-    # active_workspace   #303446AA #303446AA #81c8be
-    # focused_separator  #303446AA
-    # focused_workspace  #303446AA #303446AA #81c8be
-    # active_workspace   #303446AA #303446AA #81c8be
-    # inactive_workspace #303446AA #303446AA #f4b8e4
-    # urgent_workspace   #303446AA #303446AA #f4b8e4
-    # binding_mode       #303446AA #303446AA #f4b8e4
-
-
     # onedark
     background         #282C34
     statusline         #61AFEF
@@ -194,10 +170,6 @@ input "type:keyboard" {
   xkb_options eurosign:5
 }
 
-# chuwi hi 10x touch screen
-# input 10182:282:GXTP7380:00_27C6:011A map_to_output DSI-1
-# input 10182:282:GXTP7380:00_27C6:011A_Stylus map_to_output DSI-1
-
 # output
 output * res 1920x1080
 output DP-2 transform 270
@@ -210,17 +182,6 @@ output DP-2 transform 270
 # workspace 2 output HDMI-A-1
 # workspace 3 output DP-1
 
-# gruvbox
-# set $wallpaper https://i.imgur.com/qcqKfdZ.png # statue
-# set $wallpaper https://cdn.discordapp.com/attachments/635625973764849684/902987256581726228/gruv.png # ghost in the shell
-# catppuccin
-# set $wallpaper https://i.imgur.com/TRr5p8F.jpeg # cat
-# set $wallpaper https://cdn.discordapp.com/attachments/923640537356070972/1065339726938247279/launch.mocha.jpg
-# set $wallpaper https://cdn.discordapp.com/attachments/923640537356070972/1065339727298961518/portal.mocha.jpgr
-# set $wallpaper https://cdn.discordapp.com/attachments/923640537356070972/1065339726577545286/ring.mocha.jpg
-# set $wallpaper https://cdn.discordapp.com/attachments/923640537356070972/1064239222384496760/astronaut.pngr
-# set $wallpaper https://cdn.discordapp.com/attachments/923640537356070972/1065009035432181870/void.mocha.jpg
-# set $wallpaper https://cdn.discordapp.com/attachments/923640537356070972/1065009034643644547/shuttle.mocha.jpg
 # set $wallpaper https://cdn.discordapp.com/attachments/923640537356070972/1065009034131931226/nebula.mocha.jpg
 
 # exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
@@ -231,21 +192,7 @@ output * bg #282c34 solid_color
 # window
 default_border pixel 1
 default_floating_border pixel 1
-# hide_edge_borders smart
-# one dark
 client.focused #e5c07b #e5c07b #e5c07b #e5c07b #e5c07b
-# gruvbox
-# client.focused #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2
-# catppuccin
-# client.focused #fab387 #fab387 #fab387 #fab387 #fab387
-
-# gaps
-# gaps inner 20
-
-# gtk theme
-
-# gruvbox
-# exec_always if [ ! -e ~/.themes/gruvbox ]; then $(mkdir -p ~/.themes && git clone https://github.com/jmattheis/gruvbox-dark-gtk ~/.themes/gruvbox); fi
 
 # catppuccin
 # exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Rosewater-Dark ]; then \
@@ -255,8 +202,7 @@ client.focused #e5c07b #e5c07b #e5c07b #e5c07b #e5c07b
 #   && rm -rf ~/.themes/catppuccin.zip; fi
 
 # lock screen
-bindsym $mod+q exec swaylock -u -c 000000
-# bindsym $mod+q exec swaylock -u -i ~/.local/share/sway/wallpaper
+bindsym $mod+q exec swaylock -c 000000
 
 # volume
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -271,10 +217,14 @@ bindsym $mod+Shift+p exec GTK_THEME='Adwaita:dark' helvum
 bindsym --no-repeat $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym --no-repeat --release $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
+# brightness
+bindsym $mod+b exec brightnessctl s +10
+bindsym $mod+Shift+b exec brightnessctl s 10-
+
 # screenshot
 bindsym $mod+Shift+s exec mkdir -p ~/media && grim -g "$(slurp)" ~/media/$(date +'%Y%m%d_%H%M%S').png
 
-# nav
+# browser
 # bindsym $mod+o exec sh -c ' \
 # container=$(echo -e "\
 # element\n\
@@ -300,12 +250,3 @@ bindsym $mod+Shift+u exec cat '' 2> /dev/null | $emptymenu -x -p "password" | gp
 
 # steam
 bindsym $mod+y exec steam || flatpak run com.valvesoftware.Steam
-
-# osm
-bindsym XF86AudioRaiseVolume exec sh -c 'if pgrep bemenu; then pkill bemenu; else bemenu-run; fi'
-
-# ost
-bindsym XF86AudioLowerVolume exec sh -c 'if pgrep wvkbd; then pkill wvkbd; else wvkbd-mobintl; fi'
-
-# phonelock
-bindsym XF86PowerOff exec swaymsg output $focusedMonitor dpms toggle
