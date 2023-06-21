@@ -5,9 +5,9 @@ from urllib.request import urlopen
 # os.system('if [ $(xdg-settings get default-web-browser) != "org.qutebrowser.qutebrowser.desktop" ]; then xdg-settings set default-web-browser org.qutebrowser.qutebrowser.desktop; fi')
 
 config.load_autoconfig()
-if not os.path.exists(os.getcwd() + os.sep + 'download'):
-    os.makedirs(os.getcwd() + os.sep + 'download')
-c.downloads.location.directory=os.getcwd() + os.sep + 'download'
+# if not os.path.exists(os.getcwd() + os.sep + 'download'):
+#     os.makedirs(os.getcwd() + os.sep + 'download')
+# c.downloads.location.directory=os.getcwd() + os.sep + 'download'
 c.editor.command = ['wezterm', 'start', 'nvim', '{file}']
 
 # private browsing
