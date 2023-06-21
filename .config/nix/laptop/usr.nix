@@ -71,6 +71,7 @@
       bemenu
       grim
       slurp
+      brightnessctl
     ];
   };
   # programs.xwayland.enable = true;
