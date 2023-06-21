@@ -133,35 +133,54 @@ return {
   },
 
   -- visual
-  -- {
-  --   "catppuccin/nvim",
-  --   as = "catppuccin",
-  --   config = function()
-  --     require("catppuccin").setup {
-  --       -- transparent_background = true,
-  --       flavour = "mocha", -- mocha, macchiato, frappe, latte
-  --       transparent_background = true,
-  --       integrations = {
-  --         hop = true,
-  --         mason = true,
-  --         neotree = true,
-  --         which_key = true,
-  --         dap = { enable = true, enable_ui = true }
-  --       },
-  --     }
-  --     vim.api.nvim_command "colorscheme catppuccin"
-  --   end
-  -- },
   {
-    'navarasu/onedark.nvim',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      -- require("onedark").setup {
-      --   transparent = true,
-      -- }
-      require("onedark").load()
-    end
+     "catppuccin/nvim",
+     name = "catppuccin",
+     config = function()
+       require("catppuccin").setup {
+         -- transparent_background = true,
+         flavour = "mocha", -- mocha, macchiato, frappe, latte
+         transparent_background = true,
+         integrations = {
+           hop = true,
+           mason = true,
+           neotree = true,
+           which_key = true,
+           dap = { enable = true, enable_ui = true }
+         },
+         color_overrides = {
+           all = {
+             rosewater = "#e96c75",
+             flamingo = "#e96c75",
+             -- pink
+             mauve = "#c678dd",
+             red = "#e96c75",
+             -- maroon
+             -- peach
+             yellow = "#e5c07b",
+             green = "#98c379",
+             teal = "#56b6c2",
+             -- sky
+             -- sapphire
+             blue = "#61afef",
+             -- Lavender
+             text = "#abb2bf",
+             -- subtext1
+             -- subtext0
+             -- overlay2
+             -- overlay1
+             -- overlay0
+             -- surface2
+             -- surface1
+             -- surface0
+             base = "#282c34",
+             mantle = "#282c34",
+             crust = "#282c34",
+           },
+         },
+       }
+       vim.api.nvim_command "colorscheme catppuccin"
+     end
   },
 
   -- { 'nvim-lualine/lualine.nvim', event = "BufRead", config = function() require("lualine").setup() end },
