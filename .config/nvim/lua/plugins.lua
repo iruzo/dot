@@ -22,7 +22,7 @@ return {
     event = "BufRead",
     event = "VeryLazy",
     keys = {
-      { "f", ":HopChar1<CR>", silent = true, desc = "Hop" },
+      { "f", ":HopChar2<CR>", silent = true, desc = "Hop" },
     },
     config = function()
       require('hop').setup()
@@ -233,6 +233,19 @@ return {
     -- event = "BufRead",
     cmd = { 'ColorizerToggle' },
     config = function() require("colorizer").setup() end,
+  },
+
+  {
+    "folke/twilight.nvim",
+    cmd = { 'Twilight' },
+    opts = {
+      dimming = {
+        alpha = 0.30, -- amount of dimming
+        color = { "Normal", "#282c34" },
+        term_bg = "#282c34", -- if guibg=NONE, this will be used to calculate text color
+        inactive = false, -- when true, other windows will be fully dimmed (unless they contain the same buffer)
+      },
+    }
   },
 
   {
