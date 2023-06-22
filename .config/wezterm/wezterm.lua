@@ -23,7 +23,7 @@ return {
   default_prog = default_prog,
   default_domain = default_domain,
   color_scheme = "OneHalfDark",
-  font_size = 10,
+  font_size = 9.3,
   use_fancy_tab_bar = false,
   hide_tab_bar_if_only_one_tab = true,
   disable_default_key_bindings = false,
