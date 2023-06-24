@@ -20,7 +20,11 @@
   };
 
   # No access time and continuous TRIM for SSD
-  fileSystems."/".options = [ "noatime" "discard" ];
+  fileSystems."/" = {
+    device = "/dev/vda3";
+    fsType = "ext4";
+    options = [ "noatime" "discard" ];
+  };
 
   # If non-empty, write log messages to the specified TTY device.
   services.journald.console = "/dev/tty12";
