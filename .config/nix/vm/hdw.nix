@@ -4,6 +4,15 @@
 
   boot = {
 
+    # Clear /tmp during boot
+    cleanTmpDir = true;
+
+    # hardware-configuration
+    initrd = {
+      availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
+    };
+    kernelModules = [ "kvm-amd" ];
+
     loader = {
       systemd-boot = {
         enable = true;
@@ -23,6 +32,8 @@
 
   # Enable microcode updates for Intel CPU
   # hardware.cpu.intel.updateMicrocode = true;
+  # hardware-configuration
+  hardware.cpu.amd.updateMicrocode = true;
   # Enable Kernel same-page merging
   hardware.ksm.enable = true;
 

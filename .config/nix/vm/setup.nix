@@ -9,8 +9,6 @@
       ./nix.nix
     ];
 
-  # Clear /tmp during boot
-  boot.cleanTmpDir = true;
 
   # Use latest kernel
   # boot.kernelPackages will use linuxPackages by default, so no need to define it
@@ -21,10 +19,13 @@
 
   # No access time and continuous TRIM for SSD
   fileSystems."/" = {
+    options = [ "noatime" "discard" ];
+    # hardware-configuration
     device = "/dev/vda3";
     fsType = "ext4";
-    options = [ "noatime" "discard" ];
   };
+    # hardware-configuration
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   # If non-empty, write log messages to the specified TTY device.
   services.journald.console = "/dev/tty12";
