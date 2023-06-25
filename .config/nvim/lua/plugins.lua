@@ -156,7 +156,7 @@ return {
              mauve = "#c678dd",
              red = "#e96c75",
              -- maroon
-             -- peach
+             peach = "#d19a66",
              yellow = "#e5c07b",
              green = "#98c379",
              teal = "#56b6c2",
