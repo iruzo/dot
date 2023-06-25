@@ -14,13 +14,21 @@
     kernelModules = [ "kvm-amd" ];
 
     loader = {
-      systemd-boot = {
+      grub = {
         enable = true;
+        version = 2;
+        device = "/mnt/boot";
+        # efiSupport = true;
+        # efiInstallAsRemovable = true;
+        splashMode = "stretch";
       };
-      efi = {
-        efiSysMountPoint = "/boot/efi";
-        canTouchEfiVariables = true;
-      };
+      # systemd-boot = {
+      #   enable = true;
+      # };
+      # efi = {
+      #   efiSysMountPoint = "/boot/efi";
+      #   canTouchEfiVariables = true;
+      # };
     };
 
     kernelParams  = [
