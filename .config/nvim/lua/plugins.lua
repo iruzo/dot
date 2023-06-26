@@ -254,6 +254,12 @@ return {
     config = true
   },
 
+  {
+    'iamcco/markdown-preview.nvim',
+    ft = "markdown",
+    build = ":call mkdp#util#install()",
+  },
+
   { 'TimUntersberger/neogit', cmd = 'Neogit' }, -- git menu
 
   { -- show git changes in files
