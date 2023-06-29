@@ -67,7 +67,6 @@
 !.config/qutebrowser
 .config/qutebrowser/*
 !.config/qutebrowser/config.py
-!.config/qutebrowser/theme.py
 !.config/qutebrowser/greasemonkey/
 
 # firefox

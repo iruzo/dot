@@ -46,9 +46,9 @@
     (package-install package)))
 
 ;; theme
-(ensure-installed 'atom-one-dark-theme)
-(require 'atom-one-dark-theme)
-(load-theme 'atom-one-dark t)
+(ensure-installed 'gruvbox-theme)
+(require 'gruvbox-theme)
+(load-theme 'gruvbox t)
 
 ;; impatient
 (ensure-installed 'impatient-mode)

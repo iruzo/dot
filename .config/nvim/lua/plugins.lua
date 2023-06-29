@@ -133,11 +133,19 @@ return {
   },
 
   -- visual
+
+  -- {
+  --   "olimorris/onedarkpro.nvim",
+  --   name = "onedark",
+  --   config = function()
+  --     vim.api.nvim_command "colorscheme onedark_vivid"
+  --   end
+  -- },
+
   {
-    "olimorris/onedarkpro.nvim",
-    name = "onedark",
+    "luisiacc/gruvbox-baby",
     config = function()
-      vim.api.nvim_command "colorscheme onedark_vivid"
+      vim.api.nvim_command "colorscheme gruvbox-baby"
     end
   },
 

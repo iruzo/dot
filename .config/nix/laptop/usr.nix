@@ -174,11 +174,11 @@
       };
       ExtensionSettings = {
         # one dark
-        "{2db5ae19-2e89-4a71-a5f2-da0e2bf69917}" = {
-          allowed_types = "theme";
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/onedark-vim/latest.xpi";
-        };
+        # "{2db5ae19-2e89-4a71-a5f2-da0e2bf69917}" = {
+        #   allowed_types = "theme";
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/onedark-vim/latest.xpi";
+        # };
         # ayu
         # "{893ac7d8-44d2-4f3c-8a40-d42cef042076}" = {
         #   allowed_types = "theme";
@@ -192,11 +192,11 @@
         #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-macchiato-lavender2/latest.xpi";
         # };
         # gruvbox
-        # "{08d5243b-4236-4a27-984b-1ded22ce01c3}" = {
-        #   allowed_types = "theme";
-        #   installation_mode = "force_installed";
-        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvboxgruvboxgruvboxgruvboxgr/latest.xpi";
-        # };
+        "{08d5243b-4236-4a27-984b-1ded22ce01c3}" = {
+          allowed_types = "theme";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvboxgruvboxgruvboxgruvboxgr/latest.xpi";
+        };
         # ublock
         "uBlock0@raymondhill.net" = {
           allowed_types = "extension";

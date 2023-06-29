@@ -32,7 +32,9 @@ fi
 export WLR_NO_HARDWARE_CURSORS=1
 export QEMU='-vga none -device virtio-gpu-pci -display gtk,gl=on'
 export EDITOR='nvim'
+export VISUAL='nvim-qt'
 export GTK_THEME='Adwaita:dark'
+export BEMENU_OPTS='-i -l 20 --fb "#282828" --ff "#ebdbb2" --nb "#282828" --nf "#ebdbb2" --tb "#282828" --hb "#282828" --tf "#fb4934" --hf "#fabd2f" --nf "#ebdbb2" --af "#ebdbb2" --ab "#282828"'
 
 # export GPG_TTY=$(tty)
 
@@ -40,7 +42,6 @@ export GTK_THEME='Adwaita:dark'
 alias xwayland="env -u WAYLAND_DISPLAY"
 alias grubupdate="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias killwindows="ps -aux | grep windows | awk -Fa '{ print $2 }' | awk -F0.0 '{ print $1 }' | xargs kill -9"
-alias bemenu="BEMENU_OPTS='-i -l 20 --fb \"#282C34\" --ff \"#abb2bf\" --nb \"#282C34\" --nf \"#abb2bf\" --tb \"#282C34\" --hb \"#282C34\" --tf \"#e06c75\" --hf \"#e5c07b\" --nf \"#abb2bf\" --af \"#abb2bf\" --ab \"#282C34\"' bemenu"
 
 alias cat='cat -n'
 alias grep='grep -i --color=auto'
