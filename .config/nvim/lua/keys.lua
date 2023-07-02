@@ -27,12 +27,14 @@ vim.api.nvim_set_keymap('i', '{', '{}<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', '[', '[]<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', '\'', '\'\'<Left>', { noremap = true })
 vim.api.nvim_set_keymap('i', '"', '""<Left>', { noremap = true })
-vim.api.nvim_set_keymap('i', '`', '``<Left>', { noremap = true })
-vim.api.nvim_set_keymap('i', '*', '**<Left>', { noremap = true })
+vim.api.nvim_set_keymap('i', '\'', '\'\'<Left>', { noremap = true })
 
 --indent
 vim.api.nvim_set_keymap('v', '>', '>><Esc>gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '<', '<<<Esc>gv', { noremap = true })
+
+--find
+-- vim.api.nvim_set_keymap('n', '<space>h', ':vimgrep  */** | copen<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>', { noremap = true })
 
 --replace
 vim.api.nvim_set_keymap('n', '<C-/>', ':%s///g<Left><Left>', { noremap = true })

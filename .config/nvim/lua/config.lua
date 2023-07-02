@@ -3,11 +3,17 @@ vim.api.nvim_command('autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if m
 -- filetype syntax
 vim.api.nvim_command('autocmd BufNewFile,BufRead * if expand(\'%:t\') !~ \'\\.\' | set syntax=sh | endif')
 vim.api.nvim_command('autocmd BufNewFile,BufRead *.nix :set filetype=perl')
+-- new filetype gpg, pgp, asc
+vim.api.nvim_command('autocmd BufRead,BufNewFile *.gpg :set filetype=gpg')
+vim.api.nvim_command('autocmd BufRead,BufNewFile *.pgp :set filetype=pgp')
+vim.api.nvim_command('autocmd BufRead,BufNewFile *.asc :set filetype=asc')
 -- vim.api.nvim_command('autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), " ")')
 
+vim.opt.syntax = "yes"
 vim.opt.shortmess:append "sI" -- disable nvim intro
 vim.opt.path = vim.opt.path + '**'
-vim.opt.wildignore = '**/.git/*,*_build/*,**/coverage/*'
+-- vim.opt.path = vim.opt.path + '*./**'
+vim.opt.wildignore = '**/.git/*,*_build/*,**/coverage/*,**/.cache/*,**/.local/*,**/venv/*,**/svn/*,**/target/*'
 -- vim.opt.autochdir = true
 vim.opt.list = true
 vim.opt.lcs = 'tab:| ,trail:·'
@@ -59,41 +65,3 @@ vim.g.multi_cursor_exit_from_visual_mode = 0
 -- vim.g.netrw_altv = 1
 -- vim.g.netrw_liststyle = 3
 -- vim.g.netrw_winsize = 10
-
--- real time lsp ghost text
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = true,
-    update_in_insert = true,
-    signs = true,
-  }
-)
-
--- disable builtin
-vim.g.loaded_2html_plugin = 1
-vim.g.loaded_getscript = 1
-vim.g.loaded_getscriptPlugin = 1
-vim.g.loaded_gzip = 1
-vim.g.loaded_logipat = 1
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-vim.g.loaded_netrwSettings = 1
-vim.g.loaded_netrwFileHandlers = 1
-vim.g.loaded_matchit = 1
-vim.g.loaded_tar = 1
-vim.g.loaded_tarPlugin = 1
-vim.g.loaded_rrhelper = 1
-vim.g.loaded_spellfile_plugin = 1
-vim.g.loaded_vimball = 1
-vim.g.loaded_vimballPlugin = 1
-vim.g.loaded_zip = 1
-vim.g.loaded_zipPlugin = 1
-vim.g.loaded_tutor_mode_plugin = 1
-vim.g.loaded_rplugin = 1
-vim.g.loaded_syntax = 1
-vim.g.loaded_synmenu = 1
-vim.g.loaded_optwin = 1
-vim.g.loaded_compiler = 1
-vim.g.loaded_bugreport = 1
-vim.g.loaded_ftplugin = 1
-vim.g.loaded_fzf = 1
