@@ -131,13 +131,12 @@ bar {
   # ); do sleep 1; done
 
   status_command while ( echo \
-      $(swaymsg -t get_tree | grep -oP \'(?<=name": ").*(?=",)\' | sed \"$(swaymsg -t get_tree | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d\")  \| \
       CPU: $(top -b -n1 | grep \"Cpu(s)\" | awk \'{print $2 + $4}\')% \| \
       MEM: $(free -m | awk \'NR==2{printf \"%.2f%%\t\t\", $3*100/$2 }\') \| \
       TEMP: $(($(cat /sys/class/thermal/thermal_zone0/temp || echo 1) / 1000))°C \| \
       DISK: $(df -h | awk \'$NF=="/"{printf \"%s\t\t\", $5}\') \| \
       $(pactl get-source-mute @DEFAULT_SOURCE@) \| \
-      VOL: $(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '(?<=front-left: ).*(?=front-right: )' | grep -oP '(?<=/ ).*(?= /)') \| \
+      VOL: $(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP \'(?<=front-left: ).*(?=front-right: )\' | grep -oP \'(?<=/ ).*(?= /)\') \| \
       BRIGHTNESS: $(cat /sys/class/backlight/$(ls -1 /sys/class/backlight)/brightness) \| \
       KERNEL: $(uname -r | cut -d '-' -f1) \| \
       BAT: $(cat /sys/class/power_supply/BAT0/capacity)% \| \
