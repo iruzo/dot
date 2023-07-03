@@ -1,7 +1,7 @@
 [core]
   editor = nvim
 [user]
-  email = hidden
+  email = dev@iruzo.dev
   name = iruzo
 [credential]
   helper = store

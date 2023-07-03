@@ -21,6 +21,7 @@ return {
   window_close_confirmation = 'NeverPrompt',
   -- wezterm.default_wsl_domains()
   default_prog = default_prog,
+  -- font = wezterm.font('Fira Code', { weight = 'Bold' }),
   default_domain = default_domain,
   color_scheme = "Gruvbox dark, medium (base16)",
   font_size = 9.3,
