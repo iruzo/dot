@@ -5,7 +5,7 @@
     [
       ./hdw.nix
       ./net.nix
-      ./usr.nix
+      ./gui.nix
       ./nix.nix
     ];
 
@@ -81,7 +81,7 @@
   # https://nixos.wiki/wiki/FAQ#When_do_I_update_stateVersion
   # https://nixos.org/manual/nixos/stable/release-notes.html
   # check older pkg versions: https://lazamar.co.uk/nix-versions/?channel=nixpkgs-unstable&package=xdg-desktop-portal
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 
   # This will run nixos-rebuild switch --upgrade periodically
   # system.autoUpgrade.enable = true;

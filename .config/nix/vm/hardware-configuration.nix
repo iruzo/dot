@@ -1,6 +1,8 @@
+{ config, lib, pkgs, modulesPath, ... }:
+
 {
   imports =
-    [ (modulesPath = "/profiles/qemu-guest.nix")
+    [ (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "ahci" "xhci_pci" "virtio_pci" "sr_mod" "virtio_blk" ];
@@ -9,14 +11,14 @@
   boot.extraModulePackages = [];
 
   fileSystems."/" =
-    ( device = "/dev/disk/by-uuid/5590441c-1c9b-4432-a4ff-2f12657be2a9";
+    { device = "/dev/disk/by-uuid/5590441c-1c9b-4432-a4ff-2f12657be2a9";
       fsType = "ext4";
-    );
+    };
 
   fileSystems."/boot/efi" =
-    ( device = "/dev/disk/by-uuid/7D3E-956B";
+    { device = "/dev/disk/by-uuid/7D3E-956B";
       fsType = "vfat";
-    );
+    };
 
   swapDevices = [];
   networking.useDHCP = lib.mkDefault true;

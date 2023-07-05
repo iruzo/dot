@@ -24,21 +24,21 @@
     };
 
     loader = {
-      grub = {
-        enable = true;
-        version = 2;
-        device = "/dev/vda1";
-        # efiSupport = true;
-        # efiInstallAsRemovable = true;
-        splashMode = "stretch";
-      };
-      # systemd-boot = {
+      # grub = {
       #   enable = true;
+      #   version = 2;
+      #   device = "/dev/nvme0n1p1";
+      #   # efiSupport = true;
+      #   # efiInstallAsRemovable = true;
+      #   splashMode = "stretch";
       # };
-      # efi = {
-      #   efiSysMountPoint = "/boot/efi";
-      #   canTouchEfiVariables = true;
-      # };
+      systemd-boot = {
+        enable = true;
+      };
+      efi = {
+        efiSysMountPoint = "/boot/efi";
+        canTouchEfiVariables = true;
+      };
     };
 
     kernelParams  = [
@@ -117,7 +117,6 @@
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
   environment.systemPackages = with pkgs; [
-    gnome.gnome-boxes
     iproute2
     iptables
   ];

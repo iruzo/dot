@@ -2,11 +2,28 @@
 
 {
 
+  fonts = {
+    # enableDefaultFonts = true;
+    # enableGhostscriptFonts = true;
+    fontDir.enable = true;
+    fonts = with pkgs; [
+      # noto-fonts
+      # noto-fonts-cjk # chinese japanese and koreans characters
+      # noto-fonts-emoji
+      # anurati
+      fira-code
+      fira-code-symbols
+    ];
+  };
+
+  # default shell for all users
   users.defaultUserShell = pkgs.dash;
 
+  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.iruzo = {
+    # group to users, createHome to true, home to /home/username, useDefaultShell to true, and isSystemUser to false.
     isNormalUser = true;
-    shell = pkgs.bash;
+    shell = pkgs.zsh;
     password = "a";
 
     extraGroups = [
@@ -31,38 +48,33 @@
       neovim
       emacs
       qutebrowser
+      ungoogled-chromium
 
       gcc
+
+      minecraft
     ];
 
   };
-  services.flatpak.enable = true;
-
   programs.noisetorch.enable = true;
 
-  services.xserver = {
+  # wezterm configuration
+  programs.zsh.shellInit = ''
+    if [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
+      TERM=wezterm
+      source ${pkgs.wezterm}/etc/profile.d/wezterm.sh
+    fi
+  '';
+
+  programs.steam = {
     enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.gnome.enable = true;
+    # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
 
-  # environment.pathsToLink = [ "/libexec" ]; # links /libexec from derivations to /run/current-system/sw
-  # services.xserver = {
-  #   enable = true;
-  #   desktopManager = {
-  #     xterm.enable = false;
-  #   };
-  #   displayManager = {
-  #       defaultSession = "none+i3";
-  #   };
-  #   windowManager.i3 = {
-  #     enable = true;
-  #     extraPackages = with pkgs; [
-  #       dmenu #application launcher most people use
-  #       i3status # gives you the default i3 status bar
-  #       i3lock #default i3 screen locker
-  #       i3blocks #if you are planning on using i3blocks over i3status
-  #    ];
+  # nixpkgs.config.packageOverrides = pkgs: {
+  #   nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+  #     inherit pkgs;
   #   };
   # };
 
@@ -107,7 +119,7 @@
       #   URL = "https://duckduckgo.com";
       #   Locked = true;
       # };
-      DefaultDownloadDirectory = "$\{home\}/download";
+      DefaultDownloadDirectory = "$\{home\}/Downloads";
       EnableTrackingProtection = {
         Value = true;
         Locked = true;
@@ -120,11 +132,11 @@
       };
       ExtensionSettings = {
         # one dark
-        "{2db5ae19-2e89-4a71-a5f2-da0e2bf69917}" = {
-          allowed_types = "theme";
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/onedark-vim/latest.xpi";
-        };
+        # "{2db5ae19-2e89-4a71-a5f2-da0e2bf69917}" = {
+        #   allowed_types = "theme";
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/onedark-vim/latest.xpi";
+        # };
         # ayu
         # "{893ac7d8-44d2-4f3c-8a40-d42cef042076}" = {
         #   allowed_types = "theme";
@@ -138,11 +150,11 @@
         #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-macchiato-lavender2/latest.xpi";
         # };
         # gruvbox
-        # "{08d5243b-4236-4a27-984b-1ded22ce01c3}" = {
-        #   allowed_types = "theme";
-        #   installation_mode = "force_installed";
-        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvboxgruvboxgruvboxgruvboxgr/latest.xpi";
-        # };
+        "{08d5243b-4236-4a27-984b-1ded22ce01c3}" = {
+          allowed_types = "theme";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvboxgruvboxgruvboxgruvboxgr/latest.xpi";
+        };
         # ublock
         "uBlock0@raymondhill.net" = {
           allowed_types = "extension";

@@ -4,8 +4,9 @@
   imports =
     [
       ./hdw.nix
+      ./hardware-configuration.nix
       ./net.nix
-      ./usr.nix
+      ./gui.nix
       ./nix.nix
     ];
 
@@ -18,13 +19,13 @@
   };
 
   # No access time and continuous TRIM for SSD
-  fileSystems."/" = {
-    options = [ "noatime" "discard" ];
-    # hardware-configuration
-    device = "/dev/vda3";
-    fsType = "ext4";
-  };
-    # hardware-configuration
+  # fileSystems."/" = {
+  #   options = [ "noatime" "discard" ];
+  #   # hardware-configuration
+  #   device = "/dev/vda3";
+  #   fsType = "ext4";
+  # };
+  # hardware-configuration
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
   # If non-empty, write log messages to the specified TTY device.
