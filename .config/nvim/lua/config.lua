@@ -21,7 +21,8 @@ vim.opt.lcs = 'tab:| ,trail:·'
 -- vim.opt.title = true
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.ruler = false
+-- vim.opt.ruler = true
+-- vim.opt.laststatus = 0
 vim.opt.cursorline = true
 vim.opt.autoread = true
 vim.opt.errorbells = false
@@ -54,7 +55,6 @@ vim.opt.wildmenu = true
 vim.opt.wildmode = 'list:longest,full'
 vim.opt.wildignorecase = true
 vim.opt.viminfo = ''
-vim.opt.laststatus = 0
 
 vim.opt.guicursor = ""
 vim.g.multi_cursor_exit_from_visual_mode = 0

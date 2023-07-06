@@ -154,7 +154,9 @@ return {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
     config = function()
-      require('lualine').setup()
+      require('lualine').setup {
+        options = { theme = 'gruvbox-material' }
+      }
     end
   },
 
@@ -237,6 +239,19 @@ return {
   },
 
   {
+    'pwntester/octo.nvim',
+    cmd = 'Octo',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require'octo'.setup()
+    end
+  },
+
+  {
     'mfussenegger/nvim-dap',
     tag = '0.6.0',
     cmd = 'DapToggleBreakpoint',
@@ -287,6 +302,18 @@ return {
 -- { 'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp', }
 -- { 'tzachar/cmp-tabnine', build = 'powershell ./install.ps1', dependencies = 'hrsh7th/nvim-cmp', }
 -- { 'codota/tabnine-nvim', build = './dl_binaries.sh' },
+  {
+    'WhiteBlackGoose/gpt4all.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require'chatgpt'.setup()
+    end,
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim'
+    }
+  },
 
   {
     'jose-elias-alvarez/null-ls.nvim',
