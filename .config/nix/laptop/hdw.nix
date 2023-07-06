@@ -4,16 +4,11 @@
 
   boot = {
 
+    # Clear /tmp during boot
+    boot.cleanTmpDir = true;
+
     initrd = {
-      # encrypt
-      luks.devices = {
-        luksroot = {
-          device = "/dev/nvme0n1p2";
-          allowDiscards = true;
-          # luksOpen will be attempted before LVM scan
-          preLVM = true;
-        };
-      };
+      secrets = "/crypto_keyfile.bin" = null;
       # display ownership notice before luks
       preLVMCommands = ''
         echo "--- OWNERSHIP NOTICE ---"
@@ -95,7 +90,7 @@
   # This includes support for suspend-to-RAM and powersave features on laptops
   powerManagement.enable = true;
   # Enable powertop auto tuning on startup.
-  # powerManagement.powertop.enable = false;
+  powerManagement.powertop.enable = true;
   # tlp
   services.tlp.enable = false;
   services.tlp.extraConfig = "USB_AUTOSUSPEND=0";

@@ -17,23 +17,13 @@
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules =
-          [({ pkgs, ... }: {
-           imports =
-             [
-               ./.config/nix/laptop/setup.nix
-             ];
-          })
-        ];
-      };
-      vm = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules =
-          [({ pkgs, ... }: {
-           imports =
-             [
-               ./.config/nix/vm/setup.nix
-             ];
-          })
+        [({ pkgs, ... }: {
+              imports =
+              [
+                ./.config/nix/laptop/setup.nix
+                ./.config/nix/usr.nix
+              ];
+            })
         ];
       };
     };

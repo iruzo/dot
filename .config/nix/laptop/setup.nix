@@ -9,8 +9,6 @@
       ./nix.nix
     ];
 
-  # Clear /tmp during boot
-  boot.cleanTmpDir = true;
 
   # Use latest kernel
   # boot.kernelPackages will use linuxPackages by default, so no need to define it
@@ -36,11 +34,23 @@
   # Enable entropy daemon which refills /dev/random when low
   services.haveged.enable = true;
 
-  # keyboard
+  # console font
   console.font = "Fira Code"; # Big console font for HiDPI
+
+  # keyboard and internationalisation properties
   console.keyMap = "us";
   i18n.defaultLocale = "en_US.UTF-8";
-
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "es_ES.UTF-8";
+    LC_IDENTIFICATION = "es_ES.UTF-8";
+    LC_MEASUREMENT = "es_ES.UTF-8";
+    LC_MONETARY = "es_ES.UTF-8";
+    LC_NAME = "es_ES.UTF-8";
+    LC_NUMERIC = "es_ES.UTF-8";
+    LC_PAPER = "es_ES.UTF-8";
+    LC_TELEPHONE = "es_ES.UTF-8";
+    LC_TIME = "es_ES.UTF-8";
+  };
   time.timeZone = "Europe/Madrid";
 
   # Use the systemd-timesyncd SNTP client to sync the system clock (enabled by default)
@@ -54,9 +64,6 @@
 
   # Periodically update the database of files used by the locate command
   services.locate.enable = true;
-
-  # Enable Flatpak
-  # services.flatpak.enable = true
 
   # Enable ClamAV
   # services.clamav.daemon.enable = true;
