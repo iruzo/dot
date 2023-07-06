@@ -122,8 +122,8 @@ bar {
   #       $(free -m | awk \'NR==2{printf \"%.2f%%\t\t\", $3*100/$2 }\') \| \
   #       $(($(cat /sys/class/thermal/thermal_zone0/temp || echo 1) / 1000))°C \| \
   #       $(df -h | awk \'$NF=="/"{printf \"%s\t\t\", $5}\') \| \
-  #       $(pactl get-source-mute @DEFAULT_SOURCE@) \| \
-  #     墳 $(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '(?<=front-left: ).*(?=front-right: )' | grep -oP '(?<=/ ).*(?= /)') \| \
+  #       $(pactl get-source-mute @DEFAULT_SOURCE@ || $(echo $(wpctl get-volume @DEFAULT_AUDIO_SOURCE@) | grep -q "MUTED" && echo "Mute: yes" || echo "Mute: no")) \| \
+  #     墳 $(echo "Volume: "$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP \'(?<=front-left: ).*(?=front-right: )\' | grep -oP \'(?<=/ ).*(?= /)\') || wpctl get-volume @DEFAULT_AUDIO_SINK@) \| \
   #       $(cat /sys/class/backlight/$(ls -1 /sys/class/backlight)/brightness) \| \
   #       $(uname -r | cut -d '-' -f1) \| \
   #       $(cat /sys/class/power_supply/BAT0/capacity)% \| \
@@ -135,8 +135,8 @@ bar {
       MEM: $(free -m | awk \'NR==2{printf \"%.2f%%\t\t\", $3*100/$2 }\') \| \
       TEMP: $(($(cat /sys/class/thermal/thermal_zone0/temp || echo 1) / 1000))°C \| \
       DISK: $(df -h | awk \'$NF=="/"{printf \"%s\t\t\", $5}\') \| \
-      $(pactl get-source-mute @DEFAULT_SOURCE@) \| \
-      VOL: $(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP \'(?<=front-left: ).*(?=front-right: )\' | grep -oP \'(?<=/ ).*(?= /)\') \| \
+      $(pactl get-source-mute @DEFAULT_SOURCE@ || $(echo $(wpctl get-volume @DEFAULT_AUDIO_SOURCE@) | grep -q "MUTED" && echo "Mute: yes" || echo "Mute: no")) \| \
+      $(echo "Volume: "$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP \'(?<=front-left: ).*(?=front-right: )\' | grep -oP \'(?<=/ ).*(?= /)\') || wpctl get-volume @DEFAULT_AUDIO_SINK@) \| \
       BRIGHTNESS: $(cat /sys/class/backlight/$(ls -1 /sys/class/backlight)/brightness) \| \
       KERNEL: $(uname -r | cut -d '-' -f1) \| \
       BAT: $(cat /sys/class/power_supply/BAT0/capacity)% \| \
@@ -215,17 +215,15 @@ client.focused #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2
 bindsym $mod+q exec swaylock -c 000000
 
 # volume
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym $mod+n exec pactl set-sink-volume @DEFAULT_SINK@ +05%
-bindsym $mod+Shift+n exec pactl set-sink-volume @DEFAULT_SINK@ -05%
-bindsym $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym $mod+Shift+m exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+n exec pactl set-sink-volume @DEFAULT_SINK@ +05% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym $mod+Shift+n exec pactl set-sink-volume @DEFAULT_SINK@ -05% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym $mod+Shift+m exec pactl set-sink-mute @DEFAULT_SINK@ toggle || wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindsym $mod+p exec GTK_THEME='Adwaita:dark' pavucontrol
 bindsym $mod+Shift+p exec GTK_THEME='Adwaita:dark' helvum
 # push to talk
-bindsym --no-repeat $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym --no-repeat --release $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym --no-repeat $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym --no-repeat --release $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
 # brightness
 bindsym $mod+b exec brightnessctl s +10
