@@ -43,6 +43,8 @@ alias xwayland="env -u WAYLAND_DISPLAY"
 alias grubupdate="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias killwindows="ps -aux | grep windows | awk -Fa '{ print $2 }' | awk -F0.0 '{ print $1 }' | xargs kill -9"
 
+alias e='nvim || vim || vi'
+alias v='e'
 alias cat='cat -n'
 alias grep='grep -i --color=auto'
 alias dd='dd status=progress'
