@@ -45,9 +45,7 @@
 
       wezterm
       neovim
-      emacs
       qutebrowser
-      ungoogled-chromium
 
       gcc
 
@@ -238,12 +236,12 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/discord-container/latest.xpi";
         };
-        # SimpleDiscordCrypt
-        "{8166255e-a47b-45ee-89be-28bd3f71d6ad}" = {
-          allowed_types = "extension";
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/simplediscordcrypt/latest.xpi";
-        };
+        # # SimpleDiscordCrypt
+        # "{8166255e-a47b-45ee-89be-28bd3f71d6ad}" = {
+        #   allowed_types = "extension";
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/simplediscordcrypt/latest.xpi";
+        # };
       };
     };
   };
