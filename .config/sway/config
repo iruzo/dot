@@ -135,8 +135,8 @@ bar {
       MEM: $(free -m | awk \'NR==2{printf \"%.2f%%\t\t\", $3*100/$2 }\') \| \
       TEMP: $(($(cat /sys/class/thermal/thermal_zone0/temp || echo 1) / 1000))°C \| \
       DISK: $(df -h | awk \'$NF=="/"{printf \"%s\t\t\", $5}\') \| \
-      $(pactl get-source-mute @DEFAULT_SOURCE@ || $(echo $(wpctl get-volume @DEFAULT_AUDIO_SOURCE@) | grep -q "MUTED" && echo "Mute: yes" || echo "Mute: no")) \| \
-      $(echo "Volume: "$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP \'(?<=front-left: ).*(?=front-right: )\' | grep -oP \'(?<=/ ).*(?= /)\') || wpctl get-volume @DEFAULT_AUDIO_SINK@) \| \
+      $(pactl get-source-mute @DEFAULT_SOURCE@ || wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q "MUTED" && echo "Mute: yes" || echo "Mute: no") \| \
+      $(wpctl get-volume @DEFAULT_AUDIO_SINK@ || echo $("Volume: "$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP \'(?<=front-left: ).*(?=front-right: )\' | grep -oP \'(?<=/ ).*(?= /)\'))) \| \
       BRIGHTNESS: $(cat /sys/class/backlight/$(ls -1 /sys/class/backlight)/brightness) \| \
       KERNEL: $(uname -r | cut -d '-' -f1) \| \
       BAT: $(cat /sys/class/power_supply/BAT0/capacity)% \| \
