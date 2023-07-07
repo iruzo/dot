@@ -304,7 +304,13 @@ return {
 -- { 'codota/tabnine-nvim', build = './dl_binaries.sh' },
   {
     'WhiteBlackGoose/gpt4all.nvim',
-    event = 'VeryLazy',
+    cmd = {
+      'ChatGPT',
+      'ChatGPTActAs',
+      'ChatGPTCompleteCode',
+      'ChatGPTEditWithInstructions',
+      'ChatGPTRun',
+    },
     config = function()
       require'chatgpt'.setup()
     end,
