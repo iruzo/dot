@@ -13,7 +13,7 @@ vim.opt.syntax = "yes"
 vim.opt.shortmess:append "sI" -- disable nvim intro
 vim.opt.path = vim.opt.path + '**'
 -- vim.opt.path = vim.opt.path + '*./**'
-vim.opt.wildignore = '**/.git/*,*_build/*,**/coverage/*,**/.cache/*,**/.local/*,**/venv/*,**/svn/*,**/target/*'
+vim.opt.wildignore = '**/.git/*,*_build/*,**/coverage/*,**/.cache/*,**/venv/*,**/svn/*,**/target/*'
 -- vim.opt.autochdir = true
 vim.opt.list = true
 vim.opt.lcs = 'tab:| ,trail:·'
