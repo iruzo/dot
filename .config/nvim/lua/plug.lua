@@ -100,6 +100,9 @@ return {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.2',
     cmd = 'Telescope',
+    dependencies = {
+      "debugloop/telescope-undo.nvim",
+    },
     keys = {
       { '<space>h', ':Telescope live_grep<CR>', silent = true, desc = 'telescope live grep' },
       { '<space>f', ':Telescope find_files<CR>', silent = true, desc = 'telescope find files' },
@@ -108,6 +111,7 @@ return {
       { '<space>c', ':Telescope git_bcommits<CR>', silent = true, desc = 'telescope git bcommits' },
       { '<space>b', ':Telescope git_branches<CR>', silent = true, desc = 'telescope git branches' },
       { '<space>s', ':Telescope git_status<CR>', silent = true, desc = 'telescope git status' },
+      { '<space>u', ':Telescope undo<CR>', silent = true, desc = 'telescope undo' },
     },
     config = function()
       require('telescope').setup {
@@ -130,15 +134,8 @@ return {
           git_status = { theme = 'ivy', },
         }
       }
+      require("telescope").load_extension("undo")
     end
-  },
-
-  {
-    'sanfusu/neovim-undotree',
-    cmd = 'UndotreeToggle',
-    keys = {
-      { 'U', ':UndotreeToggle<CR>', silent = true, desc = 'UndoTree' },
-    },
   },
 
   {
