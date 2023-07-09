@@ -1,4 +1,4 @@
-xwayland enable
+# xwayland enable
 
 # enable pipewire
 # exec pipewire
