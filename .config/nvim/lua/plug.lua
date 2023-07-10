@@ -101,7 +101,7 @@ return {
     tag = '0.1.2',
     cmd = 'Telescope',
     dependencies = {
-      "debugloop/telescope-undo.nvim",
+      'debugloop/telescope-undo.nvim',
     },
     keys = {
       { '<space>h', ':Telescope live_grep<CR>', silent = true, desc = 'telescope live grep' },
@@ -256,9 +256,9 @@ return {
       { 'theHamsta/nvim-dap-virtual-text', config = function() require'nvim-dap-virtual-text'.setup() end },
       { 'rcarriga/nvim-dap-ui', config = function() require'dapui'.setup() end },
       {
-        "jay-babu/mason-nvim-dap.nvim",
-        dependencies = "mason.nvim",
-        cmd = { "DapInstall", "DapUninstall" },
+        'jay-babu/mason-nvim-dap.nvim',
+        dependencies = 'mason.nvim',
+        cmd = { 'DapInstall', 'DapUninstall' },
         opts = {
           automatic_installation = true,
           handlers = {},
@@ -294,11 +294,12 @@ return {
     }
   },
 
---ai
--- 'github/copilot.vim'
--- { 'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp', }
--- { 'tzachar/cmp-tabnine', build = 'powershell ./install.ps1', dependencies = 'hrsh7th/nvim-cmp', }
--- { 'codota/tabnine-nvim', build = './dl_binaries.sh' },
+  --ai
+  -- 'github/copilot.vim'
+  -- { 'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp', }
+  -- { 'tzachar/cmp-tabnine', build = 'powershell ./install.ps1', dependencies = 'hrsh7th/nvim-cmp', }
+  -- { 'codota/tabnine-nvim', build = './dl_binaries.sh' },
+
   {
     'WhiteBlackGoose/gpt4all.nvim',
     cmd = {
@@ -315,7 +316,7 @@ return {
       'MunifTanjim/nui.nvim',
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim'
-    }
+    },
   },
 
   {
@@ -333,29 +334,56 @@ return {
     end
   },
 
-
   {
     'neovim/nvim-lspconfig',
     tag = 'v0.1.6',
     event = { 'BufReadPre', 'BufNewFile' },
+    cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
     dependencies = {
       {
-        'williamboman/mason.nvim',
-        tag = 'v1.5.0',
-        build = ':MasonUpdate',
+        'williamboman/mason-lspconfig.nvim',
+        tag = 'stable',
+        cmd = { 'LspInstall', 'LspUninstall' },
         dependencies = {
           {
-            'williamboman/mason-lspconfig.nvim',
-            tag = 'stable',
-            cmd = { "LspInstall", "LspUninstall" },
+            'williamboman/mason.nvim',
+            tag = 'v1.5.0',
+            build = ':MasonUpdate',
             config = function()
-              require'mason-lspconfig'.setup({ automatic_installation = true })
+              require'mason'.setup()
             end
           },
         },
         config = function()
-          require'mason'.setup()
+          require'mason-lspconfig'.setup({
+            automatic_installation = true,
+            handlers = {
+              function (server_name)
+                  require("lspconfig")[server_name].setup {}
+              end,
+            },
+          })
         end
+      },
+      {
+        'simrat39/rust-tools.nvim',
+        lazy = true,
+        ft = 'rust',
+        pin = true,
+        config = function()
+          local f=io.open('Cargo.toml','r')
+          if f~=nil then io.close(f)
+            local rt = require('rust-tools')
+            rt.setup({
+              server = {
+                on_attach = function(_, bufnr)
+                  -- Hover actions
+                  vim.keymap.set('n', '<space>a', rt.hover_actions.hover_actions, { buffer = bufnr })
+                end,
+              },
+            })
+          end
+        end,
       },
       -- Autocompletion
       {
@@ -366,12 +394,43 @@ return {
           'hrsh7th/cmp-path',
           'hrsh7th/cmp-nvim-lsp',
           'hrsh7th/cmp-nvim-lua',
-          'saadparwaiz1/cmp_luasnip',
+          {
+            'saadparwaiz1/cmp_luasnip',
+            dependencies = {
+              {
+                'L3MON4D3/LuaSnip',
+                tag = 'v1.2.1',
+                dependencies = {
+                  'rafamadriz/friendly-snippets',
+                },
+              }
+            }
+          },
         },
+        config = function(args)
+          local cmp = require('cmp')
+          require'cmp'.setup {
+            sources = {
+              { name = 'nvim_lsp' },
+              { name = 'luasnip' },
+              { name = 'nvim_lua' },
+              { name = 'path' },
+              { name = 'buffer' },
+            },
+            snippet = {
+              expand = function(args)
+                require'luasnip'.lsp_expand(args.body)
+              end
+            },
+            mapping = cmp.mapping.preset.insert({
+              ['<CR>'] = cmp.mapping.confirm({ select = true }),
+              ['<Tab>'] = cmp.mapping.select_next_item(cmp_select),
+              ['<S-Tab>'] = cmp.mapping.select_prev_item(cmp_select),
+            }),
+            exmperimental = { ghost_text = true },
+          }
+        end
       },
-      -- Snippets
-      'L3MON4D3/LuaSnip',
-      'rafamadriz/friendly-snippets',
     },
     config = function()
       vim.api.nvim_set_keymap('n', 'mm', ':lua vim.lsp.buf.hover()<CR>', { noremap = true })
@@ -379,63 +438,11 @@ return {
       vim.api.nvim_set_keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', 'gr', ':lua vim.lsp.buf.references()<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', 'rr', ':lua vim.lsp.buf.rename()<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '<space>a', ':lua vim.lsp.buf.code_action()<CR>', { noremap = true }) --open code actions using the default lsp UI
-      vim.api.nvim_set_keymap('x', '<space>a', ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true }) --open code actions for the selected visual range
+      vim.api.nvim_set_keymap('n', '<space>a', ':lua vim.lsp.buf.code_action()<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('x', '<space>a', ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<M-p>', ':lua vim.diagnostic.goto_prev()<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<M-n>', ':lua vim.diagnostic.goto_next()<CR>', { noremap = true })
-      local cmp = require('cmp')
-      require'cmp'.setup {
-        sources = {
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-          { name = 'nvim_lua' },
-          { name = 'path' },
-          { name = 'buffer' },
-        },
-        snippet = {
-          expand = function(args)
-            require'luasnip'.lsp_expand(args.body)
-          end
-        },
-        mapping = cmp.mapping.preset.insert({
-          ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-          ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        }),
-        exmperimental = { ghost_text = true },
-      }
-
-      -- local f=io.open('Cargo.toml','r')
-      -- if f~=nil then io.close(f)
-      -- if string.find(vim.api.nvim_buf_get_name(0), ".rs") then
-      --   require'lspconfig'.rust_analyzer.setup{}
-      -- end
-      if string.find(vim.api.nvim_buf_get_name(0), ".py") then
-        require'lspconfig'.pylsp.setup{}
-      end
-
     end
-  },
-
-  {
-    'simrat39/rust-tools.nvim',
-    lazy = true,
-    ft = 'rust',
-    pin = true,
-    config = function()
-      local f=io.open('Cargo.toml','r')
-      if f~=nil then io.close(f)
-        local rt = require('rust-tools')
-        rt.setup({
-          server = {
-            on_attach = function(_, bufnr)
-              -- Hover actions
-              vim.keymap.set('n', '<space>a', rt.hover_actions.hover_actions, { buffer = bufnr })
-            end,
-          },
-        })
-      end
-    end,
   },
 
 }
