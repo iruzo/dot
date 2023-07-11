@@ -15,7 +15,7 @@ set $down j
 set $up k
 set $right l
 
-set $emptymenu BEMENU_BACKEND=wayland BEMENU_OPTS='-i -l 20 --fb "#282828" --ff "#ebdbb2" --nb "#282828" --nf "#ebdbb2" --tb "#282828" --hb "#282828" --tf "#fb4934" --hf "#fabd2f" --nf "#ebdbb2" --af "#ebdbb2" --ab "#282828"' bemenu
+set $emptymenu BEMENU_BACKEND=wayland BEMENU_OPTS='-i -l 20 --fb "#282C34" --ff "#abb2bf" --nb "#282C34" --nf "#abb2bf" --tb "#282C34" --hb "#282C34" --tf "#e06c75" --hf "#e5c07b" --nf "#abb2bf" --af "#abb2bf" --ab "#282C34"' bemenu
 
 set $focusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=name": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
 set $transformFocusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=transform": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
@@ -29,7 +29,7 @@ bindsym $mod+t exec test $transformFocusedMonitor = 'normal' && swaymsg output $
 # bindsym $mod+b exec swaymsg bar mode toggle
 bindsym $mod+space floating toggle
 bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm || LIBGL_ALWAYS_SOFTWARE=1 flatpak run org.wezfurlong.wezterm
-bindsym $mod+d exec BEMENU_BACKEND=wayland BEMENU_OPTS='-i -l 20 --fb "#282828" --ff "#ebdbb2" --nb "#282828" --nf "#ebdbb2" --tb "#282828" --hb "#282828" --tf "#fb4934" --hf "#fabd2f" --nf "#ebdbb2" --af "#ebdbb2" --ab "#282828"' bemenu-run
+bindsym $mod+d exec BEMENU_BACKEND=wayland BEMENU_OPTS='-i -l 20 --fb "#282C34" --ff "#abb2bf" --nb "#282C34" --nf "#abb2bf" --tb "#282C34" --hb "#282C34" --tf "#e06c75" --hf "#e5c07b" --nf "#abb2bf" --af "#abb2bf" --ab "#282C34"' bemenu-run
 
 bindsym $mod+Shift+r reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway ?' -b 'Yes' 'swaymsg exit'
@@ -145,28 +145,28 @@ bar {
 
   colors {
 
-    # gruvbox
-    background         #282828AA
-    statusline         #E1F5A9AA
-    focused_separator  #6A0888AA
-    focused_statusline #EBDBB2AA
-    focused_workspace  #EBDBB2AA #282828AA #FFFFFF
-    active_workspace   #333333AA #331A00AA #FFFFFF
-    inactive_workspace #333333AA #222222AA #888888
-    urgent_workspace   #2f343aAA #EB4D4BAA #FFFFFF
-    binding_mode       #2f343aAA #FF0000AA #FFFFFF
+    # # gruvbox
+    # background         #282828AA
+    # statusline         #E1F5A9AA
+    # focused_separator  #6A0888AA
+    # focused_statusline #EBDBB2AA
+    # focused_workspace  #EBDBB2AA #282828AA #FFFFFF
+    # active_workspace   #333333AA #331A00AA #FFFFFF
+    # inactive_workspace #333333AA #222222AA #888888
+    # urgent_workspace   #2f343aAA #EB4D4BAA #FFFFFF
+    # binding_mode       #2f343aAA #FF0000AA #FFFFFF
 
     # onedark
-    # background         #282C34
-    # statusline         #61AFEF
-    # focused_statusline #abb2bf
-    # active_workspace   #282C34 #abb2bf #61AFEF
-    # focused_separator  #282C34
-    # focused_workspace  #abb2bf #282C34 #61AFEF
-    # active_workspace   #abb2bf #282C34 #61AFEF
-    # inactive_workspace #abb2bf #282C34 #c678DD
-    # urgent_workspace   #abb2bf #282C34 #c678DD
-    # binding_mode       #abb2bf #282C34 #c678DD
+    background         #282C34
+    statusline         #abb2bf
+    focused_statusline #abb2bf
+    active_workspace   #282C34 #abb2bf #61AFEF
+    focused_separator  #282C34
+    focused_workspace  #282C34 #282C34 #98C379
+    active_workspace   #282C34 #282C34 #61AFEF
+    inactive_workspace #282C34 #282C34 #5c6370
+    urgent_workspace   #282C34 #282C34 #5c6370
+    binding_mode       #282C34 #282C34 #5c6370
 
   }
 
@@ -183,7 +183,6 @@ input "type:keyboard" {
 # output
 output * res 1920x1080
 output DP-2 transform 270
-# output Virtual-1 res 1920x1080
 
 # output eDP-1 pos 0 0 res 1920x1080
 # output HDMI-A-1 pos 1920 0 res 1920x1080
@@ -192,17 +191,18 @@ output DP-2 transform 270
 # workspace 2 output HDMI-A-1
 # workspace 3 output DP-1
 
-# set $wallpaper https://cdn.discordapp.com/attachments/923640537356070972/1065009034131931226/nebula.mocha.jpg
+set $wallpaper https://cdn.discordapp.com/attachments/923640537356070972/1065009034131931226/nebula.mocha.jpg
 
-# exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
+exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 
-# output * bg ~/.local/share/sway/wallpaper fill
-output * bg #282828 solid_color
+output * bg ~/.local/share/sway/wallpaper fill
+# output * bg #282c34 solid_color
 
 # window
 default_border pixel 1
 default_floating_border pixel 1
-client.focused #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2
+client.focused #abb2bf #abb2bf #abb2bf #abb2bf #abb2bf
+# gaps inner 10
 
 # catppuccin
 # exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Rosewater-Dark ]; then \
