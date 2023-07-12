@@ -81,6 +81,25 @@ return {
   },
 
   {
+    'echasnovski/mini.align',
+    tag = 'v0.9.0',
+    event = 'VeryLazy',
+    config = function()
+      require'mini.align'.setup()
+    end
+  },
+
+  {
+    "nvim-pack/nvim-spectre",
+    cmd = "Spectre",
+    opts = { open_cmd = "noswapfile vnew" },
+    -- stylua: ignore
+    keys = {
+      { "<spacel>r", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+    },
+  },
+
+  {
     'nvim-neo-tree/neo-tree.nvim',
     tag = '2.69',
     dependencies = {
@@ -124,14 +143,7 @@ return {
           },
         },
         pickers = {
-          find_files = { hidden = 'true', theme = 'ivy', },
-          buffers = { theme = 'ivy', },
-          live_grep = { theme = 'ivy', },
-          diagnostic = { theme = 'ivy', },
-          git_commits = { theme = 'ivy', },
-          git_bcommits = { theme = 'ivy', },
-          git_branches = { theme = 'ivy', },
-          git_status = { theme = 'ivy', },
+          find_files = { hidden = 'true' },
         }
       }
       require("telescope").load_extension("undo")
@@ -139,11 +151,25 @@ return {
   },
 
   {
-    'luisiacc/gruvbox-baby',
-    tag = '0.1.8',
+    'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
-      vim.api.nvim_command 'colorscheme gruvbox-baby'
+      require'onedark'.load()
+    end
+  },
+
+  {
+    'lukas-reineke/indent-blankline.nvim',
+    tag = 'v2.20.7',
+    event = { 'BufReadPost', 'BufNewFile' },
+    config = function()
+      vim.opt.termguicolors = true
+      vim.opt.list = true
+      vim.opt.listchars:append "eol:↴"
+
+      require("indent_blankline").setup {
+          show_end_of_line = true,
+      }
     end
   },
 
@@ -152,7 +178,7 @@ return {
     event = 'VeryLazy',
     config = function()
       require('lualine').setup {
-        options = { theme = 'gruvbox-material' }
+        -- options = { theme = 'onedark' }
       }
     end
   },
@@ -203,10 +229,24 @@ return {
   },
 
   {
-    'norcalli/nvim-colorizer.lua',
+    'echasnovski/mini.hipatterns',
+    tag = 'v0.9.0',
     event = { 'BufReadPre', 'BufNewFile' },
-    cmd = { 'ColorizerToggle' },
-    config = function() require('colorizer').setup() end,
+    config = function()
+      local hipatterns = require('mini.hipatterns')
+      hipatterns.setup({
+        highlighters = {
+          -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+          fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+          hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
+          todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
+          note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
+
+          -- Highlight hex color strings (`#rrggbb`) using that color
+          hex_color = hipatterns.gen_highlighter.hex_color(),
+        },
+      })
+    end
   },
 
   {
@@ -294,7 +334,7 @@ return {
     }
   },
 
-  --ai
+  -- -- ai
   -- 'github/copilot.vim'
   -- { 'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp', }
   -- { 'tzachar/cmp-tabnine', build = 'powershell ./install.ps1', dependencies = 'hrsh7th/nvim-cmp', }
@@ -356,10 +396,12 @@ return {
         },
         config = function()
           require'mason-lspconfig'.setup({
-            automatic_installation = true,
+            -- automatic_installation = true,
             handlers = {
               function (server_name)
-                  require("lspconfig")[server_name].setup {}
+                  require("lspconfig")[server_name].setup {
+                    capabilities = require'cmp_nvim_lsp'.default_capabilities()
+                  }
               end,
             },
           })
@@ -410,13 +452,14 @@ return {
         config = function(args)
           local cmp = require('cmp')
           require'cmp'.setup {
-            sources = {
+            sources = cmp.config.sources({
               { name = 'nvim_lsp' },
               { name = 'luasnip' },
               { name = 'nvim_lua' },
               { name = 'path' },
+            }, {
               { name = 'buffer' },
-            },
+            }),
             snippet = {
               expand = function(args)
                 require'luasnip'.lsp_expand(args.body)
