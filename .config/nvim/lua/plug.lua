@@ -256,7 +256,10 @@ return {
     build = ':call mkdp#util#install()',
   },
 
-  { 'TimUntersberger/neogit', cmd = 'Neogit' }, -- git menu
+  {
+    'NeogitOrg/neogit',
+    cmd = 'Neogit'
+  },
 
   {
     'lewis6991/gitsigns.nvim',
