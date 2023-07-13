@@ -201,8 +201,10 @@ output * bg ~/.local/share/sway/wallpaper fill
 # window
 default_border pixel 1
 default_floating_border pixel 1
-client.focused #abb2bf #abb2bf #abb2bf #abb2bf #abb2bf
-# gaps inner 10
+client.focused #5c6370 #5c6370 #5c6370 #5c6370 #5c6370
+client.unfocused #000000 #000000 #000000 #000000 #000000
+client.focused_inactive #000000 #000000 #000000 #000000 #000000
+gaps inner 20
 
 # catppuccin
 # exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Rosewater-Dark ]; then \
