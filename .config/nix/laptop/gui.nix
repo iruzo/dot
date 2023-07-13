@@ -2,16 +2,6 @@
 
 {
 
-  services.greetd = {
-    enable = true;
-    regreet.enable = true;
-    settings = {
-      default_session = {
-        user = iruzo;
-        command = "${pkgs.greetd.greetd}/bin/agreety --cmd sway";
-      };
-    };
-  };
   programs.sway = {
     enable = true;
     extraPackages = with pkgs; [

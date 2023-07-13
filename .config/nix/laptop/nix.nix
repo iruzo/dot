@@ -2,6 +2,7 @@
 
 {
   nix = {
+    settings.experimental-features = [ "nix-command" "flakes" ];
     # Automatically run the garbage collector
     gc.automatic = false;
     gc.dates = "12:00";

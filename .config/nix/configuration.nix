@@ -8,6 +8,7 @@
 { config, pkgs, lib, ... }:
 
 {
+
   imports =
     [
       # Include the results of the hardware scan.
@@ -15,4 +16,5 @@
       ./laptop/setup.nix
       ./usr.nix
     ];
+
 }

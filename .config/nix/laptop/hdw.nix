@@ -5,10 +5,10 @@
   boot = {
 
     # Clear /tmp during boot
-    boot.cleanTmpDir = true;
+    cleanTmpDir = true;
 
     initrd = {
-      secrets = "/crypto_keyfile.bin" = null;
+      # secrets = "/crypto_keyfile.bin" = null;
       # display ownership notice before luks
       preLVMCommands = ''
         echo "--- OWNERSHIP NOTICE ---"
@@ -89,8 +89,6 @@
   services.thermald.enable = true;
   # This includes support for suspend-to-RAM and powersave features on laptops
   powerManagement.enable = true;
-  # Enable powertop auto tuning on startup.
-  powerManagement.powertop.enable = true;
   # tlp
   services.tlp.enable = false;
   services.tlp.extraConfig = "USB_AUTOSUSPEND=0";
