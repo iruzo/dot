@@ -59,6 +59,11 @@ vim.opt.viminfo = ''
 vim.opt.guicursor = ""
 vim.g.multi_cursor_exit_from_visual_mode = 0
 
+-- mail config
+vim.opt_local.spell = true
+vim.opt_local.spelllang = 'en_us'
+vim.opt_local.fo:append('aw')
+
 -- -- netrw
 -- vim.g.netrw_banner = 0
 -- vim.g.netrw_browse_split = 4
