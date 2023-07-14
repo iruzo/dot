@@ -5,7 +5,7 @@
   boot = {
 
     # Clear /tmp during boot
-    cleanTmpDir = true;
+    tmp.cleanOnBoot = true;
 
     initrd = {
       # secrets = "/crypto_keyfile.bin" = null;
