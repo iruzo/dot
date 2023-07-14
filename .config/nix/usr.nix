@@ -47,6 +47,7 @@
       pavucontrol
 
       wezterm
+      neomutt
       neovim
       ripgrep
       qutebrowser
@@ -54,6 +55,8 @@
       gcc
 
       minecraft
+
+      /* gpt4all */
     ];
 
   };

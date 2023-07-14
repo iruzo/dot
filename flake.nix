@@ -5,19 +5,29 @@
   inputs = {
 
     # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+
+    winstonnur.url = "github:nekowinston/nur";
 
   };
 
-  outputs = { self, nixpkgs, ... }: {
+  outputs = { self, nixpkgs, ... } @ inputs: let
+    system = "x86_64-linux";
+    overlays = f: p: {
+      # [pkgname] = inputs.pkgname.packages.${system}.default;
+      gpt4all = inputs.winstonnur.packages.${system}.gpt4all;
+    };
+    in {
 
     # sudo nixos-install --no-write-lock-file --flake github:iruzo/dots#laptop
     # sudo nixos-rebuild switch --flake '/etc/nixos#laptop'
     nixosConfigurations = {
-      laptop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+      iruzo = nixpkgs.lib.nixosSystem {
+        # system = "x86_64-linux";
+        inherit system;
         modules =
         [({ pkgs, ... }: {
+              nixpkgs.overlays = [overlays];
               imports =
               [
                 ./.config/nix/laptop/setup.nix
@@ -28,6 +38,14 @@
       };
     };
 
+  };
+  nixConfig = {
+    extra-trusted-substituters = [
+      "https://nekowinston.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nekowinston.cachix.org-1:lucpmaO+JwtoZj16HCO1p1fOv68s/RL1gumpVzRHRDs="
+    ];
   };
 
 }

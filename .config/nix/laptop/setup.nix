@@ -3,6 +3,7 @@
 {
   imports =
     [
+      ./hardware-configuration.nix
       ./hdw.nix
       ./net.nix
       ./gui.nix
