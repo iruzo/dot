@@ -1,6 +1,6 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ...}: let
+  inherit (pkgs.stdenv.hostPlatform) isLinux;
+in {
 
   fonts = {
     # enableDefaultFonts = true;
@@ -13,6 +13,7 @@
       # anurati
       fira-code
       fira-code-symbols
+      # sf-mono
     ];
   };
 
@@ -37,30 +38,102 @@
     packages = with pkgs; [
       xdg-utils
       xdg-user-dirs
+
+      # general
       man
       curl
       git
       unzip
       btop
-      keepassxc
       helvum
       pavucontrol
-
       wezterm
-      neomutt
-      neovim
-      ripgrep
-      qutebrowser
 
+      # workspace
+      aerc        # mail
+      neovim      # text editor
+      ripgrep     # finder
+      keepassxc   # password manager
+      qutebrowser # used for citrix since citrix is cringe
+      pandoc      # document converter
+      zathura     # document viewer
+      mpv         # image and video viewer
+      /* gpt4all */
+
+      # tools
       gcc
 
+      # games
       minecraft
 
-      /* gpt4all */
+      # web apps
+      (pkgs.chromium.override {
+        ungoogled = true;
+        commandLineArgs = [
+          "--disk-cache=$XDG_RUNTIME_DIR/chromium-cache"
+          "--no-default-browser-check"
+          "--no-service-autorun"
+          "--disable-features=PreloadMediaEngagementData,MediaEngagementBypassAutoplayPolicies"
+          # Autoplay policy
+          "--document-user-activation-required"
+          # Enable Wayland support
+          "--enable-features=UseOzonePlatform"
+          "--ozone-platform-hint=auto"
+          # Disable global Google login
+          "--disable-sync-preferences"
+          # Reader mode
+          "--enable-reader-mode"
+          "--enable-dom-distiller"
+          # Dark mode
+          "--enable-features=WebUIDarkMode"
+          # Security stuff
+          "--disable-reading-from-canvas"
+          "--no-pings"
+          "--no-first-run"
+          "--no-experiments"
+          "--no-crash-upload"
+          # Store secrets in Gnome's Keyring
+          "--password-store=gnome"
+          # Chromecast
+          "--load-media-router-component-extension"
+          # GPU stuff
+          "--ignore-gpu-blocklist"
+          "--enable-gpu-rasterization"
+          #"--use-gl=egl"
+          "--enable-zero-copy"
+          # Accelerated decoding
+          "--enable-features=VaapiVideoDecoder"
+
+          "--disable-wake-on-wifi"
+          "--disable-breakpad"
+          "--disable-sync"
+          "--disable-speech-api"
+          "--disable-speech-synthesis-api"
+        ];
+      })
+
     ];
 
   };
-  programs.noisetorch.enable = true;
+
+  programs = {
+    noisetorch.enable = true;
+    steam = {
+      enable = true;
+      # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    };
+    chromium = {
+      enable = true;
+      extensions = [
+        "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock Origin
+        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+        "ldpochfccmkkmhdbclfhpagapcfdljkj" # Decentraleyes
+      ];
+    };
+
+  };
   # services.flatpak.enable = true;
 
   # wezterm configuration
@@ -70,12 +143,6 @@
   #     source ${pkgs.wezterm}/etc/profile.d/wezterm.sh
   #   fi
   # '';
-
-  programs.steam = {
-    enable = true;
-    # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
 
   # nixpkgs.config.packageOverrides = pkgs: {
   #   nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
@@ -238,12 +305,6 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/mailvelope/latest.xpi";
         };
-        # discord container
-        "@contain-discord" = {
-          allowed_types = "extension";
-          installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/discord-container/latest.xpi";
-        };
         # # SimpleDiscordCrypt
         # "{8166255e-a47b-45ee-89be-28bd3f71d6ad}" = {
         #   allowed_types = "extension";
@@ -253,5 +314,7 @@
       };
     };
   };
+
+
 
 }

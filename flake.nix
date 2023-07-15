@@ -15,7 +15,8 @@
     system = "x86_64-linux";
     overlays = f: p: {
       # [pkgname] = inputs.pkgname.packages.${system}.default;
-      gpt4all = inputs.winstonnur.packages.${system}.gpt4all;
+      # gpt4all = inputs.winstonnur.packages.${system}.gpt4all;
+      # sf-mono = inputs.winstonnur.packages.${system}.apple-sf-mono;
     };
     in {
 
@@ -28,6 +29,8 @@
         modules =
         [({ pkgs, ... }: {
               nixpkgs.overlays = [overlays];
+              # Allow "unfree" packages.
+              nixpkgs.config.allowUnfree = true;
               imports =
               [
                 ./.config/nix/laptop/setup.nix

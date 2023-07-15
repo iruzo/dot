@@ -60,9 +60,6 @@
   # Disable sudo password for the wheel group
   # security.sudo.wheelNeedsPassword = false;
 
-  # Allow "unfree" packages.
-  nixpkgs.config.allowUnfree = true;
-
   # Periodically update the database of files used by the locate command
   services.locate.enable = true;
 
