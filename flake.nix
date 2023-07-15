@@ -6,14 +6,21 @@
 
     # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
-
-    winstonnur.url = "github:nekowinston/nur";
+    nur.url = "github:nix-community/nur";
+    winstonnur.url = "github:nekowinston/nur"; # flake lock --update-input winstonnur
 
   };
 
   outputs = { self, nixpkgs, ... } @ inputs: let
     system = "x86_64-linux";
     overlays = f: p: {
+      nur = import inputs.nur {
+        nurpkgs = p;
+        pkgs = p;
+        repoOverrides = {
+          nekowinston = import inputs.winstonnur { inherit (p) pkgs; };
+        };
+      };
       # [pkgname] = inputs.pkgname.packages.${system}.default;
       # gpt4all = inputs.winstonnur.packages.${system}.gpt4all;
       # sf-mono = inputs.winstonnur.packages.${system}.apple-sf-mono;

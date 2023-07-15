@@ -1,71 +1,5 @@
 {
   "nodes": {
-    "crane": {
-      "inputs": {
-        "flake-compat": [
-          "winstonnur"
-        ],
-        "flake-utils": "flake-utils",
-        "nixpkgs": [
-          "winstonnur",
-          "nixpkgs"
-        ],
-        "rust-overlay": "rust-overlay"
-      },
-      "locked": {
-        "lastModified": 1686108916,
-        "narHash": "sha256-looLH5MdY4erLiJw0XwQohGdr0fJL9y6TJY3898RA2U=",
-        "owner": "ipetkov",
-        "repo": "crane",
-        "rev": "8ab1a49432695bd80ff4b7f6c6515da0e926d922",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ipetkov",
-        "ref": "v0.12.2",
-        "repo": "crane",
-        "type": "github"
-      }
-    },
-    "flake-utils": {
-      "inputs": {
-        "systems": "systems"
-      },
-      "locked": {
-        "lastModified": 1685518550,
-        "narHash": "sha256-o2d0KcvaXzTrPRIo0kOLV0/QXHhDQ5DTi+OxcjO8xqY=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "a1720a10a6cfe8234c0e93907ffe81be440f4cef",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "icat": {
-      "inputs": {
-        "nixpkgs": [
-          "winstonnur",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1688930064,
-        "narHash": "sha256-9HeztRRQyfFJPYUW/3Ryi0leFMcTUsT9P1aofc/A/VA=",
-        "owner": "nekowinston",
-        "repo": "icat",
-        "rev": "3a266a28051e6cd9bdb844becf79862a73da1c73",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nekowinston",
-        "repo": "icat",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1689209875,
@@ -84,80 +18,52 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1689261696,
-        "narHash": "sha256-LzfUtFs9MQRvIoQ3MfgSuipBVMXslMPH/vZ+nM40LkA=",
+        "lastModified": 1689282004,
+        "narHash": "sha256-VNhuyb10c9SV+3hZOlxwJwzEGytZ31gN9w4nPCnNvdI=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "df1eee2aa65052a18121ed4971081576b25d6b5c",
+        "rev": "e74e68449c385db82de3170288a28cd0f608544f",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nur": {
+      "locked": {
+        "lastModified": 1689442752,
+        "narHash": "sha256-oBmOZaW9bwuNZ6mhpKW2PAzezXtdoH46aJe2RnqR06A=",
+        "owner": "nix-community",
+        "repo": "nur",
+        "rev": "420db9ad7b6025c76ad8a084998f1244db7f7d95",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nur",
         "type": "github"
       }
     },
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
+        "nur": "nur",
         "winstonnur": "winstonnur"
-      }
-    },
-    "rust-overlay": {
-      "inputs": {
-        "flake-utils": [
-          "winstonnur",
-          "crane",
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "winstonnur",
-          "crane",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1685759304,
-        "narHash": "sha256-I3YBH6MS3G5kGzNuc1G0f9uYfTcNY9NYoRc3QsykLk4=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "c535b4f3327910c96dcf21851bbdd074d0760290",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "systems": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
       }
     },
     "winstonnur": {
       "inputs": {
-        "crane": "crane",
-        "icat": "icat",
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1689376183,
-        "narHash": "sha256-sPCPUGcAqO1rNnHiLN71nDeoCOhM2KYO+PsP6W4ysgA=",
+        "lastModified": 1689448247,
+        "narHash": "sha256-F5lgs/N7pZa0CkjoAUMLQZVWkm9inTxE0ylBUwuDRgo=",
         "owner": "nekowinston",
         "repo": "nur",
-        "rev": "be6d824a5b3b67070d1f543cb91bdaa31a74ddfa",
+        "rev": "b8691925f8cf0ab3252d65bd40fbbd16d8cd8abd",
         "type": "github"
       },
       "original": {

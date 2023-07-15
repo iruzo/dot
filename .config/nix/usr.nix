@@ -11,10 +11,17 @@ in {
       # noto-fonts-cjk # chinese japanese and koreans characters
       # noto-fonts-emoji
       # anurati
-      fira-code
+      # fira-code
       fira-code-symbols
-      # sf-mono
+      pkgs.nur.repos.nekowinston.apple-sf-mono
     ];
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "SF Serif" ];
+        sansSerif = [ "SF Serif" ];
+        monospace = [ "SF Mono" ];
+      };
+    };
   };
 
   # default shell for all users
@@ -67,8 +74,7 @@ in {
       minecraft
 
       # web apps
-      (pkgs.chromium.override {
-        ungoogled = true;
+      (pkgs.ungoogled-chromium.override {
         commandLineArgs = [
           "--disk-cache=$XDG_RUNTIME_DIR/chromium-cache"
           "--no-default-browser-check"
@@ -92,8 +98,6 @@ in {
           "--no-first-run"
           "--no-experiments"
           "--no-crash-upload"
-          # Store secrets in Gnome's Keyring
-          "--password-store=gnome"
           # Chromecast
           "--load-media-router-component-extension"
           # GPU stuff
@@ -123,16 +127,6 @@ in {
       # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
-    chromium = {
-      enable = true;
-      extensions = [
-        "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
-        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock Origin
-        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
-        "ldpochfccmkkmhdbclfhpagapcfdljkj" # Decentraleyes
-      ];
-    };
-
   };
   # services.flatpak.enable = true;
 
