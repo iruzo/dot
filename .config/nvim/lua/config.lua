@@ -62,7 +62,7 @@ vim.g.multi_cursor_exit_from_visual_mode = 0
 -- mail config
 vim.opt_local.spell = true
 vim.opt_local.spelllang = 'en_us'
-vim.opt_local.fo:append('aw')
+-- vim.opt_local.fo:append('aw')
 
 -- -- netrw
 -- vim.g.netrw_banner = 0
