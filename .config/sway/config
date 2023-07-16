@@ -191,7 +191,7 @@ output DP-2 transform 270
 # workspace 2 output HDMI-A-1
 # workspace 3 output DP-1
 
-set $wallpaper https://cdn.discordapp.com/attachments/923640537356070972/1065009034131931226/nebula.mocha.jpg
+set $wallpaper https://www.pixelstalk.net/wp-content/uploads/2016/05/Math-Computers-Wallpapers.jpg
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 
@@ -250,6 +250,9 @@ bindsym $mod+Shift+s exec mkdir -p ~/media && grim -g "$(slurp)" ~/media/$(date 
 # '
 bindsym $mod+o exec firefox
 bindsym $mod+Shift+o exec cat ~/iruzo/quickmarks | $emptymenu | awk -F' ' '{print $NF}' | wl-copy $(cat)
+
+# discord
+bindsym $mod+g exec brave --app=https://discord.com/app
 
 # vm
 bindsym $mod+i exec gnome-boxes
