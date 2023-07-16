@@ -214,7 +214,8 @@ gaps inner 20
 #   && rm -rf ~/.themes/catppuccin.zip; fi
 
 # lock screen
-bindsym $mod+q exec swaylock -c 000000
+# bindsym $mod+q exec swaylock -c 000000
+bindsym $mod+q exec swaylock -i ~/.local/share/sway/wallpaper
 
 # volume
 bindsym $mod+n exec pactl set-sink-volume @DEFAULT_SINK@ +05% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
