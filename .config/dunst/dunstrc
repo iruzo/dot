@@ -1,5 +1,5 @@
 [global]
-    font = "Fira Code 12"
+    font = "SF Mono"
     markup = full
     format = "<b>%s</b>\n%b"
     sort = yes
@@ -21,13 +21,13 @@
     separator_height = 2
     padding = 8
     horizontal_padding = 8
-    separator_color = "#f4b8e4"
+    separator_color = "#abb2bf"
     startup_notification = false
     # https://github.com/knopwob/dunst/issues/26#issuecomment-36159395
     #icon_position = left
     frame_width = 1
     icon_folders = /usr/share/icons/breeze/apps/48/:/usr/share/icons/breeze/actions/48/:/usr/share/icons/breeze/places/48/:/usr/share/icons/breeze/status/48/
-    frame_color = "#fbf1c7"
+    frame_color = "#abb2bf"
 
 /* [shortcuts] */
 /*     close = ctrl+space */
@@ -36,16 +36,16 @@
 /*     context = ctrl+shift+period */
 
 [urgency_low]
-    background = "#1D303446"
-    foreground = "#c6d0f5"
+    background = "#282c34"
+    foreground = "#abb2bf"
     timeout = 5
 
 [urgency_normal]
-    background = "#1D303446"
-    foreground = "#c6d0f5"
+    background = "#282c34"
+    foreground = "#abb2bf"
     timeout = 10
 
 [urgency_critical]
-    background = "#1D303446"
-    foreground = "#c6d0f5"
+    background = "#282c34"
+    foreground = "#e06c75"
     timeout = 20
