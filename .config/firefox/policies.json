@@ -13,11 +13,6 @@
       "Value": true
     },
     "ExtensionSettings": {
-      "@contain-discord": {
-        "allowed_types": "extension",
-        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/discord-container/latest.xpi",
-        "installation_mode": "force_installed"
-      },
       "@testpilot-containers": {
         "allowed_types": "extension",
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/multi-account-containers/latest.xpi",
@@ -61,11 +56,6 @@
       "{74145f27-f039-47ce-a470-a662b129930a}": {
         "allowed_types": "extension",
         "install_url": "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi",
-        "installation_mode": "force_installed"
-      },
-      "{8166255e-a47b-45ee-89be-28bd3f71d6ad}": {
-        "allowed_types": "extension",
-        "install_url": "https://addons.mozilla.org/firefox/downloads/latest/simplediscordcrypt/latest.xpi",
         "installation_mode": "force_installed"
       },
       "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}": {
