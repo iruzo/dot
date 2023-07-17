@@ -184,6 +184,18 @@ return {
   },
 
   {
+    'nvim-focus/focus.nvim',
+    cmd = 'Focus',
+    keys = {
+      { '<C-w><C-v>', ':FocusSplitRight<CR>', silent = true, desc = 'split right' },
+      { '<C-w><C-s>', ':FocusSplitDown<CR>', silent = true, desc = 'split down' },
+    },
+    config = function()
+      require'focus'.setup()
+    end
+  },
+
+  {
     'nanozuki/tabby.nvim',
     tag = 'v2.1.5',
     keys = {
