@@ -71,7 +71,7 @@ in {
       gcc
 
       # games
-      minecraft
+      prismlauncher
 
       # web apps
       brave
