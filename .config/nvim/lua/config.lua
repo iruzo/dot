@@ -9,6 +9,10 @@ vim.api.nvim_command('autocmd BufRead,BufNewFile *.pgp :set filetype=pgp')
 vim.api.nvim_command('autocmd BufRead,BufNewFile *.asc :set filetype=asc')
 -- vim.api.nvim_command('autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), " ")')
 
+function bd_all()
+  vim.api.nvim_command('%bd|e#');
+end
+
 vim.opt.syntax = "yes"
 vim.opt.shortmess:append "sI" -- disable nvim intro
 vim.opt.path = vim.opt.path + '**'

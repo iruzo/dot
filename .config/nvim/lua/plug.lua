@@ -131,6 +131,7 @@ return {
     keys = {
       { '<space>h', ':Telescope live_grep<CR>', silent = true, desc = 'telescope live grep' },
       { '<space>f', ':Telescope find_files<CR>', silent = true, desc = 'telescope find files' },
+      { '<space>F', ':Telescope buffers<CR>', silent = true, desc = 'telescope buffers' },
       { '<space>t', ':Telescope diagnostics<CR>', silent = true, desc = 'telescope diagnostics' },
       { '<space>g', ':Telescope git_commits<CR>', silent = true, desc = 'telescope git commits' },
       { '<space>c', ':Telescope git_bcommits<CR>', silent = true, desc = 'telescope git bcommits' },
@@ -150,6 +151,16 @@ return {
         },
         pickers = {
           find_files = { hidden = 'true' },
+            buffers = {
+              show_all_buffers = true,
+              sort_lastused = true,
+              previewer = false,
+              mappings = {
+                i = {
+                  ["<c-d>"] = "delete_buffer",
+                }
+              }
+            }
         }
       }
       require("telescope").load_extension("undo")
