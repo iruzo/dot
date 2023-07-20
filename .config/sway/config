@@ -117,13 +117,13 @@ bar {
   height 18
 
   # status_command while ( echo \
-  #       $(swaymsg -t get_tree | grep -oP \'(?<=name": ").*(?=",)\' | sed \"$(swaymsg -t get_tree | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d\")  \| \
+  #       $(swaymsg -t get_tree | grep -oP \'(?<=name\": \").*(?=\",)\' | sed \"$(swaymsg -t get_tree | grep focused | grep -oP \'(?<=: ).*(?=,)\' | grep -n true | cut -d: -f1)q;d\")  \| \
   #       $(top -b -n1 | grep \"Cpu(s)\" | awk \'{print $2 + $4}\')% \| \
   #       $(free -m | awk \'NR==2{printf \"%.2f%%\t\t\", $3*100/$2 }\') \| \
   #       $(($(cat /sys/class/thermal/thermal_zone0/temp || echo 1) / 1000))°C \| \
   #       $(df -h | awk \'$NF=="/"{printf \"%s\t\t\", $5}\') \| \
-  #       $(pactl get-source-mute @DEFAULT_SOURCE@ || $(echo $(wpctl get-volume @DEFAULT_AUDIO_SOURCE@) | grep -q "MUTED" && echo "Mute: yes" || echo "Mute: no")) \| \
-  #     墳 $(echo "Volume: "$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP \'(?<=front-left: ).*(?=front-right: )\' | grep -oP \'(?<=/ ).*(?= /)\') || wpctl get-volume @DEFAULT_AUDIO_SINK@) \| \
+  #       $(pactl get-source-mute @DEFAULT_SOURCE@ || wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q "MUTED" && echo "Mute: yes" || echo "Mute: no") \| \
+  #     墳 $(wpctl get-volume @DEFAULT_AUDIO_SINK@ || echo $("Volume: "$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP \'(?<=front-left: ).*(?=front-right: )\' | grep -oP \'(?<=/ ).*(?= /)\'))) \| \
   #       $(cat /sys/class/backlight/$(ls -1 /sys/class/backlight)/brightness) \| \
   #       $(uname -r | cut -d '-' -f1) \| \
   #       $(cat /sys/class/power_supply/BAT0/capacity)% \| \
@@ -142,6 +142,7 @@ bar {
       BAT: $(cat /sys/class/power_supply/BAT0/capacity)% \| \
       $(date +'%a %Y-%m-%d %H:%M:%S') \
   ); do sleep 1; done
+  # $(swaymsg -t get_tree | grep -oP \'(?<=name\": \").*(?=\",)\' | sed \"$(swaymsg -t get_tree | grep focused | grep -oP \'(?<=: ).*(?=,)\' | grep -n true | cut -d: -f1)q;d\")  \| \
 
   colors {
 
@@ -191,7 +192,7 @@ output DP-2 transform 270
 # workspace 2 output HDMI-A-1
 # workspace 3 output DP-1
 
-set $wallpaper https://www.pixelstalk.net/wp-content/uploads/2016/05/Math-Computers-Wallpapers.jpg
+set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/original-math-year.jpg
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 
