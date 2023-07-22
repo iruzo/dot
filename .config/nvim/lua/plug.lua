@@ -96,6 +96,11 @@ return {
   },
 
   {
+    'chrisbra/csv.vim',
+    ft = 'csv',
+  },
+
+  {
     "nvim-pack/nvim-spectre",
     cmd = "Spectre",
     opts = { open_cmd = "noswapfile vnew" },
@@ -433,14 +438,7 @@ return {
           local f=io.open('Cargo.toml','r')
           if f~=nil then io.close(f)
             local rt = require('rust-tools')
-            rt.setup({
-              server = {
-                on_attach = function(_, bufnr)
-                  -- Hover actions
-                  vim.keymap.set('n', '<space>a', rt.hover_actions.hover_actions, { buffer = bufnr })
-                end,
-              },
-            })
+            rt.setup()
           end
         end,
       },
