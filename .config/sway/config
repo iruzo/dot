@@ -192,7 +192,7 @@ output DP-2 transform 270
 # workspace 2 output HDMI-A-1
 # workspace 3 output DP-1
 
-set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/original-math-year.jpg
+set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/onedark-math-year.png
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 
