@@ -372,7 +372,7 @@ return {
   },
 
   -- -- ai
-  -- 'github/copilot.vim'
+  -- { 'zbirenbaum/copilot.lua', cmd = "Copilot", event = "InsertEnter", config = function() require'copilot'.setup({}) end },
   -- { 'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp', }
   -- { 'tzachar/cmp-tabnine', build = 'powershell ./install.ps1', dependencies = 'hrsh7th/nvim-cmp', }
   -- { 'codota/tabnine-nvim', build = './dl_binaries.sh' },
