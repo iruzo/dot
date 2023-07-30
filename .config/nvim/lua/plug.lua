@@ -132,9 +132,10 @@ return {
     cmd = 'Telescope',
     dependencies = {
       'debugloop/telescope-undo.nvim',
+      'nvim-telescope/telescope-live-grep-args.nvim',
     },
     keys = {
-      { '<space>h', ':Telescope live_grep<CR>', silent = true, desc = 'telescope live grep' },
+      { '<space>h', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>', silent = true, desc = 'telescope live grep' },
       { '<space>f', ':Telescope find_files<CR>', silent = true, desc = 'telescope find files' },
       { '<space>F', ':Telescope buffers<CR>', silent = true, desc = 'telescope buffers' },
       { '<space>t', ':Telescope diagnostics<CR>', silent = true, desc = 'telescope diagnostics' },
