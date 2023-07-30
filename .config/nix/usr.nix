@@ -75,6 +75,47 @@ in {
 
       # web apps
       brave
+      # (pkgs.brave.override {
+      #   commandLineArgs = [
+      #     "--disk-cache=$XDG_RUNTIME_DIR/chromium-cache"
+      #     "--no-default-browser-check"
+      #     "--no-service-autorun"
+      #     "--disable-features=PreloadMediaEngagementData,MediaEngagementBypassAutoplayPolicies"
+      #     # Autoplay policy
+      #     "--document-user-activation-required"
+      #     # Enable Wayland support
+      #     "--enable-features=UseOzonePlatform"
+      #     "--ozone-platform-hint=auto"
+      #     # Disable global Google login
+      #     "--disable-sync-preferences"
+      #     # Reader mode
+      #     "--enable-reader-mode"
+      #     "--enable-dom-distiller"
+      #     # Dark mode
+      #     "--enable-features=WebUIDarkMode"
+      #     # Security stuff
+      #     "--disable-reading-from-canvas"
+      #     "--no-pings"
+      #     "--no-first-run"
+      #     "--no-experiments"
+      #     "--no-crash-upload"
+      #     # Chromecast
+      #     "--load-media-router-component-extension"
+      #     # GPU stuff
+      #     "--ignore-gpu-blocklist"
+      #     "--enable-gpu-rasterization"
+      #     #"--use-gl=egl"
+      #     "--enable-zero-copy"
+      #     # Accelerated decoding
+      #     "--enable-features=VaapiVideoDecoder"
+
+      #     "--disable-wake-on-wifi"
+      #     "--disable-breakpad"
+      #     "--disable-sync"
+      #     "--disable-speech-api"
+      #     "--disable-speech-synthesis-api"
+      #   ];
+      # })
 
     ];
 
@@ -86,6 +127,33 @@ in {
       enable = true;
       # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
       # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    };
+    chromium = {
+      enable = true;
+      extensions = [
+        "kjboibophcgchimahpicagheccpnjnhi" # Theme One Dark
+        # "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
+        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock Origin
+        "edibdbjcniadpccecjdfdjjppcpchdlm" # I still dont care about cookies
+        "ldpochfccmkkmhdbclfhpagapcfdljkj" # Decentraleyes
+        "lckanjgmijmafbedllaakclkaicjfmnk" # Clear urls
+        "oldceeleldhonbafppcapldpdifcinji" # Grammar checker
+        "hfjbmagddngcpeloejdejnfgbamkjaeg" # Vimium C
+        "hlepfoohegkhhmjieoechaddaejaokhf" # Refined Github
+        "kajibbejlbohfaggdiogboambcijhkke" # Mailvelope
+        "hbplgmpfdabobhnadbfpknppljdfkiia" # SimpleDiscordCrypt
+      ];
+      # Enterprise policy list: https://chromeenterprise.google/policies/
+      # chrome://policy shows applied policies and syntax errors.
+      extraOpts = {
+        "HomepageLocation" = "https://start.duckduckgo.com";
+        "HefaultSearchProviderSearchURL" = "https://duckduckgo.com/?q={searchTerms}";
+        "OsColorMode" = "dark";
+        "HasswordManagerEnabled" = false;
+        "BrowserSignin" = 0;
+        "SyncDisabled" = true;
+      };
     };
   };
   # services.flatpak.enable = true;
@@ -163,12 +231,6 @@ in {
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/onedark-vim/latest.xpi";
         };
-        # ayu
-        # "{893ac7d8-44d2-4f3c-8a40-d42cef042076}" = {
-        #   allowed_types = "theme";
-        #   installation_mode = "force_installed";
-        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/ayu-dark-theme/latest.xpi";
-        # };
         # catppuccin
         # "{15cb5e64-94bd-41aa-91cf-751bb1a84972}" = {
         #   allowed_types = "theme";
