@@ -20,15 +20,6 @@ vim.api.nvim_set_keymap('x', 'p', '\"_dP', { noremap = true })
 --concat
 vim.api.nvim_set_keymap('n', 'J', 'mzJ`z', { noremap = true })
 
---pair braces
-vim.api.nvim_set_keymap('i', '<', '<><Left>', { noremap = true })
-vim.api.nvim_set_keymap('i', '(', '()<Left>', { noremap = true })
-vim.api.nvim_set_keymap('i', '{', '{}<Left>', { noremap = true })
-vim.api.nvim_set_keymap('i', '[', '[]<Left>', { noremap = true })
-vim.api.nvim_set_keymap('i', '\'', '\'\'<Left>', { noremap = true })
-vim.api.nvim_set_keymap('i', '"', '""<Left>', { noremap = true })
-vim.api.nvim_set_keymap('i', '\'', '\'\'<Left>', { noremap = true })
-
 --indent
 vim.api.nvim_set_keymap('v', '>', '>><Esc>gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '<', '<<<Esc>gv', { noremap = true })
