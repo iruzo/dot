@@ -18,7 +18,7 @@ return {
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 0
-      require('which-key').setup()
+      require'which-key'.setup()
     end
   },
 
@@ -81,18 +81,14 @@ return {
     'echasnovski/mini.comment',
     tag = 'v0.9.0',
     event = 'VeryLazy',
-    config = function()
-      require('mini.comment').setup()
-    end
+    opts = true,
   },
 
   {
     'echasnovski/mini.align',
     tag = 'v0.9.0',
     event = 'VeryLazy',
-    config = function()
-      require'mini.align'.setup()
-    end
+    opts = true,
   },
 
   {
@@ -106,17 +102,16 @@ return {
     opts = { open_cmd = "noswapfile vnew" },
     -- stylua: ignore
     keys = {
-      { "<spacel>r", function() require("spectre").open() end, desc = "Replace in files (Spectre)" },
+      { "<spacel>r", function() require'spectre'.open() end, desc = "Replace in files (Spectre)" },
     },
   },
 
   {
     'folke/neoconf.nvim',
-    config = function()
-      if vim.fn.isdirectory '.vscode' ~= 0 then
-        require'neoconf'.setup({})
-      end
-    end
+    cond = function()
+      return vim.fn.isdirectory '.vscode' ~= 0
+    end,
+    opts = true,
   },
 
   {
@@ -130,9 +125,7 @@ return {
     keys = {
       { '<space>e', ':Neotree toggle=true position=right<CR>', silent = true, desc = 'File Explorer' },
     },
-    config = function()
-      require('neo-tree').setup()
-    end
+    opts = true,
   },
 
   {
@@ -155,7 +148,7 @@ return {
       { '<space>u', ':Telescope undo<CR>', silent = true, desc = 'telescope undo' },
     },
     config = function()
-      require('telescope').setup {
+      require'telescope'.setup {
         defaults = {
           file_ignore_patterns = {
             -- linux
@@ -178,7 +171,7 @@ return {
             }
         }
       }
-      require("telescope").load_extension("undo")
+      require'telescope'.load_extension("undo")
     end
   },
 
@@ -199,7 +192,7 @@ return {
       vim.opt.list = true
       vim.opt.listchars:append "eol:↴"
 
-      require("indent_blankline").setup {
+      require'indent_blankline'.setup {
           show_end_of_line = true,
       }
     end
@@ -208,11 +201,7 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     event = 'VeryLazy',
-    config = function()
-      require('lualine').setup {
-        -- options = { theme = 'onedark' }
-      }
-    end
+    opts = true,
   },
 
   {
@@ -222,9 +211,7 @@ return {
       { '<C-w><C-v>', ':FocusSplitRight<CR>', silent = true, desc = 'split right' },
       { '<C-w><C-s>', ':FocusSplitDown<CR>', silent = true, desc = 'split down' },
     },
-    config = function()
-      require'focus'.setup()
-    end
+    opts = true,
   },
 
   {
@@ -237,7 +224,7 @@ return {
       { '<C-l>', ':tabnext<CR>', silent = true, desc = 'tab next' },
     },
     config = function()
-      require('tabby.tabline').use_preset('active_wins_at_tail', {
+      require'tabby.tabline'.use_preset('active_wins_at_tail', {
         theme = {
           fill = 'TabLineFill', -- tabline background
           head = 'TabLine', -- head element highlight
@@ -264,7 +251,7 @@ return {
     event = { 'BufReadPost', 'BufNewFile' },
     cmd = 'TSUpdateSync',
     config = function()
-      require('nvim-treesitter.configs').setup {
+      require'nvim-treesitter.configs'.setup {
         auto_install = true,
         highlight = { enable = true, use_languagetree = true, additional_vim_regex_highlighting = false },
         indent = { enable = true },
@@ -277,7 +264,7 @@ return {
     tag = 'v0.9.0',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
-      local hipatterns = require('mini.hipatterns')
+      local hipatterns = require'mini.hipatterns'
       hipatterns.setup({
         highlighters = {
           -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
@@ -315,7 +302,7 @@ return {
         vim.api.nvim_set_keymap('n', '<C-r>', ':Gitsigns reset_hunk <enter>', { noremap = true })
         vim.api.nvim_set_keymap('n', '<C-n>', ':Gitsigns next_hunk <enter>', { noremap = true })
         vim.api.nvim_set_keymap('n', '<C-p>', ':Gitsigns prev_hunk <enter>', { noremap = true })
-        require('gitsigns').setup {
+        require'gitsigns'.setup {
           current_line_blame = true
         }
       end
@@ -330,9 +317,7 @@ return {
       'nvim-telescope/telescope.nvim',
       'nvim-tree/nvim-web-devicons',
     },
-    config = function()
-      require'octo'.setup()
-    end
+    opts = true,
   },
 
   {
@@ -396,9 +381,7 @@ return {
       'ChatGPTEditWithInstructions',
       'ChatGPTRun',
     },
-    config = function()
-      require'chatgpt'.setup()
-    end,
+    opts = true,
     dependencies = {
       'MunifTanjim/nui.nvim',
       'nvim-lua/plenary.nvim',
@@ -421,9 +404,7 @@ return {
             'williamboman/mason.nvim',
             tag = 'v1.5.0',
             build = ':MasonUpdate',
-            config = function()
-              require'mason'.setup()
-            end
+            opts = true,
           },
         },
         config = function()
@@ -431,7 +412,7 @@ return {
             -- automatic_installation = true,
             handlers = {
               function (server_name)
-                  require("lspconfig")[server_name].setup {
+                  require'lspconfig'[server_name].setup {
                     capabilities = require'cmp_nvim_lsp'.default_capabilities()
                   }
               end,
@@ -444,13 +425,13 @@ return {
         lazy = true,
         ft = 'rust',
         pin = true,
-        config = function()
+        cond = function()
           local f=io.open('Cargo.toml','r')
           if f~=nil then io.close(f)
-            local rt = require('rust-tools')
-            rt.setup()
+            return true
           end
         end,
+        opts = true,
       },
       -- Autocompletion
       {
@@ -478,7 +459,7 @@ return {
           },
         },
         config = function(args)
-          local cmp = require('cmp')
+          local cmp = require'cmp'
           require'cmp'.setup {
             sources = cmp.config.sources({
               { name = 'nvim_lsp' },
