@@ -111,6 +111,15 @@ return {
   },
 
   {
+    'folke/neoconf.nvim',
+    config = function()
+      if vim.fn.isdirectory '.vscode' ~= 0 then
+        require'neoconf'.setup({})
+      end
+    end
+  },
+
+  {
     'nvim-neo-tree/neo-tree.nvim',
     tag = '2.69',
     dependencies = {
