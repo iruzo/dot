@@ -35,10 +35,14 @@ return {
         view = 'cmdline',
       },
       notify = {
-        enabled = false,
+        view = 'mini',
       },
       messages = {
-        enabled = false,
+        view = 'mini',
+        view_error = "mini", -- view for errors
+        view_warn = "mini", -- view for warnings
+        view_history = "messages", -- view for :messages
+        view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
       },
       lsp = {
         override = {
