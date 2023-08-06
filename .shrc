@@ -76,6 +76,10 @@ fetch() {
   # gpu
   lspci 2> /dev/null | grep -q -wi VGA && echo $(echo "${COLOR_BGREEN} gpu:${COLOR_RESET}" ) $(lspci | grep VGA)
   lspci 2> /dev/null | grep -q -wi Display && echo $(echo "${COLOR_BGREEN} gpu:${COLOR_RESET}" ) $(lspci | grep Display)
+  # product
+  echo $(echo "${COLOR_BGREEN} product:${COLOR_RESET}") $(cat /sys/devices/virtual/dmi/id/product_name | awk -F' ' '{print $NF}')
+  # bios
+  echo $(echo "${COLOR_BGREEN} bios:${COLOR_RESET}") $(cat /sys/devices/virtual/dmi/id/bios_version | awk -F' ' '{print $NF}')
   # status
   echo $(echo "${COLOR_BGREEN} temp:${COLOR_RESET}" ) $(($(cat /sys/class/thermal/thermal_zone0/temp | awk -F' ' '{print $NF}' || echo 1) / 1000))°C
   echo $(echo "${COLOR_BGREEN} cpu:${COLOR_RESET}" ) $(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')%
