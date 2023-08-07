@@ -13,10 +13,11 @@
 
   # Use latest kernel
   # boot.kernelPackages will use linuxPackages by default, so no need to define it
-  nixpkgs.config.packageOverrides = in_pkgs :
-  {
-    linuxPackages = in_pkgs.linuxPackages_latest;
-  };
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # nixpkgs.config.packageOverrides = in_pkgs :
+  # {
+  #   linuxPackages = in_pkgs.linuxPackages_latest;
+  # };
 
   # No access time and continuous TRIM for SSD
   fileSystems."/".options = [ "noatime" "discard" ];
