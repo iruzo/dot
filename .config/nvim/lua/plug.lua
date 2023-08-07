@@ -101,10 +101,9 @@ return {
   },
 
   {
-    "nvim-pack/nvim-spectre",
+    'nvim-pack/nvim-spectre',
     cmd = "Spectre",
     opts = { open_cmd = "noswapfile vnew" },
-    -- stylua: ignore
     keys = {
       { "<spacel>r", function() require'spectre'.open() end, desc = "Replace in files (Spectre)" },
     },
@@ -112,6 +111,7 @@ return {
 
   {
     'folke/neoconf.nvim',
+    tag = 'stable',
     cond = function()
       return vim.fn.isdirectory '.vscode' ~= 0
     end,
@@ -210,6 +210,7 @@ return {
 
   {
     'nvim-focus/focus.nvim',
+    tag = 'v1.0.0',
     cmd = 'Focus',
     keys = {
       { '<C-w><C-v>', ':FocusSplitRight<CR>', silent = true, desc = 'split right' },
@@ -293,23 +294,31 @@ return {
 
   {
     'NeogitOrg/neogit',
-    cmd = 'Neogit'
+    cmd = 'Neogit',
+    cond = function()
+      if vim.fn.isdirectory '.git' ~= 0 then
+        return true
+      end
+    end,
   },
 
   {
     'lewis6991/gitsigns.nvim',
     tag = 'v0.6',
     event = 'VeryLazy',
-    config = function()
+    cond = function()
       if vim.fn.isdirectory '.git' ~= 0 then
-        vim.api.nvim_set_keymap('n', '<C-g>', ':Gitsigns preview_hunk <enter>', { noremap = true })
-        vim.api.nvim_set_keymap('n', '<C-r>', ':Gitsigns reset_hunk <enter>', { noremap = true })
-        vim.api.nvim_set_keymap('n', '<C-n>', ':Gitsigns next_hunk <enter>', { noremap = true })
-        vim.api.nvim_set_keymap('n', '<C-p>', ':Gitsigns prev_hunk <enter>', { noremap = true })
-        require'gitsigns'.setup {
-          current_line_blame = true
-        }
+        return true
       end
+    end,
+    config = function()
+      vim.api.nvim_set_keymap('n', '<C-g>', ':Gitsigns preview_hunk <enter>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<C-r>', ':Gitsigns reset_hunk <enter>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<C-n>', ':Gitsigns next_hunk <enter>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<C-p>', ':Gitsigns prev_hunk <enter>', { noremap = true })
+      require'gitsigns'.setup {
+        current_line_blame = true
+      }
     end,
   },
 
@@ -321,6 +330,11 @@ return {
       'nvim-telescope/telescope.nvim',
       'nvim-tree/nvim-web-devicons',
     },
+    cond = function()
+      if vim.fn.isdirectory '.git' ~= 0 then
+        return true
+      end
+    end,
     opts = true,
   },
 
