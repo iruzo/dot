@@ -1,0 +1,76 @@
+/*
+!.gitignore
+
+# general
+!.profile
+!.shrc
+!.bashrc
+!.yashrc
+!.zshrc
+!.bash_profile
+!.gitconfig
+
+# config
+!.config/
+.config/*
+
+# nix
+!.config/nix
+!flake.nix
+!flake.lock
+
+# foot
+!.config/foot
+.config/foot/*
+!.config/foot/foot.ini
+
+# wezterm
+!.config/wezterm
+.config/wezterm/*
+!.config/wezterm/wezterm.lua
+
+# btop
+!.config/btop
+.config/btop/*
+!.config/btop/btop.conf
+
+# dunst
+!.config/dunst
+.config/dunst/*
+!.config/dunst/dunstrc
+
+# nvim
+!.config/nvim
+.config/nvim/*
+!.config/nvim/vimrc.sh
+!.config/nvim/init.lua
+!.config/nvim/lua
+
+# emacs
+!.config/emacs
+.config/emacs/*
+!.config/emacs/init.el
+
+# sway
+!.config/sway
+.config/sway/*
+!.config/sway/config
+
+# xinitrc
+!.xinitrc
+
+# sway
+!.config/i3
+.config/i3/*
+!.config/i3/config
+
+# qutebrowser
+!.config/qutebrowser
+.config/qutebrowser/*
+!.config/qutebrowser/config.py
+!.config/qutebrowser/greasemonkey/
+
+# firefox
+!.config/firefox
+.config/firefox/*
+!.config/firefox/policies.json

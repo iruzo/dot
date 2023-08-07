@@ -1,0 +1,9 @@
+[core]
+  editor = nvim
+[user]
+  email = dev@ruzo.sh
+  name = ruzo
+[credential]
+  helper = store
+[init]
+  defaultBranch = main

@@ -1,0 +1,267 @@
+# xwayland enable
+
+# enable pipewire
+# exec pipewire
+# exec pipewire-pulse
+
+# screencast on arch linux and nixos
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+# Logo key. Use Mod1 for Alt.
+set $mod Mod4
+# Home row direction keys, like vim
+set $left h
+set $down j
+set $up k
+set $right l
+
+set $emptymenu BEMENU_BACKEND=wayland BEMENU_OPTS='-i -l 20 --fb "#282C34" --ff "#abb2bf" --nb "#282C34" --nf "#abb2bf" --tb "#282C34" --hb "#282C34" --tf "#e06c75" --hf "#e5c07b" --nf "#abb2bf" --af "#abb2bf" --ab "#282C34"' bemenu
+
+set $focusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=name": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
+set $transformFocusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=transform": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
+
+floating_modifier $mod normal
+
+# keybindings
+bindsym $mod+c kill
+bindsym $mod+f fullscreen
+bindsym $mod+t exec test $transformFocusedMonitor = 'normal' && swaymsg output $focusedMonitor transform 90 || swaymsg output $focusedMonitor transform normal
+# bindsym $mod+b exec swaymsg bar mode toggle
+bindsym $mod+space floating toggle
+bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm || LIBGL_ALWAYS_SOFTWARE=1 flatpak run org.wezfurlong.wezterm
+bindsym $mod+d exec BEMENU_BACKEND=wayland BEMENU_OPTS='-i -l 20 --fb "#282C34" --ff "#abb2bf" --nb "#282C34" --nf "#abb2bf" --tb "#282C34" --hb "#282C34" --tf "#e06c75" --hf "#e5c07b" --nf "#abb2bf" --af "#abb2bf" --ab "#282C34"' bemenu-run
+
+bindsym $mod+Shift+r reload
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway ?' -b 'Yes' 'swaymsg exit'
+
+# movement:
+# Move your focus around
+bindsym $mod+$left focus left
+bindsym $mod+$down focus down
+bindsym $mod+$up focus up
+bindsym $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+# Move the focused window with the same, but add Shift
+bindsym $mod+Shift+$left move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$up move up
+bindsym $mod+Shift+$right move right
+
+# workspaces:
+# Switch to workspace
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+bindsym $mod+0 workspace number 10
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+
+# split
+bindsym $mod+Shift+v splith
+bindsym $mod+v splitv
+
+# Switch the current container between different layout styles
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Move focus to the parent container
+bindsym $mod+a focus parent
+
+# scratchpad
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+# resizing:
+mode "resize" {
+  bindsym $left resize shrink width 10px
+  bindsym $down resize grow height 10px
+  bindsym $up resize shrink height 10px
+  bindsym $right resize grow width 10px
+
+  # Ditto, with arrow keys
+  bindsym Left resize shrink width 10px
+  bindsym Down resize grow height 10px
+  bindsym Up resize shrink height 10px
+  bindsym Right resize grow width 10px
+
+  # Return to default mode
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+bar {
+  position top
+  font "Fira Code bold 10"
+
+  height 18
+
+  # status_command while ( echo \
+  #       $(swaymsg -t get_tree | grep -oP \'(?<=name\": \").*(?=\",)\' | sed \"$(swaymsg -t get_tree | grep focused | grep -oP \'(?<=: ).*(?=,)\' | grep -n true | cut -d: -f1)q;d\")  \| \
+  #       $(top -b -n1 | grep \"Cpu(s)\" | awk \'{print $2 + $4}\')% \| \
+  #       $(free -m | awk \'NR==2{printf \"%.2f%%\t\t\", $3*100/$2 }\') \| \
+  #       $(($(cat /sys/class/thermal/thermal_zone0/temp || echo 1) / 1000))°C \| \
+  #       $(df -h | awk \'$NF=="/"{printf \"%s\t\t\", $5}\') \| \
+  #       $(pactl get-source-mute @DEFAULT_SOURCE@ || wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q "MUTED" && echo "Mute: yes" || echo "Mute: no") \| \
+  #     墳 $(wpctl get-volume @DEFAULT_AUDIO_SINK@ || echo $("Volume: "$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP \'(?<=front-left: ).*(?=front-right: )\' | grep -oP \'(?<=/ ).*(?= /)\'))) \| \
+  #       $(cat /sys/class/backlight/$(ls -1 /sys/class/backlight)/brightness) \| \
+  #       $(uname -r | cut -d '-' -f1) \| \
+  #       $(cat /sys/class/power_supply/BAT0/capacity)% \| \
+  #       $(date +'%a %Y-%m-%d %H:%M:%S') \
+  # ); do sleep 1; done
+
+  status_command while ( echo \
+      CPU: $(top -b -n1 | grep \"Cpu(s)\" | awk \'{print $2 + $4}\')% \| \
+      MEM: $(free -m | awk \'NR==2{printf \"%.2f%%\t\t\", $3*100/$2 }\') \| \
+      TEMP: $(($(cat /sys/class/thermal/thermal_zone0/temp || echo 1) / 1000))°C \| \
+      DISK: $(df -h | awk \'$NF=="/"{printf \"%s\t\t\", $5}\') \| \
+      $(pactl get-source-mute @DEFAULT_SOURCE@ || wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q "MUTED" && echo "Mute: yes" || echo "Mute: no") \| \
+      $(wpctl get-volume @DEFAULT_AUDIO_SINK@ || echo $("Volume: "$(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP \'(?<=front-left: ).*(?=front-right: )\' | grep -oP \'(?<=/ ).*(?= /)\'))) \| \
+      BRIGHTNESS: $(cat /sys/class/backlight/$(ls -1 /sys/class/backlight)/brightness) \| \
+      KERNEL: $(uname -r | cut -d '-' -f1) \| \
+      BAT: $(cat /sys/class/power_supply/BAT0/capacity)% \| \
+      $(date +'%a %Y-%m-%d %H:%M:%S') \
+  ); do sleep 1; done
+  # $(swaymsg -t get_tree | grep -oP \'(?<=name\": \").*(?=\",)\' | sed \"$(swaymsg -t get_tree | grep focused | grep -oP \'(?<=: ).*(?=,)\' | grep -n true | cut -d: -f1)q;d\")  \| \
+
+  colors {
+
+    # # gruvbox
+    # background         #282828AA
+    # statusline         #E1F5A9AA
+    # focused_separator  #6A0888AA
+    # focused_statusline #EBDBB2AA
+    # focused_workspace  #EBDBB2AA #282828AA #FFFFFF
+    # active_workspace   #333333AA #331A00AA #FFFFFF
+    # inactive_workspace #333333AA #222222AA #888888
+    # urgent_workspace   #2f343aAA #EB4D4BAA #FFFFFF
+    # binding_mode       #2f343aAA #FF0000AA #FFFFFF
+
+    # onedark
+    background         #282C34
+    statusline         #abb2bf
+    focused_statusline #abb2bf
+    active_workspace   #282C34 #abb2bf #61AFEF
+    focused_separator  #282C34
+    focused_workspace  #282C34 #282C34 #98C379
+    active_workspace   #282C34 #282C34 #61AFEF
+    inactive_workspace #282C34 #282C34 #5c6370
+    urgent_workspace   #282C34 #282C34 #5c6370
+    binding_mode       #282C34 #282C34 #5c6370
+
+  }
+
+  mode dock
+}
+# exec pkill swaybar
+
+# input
+input "type:keyboard" {
+  xkb_layout us(altgr-intl)
+  xkb_options eurosign:5
+}
+
+# output
+output * res 1920x1080
+output DP-2 transform 270
+
+# output eDP-1 pos 0 0 res 1920x1080
+# output HDMI-A-1 pos 1920 0 res 1920x1080
+# output DP-1 pos 3840 0 res 1920x1080
+# workspace 1 output eDP-1
+# workspace 2 output HDMI-A-1
+# workspace 3 output DP-1
+
+set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/onedark-math-year.png
+
+exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
+
+output * bg ~/.local/share/sway/wallpaper fill
+# output * bg #282c34 solid_color
+
+# window
+default_border pixel 1
+default_floating_border pixel 1
+client.focused #5c6370 #5c6370 #5c6370 #5c6370 #5c6370
+client.unfocused #000000 #000000 #000000 #000000 #000000
+client.focused_inactive #000000 #000000 #000000 #000000 #000000
+gaps inner 20
+
+# catppuccin
+# exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Rosewater-Dark ]; then \
+#   mkdir -p ~/.themes \
+#   && curl -L https://github.com/catppuccin/gtk/releases/download/v0.4.1/Catppuccin-Frappe-Standard-Rosewater-Dark.zip -o ~/.themes/catppuccin.zip \
+#   && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
+#   && rm -rf ~/.themes/catppuccin.zip; fi
+
+# lock screen
+# bindsym $mod+q exec swaylock -c 000000
+bindsym $mod+q exec swaylock -i ~/.local/share/sway/wallpaper
+
+# volume
+bindsym $mod+n exec pactl set-sink-volume @DEFAULT_SINK@ +05% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym $mod+Shift+n exec pactl set-sink-volume @DEFAULT_SINK@ -05% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym $mod+Shift+m exec pactl set-sink-mute @DEFAULT_SINK@ toggle || wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym $mod+p exec GTK_THEME='Adwaita:dark' pavucontrol
+bindsym $mod+Shift+p exec GTK_THEME='Adwaita:dark' helvum
+# push to talk
+bindsym --no-repeat $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+bindsym --no-repeat --release $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+# brightness
+bindsym $mod+b exec brightnessctl s +10
+bindsym $mod+Shift+b exec brightnessctl s 10-
+
+# screenshot
+bindsym $mod+Shift+s exec mkdir -p ~/media && grim -g "$(slurp)" ~/media/$(date +'%Y%m%d_%H%M%S').png
+
+# browser
+# bindsym $mod+o exec sh -c ' \
+# container=$(echo -e "\
+# element\n\
+# discord\n\
+# twitch\n\
+# google\n\
+# work\
+# " | bemenu) && \
+#   QT_QPA_PLATFORM=wayland QT_WAYLAND_DISABLE_WINDOWDECORATION=1 qutebrowser \
+#       -C ~/.config/qutebrowser/config.py \
+#       -B ~/.local/share/qutebrowser/containers/$container \
+# || qutebrowser \
+# '
+bindsym $mod+o exec firefox
+bindsym $mod+Shift+o exec cat ~/iruzo/quickmarks | $emptymenu | awk -F' ' '{print $NF}' | wl-copy $(cat)
+
+# discord
+bindsym $mod+g exec brave --app=https://discord.com/app
+
+# vm
+bindsym $mod+i exec gnome-boxes
+
+# keepassxc
+bindsym $mod+u exec keepassxc || flatpak run org.keepassxc.KeePassXC
+bindsym $mod+Shift+u exec cat '' 2> /dev/null | $emptymenu -x -p "password" | gpg --batch --yes --passphrase-fd 0 -d ~/iruzo/contacts.gpg | $emptymenu | awk -F'+' '{print $NF}' | wl-copy $(cat)
+
+# steam
+bindsym $mod+y exec steam || flatpak run com.valvesoftware.Steam
