@@ -31,7 +31,6 @@
   };
   time.timeZone = "Europe/Madrid";
 
-<<<<<<< HEAD
   # Disable sudo password for the wheel group
   # security.sudo.wheelNeedsPassword = false;
 

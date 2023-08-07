@@ -31,6 +31,11 @@
 
   };
 
+  services.asusd = {
+    enable = true;
+    enableUserService = true;
+  };
+
   # hardware.opengl = {
   #   enable = true;
   #   driSupport = true; # vulkan
