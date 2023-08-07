@@ -5,7 +5,9 @@
 # exec pipewire-pulse
 
 # screencast on arch linux and nixos
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+# exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+exec dbus-sway-environment
+exec configure-gtk
 
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
