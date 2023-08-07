@@ -39,6 +39,9 @@
     kernelParams  = [
       "rhgb"
       "quiet"
+      "idle=nomwait"
+      "rcu_nocbs=0-15"
+      "processor.max_cstate=5"
     ];
 
   };
