@@ -13,8 +13,17 @@ function bd_all()
   vim.api.nvim_command('%bd|e#');
 end
 
-vim.opt.syntax = "yes"
-vim.opt.shortmess:append "sI" -- disable nvim intro
+if vim.loop.os_uname().sysname == 'Windows_NT' then
+  vim.opt.shell='powershell'
+  -- vim.opt.shellxquote=
+  vim.opt.shellcmdflag='-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command '
+  vim.opt.shellquote='\"'
+  vim.opt.shellpipe='| Out-File -Encoding UTF8 %s'
+  vim.opt.shellredir='| Out-File -Encoding UTF8 %s'
+end
+
+vim.opt.syntax = 'yes'
+vim.opt.shortmess:append 'sI' -- disable nvim intro
 vim.opt.path = vim.opt.path + '**'
 -- vim.opt.path = vim.opt.path + '*./**'
 vim.opt.wildignore = '**/.git/*,*_build/*,**/coverage/*,**/.cache/*,**/venv/*,**/svn/*,**/target/*'
@@ -54,14 +63,14 @@ vim.opt.expandtab = true -- indent
 vim.opt.smartindent = true -- indent
 vim.opt.sidescroll = 1
 vim.opt.updatetime = 50
-vim.opt.colorcolumn = "80"
+vim.opt.colorcolumn = '80'
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.wildmenu = true
 vim.opt.wildmode = 'list:longest,full'
 vim.opt.wildignorecase = true
 vim.opt.viminfo = ''
 
-vim.opt.guicursor = ""
+vim.opt.guicursor = ''
 vim.g.multi_cursor_exit_from_visual_mode = 0
 
 -- mail config

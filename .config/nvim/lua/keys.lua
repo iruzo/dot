@@ -1,6 +1,5 @@
 vim.api.nvim_set_keymap('n', '?', ':noh <enter>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<S-s>', ':%sort u', { noremap = true })
-vim.api.nvim_set_keymap('n', 'tt', ':split<enter> :wincmd j<enter> :terminal<enter> i', { noremap = true })
 
 --movement
 vim.api.nvim_set_keymap('i', '<C-h>', '<left>', { noremap = true })
