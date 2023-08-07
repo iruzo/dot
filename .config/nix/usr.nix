@@ -24,7 +24,8 @@ in {
         # monospace = [ "SF Mono" ];
         serif = [ "Fira Code" ];
         sansSerif = [ "Fira Code" ];
-        monospace = [ "Fira Code" ];       };
+        monospace = [ "Fira Code" ];
+      };
     };
   };
 
@@ -334,7 +335,5 @@ in {
       };
     };
   };
-
-
 
 }

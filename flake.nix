@@ -1,5 +1,6 @@
 {
 
+<<<<<<< HEAD
   description = "ruzo's flake";
 
   inputs = {

@@ -31,6 +31,7 @@
   };
   time.timeZone = "Europe/Madrid";
 
+<<<<<<< HEAD
   # Disable sudo password for the wheel group
   # security.sudo.wheelNeedsPassword = false;
 
@@ -40,9 +41,6 @@
   # this is required for mounting android phones
   # over mtp://
   # services.gvfs.enable = true;
-
-  # Disable mutable users.
-  # users.mutableUsers = false;
 
   system.stateVersion = "23.05";
 

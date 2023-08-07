@@ -29,7 +29,6 @@ let
 
 
 in
-
 {
 
   programs.sway = {
@@ -55,6 +54,16 @@ in
     enable = true;
     wlr.enable = true;
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  # Enable Pipewire
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    wireplumber.enable = true;
   };
 
 }

@@ -31,16 +31,6 @@
 
   };
 
-  # Check S.M.A.R.T status of all disks and notify in case of errors
-  # services.smartd = {
-  #   enable = true;
-  #   # Monitor all devices connected to the machine at the time it's being started
-  #   autodetect = true;
-  # };
-
-  # Enable microcode updates for Intel CPU
-  # hardware.cpu.intel.updateMicrocode = true;
-
   # hardware.opengl = {
   #   enable = true;
   #   driSupport = true; # vulkan
@@ -64,16 +54,6 @@
     iproute2
     iptables
   ];
-
-  # Enable Pipewire
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
-  };
 
   # Bluetooth
   # https://nixos.wiki/wiki/Bluetooth
