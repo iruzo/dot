@@ -31,10 +31,18 @@
 
   };
 
-  services.asusd = {
-    enable = true;
-    enableUserService = true;
+  services = {
+    smartd = {
+      enable = true;
+      autodetect = true;
+    };
+    asusd = {
+      enable = true;
+      enableUserService = true;
+    };
   };
+
+  hardware.ksm.enable = true;
 
   # hardware.opengl = {
   #   enable = true;

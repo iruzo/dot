@@ -12,6 +12,8 @@
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  fileSystems."/".options = [ "noatime" "discard" ];
+
   # console font
   console.font = "Fira Code"; # Big console font for HiDPI
 
