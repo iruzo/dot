@@ -256,7 +256,7 @@ bindsym $mod+o exec firefox
 bindsym $mod+Shift+o exec cat ~/iruzo/quickmarks | $emptymenu | awk -F' ' '{print $NF}' | wl-copy $(cat)
 
 # discord
-bindsym $mod+g exec chromium --app=https://discord.com/app
+bindsym $mod+g exec brave --app=https://discord.com/app | chromium --app=https://discord.com/app | chromium-browser --app=https://discord.com/app
 
 # vm
 bindsym $mod+i exec gnome-boxes
