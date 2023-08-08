@@ -2,7 +2,7 @@
   editor = nvim
 [user]
   email = dev@ruzo.sh
-  name = iruzo
+  name = ruzo
 [credential]
   helper = store
 [init]

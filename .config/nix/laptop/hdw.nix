@@ -46,22 +46,12 @@
     # };
   };
 
-  # hardware.ksm.enable = true;
+  hardware.ksm.enable = true;
 
   hardware.opengl = {
     enable = true;
     driSupport = true; # vulkan
-    driSupport32Bit = true; # vulkan 32 bit
-    extraPackages = with pkgs; [
-      amdvlk
-      vaapiVdpau
-      libvdpau-va-gl
-      rocm-opencl-icd
-      rocm-opencl-runtime
-    ];
-    extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-    ];
+    # driSupport32Bit = true; # vulkan 32 bit
   };
   # # enable opencl support
   # services.xmr-stak.openclSupport = true;
