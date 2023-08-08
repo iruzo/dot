@@ -14,6 +14,7 @@
         echo "If lost please contact at contact@ruzo.sh"
         echo "--- OWNERSHIP NOTICE ---"
       '';
+      kernelModules = [ "amdgpu" ];
     };
 
     loader = {
@@ -21,26 +22,28 @@
       efi.canTouchEfiVariables = true;
     };
 
-    # kernelParams  = [
-    #   "rhgb"
-    #   "quiet"
-    #   "idle=nomwait"
-    #   # "rcu_nocbs=0-15"
-    #   "processor.max_cstate=5"
-    #   "supergfxd.mode=Integrated"
-    # ];
+    kernelParams  = [
+      "rhgb"
+      "quiet"
+      "video=eDP-1:2560x1440@144"
+      "video=HDMI-A-1:1920x1080@60"
+      # "idle=nomwait"
+      # "rcu_nocbs=0-15"
+      # "processor.max_cstate=5"
+      # "supergfxd.mode=Integrated"
+    ];
 
   };
 
   services = {
-    # smartd = {
-    #   enable = true;
-    #   autodetect = true;
-    # };
-    asusd = {
+    smartd = {
       enable = true;
-      enableUserService = true;
+      autodetect = true;
     };
+    # asusd = {
+    #   enable = true;
+    #   enableUserService = true;
+    # };
   };
 
   # hardware.ksm.enable = true;
@@ -53,13 +56,15 @@
       amdvlk
       vaapiVdpau
       libvdpau-va-gl
+      rocm-opencl-icd
+      rocm-opencl-runtime
     ];
     extraPackages32 = with pkgs; [
       driversi686Linux.amdvlk
     ];
   };
-  # enable opencl support
-  services.xmr-stak.openclSupport = true;
+  # # enable opencl support
+  # services.xmr-stak.openclSupport = true;
 
   # Libvirtd (Qemu)
   virtualisation.libvirtd.enable = true;
