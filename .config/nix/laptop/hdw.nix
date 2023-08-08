@@ -5,7 +5,7 @@
   boot = {
 
     # Clear /tmp during boot
-    tmp.cleanOnBoot = true;
+    # tmp.cleanOnBoot = true;
 
     initrd = {
       preLVMCommands = ''
@@ -21,13 +21,13 @@
       efi.canTouchEfiVariables = true;
     };
 
-    # kernelParams  = [
-    #   "rhgb"
-    #   "quiet"
-    #   "idle=nomwait"
-    #   "rcu_nocbs=0-15"
-    #   "processor.max_cstate=5"
-    # ];
+    kernelParams  = [
+      "rhgb"
+      "quiet"
+      "idle=nomwait"
+      # "rcu_nocbs=0-15"
+      "processor.max_cstate=5"
+    ];
 
   };
 
