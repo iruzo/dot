@@ -26,6 +26,7 @@
       "rhgb"
       "quiet"
       "splash"
+      "processor.max_cstate=0"
     ];
 
   };

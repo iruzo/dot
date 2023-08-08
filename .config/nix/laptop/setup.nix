@@ -10,7 +10,7 @@
       ./nix.nix
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_1;
 
   fileSystems."/".options = [ "noatime" "discard" ];
 

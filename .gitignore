@@ -69,8 +69,3 @@
 .config/qutebrowser/*
 !.config/qutebrowser/config.py
 !.config/qutebrowser/greasemonkey/
-
-# firefox
-!.config/firefox
-.config/firefox/*
-!.config/firefox/policies.json
