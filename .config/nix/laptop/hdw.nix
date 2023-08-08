@@ -27,6 +27,7 @@
       "idle=nomwait"
       # "rcu_nocbs=0-15"
       "processor.max_cstate=5"
+      "supergfxd.mode=Integrated"
     ];
 
   };
