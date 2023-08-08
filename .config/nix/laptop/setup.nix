@@ -10,7 +10,7 @@
       ./nix.nix
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_2;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   fileSystems."/".options = [ "noatime" "discard" ];
 
@@ -30,14 +30,10 @@
   };
   time.timeZone = "Europe/Madrid";
 
-  # Disable sudo password for the wheel group
-  # security.sudo.wheelNeedsPassword = false;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # this is required for mounting android phones
-  # over mtp://
+  # this is required for mounting android phones over mtp://
   # services.gvfs.enable = true;
 
   system.stateVersion = "23.05";

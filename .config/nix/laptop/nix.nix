@@ -12,9 +12,9 @@
     # Nix automatically detects files in the store that have identical contents, and replaces them with hard links to a single copy.
     settings.auto-optimise-store = true;
     # maximum number of concurrent tasks during one build
-    settings.cores = 4;
+    settings.cores = 8;
     # maximum number of jobs that Nix will try to build in parallel
-    settings.max-jobs = 4;
+    settings.max-jobs = 8;
     # perform builds in a sandboxed environment
     settings.sandbox = true;
   };

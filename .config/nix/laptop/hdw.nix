@@ -5,7 +5,7 @@
   boot = {
 
     # Clear /tmp during boot
-    tmp.cleanOnBoot = true;
+    # tmp.cleanOnBoot = true;
 
     initrd = {
       preLVMCommands = ''
