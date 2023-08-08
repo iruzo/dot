@@ -5,13 +5,8 @@ in {
   nixpkgs.config.allowUnfree = true;
 
   fonts = {
-    # enableDefaultFonts = true;
-    # enableGhostscriptFonts = true;
     fontDir.enable = true;
     fonts = with pkgs; [
-      # noto-fonts
-      # noto-fonts-cjk # chinese japanese and koreans characters
-      # noto-fonts-emoji
       # anurati
       fira-code
       fira-code-symbols
@@ -29,12 +24,9 @@ in {
     };
   };
 
-  # default shell for all users
   users.defaultUserShell = pkgs.dash;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.ruzo = {
-    # group to users, createHome to true, home to /home/username, useDefaultShell to true, and isSystemUser to false.
     isNormalUser = true;
     shell = pkgs.yash;
 
@@ -161,21 +153,6 @@ in {
       };
     };
   };
-  # services.flatpak.enable = true;
-
-  # wezterm configuration
-  # programs.zsh.shellInit = ''
-  #   if [[ "$TERM_PROGRAM" == "WezTerm" ]]; then
-  #     TERM=wezterm
-  #     source ${pkgs.wezterm}/etc/profile.d/wezterm.sh
-  #   fi
-  # '';
-
-  # nixpkgs.config.packageOverrides = pkgs: {
-  #   nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-  #     inherit pkgs;
-  #   };
-  # };
 
   programs.firefox = {
     enable = true;

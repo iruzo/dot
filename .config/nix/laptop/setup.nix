@@ -10,12 +10,9 @@
       ./nix.nix
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_2;
 
   fileSystems."/".options = [ "noatime" "discard" ];
-
-  # console font
-  console.font = "Fira Code"; # Big console font for HiDPI
 
   # keyboard and internationalisation properties
   console.keyMap = "us";

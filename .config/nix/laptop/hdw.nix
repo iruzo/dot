@@ -25,12 +25,7 @@
     kernelParams  = [
       "rhgb"
       "quiet"
-      "video=eDP-1:2560x1440@144"
-      "video=HDMI-A-1:1920x1080@60"
-      # "idle=nomwait"
-      # "rcu_nocbs=0-15"
-      # "processor.max_cstate=5"
-      # "supergfxd.mode=Integrated"
+      "splash"
     ];
 
   };
@@ -46,12 +41,13 @@
     # };
   };
 
-  hardware.ksm.enable = true;
-
-  hardware.opengl = {
-    enable = true;
-    driSupport = true; # vulkan
-    # driSupport32Bit = true; # vulkan 32 bit
+  hardware = {
+    ksm.enable = true;
+    opengl = {
+      enable = true;
+      driSupport = true; # vulkan
+      # driSupport32Bit = true; # vulkan 32 bit
+    };
   };
   # # enable opencl support
   # services.xmr-stak.openclSupport = true;
@@ -63,20 +59,5 @@
     iproute2
     iptables
   ];
-
-  # Bluetooth
-  # https://nixos.wiki/wiki/Bluetooth
-  # hardware.bluetooth.enable = false;
-  # Don't power up the default Bluetooth controller on boot
-  # hardware.bluetooth.powerOnBoot = false;
-  # hardware = {
-  #   bluetooth = {
-  #     enable = true;
-  #   };
-  # };
-  # # Blueman
-  # services.blueman = {
-  #   enable = true;
-  # };
 
 }

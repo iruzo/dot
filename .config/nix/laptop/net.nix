@@ -20,4 +20,19 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
+  # Bluetooth
+  # https://nixos.wiki/wiki/Bluetooth
+  # hardware.bluetooth.enable = false;
+  # Don't power up the default Bluetooth controller on boot
+  # hardware.bluetooth.powerOnBoot = false;
+  # hardware = {
+  #   bluetooth = {
+  #     enable = true;
+  #   };
+  # };
+  # # Blueman
+  # services.blueman = {
+  #   enable = true;
+  # };
+
 }
