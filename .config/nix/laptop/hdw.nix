@@ -5,7 +5,7 @@
   boot = {
 
     # Clear /tmp during boot
-    # tmp.cleanOnBoot = true;
+    tmp.cleanOnBoot = true;
 
     initrd = {
       preLVMCommands = ''
@@ -21,45 +21,45 @@
       efi.canTouchEfiVariables = true;
     };
 
-    kernelParams  = [
-      "rhgb"
-      "quiet"
-      "idle=nomwait"
-      # "rcu_nocbs=0-15"
-      "processor.max_cstate=5"
-      "supergfxd.mode=Integrated"
-    ];
+    # kernelParams  = [
+    #   "rhgb"
+    #   "quiet"
+    #   "idle=nomwait"
+    #   # "rcu_nocbs=0-15"
+    #   "processor.max_cstate=5"
+    #   "supergfxd.mode=Integrated"
+    # ];
 
   };
 
   services = {
-    smartd = {
-      enable = true;
-      autodetect = true;
-    };
+    # smartd = {
+    #   enable = true;
+    #   autodetect = true;
+    # };
     asusd = {
       enable = true;
       enableUserService = true;
     };
   };
 
-  hardware.ksm.enable = true;
+  # hardware.ksm.enable = true;
 
-  # hardware.opengl = {
-  #   enable = true;
-  #   driSupport = true; # vulkan
-  #   driSupport32Bit = true; # vulkan 32 bit
-  #   extraPackages = with pkgs; [
-  #     amdvlk
-  #     vaapiVdpau
-  #     libvdpau-va-gl
-  #   ];
-  #   extraPackages32 = with pkgs; [
-  #     driversi686Linux.amdvlk
-  #   ];
-  # };
-  # # enable opencl support
-  # services.xmr-stak.openclSupport = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true; # vulkan
+    driSupport32Bit = true; # vulkan 32 bit
+    extraPackages = with pkgs; [
+      amdvlk
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+    ];
+  };
+  # enable opencl support
+  services.xmr-stak.openclSupport = true;
 
   # Libvirtd (Qemu)
   virtualisation.libvirtd.enable = true;
