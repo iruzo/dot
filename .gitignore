@@ -29,16 +29,6 @@
 .config/wezterm/*
 !.config/wezterm/wezterm.lua
 
-# btop
-!.config/btop
-.config/btop/*
-!.config/btop/btop.conf
-
-# dunst
-!.config/dunst
-.config/dunst/*
-!.config/dunst/dunstrc
-
 # nvim
 !.config/nvim
 .config/nvim/*
@@ -51,6 +41,16 @@
 .config/emacs/*
 !.config/emacs/init.el
 
+# btop
+!.config/btop
+.config/btop/*
+!.config/btop/btop.conf
+
+# dunst
+!.config/dunst
+.config/dunst/*
+!.config/dunst/dunstrc
+
 # sway
 !.config/sway
 .config/sway/*
@@ -59,10 +59,15 @@
 # xinitrc
 !.xinitrc
 
-# sway
+# i3
 !.config/i3
 .config/i3/*
 !.config/i3/config
+
+# mpv
+!.config/mpv
+.config/mpv/*
+!.config/mpv/mpv.conf
 
 # qutebrowser
 !.config/qutebrowser
