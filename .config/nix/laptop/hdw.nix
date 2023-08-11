@@ -26,7 +26,7 @@
       "rhgb"
       "quiet"
       "splash"
-      "processor.max_cstate=0"
+      "processor.max_cstate=0" # amd ryzen anti-freeze
     ];
 
   };
