@@ -195,8 +195,10 @@ output DP-2 transform 270
 # workspace 3 output DP-1
 
 set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/onedark-math-year.png
+set $lock https://raw.githubusercontent.com/iruzo/wp/main/original-math-year.jpg
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
+exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
 
 output * bg ~/.local/share/sway/wallpaper fill
 # output * bg #282c34 solid_color
@@ -218,7 +220,7 @@ gaps inner 20
 
 # lock screen
 # bindsym $mod+q exec swaylock -c 000000
-bindsym $mod+q exec swaylock -i ~/.local/share/sway/wallpaper
+bindsym $mod+q exec swaylock -i ~/.local/share/sway/lock
 
 # volume
 bindsym $mod+n exec pactl set-sink-volume @DEFAULT_SINK@ +05% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
