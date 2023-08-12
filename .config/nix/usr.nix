@@ -64,6 +64,7 @@
       qutebrowser # used for citrix since citrix is cringe
       pandoc      # document converter
       zathura     # document viewer
+      pandoc      # ducment converter
       mpv         # image and video viewer
       /* gpt4all */
 
