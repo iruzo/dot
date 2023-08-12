@@ -440,9 +440,6 @@ return {
       },
       {
         'simrat39/rust-tools.nvim',
-        lazy = true,
-        ft = 'rust',
-        pin = true,
         cond = function()
           local f=io.open('Cargo.toml','r')
           if f~=nil then io.close(f)
