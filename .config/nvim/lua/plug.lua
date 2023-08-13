@@ -39,9 +39,9 @@ return {
       },
       messages = {
         view = 'mini',
-        view_error = "mini", -- view for errors
-        view_warn = "mini", -- view for warnings
-        view_history = "messages", -- view for :messages
+        view_error = "mini",         -- view for errors
+        view_warn = "mini",          -- view for warnings
+        view_history = "messages",   -- view for :messages
         view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
       },
       lsp = {
@@ -142,14 +142,14 @@ return {
     },
     keys = {
       { '<space>h', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>', silent = true, desc = 'telescope live grep' },
-      { '<space>f', ':Telescope find_files<CR>', silent = true, desc = 'telescope find files' },
-      { '<space>F', ':Telescope buffers<CR>', silent = true, desc = 'telescope buffers' },
-      { '<space>t', ':Telescope diagnostics<CR>', silent = true, desc = 'telescope diagnostics' },
-      { '<space>g', ':Telescope git_commits<CR>', silent = true, desc = 'telescope git commits' },
-      { '<space>c', ':Telescope git_bcommits<CR>', silent = true, desc = 'telescope git bcommits' },
-      { '<space>b', ':Telescope git_branches<CR>', silent = true, desc = 'telescope git branches' },
-      { '<space>s', ':Telescope git_status<CR>', silent = true, desc = 'telescope git status' },
-      { '<space>u', ':Telescope undo<CR>', silent = true, desc = 'telescope undo' },
+      { '<space>f', ':Telescope find_files<CR>',                                                silent = true, desc = 'telescope find files' },
+      { '<space>F', ':Telescope buffers<CR>',                                                   silent = true, desc = 'telescope buffers' },
+      { '<space>t', ':Telescope diagnostics<CR>',                                               silent = true, desc = 'telescope diagnostics' },
+      { '<space>g', ':Telescope git_commits<CR>',                                               silent = true, desc = 'telescope git commits' },
+      { '<space>c', ':Telescope git_bcommits<CR>',                                              silent = true, desc = 'telescope git bcommits' },
+      { '<space>b', ':Telescope git_branches<CR>',                                              silent = true, desc = 'telescope git branches' },
+      { '<space>s', ':Telescope git_status<CR>',                                                silent = true, desc = 'telescope git status' },
+      { '<space>u', ':Telescope undo<CR>',                                                      silent = true, desc = 'telescope undo' },
     },
     config = function()
       require'telescope'.setup {
@@ -231,14 +231,14 @@ return {
     config = function()
       require'tabby.tabline'.use_preset('active_wins_at_tail', {
         theme = {
-          fill = 'TabLineFill', -- tabline background
-          head = 'TabLine', -- head element highlight
+          fill = 'TabLineFill',       -- tabline background
+          head = 'TabLine',           -- head element highlight
           current_tab = 'TabLineSel', -- current tab label highlight
-          tab = 'TabLine', -- other tab label highlight
-          win = 'TabLine', -- window highlight
-          tail = 'TabLine', -- tail element highlight
+          tab = 'TabLine',            -- other tab label highlight
+          win = 'TabLine',            -- window highlight
+          tail = 'TabLine',           -- tail element highlight
         },
-        nerdfont = true, -- whether use nerdfont
+        nerdfont = true,              -- whether use nerdfont
         buf_name = {
           mode = '"unique"|"relative"|"tail"|"shorten"',
         },
@@ -313,9 +313,9 @@ return {
     end,
     config = function()
       vim.api.nvim_set_keymap('n', '<C-g>', ':Gitsigns preview_hunk <enter>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '<C-r>', ':Gitsigns reset_hunk <enter>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '<C-n>', ':Gitsigns next_hunk <enter>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '<C-p>', ':Gitsigns prev_hunk <enter>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<C-r>', ':Gitsigns reset_hunk <enter>',   { noremap = true })
+      vim.api.nvim_set_keymap('n', '<C-n>', ':Gitsigns next_hunk <enter>',    { noremap = true })
+      vim.api.nvim_set_keymap('n', '<C-p>', ':Gitsigns prev_hunk <enter>',    { noremap = true })
       require'gitsigns'.setup {
         current_line_blame = true
       }
@@ -356,14 +356,14 @@ return {
       },
     },
     keys = {
-      { '<F1>', ':DapToggleBreakpoint<CR>', silent = true, desc = 'dap toggle breakpoint' },
+      { '<F1>', ':DapToggleBreakpoint<CR>',          silent = true, desc = 'dap toggle breakpoint' },
       { '<F2>', ':lua require"dap".step_over()<CR>', silent = true, desc = 'dap step over' },
       { '<F3>', ':lua require"dap".step_back()<CR>', silent = true, desc = 'dap step back' },
       { '<F4>', ':lua require"dap".step_into()<CR>', silent = true, desc = 'dap step into' },
-      { '<F5>', ':lua require"dap".step_out()<CR>', silent = true, desc = 'dap step out' },
-      { '<F6>', ':lua require"dap".continue()<CR>', silent = true, desc = 'dap continue' },
+      { '<F5>', ':lua require"dap".step_out()<CR>',  silent = true, desc = 'dap step out' },
+      { '<F6>', ':lua require"dap".continue()<CR>',  silent = true, desc = 'dap continue' },
       { '<F7>', ':lua require"dap".terminate()<CR>', silent = true, desc = 'dap terminate' },
-      { '<F9>', ':lua require"dapui".toggle()<CR>', silent = true, desc = 'dap toggle ui' },
+      { '<F9>', ':lua require"dapui".toggle()<CR>',  silent = true, desc = 'dap toggle ui' },
     },
   },
 
@@ -500,15 +500,15 @@ return {
       },
     },
     config = function()
-      vim.api.nvim_set_keymap('n', 'mm', ':lua vim.lsp.buf.hover()<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', 'gi', ':lua vim.lsp.buf.implementation()<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', 'gr', ':lua vim.lsp.buf.references()<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', 'rr', ':lua vim.lsp.buf.rename()<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '<space>a', ':lua vim.lsp.buf.code_action()<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', 'mm',       ':lua vim.lsp.buf.hover()<CR>',             { noremap = true })
+      vim.api.nvim_set_keymap('n', 'gd',       ':lua vim.lsp.buf.definition()<CR>',        { noremap = true })
+      vim.api.nvim_set_keymap('n', 'gi',       ':lua vim.lsp.buf.implementation()<CR>',    { noremap = true })
+      vim.api.nvim_set_keymap('n', 'gr',       ':lua vim.lsp.buf.references()<CR>',        { noremap = true })
+      vim.api.nvim_set_keymap('n', 'rr',       ':lua vim.lsp.buf.rename()<CR>',            { noremap = true })
+      vim.api.nvim_set_keymap('n', '<space>a', ':lua vim.lsp.buf.code_action()<CR>',       { noremap = true })
       vim.api.nvim_set_keymap('x', '<space>a', ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '<M-p>', ':lua vim.diagnostic.goto_prev()<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '<M-n>', ':lua vim.diagnostic.goto_next()<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<M-p>',    ':lua vim.diagnostic.goto_prev()<CR>',      { noremap = true })
+      vim.api.nvim_set_keymap('n', '<M-n>',    ':lua vim.diagnostic.goto_next()<CR>',      { noremap = true })
     end
   },
 
