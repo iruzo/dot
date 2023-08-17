@@ -14,6 +14,7 @@ return {
   {
     'folke/which-key.nvim',
     tag = 'stable',
+    event = 'VeryLazy',
     event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       vim.o.timeout = true
@@ -112,6 +113,7 @@ return {
   {
     'folke/neoconf.nvim',
     tag = 'stable',
+    event = 'VeryLazy',
     cond = function()
       return vim.fn.isdirectory '.vscode' ~= 0
     end,
@@ -163,16 +165,16 @@ return {
         },
         pickers = {
           find_files = { hidden = 'true' },
-            buffers = {
-              show_all_buffers = true,
-              sort_lastused = true,
-              previewer = false,
-              mappings = {
-                i = {
-                  ["<c-d>"] = "delete_buffer",
-                }
+          buffers = {
+            show_all_buffers = true,
+            sort_lastused = true,
+            previewer = false,
+            mappings = {
+              i = {
+                ["<c-d>"] = "delete_buffer",
               }
             }
+          }
         }
       }
       require'telescope'.load_extension("undo")
@@ -191,19 +193,23 @@ return {
     'lukas-reineke/indent-blankline.nvim',
     tag = 'v2.20.7',
     event = { 'BufReadPost', 'BufNewFile' },
+    event = 'VeryLazy',
     config = function()
       vim.opt.termguicolors = true
       vim.opt.list = true
       vim.opt.listchars:append "eol:↴"
 
       require'indent_blankline'.setup {
-          show_end_of_line = true,
+        show_end_of_line = true,
       }
     end
   },
 
   {
     'nvim-lualine/lualine.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
+    },
     event = 'VeryLazy',
     opts = true,
   },
@@ -268,6 +274,7 @@ return {
     'echasnovski/mini.hipatterns',
     tag = 'v0.9.0',
     event = { 'BufReadPre', 'BufNewFile' },
+    event = 'VeryLazy',
     config = function()
       local hipatterns = require'mini.hipatterns'
       hipatterns.setup({
@@ -430,9 +437,9 @@ return {
             -- automatic_installation = true,
             handlers = {
               function (server_name)
-                  require'lspconfig'[server_name].setup {
-                    capabilities = require'cmp_nvim_lsp'.default_capabilities()
-                  }
+                require'lspconfig'[server_name].setup {
+                  capabilities = require'cmp_nvim_lsp'.default_capabilities()
+                }
               end,
             },
           })
@@ -482,8 +489,8 @@ return {
               { name = 'nvim_lua' },
               { name = 'path' },
             }, {
-              { name = 'buffer' },
-            }),
+                { name = 'buffer' },
+              }),
             snippet = {
               expand = function(args)
                 require'luasnip'.lsp_expand(args.body)
