@@ -302,11 +302,17 @@ return {
   {
     'NeogitOrg/neogit',
     cmd = 'Neogit',
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "nvim-telescope/telescope.nvim", -- optional
+      "sindrets/diffview.nvim",        -- optional
+    },
     cond = function()
       if vim.fn.isdirectory '.git' ~= 0 then
         return true
       end
     end,
+    opts = true;
   },
 
   {
