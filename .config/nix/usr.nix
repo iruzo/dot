@@ -75,48 +75,47 @@
       prismlauncher
 
       # web apps
-      brave
-      # (pkgs.chromium.override {
-      #   commandLineArgs = [
-      #     "--disk-cache=$XDG_RUNTIME_DIR/chromium-cache"
-      #     "--no-default-browser-check"
-      #     "--no-service-autorun"
-      #     "--disable-features=PreloadMediaEngagementData,MediaEngagementBypassAutoplayPolicies"
-      #     # Autoplay policy
-      #     "--document-user-activation-required"
-      #     # Enable Wayland support
-      #     "--enable-features=UseOzonePlatform"
-      #     "--ozone-platform-hint=auto"
-      #     # Disable global Google login
-      #     "--disable-sync-preferences"
-      #     # Reader mode
-      #     "--enable-reader-mode"
-      #     "--enable-dom-distiller"
-      #     # Dark mode
-      #     "--enable-features=WebUIDarkMode"
-      #     # Security stuff
-      #     "--disable-reading-from-canvas"
-      #     "--no-pings"
-      #     "--no-first-run"
-      #     "--no-experiments"
-      #     "--no-crash-upload"
-      #     # Chromecast
-      #     "--load-media-router-component-extension"
-      #     # GPU stuff
-      #     "--ignore-gpu-blocklist"
-      #     "--enable-gpu-rasterization"
-      #     #"--use-gl=egl"
-      #     "--enable-zero-copy"
-      #     # Accelerated decoding
-      #     "--enable-features=VaapiVideoDecoder"
+      (pkgs.chromium.override {
+        commandLineArgs = [
+          "--disk-cache=$XDG_RUNTIME_DIR/chromium-cache"
+          "--no-default-browser-check"
+          "--no-service-autorun"
+          "--disable-features=PreloadMediaEngagementData,MediaEngagementBypassAutoplayPolicies"
+          # Autoplay policy
+          "--document-user-activation-required"
+          # Enable Wayland support
+          "--enable-features=UseOzonePlatform"
+          "--ozone-platform-hint=auto"
+          # Disable global Google login
+          "--disable-sync-preferences"
+          # Reader mode
+          "--enable-reader-mode"
+          "--enable-dom-distiller"
+          # Dark mode
+          "--enable-features=WebUIDarkMode"
+          # Security stuff
+          "--disable-reading-from-canvas"
+          "--no-pings"
+          "--no-first-run"
+          "--no-experiments"
+          "--no-crash-upload"
+          # Chromecast
+          "--load-media-router-component-extension"
+          # GPU stuff
+          "--ignore-gpu-blocklist"
+          "--enable-gpu-rasterization"
+          #"--use-gl=egl"
+          "--enable-zero-copy"
+          # Accelerated decoding
+          "--enable-features=VaapiVideoDecoder"
 
-      #     "--disable-wake-on-wifi"
-      #     "--disable-breakpad"
-      #     "--disable-sync"
-      #     "--disable-speech-api"
-      #     "--disable-speech-synthesis-api"
-      #   ];
-      # })
+          "--disable-wake-on-wifi"
+          "--disable-breakpad"
+          "--disable-sync"
+          "--disable-speech-api"
+          "--disable-speech-synthesis-api"
+        ];
+      })
 
     ];
 
