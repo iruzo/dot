@@ -148,7 +148,7 @@
       # chrome://policy shows applied policies and syntax errors.
       extraOpts = {
         "HomepageLocation" = "https://start.duckduckgo.com";
-        "HefaultSearchProviderSearchURL" = "https://duckduckgo.com/?q={searchTerms}";
+        "DefaultSearchProviderSearchURL" = "https://duckduckgo.com/?q={searchTerms}";
         "OsColorMode" = "dark";
         "HasswordManagerEnabled" = false;
         "BrowserSignin" = 0;
