@@ -66,10 +66,11 @@
       curl
       git
       unzip
-      btop
-      helvum
-      pavucontrol
-      wezterm
+      btop                   # system monitor
+      helvum                 # control connections between audio inputs and outputs
+      pavucontrol            # pulse audio volume control
+      wezterm                # terminal emulator
+      tor-browser-bundle-bin # tor
 
       # workspace
       aerc        # mail
@@ -81,7 +82,7 @@
       zathura     # document viewer
       pandoc      # ducment converter
       mpv         # image and video viewer
-      /* gpt4all */
+      # gpt4all     # run data models locally
 
       # tools
       gcc
