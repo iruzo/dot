@@ -42,6 +42,9 @@ in
       slurp
       brightnessctl
 
+      mako
+      dunst
+
       gnome.nautilus
       gnome.gnome-logs
       gnome.gnome-boxes
