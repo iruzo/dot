@@ -35,7 +35,7 @@ in
     enable = true;
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
-      swaync
+      swaynotificationcenter
       swaylock
       wl-clipboard
       bemenu
