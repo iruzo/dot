@@ -35,15 +35,13 @@ in
     enable = true;
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
+      swaync
       swaylock
       wl-clipboard
       bemenu
       grim
       slurp
       brightnessctl
-
-      mako
-      dunst
 
       gnome.nautilus
       gnome.gnome-logs
