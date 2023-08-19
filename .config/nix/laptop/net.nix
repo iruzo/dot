@@ -23,8 +23,7 @@
   # https://nixos.wiki/wiki/Bluetooth
   hardware.bluetooth = {
       enable = true;
-      # Don't power up the default Bluetooth controller on boot
-      powerOnBoot = false;
+      powerOnBoot = true;
   };
   # Blueman
   services.blueman = {
