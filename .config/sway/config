@@ -8,6 +8,7 @@
 exec dbus-sway-environment
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec configure-gtk
+exec swaync
 
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
@@ -113,7 +114,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-  position top
+  position bottom
   font "Fira Code bold 10"
 
   height 18
@@ -194,8 +195,8 @@ output DP-2 transform 270
 # workspace 2 output HDMI-A-1
 # workspace 3 output DP-1
 
-set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/onedark-math-year.png
-set $lock https://raw.githubusercontent.com/iruzo/wp/main/original-math-year.jpg
+set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/nord-dark-city.jpeg
+set $lock https://raw.githubusercontent.com/iruzo/wp/main/nord-dark-dune.png
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
@@ -209,7 +210,7 @@ default_floating_border pixel 1
 client.focused #5c6370 #5c6370 #5c6370 #5c6370 #5c6370
 client.unfocused #000000 #000000 #000000 #000000 #000000
 client.focused_inactive #000000 #000000 #000000 #000000 #000000
-gaps inner 20
+# gaps inner 20
 
 # catppuccin
 # exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Rosewater-Dark ]; then \
@@ -232,6 +233,9 @@ bindsym $mod+Shift+p exec GTK_THEME='Adwaita:dark' helvum
 # push to talk
 bindsym --no-repeat $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 bindsym --no-repeat --release $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+# notifications
+bindsym $mod+x exec swaync-client -t
 
 # brightness
 bindsym $mod+b exec brightnessctl s +10
@@ -258,7 +262,7 @@ bindsym $mod+o exec firefox
 bindsym $mod+Shift+o exec cat ~/iruzo/quickmarks | $emptymenu | awk -F' ' '{print $NF}' | wl-copy $(cat)
 
 # discord
-bindsym $mod+g exec brave --app=https://discord.com/app | chromium --app=https://discord.com/app | chromium-browser --app=https://discord.com/app
+bindsym $mod+g exec brave --app=https://discord.com/app || chromium --app=https://discord.com/app || chromium-browser --app=https://discord.com/app
 
 # vm
 bindsym $mod+i exec gnome-boxes
