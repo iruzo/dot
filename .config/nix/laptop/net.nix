@@ -24,10 +24,12 @@
   hardware.bluetooth = {
       enable = true;
       powerOnBoot = false;
-  };
-  # Blueman
-  services.blueman = {
-    enable = true;
+      settings = {
+        General = {
+          ControllerMode = "dual";
+          Experimental = "true";
+        };
+      };
   };
 
 }
