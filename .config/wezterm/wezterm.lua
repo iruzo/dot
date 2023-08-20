@@ -18,6 +18,7 @@ if get_os() == "windows" then
 end
 
 return {
+  enable_wayland = false,
   window_close_confirmation = 'NeverPrompt',
   -- wezterm.default_wsl_domains()
   default_prog = default_prog,
