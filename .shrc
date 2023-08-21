@@ -60,9 +60,9 @@ alias monitor-cpu='ps axch -o cmd:15,%cpu --sort=-%cpu'
 
 fetch() {
   # host
-  echo Γ$(echo "${COLOR_BCYAN} host:${COLOR_RESET}" ) $(cat /etc/hostname | awk -F' ' '{print $NF}')
+  echo Γ$(echo "${COLOR_BCYAN} host:${COLOR_RESET}" ) $(/bin/sh -c "cat /etc/hostname")
   # distro
-  echo \|$(echo "${COLOR_BCYAN} distro:${COLOR_RESET}" ) $(cat /etc/os-release | grep -oP '(?<=PRETTY_NAME=").*(?=")')
+  echo \|$(echo "${COLOR_BCYAN} distro:${COLOR_RESET}" ) $(/bin/sh -c "cat /etc/os-release | grep -oP '(?<=PRETTY_NAME=\").*(?=\")'")
   # kernel
   echo \|$(echo "${COLOR_BCYAN} kernel:${COLOR_RESET}" ) $(uname -r)
   # shell
@@ -70,22 +70,22 @@ fetch() {
   # terminal
   echo \|$(echo "${COLOR_BGREEN} terminal:${COLOR_RESET}" ) $(echo $TERM)
   # product
-  echo \|$(echo "${COLOR_BPURPLE} product:${COLOR_RESET}") $(cat /sys/devices/virtual/dmi/id/product_name | awk -F' ' '{print $NF}')
+  echo \|$(echo "${COLOR_BPURPLE} product:${COLOR_RESET}") $(/bin/sh -c "cat /sys/devices/virtual/dmi/id/product_name")
   # bios
-  echo \|$(echo "${COLOR_BPURPLE} bios:${COLOR_RESET}") $(cat /sys/devices/virtual/dmi/id/bios_version | awk -F' ' '{print $NF}')
+  echo \|$(echo "${COLOR_BPURPLE} bios:${COLOR_RESET}") $(/bin/sh -c "cat /sys/devices/virtual/dmi/id/bios_version")
   # cpu
-  echo \|$(echo "${COLOR_BRED} cpu:${COLOR_RESET}" ) $(cat /proc/cpuinfo | grep -m1 "model name" | awk -F': ' '{print $2}') "("$(cat /proc/cpuinfo | grep "model name" | wc -l)" cores)"
+  echo \|$(echo "${COLOR_BRED} cpu:${COLOR_RESET}" ) $(/bin/sh -c "cat /proc/cpuinfo" | grep -m1 "model name" | awk -F': ' '{print $2}') "("$(/bin/sh -c "cat /proc/cpuinfo" | grep "model name" | wc -l)" cores)"
   # gpu
   lspci 2> /dev/null | grep -q -wi VGA && echo \|$(echo "${COLOR_BRED} gpu:${COLOR_RESET}" ) $(lspci | grep VGA)
   lspci 2> /dev/null | grep -q -wi Display && echo \|$(echo "${COLOR_BRED} gpu:${COLOR_RESET}" ) $(lspci | grep Display)
   # status
-  echo \|$(echo "${COLOR_BRED} temp:${COLOR_RESET}" ) $(($(cat /sys/class/thermal/thermal_zone0/temp | awk -F' ' '{print $NF}' || echo 1) / 1000))°C
+  echo \|$(echo "${COLOR_BRED} temp:${COLOR_RESET}" ) $(($(/bin/sh -c "cat /sys/class/thermal/thermal_zone0/temp" || echo 1) / 1000))°C
   echo \|$(echo "${COLOR_BRED} cpu:${COLOR_RESET}" ) $(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')%
   echo \|$(echo "${COLOR_BRED} mem:${COLOR_RESET}" ) $(free -m | awk 'NR==2{printf "%.2f%%\t\t", $3*100/$2 }')
   echo \|$(echo "${COLOR_BRED} disk:${COLOR_RESET}" ) $(df -h 2> /dev/null | awk '$NF=="/"{printf "%s\t\t", $5}')
   echo \|$(echo "${COLOR_BBLUE} mic:${COLOR_RESET}" ) $(pactl -v 2> /dev/null && pactl get-source-mute @DEFAULT_SOURCE@ || wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q "MUTED" && echo "muted" || echo "unmuted")
   echo \|$(echo "${COLOR_BBLUE} vol:${COLOR_RESET}" ) $(pactl -v 2> /dev/null && pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '(?<=front-left: ).*(?=front-right: )' | grep -oP '(?<=/ ).*(?= /)' | awk -F': ' '{printf $2}' || wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F': ' '{printf $2}')
-  echo \|$(echo "${COLOR_BYELLOW} bat:${COLOR_RESET}" ) $(cat /sys/class/power_supply/BAT0/capacity | awk -F' ' '{print $NF}')%
+  echo \|$(echo "${COLOR_BYELLOW} bat:${COLOR_RESET}" ) $(/bin/sh -c "cat /sys/class/power_supply/BAT0/capacity")%
   # uptime
   echo \|$(echo "${COLOR_BYELLOW} uptime:${COLOR_RESET}" ) $(uptime | awk -F',' '{print $1}' | awk -F' ' '{print $NF}')
   # date and cal
