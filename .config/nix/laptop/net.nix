@@ -21,15 +21,6 @@
   # services.openssh.enable = true;
 
   # https://nixos.wiki/wiki/Bluetooth
-  hardware.bluetooth = {
-      enable = true;
-      powerOnBoot = false;
-      settings = {
-        General = {
-          ControllerMode = "dual";
-          Experimental = "true";
-        };
-      };
-  };
+  hardware.bluetooth.enable = true;
 
 }
