@@ -59,39 +59,37 @@ alias monitor-mempercent='ps axch -o cmd:15,%mem --sort=-%mem'
 alias monitor-cpu='ps axch -o cmd:15,%cpu --sort=-%cpu'
 
 fetch() {
-  # distro
-  echo $(echo "${COLOR_BGREEN} distro:${COLOR_RESET}" ) $(cat /etc/os-release | grep -oP '(?<=PRETTY_NAME=").*(?=")')
-  # kernel
-  echo $(echo "${COLOR_BGREEN} kernel:${COLOR_RESET}" ) $(uname -r)
   # host
-  echo $(echo "${COLOR_BGREEN} host:${COLOR_RESET}" ) $(cat /etc/hostname | awk -F' ' '{print $NF}')
-  # uptime
-  echo $(echo "${COLOR_BGREEN} uptime:${COLOR_RESET}" ) $(uptime | awk -F',' '{print $1}' | awk -F' ' '{print $NF}')
+  echo Γ$(echo "${COLOR_BCYAN} host:${COLOR_RESET}" ) $(cat /etc/hostname | awk -F' ' '{print $NF}')
+  # distro
+  echo \|$(echo "${COLOR_BCYAN} distro:${COLOR_RESET}" ) $(cat /etc/os-release | grep -oP '(?<=PRETTY_NAME=").*(?=")')
+  # kernel
+  echo \|$(echo "${COLOR_BCYAN} kernel:${COLOR_RESET}" ) $(uname -r)
   # shell
-  echo $(echo "${COLOR_BGREEN} shell:${COLOR_RESET}" ) $(echo $SHELL)
+  echo \|$(echo "${COLOR_BGREEN} shell:${COLOR_RESET}" ) $(echo $SHELL)
   # terminal
-  echo $(echo "${COLOR_BGREEN} terminal:${COLOR_RESET}" ) $(echo $TERM)
-  # cpu
-  echo $(echo "${COLOR_BGREEN} cpu:${COLOR_RESET}" ) $(cat /proc/cpuinfo | grep -m1 "model name" | awk -F': ' '{print $2}') "("$(cat /proc/cpuinfo | grep "model name" | wc -l)" cores)"
-  # gpu
-  lspci 2> /dev/null | grep -q -wi VGA && echo $(echo "${COLOR_BGREEN} gpu:${COLOR_RESET}" ) $(lspci | grep VGA)
-  lspci 2> /dev/null | grep -q -wi Display && echo $(echo "${COLOR_BGREEN} gpu:${COLOR_RESET}" ) $(lspci | grep Display)
+  echo \|$(echo "${COLOR_BGREEN} terminal:${COLOR_RESET}" ) $(echo $TERM)
   # product
-  echo $(echo "${COLOR_BGREEN} product:${COLOR_RESET}") $(cat /sys/devices/virtual/dmi/id/product_name | awk -F' ' '{print $NF}')
+  echo \|$(echo "${COLOR_BPURPLE} product:${COLOR_RESET}") $(cat /sys/devices/virtual/dmi/id/product_name | awk -F' ' '{print $NF}')
   # bios
-  echo $(echo "${COLOR_BGREEN} bios:${COLOR_RESET}") $(cat /sys/devices/virtual/dmi/id/bios_version | awk -F' ' '{print $NF}')
+  echo \|$(echo "${COLOR_BPURPLE} bios:${COLOR_RESET}") $(cat /sys/devices/virtual/dmi/id/bios_version | awk -F' ' '{print $NF}')
+  # cpu
+  echo \|$(echo "${COLOR_BRED} cpu:${COLOR_RESET}" ) $(cat /proc/cpuinfo | grep -m1 "model name" | awk -F': ' '{print $2}') "("$(cat /proc/cpuinfo | grep "model name" | wc -l)" cores)"
+  # gpu
+  lspci 2> /dev/null | grep -q -wi VGA && echo \|$(echo "${COLOR_BRED} gpu:${COLOR_RESET}" ) $(lspci | grep VGA)
+  lspci 2> /dev/null | grep -q -wi Display && echo \|$(echo "${COLOR_BRED} gpu:${COLOR_RESET}" ) $(lspci | grep Display)
   # status
-  echo $(echo "${COLOR_BGREEN} temp:${COLOR_RESET}" ) $(($(cat /sys/class/thermal/thermal_zone0/temp | awk -F' ' '{print $NF}' || echo 1) / 1000))°C
-  echo $(echo "${COLOR_BGREEN} cpu:${COLOR_RESET}" ) $(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')%
-  echo $(echo "${COLOR_BGREEN} mem:${COLOR_RESET}" ) $(free -m | awk 'NR==2{printf "%.2f%%\t\t", $3*100/$2 }')
-  echo $(echo "${COLOR_BGREEN} disk:${COLOR_RESET}" ) $(df -h 2> /dev/null | awk '$NF=="/"{printf "%s\t\t", $5}')
-  pactl -v 2> /dev/null && echo $(echo "${COLOR_BGREEN} mic:${COLOR_RESET}" ) $(pactl get-source-mute @DEFAULT_SOURCE@)
-  pactl -v 2> /dev/null && echo $(echo "${COLOR_BGREEN} vol:${COLOR_RESET}" ) $(pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '(?<=front-left: ).*(?=front-right: )' | grep -oP '(?<=/ ).*(?= /)')
-  echo $(echo "${COLOR_BGREEN} bat:${COLOR_RESET}" ) $(cat /sys/class/power_supply/BAT0/capacity | awk -F' ' '{print $NF}')%
-
+  echo \|$(echo "${COLOR_BRED} temp:${COLOR_RESET}" ) $(($(cat /sys/class/thermal/thermal_zone0/temp | awk -F' ' '{print $NF}' || echo 1) / 1000))°C
+  echo \|$(echo "${COLOR_BRED} cpu:${COLOR_RESET}" ) $(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')%
+  echo \|$(echo "${COLOR_BRED} mem:${COLOR_RESET}" ) $(free -m | awk 'NR==2{printf "%.2f%%\t\t", $3*100/$2 }')
+  echo \|$(echo "${COLOR_BRED} disk:${COLOR_RESET}" ) $(df -h 2> /dev/null | awk '$NF=="/"{printf "%s\t\t", $5}')
+  echo \|$(echo "${COLOR_BBLUE} mic:${COLOR_RESET}" ) $(pactl -v 2> /dev/null && pactl get-source-mute @DEFAULT_SOURCE@ || wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q "MUTED" && echo "muted" || echo "unmuted")
+  echo \|$(echo "${COLOR_BBLUE} vol:${COLOR_RESET}" ) $(pactl -v 2> /dev/null && pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '(?<=front-left: ).*(?=front-right: )' | grep -oP '(?<=/ ).*(?= /)' | awk -F': ' '{printf $2}' || wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F': ' '{printf $2}')
+  echo \|$(echo "${COLOR_BYELLOW} bat:${COLOR_RESET}" ) $(cat /sys/class/power_supply/BAT0/capacity | awk -F' ' '{print $NF}')%
+  # uptime
+  echo \|$(echo "${COLOR_BYELLOW} uptime:${COLOR_RESET}" ) $(uptime | awk -F',' '{print $1}' | awk -F' ' '{print $NF}')
   # date and cal
-  echo
-  echo "${COLOR_BGREEN} $(date) ${COLOR_RESET}" && (cal --color=always | sed 's/^/  /')
+  echo L"${COLOR_BCYAN} $(date) ${COLOR_RESET}" && (cal --color=always | sed 's/^/  /')
 }
 
 superstatus() {
