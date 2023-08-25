@@ -113,6 +113,7 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
+set $weather $(curl wttr.in/a-coruna?format="%t(%C)")
 bar {
   position bottom
   font "Fira Code bold 10"
@@ -143,7 +144,7 @@ bar {
       BRIGHTNESS: $(cat /sys/class/backlight/$(ls -1 /sys/class/backlight)/brightness) \| \
       KERNEL: $(uname -r | cut -d '-' -f1) \| \
       BAT: $(cat /sys/class/power_supply/BAT0/capacity)% \| \
-      $(date +'%a %Y-%m-%d %H:%M:%S') \
+      $weather - $(date +'%a %Y-%m-%d %H:%M:%S') \
   ); do sleep 1; done
   # $(swaymsg -t get_tree | grep -oP \'(?<=name\": \").*(?=\",)\' | sed \"$(swaymsg -t get_tree | grep focused | grep -oP \'(?<=: ).*(?=,)\' | grep -n true | cut -d: -f1)q;d\")  \| \
 
