@@ -62,25 +62,22 @@ c.window.transparent=True
 # if os.path.exists(config.configdir / "style.css"):
 #     c.content.user_stylesheets="style.css"
 
-# # greasemonkey
-# if not os.path.exists(config.configdir / "greasemonkey"):
-#     greasemonkey_scripts = []
-#     if len(greasemonkey_scripts) > 0:
-#             os.mkdir(config.configdir / "greasemonkey")
-#             for script in greasemonkey_scripts:
-#                 with urlopen(script) as scripthtml:
-#                     with open(config.configdir / "greasemonkey" / script.split("/")[-1], "a") as file:
-#                         file.writelines(scripthtml.read().decode("utf-8"))
-
-# userscript
-if not os.path.exists(config.configdir / "userscripts"):
-    userscripts = []
-    if len(userscripts) > 0:
-        os.mkdir(config.configdir / "userscripts")
-        for script in userscripts:
-            with urlopen(script) as scripthtml:
-                with open(config.configdir / "userscripts" / script.split("/")[-1], "a") as file:
-                    file.writelines(scripthtml.read().decode("utf-8"))
+# userscripts
+if not os.path.exists(config.configdir / "greasemonkey"):
+    greasemonkey_scripts = [
+        "https://raw.githubusercontent.com/iruzo/userscripts/main/adbypasser.js",
+        "https://raw.githubusercontent.com/iruzo/userscripts/main/cookiedelete.js",
+        "https://raw.githubusercontent.com/iruzo/userscripts/main/popupblocker.js",
+        "https://raw.githubusercontent.com/iruzo/userscripts/main/popupblockerultra.js",
+        "https://raw.githubusercontent.com/iruzo/userscripts/main/twitchautoclaimer.js",
+        "https://raw.githubusercontent.com/iruzo/userscripts/main/ytads.js",
+    ]
+    if len(greasemonkey_scripts) > 0:
+            os.mkdir(config.configdir / "greasemonkey")
+            for script in greasemonkey_scripts:
+                with urlopen(script) as scripthtml:
+                    with open(config.configdir / "greasemonkey" / script.split("/")[-1], "a") as file:
+                        file.writelines(scripthtml.read().decode("utf-8"))
 
 # stop feeding the kraken
 redirects = {
