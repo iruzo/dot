@@ -46,11 +46,6 @@
 .config/btop/*
 !.config/btop/btop.conf
 
-# dunst
-!.config/dunst
-.config/dunst/*
-!.config/dunst/dunstrc
-
 # sway
 !.config/sway
 .config/sway/*
