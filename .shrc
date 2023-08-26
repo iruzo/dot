@@ -96,6 +96,10 @@ superstatus() {
   for folder in $(find . -type d -name .git); do (cd ${folder/.git/} && git status -s 2> /dev/null) | awk -F'.' '{print "['$folder']", $0}'; done
 }
 
+supergitgrep() {
+  git grep "$@" $(git rev-list --all)
+}
+
 termbin() {
   # if no args are passed, read stdin to check if they come from pipe
   if [ $# = 0 ]; then
