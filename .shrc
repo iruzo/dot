@@ -57,6 +57,13 @@ alias fg='coincidence=$(find / 2>/dev/null | bemenu); if [ -f $coincidence ]; th
 alias monitor-mem='ps axch -o cmd:15,rss --sort=-rss | numfmt --from-unit=1024 --to=iec --field 2 2> /dev/null'
 alias monitor-mempercent='ps axch -o cmd:15,%mem --sort=-%mem'
 alias monitor-cpu='ps axch -o cmd:15,%cpu --sort=-%cpu'
+alias weather='curl wttr.in/a-coruna?format="%t(%C)"'
+
+alias umount-usb='udiskctl umount -b'
+alias eject-usb='udiskctl power-off -b'
+
+alias bt-connect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf $2}' | xargs bluetoothctl connect"
+alias bt-disconnect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf $2}' | xargs bluetoothctl disconnect"
 
 fetch() {
   # host

@@ -46,9 +46,10 @@ in
       gnome.nautilus
       gnome.gnome-logs
       gnome.gnome-boxes
-      gnome.gnome-disk-utility
     ];
   };
+  services.udisks2.enable = true;
+  programs.gnome-disks.enable = true;
   # programs.xwayland.enable = true;
   services.dbus.enable = true;
   xdg.portal = {
