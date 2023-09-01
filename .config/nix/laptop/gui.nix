@@ -48,8 +48,9 @@ in
       gnome.gnome-boxes
     ];
   };
-  services.udisks2.enable = true;
-  programs.gnome-disks.enable = true;
+  services.gvfs.enable = true;        # needed for nautilus
+  services.udisks2.enable = true;     # needed for gnome-disks
+  programs.gnome-disks.enable = true; # gnome-disks
   # programs.xwayland.enable = true;
   services.dbus.enable = true;
   xdg.portal = {
