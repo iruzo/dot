@@ -62,8 +62,8 @@ alias weather='curl wttr.in/a-coruna?format="%t(%C)"'
 alias umount-usb='udisksctl umount -b'
 alias eject-usb='udisksctl power-off -b'
 
-alias bt-connect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf $2}' | xargs bluetoothctl connect"
-alias bt-disconnect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf $2}' | xargs bluetoothctl disconnect"
+alias bt-connect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf \$2}' | xargs bluetoothctl connect"
+alias bt-disconnect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf \$2}' | xargs bluetoothctl disconnect"
 
 fetch() {
   # host
