@@ -33,8 +33,8 @@ export WLR_NO_HARDWARE_CURSORS=1
 export QEMU='-vga none -device virtio-gpu-pci -display gtk,gl=on'
 export EDITOR='nvim'
 export VISUAL='nvim-qt'
-export GTK_THEME='Adwaita:dark'
-export BEMENU_OPTS='-i -l 20 --fb "#282C34" --ff "#abb2bf" --nb "#282C34" --nf "#abb2bf" --tb "#282C34" --hb "#282C34" --tf "#e06c75" --hf "#e5c07b" --nf "#abb2bf" --af "#abb2bf" --ab "#282C34"'
+export GTK_THEME='Catppuccin-Frappe-Standard-Lavender-dark:dark'
+export BEMENU_OPTS='-i -l 20 --fb "#303446" --ff "#c6d0f5" --nb "#303446" --nf "#c6d0f5" --tb "#303446" --hb "#303446" --tf "#e78284" --hf "#e5c890" --nf "#c6d0f5" --af "#c6d0f5" --ab "#303446"'
 
 # export GPG_TTY=$(tty)
 

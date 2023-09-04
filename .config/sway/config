@@ -18,7 +18,7 @@ set $down j
 set $up k
 set $right l
 
-set $emptymenu BEMENU_BACKEND=wayland BEMENU_OPTS='-i -l 20 --fb "#282C34" --ff "#abb2bf" --nb "#282C34" --nf "#abb2bf" --tb "#282C34" --hb "#282C34" --tf "#e06c75" --hf "#e5c07b" --nf "#abb2bf" --af "#abb2bf" --ab "#282C34"' bemenu
+set $emptymenu BEMENU_BACKEND=wayland bemenu -i -l 20 --fb "#303446" --ff "#c6d0f5" --nb "#303446" --nf "#c6d0f5" --tb "#303446" --hb "#303446" --tf "#e78284" --hf "#e5c890" --nf "#c6d0f5" --af "#c6d0f5" --ab "#303446"
 
 set $focusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=name": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
 set $transformFocusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=transform": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
@@ -32,7 +32,7 @@ bindsym $mod+t exec test $transformFocusedMonitor = 'normal' && swaymsg output $
 # bindsym $mod+b exec swaymsg bar mode toggle
 bindsym $mod+space floating toggle
 bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm || LIBGL_ALWAYS_SOFTWARE=1 flatpak run org.wezfurlong.wezterm
-bindsym $mod+d exec BEMENU_BACKEND=wayland BEMENU_OPTS='-i -l 20 --fb "#282C34" --ff "#abb2bf" --nb "#282C34" --nf "#abb2bf" --tb "#282C34" --hb "#282C34" --tf "#e06c75" --hf "#e5c07b" --nf "#abb2bf" --af "#abb2bf" --ab "#282C34"' bemenu-run
+bindsym $mod+d exec BEMENU_BACKEND=wayland bemenu-run -i -l 20 --fb "#303446" --ff "#c6d0f5" --nb "#303446" --nf "#c6d0f5" --tb "#303446" --hb "#303446" --tf "#e78284" --hf "#e5c890" --nf "#c6d0f5" --af "#c6d0f5" --ab "#303446"
 
 bindsym $mod+Shift+r reload
 bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway ?' -b 'Yes' 'swaymsg exit'
@@ -160,17 +160,29 @@ bar {
     # urgent_workspace   #2f343aAA #EB4D4BAA #FFFFFF
     # binding_mode       #2f343aAA #FF0000AA #FFFFFF
 
-    # onedark
-    background         #282C34
-    statusline         #abb2bf
-    focused_statusline #abb2bf
-    active_workspace   #282C34 #abb2bf #61AFEF
-    focused_separator  #282C34
-    focused_workspace  #282C34 #282C34 #98C379
-    active_workspace   #282C34 #282C34 #61AFEF
-    inactive_workspace #282C34 #282C34 #5c6370
-    urgent_workspace   #282C34 #282C34 #5c6370
-    binding_mode       #282C34 #282C34 #5c6370
+    # # onedark
+    # background         #282C34
+    # statusline         #abb2bf
+    # focused_statusline #abb2bf
+    # active_workspace   #282C34 #abb2bf #61AFEF
+    # focused_separator  #282C34
+    # focused_workspace  #282C34 #282C34 #98C379
+    # active_workspace   #282C34 #282C34 #61AFEF
+    # inactive_workspace #282C34 #282C34 #5c6370
+    # urgent_workspace   #282C34 #282C34 #5c6370
+    # binding_mode       #282C34 #282C34 #5c6370
+
+    # catppuccin macchiato
+    background         #303446
+    statusline         #c6d0f5
+    focused_statusline #c6d0f5
+    active_workspace   #303446 #c6d0f5 #8caaee
+    focused_separator  #303446
+    focused_workspace  #303446 #303446 #a6d189
+    active_workspace   #303446 #303446 #8caaee
+    inactive_workspace #303446 #303446 #51576d
+    urgent_workspace   #303446 #303446 #51576d
+    binding_mode       #303446 #303446 #51576d
 
   }
 
@@ -207,17 +219,17 @@ output * bg ~/.local/share/sway/wallpaper fill
 # window
 default_border pixel 1
 default_floating_border pixel 1
-client.focused #5c6370 #5c6370 #5c6370 #5c6370 #5c6370
+client.focused #c6d0f5 #c6d0f5 #c6d0f5 #c6d0f5 #c6d0f5
 client.unfocused #000000 #000000 #000000 #000000 #000000
 client.focused_inactive #000000 #000000 #000000 #000000 #000000
 # gaps inner 20
 
 # catppuccin
-# exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Rosewater-Dark ]; then \
-#   mkdir -p ~/.themes \
-#   && curl -L https://github.com/catppuccin/gtk/releases/download/v0.4.1/Catppuccin-Frappe-Standard-Rosewater-Dark.zip -o ~/.themes/catppuccin.zip \
-#   && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
-#   && rm -rf ~/.themes/catppuccin.zip; fi
+exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Lavender-dark ]; then \
+  mkdir -p ~/.themes \
+  && curl -L https://github.com/catppuccin/gtk/releases/download/v0.6.1/Catppuccin-Frappe-Standard-Lavender-dark.zip -o ~/.themes/catppuccin.zip \
+  && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
+  && rm -rf ~/.themes/catppuccin.zip; fi
 
 # lock screen
 # bindsym $mod+q exec swaylock -c 000000
@@ -228,8 +240,8 @@ bindsym $mod+n exec pactl set-sink-volume @DEFAULT_SINK@ +05% || wpctl set-volum
 bindsym $mod+Shift+n exec pactl set-sink-volume @DEFAULT_SINK@ -05% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 bindsym $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 bindsym $mod+Shift+m exec pactl set-sink-mute @DEFAULT_SINK@ toggle || wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-bindsym $mod+p exec GTK_THEME='Adwaita:dark' pavucontrol
-bindsym $mod+Shift+p exec GTK_THEME='Adwaita:dark' helvum
+bindsym $mod+p exec pavucontrol
+bindsym $mod+Shift+p exec helvum
 # push to talk
 bindsym --no-repeat $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 bindsym --no-repeat --release $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle

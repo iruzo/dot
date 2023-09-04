@@ -59,6 +59,14 @@
 .config/i3/*
 !.config/i3/config
 
+# aerc
+!.config/aerc
+.config/aerc/*
+!.config/aerc/aerc.conf
+!.config/aerc/stylesets
+.config/aerc/stylesets/*
+!.config/aerc/stylesets/catppuccin-frappe
+
 # mpv
 !.config/mpv
 .config/mpv/*

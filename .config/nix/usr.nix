@@ -78,7 +78,6 @@
       ripgrep     # finder
       keepassxc   # password manager
       qutebrowser # used for citrix since citrix is cringe
-      pandoc      # document converter
       zathura     # document viewer
       pandoc      # ducment converter
       mpv         # image and video viewer
@@ -139,16 +138,17 @@
   };
 
   programs = {
+    gnupg.agent.enable = true;
     noisetorch.enable = true;
-    # steam = {
-    #   enable = true;
-    #   # remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    #   # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-    # };
+    steam = {
+      enable = true;
+      # remotePlay.openFirewall = true;      # Open ports in the firewall for Steam Remote Play
+      # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    };
     chromium = {
       enable = true;
       extensions = [
-        "kjboibophcgchimahpicagheccpnjnhi" # Theme One Dark
+        "olhelnoplefjdmncknfphenjclimckaf" # Theme Catppuccin Frappe
         # "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
         "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
         "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock Origin
@@ -170,6 +170,7 @@
         "HasswordManagerEnabled" = false;
         "BrowserSignin" = 0;
         "SyncDisabled" = true;
+        "HardwareAccelerationModeEnabled" = true;
       };
     };
   };
@@ -187,7 +188,7 @@
       DisplayBookmarksToolbar = "never";
       NoDefaultBookmarks = true;
       SearchSuggestEnabled = true;
-      HardwareAcceleration = false;
+      HardwareAcceleration = true;
       SanitizeOnShutdown = {
         Cache = false;
         Cookies = false;
@@ -228,24 +229,18 @@
         extensions.activeThemeID = "{5ee380f7-abda-467c-ae9a-d30bf8f0d1d6}";
       };
       ExtensionSettings = {
-        # one dark
-        "{2db5ae19-2e89-4a71-a5f2-da0e2bf69917}" = {
+        # # one dark
+        # "{2db5ae19-2e89-4a71-a5f2-da0e2bf69917}" = {
+        #   allowed_types = "theme";
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/onedark-vim/latest.xpi";
+        # };
+        # catppuccin
+        "{5ee380f7-abda-467c-ae9a-d30bf8f0d1d6}" = {
           allowed_types = "theme";
           installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/onedark-vim/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-frappe-lavender/latest.xpi";
         };
-        # catppuccin
-        # "{15cb5e64-94bd-41aa-91cf-751bb1a84972}" = {
-        #   allowed_types = "theme";
-        #   installation_mode = "force_installed";
-        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-macchiato-lavender2/latest.xpi";
-        # };
-        # # gruvbox
-        # "{08d5243b-4236-4a27-984b-1ded22ce01c3}" = {
-        #   allowed_types = "theme";
-        #   installation_mode = "force_installed";
-        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvboxgruvboxgruvboxgruvboxgr/latest.xpi";
-        # };
         # ublock
         "uBlock0@raymondhill.net" = {
           allowed_types = "extension";

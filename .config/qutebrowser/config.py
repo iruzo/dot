@@ -32,21 +32,21 @@ c.window.transparent=True
 # c.content.fullscreen.window = True
 
 # themes
-# if not os.path.exists(config.configdir / "theme.py"):
-#     themes = [
-#             "https://raw.githubusercontent.com/The-Compiler/dotfiles/master/qutebrowser/gruvbox.py",
-#             # "https://raw.githubusercontent.com/Linuus/nord-qutebrowser/master/nord-qutebrowser.py",
-#             # "https://raw.githubusercontent.com/catppuccin/qutebrowser/main/setup.py",
-#             ]
-#     if len(themes) > 0:
-#         for theme in themes:
-#             with urlopen(theme) as themehtml:
-#                 with open(config.configdir / "theme.py", "a") as file:
-#                     file.writelines(themehtml.read().decode("utf-8"))
-# if os.path.exists(config.configdir / "theme.py"):
-#     # import theme
-#     # theme.setup(c, 'macchiato', True)
-#     config.source('theme.py')
+if not os.path.exists(config.configdir / "theme.py"):
+    themes = [
+            # "https://raw.githubusercontent.com/The-Compiler/dotfiles/master/qutebrowser/gruvbox.py",
+            # "https://raw.githubusercontent.com/Linuus/nord-qutebrowser/master/nord-qutebrowser.py",
+            "https://raw.githubusercontent.com/catppuccin/qutebrowser/main/setup.py",
+            ]
+    if len(themes) > 0:
+        for theme in themes:
+            with urlopen(theme) as themehtml:
+                with open(config.configdir / "theme.py", "a") as file:
+                    file.writelines(themehtml.read().decode("utf-8"))
+if os.path.exists(config.configdir / "theme.py"):
+    import theme
+    theme.setup(c, 'frappe', True)
+    # config.source('theme.py')
 
 # styles
 # if not os.path.exists(config.configdir / "style.css"):
