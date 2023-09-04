@@ -229,12 +229,6 @@
         extensions.activeThemeID = "{5ee380f7-abda-467c-ae9a-d30bf8f0d1d6}";
       };
       ExtensionSettings = {
-        # # one dark
-        # "{2db5ae19-2e89-4a71-a5f2-da0e2bf69917}" = {
-        #   allowed_types = "theme";
-        #   installation_mode = "force_installed";
-        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/onedark-vim/latest.xpi";
-        # };
         # catppuccin
         "{5ee380f7-abda-467c-ae9a-d30bf8f0d1d6}" = {
           allowed_types = "theme";
@@ -283,12 +277,12 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/temporary-containers/latest.xpi";
         };
+        # tampermonkey
         "firefox@tampermonkey.net" = {
           allowed_types = "extension";
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi";
         };
-        # tampermonkey
         # # tab-volume
         # "{a8e99fca-eb8f-410f-84e9-142eb055c162}" = {
         #   allowed_types = "extension";
