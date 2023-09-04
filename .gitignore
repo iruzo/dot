@@ -54,11 +54,6 @@
 # xinitrc
 !.xinitrc
 
-# i3
-!.config/i3
-.config/i3/*
-!.config/i3/config
-
 # aerc
 !.config/aerc
 .config/aerc/*
