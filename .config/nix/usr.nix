@@ -78,9 +78,10 @@
       ripgrep     # finder
       keepassxc   # password manager
       qutebrowser # used for citrix since citrix is cringe
+      mpv         # image and video
       zathura     # document viewer
       pandoc      # ducment converter
-      mpv         # image and video viewer
+      libreoffice # office
       # gpt4all     # run data models locally
 
       # tools
