@@ -31,7 +31,7 @@
   time.timeZone = "Europe/Madrid";
 
   # Enable CUPS to print documents.
-  services.printing.enable = true;
+  # services.printing.enable = true;
 
   # this is required for mounting android phones over mtp://
   # services.gvfs.enable = true;
