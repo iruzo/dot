@@ -36,6 +36,6 @@
   # this is required for mounting android phones over mtp://
   # services.gvfs.enable = true;
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 
 }
