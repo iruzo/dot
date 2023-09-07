@@ -82,6 +82,7 @@
       zathura     # document viewer
       pandoc      # ducment converter
       libreoffice # office
+      mat2        # clean metadata
       # gpt4all     # run data models locally
 
       # tools
