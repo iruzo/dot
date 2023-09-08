@@ -10,8 +10,6 @@
       ./nix.nix
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_6_1;
-
   fileSystems."/".options = [ "noatime" "discard" ];
 
   # keyboard and internationalisation properties

@@ -92,7 +92,6 @@
       prismlauncher
 
       # web apps
-      brave
       # (pkgs.chromium.override {
       #   commandLineArgs = [
       #     "--disk-cache=$XDG_RUNTIME_DIR/chromium-cache"
@@ -147,34 +146,34 @@
       # remotePlay.openFirewall = true;      # Open ports in the firewall for Steam Remote Play
       # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
-    chromium = {
-      enable = true;
-      extensions = [
-        "olhelnoplefjdmncknfphenjclimckaf" # Theme Catppuccin Frappe
-        # "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
-        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
-        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock Origin
-        "edibdbjcniadpccecjdfdjjppcpchdlm" # I still dont care about cookies
-        "ldpochfccmkkmhdbclfhpagapcfdljkj" # Decentraleyes
-        "lckanjgmijmafbedllaakclkaicjfmnk" # Clear urls
-        "oldceeleldhonbafppcapldpdifcinji" # Grammar checker
-        "hfjbmagddngcpeloejdejnfgbamkjaeg" # Vimium C
-        "hlepfoohegkhhmjieoechaddaejaokhf" # Refined Github
-        "kajibbejlbohfaggdiogboambcijhkke" # Mailvelope
-        "hbplgmpfdabobhnadbfpknppljdfkiia" # SimpleDiscordCrypt
-      ];
-      # Enterprise policy list: https://chromeenterprise.google/policies/
-      # chrome://policy shows applied policies and syntax errors.
-      extraOpts = {
-        "HomepageLocation" = "https://start.duckduckgo.com";
-        "DefaultSearchProviderSearchURL" = "https://duckduckgo.com/?q={searchTerms}";
-        "OsColorMode" = "dark";
-        "HasswordManagerEnabled" = false;
-        "BrowserSignin" = 0;
-        "SyncDisabled" = true;
-        "HardwareAccelerationModeEnabled" = true;
-      };
-    };
+    # chromium = {
+    #   enable = true;
+    #   extensions = [
+    #     "olhelnoplefjdmncknfphenjclimckaf" # Theme Catppuccin Frappe
+    #     # "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
+    #     "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+    #     "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock Origin
+    #     "edibdbjcniadpccecjdfdjjppcpchdlm" # I still dont care about cookies
+    #     "ldpochfccmkkmhdbclfhpagapcfdljkj" # Decentraleyes
+    #     "lckanjgmijmafbedllaakclkaicjfmnk" # Clear urls
+    #     "oldceeleldhonbafppcapldpdifcinji" # Grammar checker
+    #     "hfjbmagddngcpeloejdejnfgbamkjaeg" # Vimium C
+    #     "hlepfoohegkhhmjieoechaddaejaokhf" # Refined Github
+    #     "kajibbejlbohfaggdiogboambcijhkke" # Mailvelope
+    #     "hbplgmpfdabobhnadbfpknppljdfkiia" # SimpleDiscordCrypt
+    #   ];
+    #   # Enterprise policy list: https://chromeenterprise.google/policies/
+    #   # chrome://policy shows applied policies and syntax errors.
+    #   extraOpts = {
+    #     "HomepageLocation" = "https://start.duckduckgo.com";
+    #     "DefaultSearchProviderSearchURL" = "https://duckduckgo.com/?q={searchTerms}";
+    #     "OsColorMode" = "dark";
+    #     "HasswordManagerEnabled" = false;
+    #     "BrowserSignin" = 0;
+    #     "SyncDisabled" = true;
+    #     "HardwareAccelerationModeEnabled" = false;
+    #   };
+    # };
   };
 
   programs.firefox = {
@@ -195,12 +194,12 @@
         Cache = false;
         Cookies = false;
         Downloads = true;
-        FormData = true;
+        FormData = false;
         History = true;
-        Sessions = true;
-        SiteSettings = true;
-        OfflineApps = true;
-        Locked = true;
+        Sessions = false;
+        SiteSettings = false;
+        OfflineApps = false;
+        Locked = false;
       };
       SearchEngines = {
         Default = "DuckDuckGo";
@@ -315,12 +314,18 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/mailvelope/latest.xpi";
         };
-        # # SimpleDiscordCrypt
-        # "{8166255e-a47b-45ee-89be-28bd3f71d6ad}" = {
-        #   allowed_types = "extension";
-        #   installation_mode = "force_installed";
-        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/simplediscordcrypt/latest.xpi";
-        # };
+        # Discord container
+        "@contain-discord" = {
+          allowed_types = "extension";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/discord-container/latest.xpi";
+        };
+        # SimpleDiscordCrypt
+        "{8166255e-a47b-45ee-89be-28bd3f71d6ad}" = {
+          allowed_types = "extension";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/simplediscordcrypt/latest.xpi";
+        };
       };
     };
   };

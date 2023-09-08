@@ -5,7 +5,7 @@
   inputs = {
 
     # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     # nur.url = "github:nix-community/nur";
     # winstonnur.url = "github:nekowinston/nur"; # flake lock --update-input winstonnur
 
