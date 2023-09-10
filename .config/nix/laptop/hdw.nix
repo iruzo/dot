@@ -26,7 +26,9 @@
       "rhgb"
       "quiet"
       "splash"
-      "processor.max_cstate=0" # amd ryzen anti-freeze
+      "processor.max_cstate=0"          # amd anti-freeze
+      "amd_iommu=off"                   # amd anti-freeze
+      "amdgpu.ppfeaturemask=0xffffbffd" # amd anti-freeze
     ];
 
   };
@@ -46,12 +48,18 @@
     ksm.enable = true;
     opengl = {
       enable = true;
-      driSupport = true; # vulkan
-      # driSupport32Bit = true; # vulkan 32 bit
+      driSupport = true;      # vulkan
+      driSupport32Bit = true; # vulkan 32 bit
+      extraPackages = with pkgs; [
+        amdvlk                # can be used in addition to mesa radv drivers
+        rocm-opencl-icd       # opencl
+        rocm-opencl-runtime   # opencl
+      ];
+      extraPackages32 = with pkgs; [
+        driversi686Linux.amdvlk
+      ];
     };
   };
-  # # enable opencl support
-  # services.xmr-stak.openclSupport = true;
 
   # Libvirtd (Qemu)
   virtualisation = {
