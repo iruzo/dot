@@ -51,9 +51,6 @@
 .config/sway/*
 !.config/sway/config
 
-# xinitrc
-!.xinitrc
-
 # aerc
 !.config/aerc
 .config/aerc/*
