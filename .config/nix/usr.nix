@@ -92,6 +92,7 @@
       prismlauncher
 
       # web apps
+      brave
       # (pkgs.chromium.override {
       #   commandLineArgs = [
       #     "--disk-cache=$XDG_RUNTIME_DIR/chromium-cache"
@@ -146,34 +147,34 @@
       # remotePlay.openFirewall = true;      # Open ports in the firewall for Steam Remote Play
       # dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     };
-    # chromium = {
-    #   enable = true;
-    #   extensions = [
-    #     "olhelnoplefjdmncknfphenjclimckaf" # Theme Catppuccin Frappe
-    #     # "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
-    #     "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
-    #     "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock Origin
-    #     "edibdbjcniadpccecjdfdjjppcpchdlm" # I still dont care about cookies
-    #     "ldpochfccmkkmhdbclfhpagapcfdljkj" # Decentraleyes
-    #     "lckanjgmijmafbedllaakclkaicjfmnk" # Clear urls
-    #     "oldceeleldhonbafppcapldpdifcinji" # Grammar checker
-    #     "hfjbmagddngcpeloejdejnfgbamkjaeg" # Vimium C
-    #     "hlepfoohegkhhmjieoechaddaejaokhf" # Refined Github
-    #     "kajibbejlbohfaggdiogboambcijhkke" # Mailvelope
-    #     "hbplgmpfdabobhnadbfpknppljdfkiia" # SimpleDiscordCrypt
-    #   ];
-    #   # Enterprise policy list: https://chromeenterprise.google/policies/
-    #   # chrome://policy shows applied policies and syntax errors.
-    #   extraOpts = {
-    #     "HomepageLocation" = "https://start.duckduckgo.com";
-    #     "DefaultSearchProviderSearchURL" = "https://duckduckgo.com/?q={searchTerms}";
-    #     "OsColorMode" = "dark";
-    #     "HasswordManagerEnabled" = false;
-    #     "BrowserSignin" = 0;
-    #     "SyncDisabled" = true;
-    #     "HardwareAccelerationModeEnabled" = false;
-    #   };
-    # };
+    chromium = {
+      enable = true;
+      extensions = [
+        "olhelnoplefjdmncknfphenjclimckaf" # Theme Catppuccin Frappe
+        # "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
+        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock Origin
+        "edibdbjcniadpccecjdfdjjppcpchdlm" # I still dont care about cookies
+        "ldpochfccmkkmhdbclfhpagapcfdljkj" # Decentraleyes
+        "lckanjgmijmafbedllaakclkaicjfmnk" # Clear urls
+        "oldceeleldhonbafppcapldpdifcinji" # Grammar checker
+        "hfjbmagddngcpeloejdejnfgbamkjaeg" # Vimium C
+        "hlepfoohegkhhmjieoechaddaejaokhf" # Refined Github
+        "kajibbejlbohfaggdiogboambcijhkke" # Mailvelope
+        "hbplgmpfdabobhnadbfpknppljdfkiia" # SimpleDiscordCrypt
+      ];
+      # Enterprise policy list: https://chromeenterprise.google/policies/
+      # chrome://policy shows applied policies and syntax errors.
+      extraOpts = {
+        "HomepageLocation" = "https://start.duckduckgo.com";
+        "DefaultSearchProviderSearchURL" = "https://duckduckgo.com/?q={searchTerms}";
+        "OsColorMode" = "dark";
+        "HasswordManagerEnabled" = false;
+        "BrowserSignin" = 0;
+        "SyncDisabled" = true;
+        "HardwareAccelerationModeEnabled" = true;
+      };
+    };
   };
 
   programs.firefox = {
