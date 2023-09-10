@@ -43,15 +43,15 @@ in
       slurp
       brightnessctl
 
-      gnome.nautilus
+      pcmanfm
       gnome.gnome-logs
       gnome.gnome-boxes
     ];
   };
-  services.gvfs.enable = true;        # needed for nautilus
+  # programs.xwayland.enable = true;
+  services.gvfs.enable = true;        # needed for pcmanfm
   services.udisks2.enable = true;     # needed for gnome-disks
   programs.gnome-disks.enable = true; # gnome-disks
-  # programs.xwayland.enable = true;
   services.dbus.enable = true;
   xdg.portal = {
     enable = true;
