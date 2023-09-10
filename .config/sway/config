@@ -172,7 +172,7 @@ bar {
     # urgent_workspace   #282C34 #282C34 #5c6370
     # binding_mode       #282C34 #282C34 #5c6370
 
-    # catppuccin macchiato
+    # catppuccin frappe
     background         #303446
     statusline         #c6d0f5
     focused_statusline #c6d0f5
@@ -207,8 +207,8 @@ output DP-2 transform 270
 # workspace 2 output HDMI-A-1
 # workspace 3 output DP-1
 
-set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/nord-dark-city.jpeg
-set $lock https://raw.githubusercontent.com/iruzo/wp/main/nord-dark-dune.png
+set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-frappe-anime-minimal-shigatsu-wa-kimi-no-uso.png
+set $lock https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-frappe-anime-minimal-shigatsu-wa-kimi-no-uso.png
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
