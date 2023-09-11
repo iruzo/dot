@@ -220,8 +220,8 @@ output * bg ~/.local/share/sway/wallpaper fill
 default_border pixel 1
 default_floating_border pixel 1
 client.focused #c6d0f5 #c6d0f5 #c6d0f5 #c6d0f5 #c6d0f5
-client.unfocused #000000 #000000 #000000 #000000 #000000
-client.focused_inactive #000000 #000000 #000000 #000000 #000000
+client.unfocused #51576d #51576d #51576d #51576d #51576d
+client.focused_inactive #51576d #51576d #51576d #51576d #51576d
 # gaps inner 20
 
 # catppuccin
