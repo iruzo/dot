@@ -190,10 +190,13 @@ bar {
 }
 # exec pkill swaybar
 
-# input
+# inputs
 input "type:keyboard" {
   xkb_layout us(altgr-intl)
   xkb_options eurosign:5
+}
+input "type:touchpad" {
+  tap enabled
 }
 
 # output
