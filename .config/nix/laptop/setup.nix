@@ -3,10 +3,10 @@
 {
   imports =
     [
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
       ./hdw.nix
       ./net.nix
-      ./gui.nix
+      ./gui/sway.nix
       ./nix.nix
     ];
 

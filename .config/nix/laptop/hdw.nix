@@ -16,6 +16,7 @@
       '';
       kernelModules = [ "amdgpu" ];
     };
+    kernelModules = [ "kvm-amd" ];
 
     loader = {
       systemd-boot.enable = true;

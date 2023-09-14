@@ -27,12 +27,16 @@ let
     '';
   };
 
-
 in
 {
 
   programs.sway = {
     enable = true;
+    package = (pkgs.swayfx.overrideAttrs
+      (old: {
+        passthru.providedSessions = [ "sway" ];
+      }));
+    # extraOptions = [ "--unsupported-gpu" ];
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
       swaynotificationcenter
