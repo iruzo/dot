@@ -97,6 +97,18 @@ return {
   },
 
   {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = true,
+  },
+
+  {
+    'AndrewRadev/tagalong.vim',
+    tag = 'v0.2.2',
+    ft = { 'html' },
+  },
+
+  {
     'chrisbra/csv.vim',
     ft = 'csv',
   },
@@ -139,6 +151,7 @@ return {
     tag = '0.1.2',
     cmd = 'Telescope',
     dependencies = {
+      'nvim-lua/plenary.nvim',
       'debugloop/telescope-undo.nvim',
       'nvim-telescope/telescope-live-grep-args.nvim',
     },
@@ -448,6 +461,14 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
     dependencies = {
+      {
+        'dnlhc/glance.nvim',
+        opts = true,
+        keys = {
+          { 'glr', ':Glance references<CR>',  silent = true, desc = 'lsp references' },
+          { 'gld', ':Glance definitions<CR>', silent = true, desc = 'lsp definitions' },
+        },
+      },
       {
         'williamboman/mason-lspconfig.nvim',
         tag = 'stable',
