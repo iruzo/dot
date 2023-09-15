@@ -1,6 +1,6 @@
-require("config")
-require("keys")
-require("gui")
+require("core/config")
+require("core/keys")
+require("core/gui")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -14,4 +14,17 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup("plug")
+require("lazy").setup(
+  {
+    {import="plug"},
+  },
+  {
+    checker= {
+      enabled=true,
+      notify=false,
+    },
+    change_detection = {
+      notify=false,
+    },
+  }
+)
