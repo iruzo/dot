@@ -24,7 +24,7 @@ return {
   default_prog = default_prog,
   font = wezterm.font('Fira Code', { weight = 'Bold' }),
   -- font = wezterm.font('SF Mono'),
-  -- window_background_opacity = 0.9,
+  window_background_opacity = 0.8,
   default_domain = default_domain,
   -- color_scheme = "Gruvbox dark, medium (base16)",
   -- color_scheme = "OneDark (base16)",
