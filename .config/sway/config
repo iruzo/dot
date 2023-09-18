@@ -10,108 +10,26 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec configure-gtk
 exec swaync
 
-# Logo key. Use Mod1 for Alt.
-set $mod Mod4
-# Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
+# swayfx
+  blur enable
+  shadows enable
+  corner_radius 10
+  layer_effects "panel" blur enable; shadows enable; corner_radius 10
+  layer_effects "menu" blur enable; shadows enable; corner_radius 10
 
-set $emptymenu BEMENU_BACKEND=wayland bemenu -i -l 20 --fb "#303446" --ff "#c6d0f5" --nb "#303446" --nf "#c6d0f5" --tb "#303446" --hb "#303446" --tf "#e78284" --hf "#e5c890" --nf "#c6d0f5" --af "#c6d0f5" --ab "#303446"
-
-set $focusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=name": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
-set $transformFocusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=transform": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
-
-floating_modifier $mod normal
-
-# keybindings
-bindsym $mod+c kill
-bindsym $mod+f fullscreen
-bindsym $mod+t exec test $transformFocusedMonitor = 'normal' && swaymsg output $focusedMonitor transform 90 || swaymsg output $focusedMonitor transform normal
-# bindsym $mod+b exec swaymsg bar mode toggle
-bindsym $mod+space floating toggle
-bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm || LIBGL_ALWAYS_SOFTWARE=1 flatpak run org.wezfurlong.wezterm
-bindsym $mod+d exec BEMENU_BACKEND=wayland bemenu-run -i -l 20 --fb "#303446" --ff "#c6d0f5" --nb "#303446" --nf "#c6d0f5" --tb "#303446" --hb "#303446" --tf "#e78284" --hf "#e5c890" --nf "#c6d0f5" --af "#c6d0f5" --ab "#303446"
-
-bindsym $mod+Shift+r reload
-bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway ?' -b 'Yes' 'swaymsg exit'
-
-# movement:
-# Move your focus around
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-# Or use $mod+[up|down|left|right]
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-# Move the focused window with the same, but add Shift
-bindsym $mod+Shift+$left move left
-bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$up move up
-bindsym $mod+Shift+$right move right
-
-# workspaces:
-# Switch to workspace
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2
-bindsym $mod+3 workspace number 3
-bindsym $mod+4 workspace number 4
-bindsym $mod+5 workspace number 5
-bindsym $mod+6 workspace number 6
-bindsym $mod+7 workspace number 7
-bindsym $mod+8 workspace number 8
-bindsym $mod+9 workspace number 9
-bindsym $mod+0 workspace number 10
-# Move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5
-bindsym $mod+Shift+6 move container to workspace number 6
-bindsym $mod+Shift+7 move container to workspace number 7
-bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
-
-# split
-bindsym $mod+Shift+v splith
-bindsym $mod+v splitv
-
-# Switch the current container between different layout styles
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-# Move focus to the parent container
-bindsym $mod+a focus parent
-
-# scratchpad
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
-
-# resizing:
-mode "resize" {
-  bindsym $left resize shrink width 10px
-  bindsym $down resize grow height 10px
-  bindsym $up resize shrink height 10px
-  bindsym $right resize grow width 10px
-
-  # Ditto, with arrow keys
-  bindsym Left resize shrink width 10px
-  bindsym Down resize grow height 10px
-  bindsym Up resize shrink height 10px
-  bindsym Right resize grow width 10px
-
-  # Return to default mode
-  bindsym Return mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $mod+r mode "resize"
+# variables
+  # logo key. Use Mod1 for Alt.
+  set $mod Mod4
+  # home row direction keys, like vim
+  set $left h
+  set $down j
+  set $up k
+  set $right l
+  # personal
+  set $emptymenu BEMENU_BACKEND=wayland bemenu -i -l 20 --fb "#30344680" --ff "#c6d0f5" --nb "#30344680" --nf "#c6d0f5" --tb "#30344680" --hb "#30344680" --tf "#e78284" --hf "#e5c890" --nf "#c6d0f5" --af "#c6d0f5" --ab "#30344680"
+  set $focusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=name": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
+  set $transformFocusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=transform": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
+  floating_modifier $mod normal
 
 bar {
   position bottom
@@ -173,16 +91,16 @@ bar {
     # binding_mode       #282C34 #282C34 #5c6370
 
     # catppuccin frappe
-    background         #303446
+    background         #30344680
     statusline         #c6d0f5
     focused_statusline #c6d0f5
-    active_workspace   #303446 #c6d0f5 #8caaee
-    focused_separator  #303446
-    focused_workspace  #303446 #303446 #a6d189
-    active_workspace   #303446 #303446 #8caaee
-    inactive_workspace #303446 #303446 #51576d
-    urgent_workspace   #303446 #303446 #51576d
-    binding_mode       #303446 #303446 #51576d
+    active_workspace   #30344680 #c6d0f5 #8caaee
+    focused_separator  #30344680
+    focused_workspace  #30344680 #30344680 #a6d189
+    active_workspace   #30344680 #30344680 #8caaee
+    inactive_workspace #30344680 #30344680 #51576d
+    urgent_workspace   #30344680 #30344680 #51576d
+    binding_mode       #30344680 #30344680 #51576d
 
   }
 
@@ -204,14 +122,10 @@ output * res 1920x1080
 output DP-2 transform 270
 
 # output eDP-1 pos 0 0 res 1920x1080
-# output HDMI-A-1 pos 1920 0 res 1920x1080
-# output DP-1 pos 3840 0 res 1920x1080
 # workspace 1 output eDP-1
-# workspace 2 output HDMI-A-1
-# workspace 3 output DP-1
 
-set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-frappe-anime-minimal-shigatsu-wa-kimi-no-uso.png
-set $lock https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-frappe-anime-minimal-shigatsu-wa-kimi-no-uso.png
+set $wallpaper https://cdnb.artstation.com/p/assets/images/images/065/463/277/4k/alena-aenami-light-at-the-end-hd.jpg?1690416813
+set $lock https://cdnb.artstation.com/p/assets/images/images/065/463/277/4k/alena-aenami-light-at-the-end-hd.jpg?1690416813
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
@@ -225,12 +139,13 @@ default_floating_border pixel 1
 client.focused #c6d0f5 #c6d0f5 #c6d0f5 #c6d0f5 #c6d0f5
 client.unfocused #51576d #51576d #51576d #51576d #51576d
 client.focused_inactive #51576d #51576d #51576d #51576d #51576d
-# gaps inner 20
+gaps inner 10
 
 # catppuccin
+set $ctp-version v0.6.1
 exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Lavender-dark ]; then \
   mkdir -p ~/.themes \
-  && curl -L https://github.com/catppuccin/gtk/releases/download/v0.6.1/Catppuccin-Frappe-Standard-Lavender-dark.zip -o ~/.themes/catppuccin.zip \
+  && curl -L https://github.com/catppuccin/gtk/releases/download/$ctp-version/Catppuccin-Frappe-Standard-Lavender-dark.zip -o ~/.themes/catppuccin.zip \
   && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
   && rm -rf ~/.themes/catppuccin.zip; fi
 
@@ -238,53 +153,109 @@ exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Lavender-dark ]; then
 # bindsym $mod+q exec swaylock -c 000000
 bindsym $mod+q exec swaylock -i ~/.local/share/sway/lock
 
-# volume
-bindsym $mod+n exec pactl set-sink-volume @DEFAULT_SINK@ +05% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-bindsym $mod+Shift+n exec pactl set-sink-volume @DEFAULT_SINK@ -05% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-bindsym $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-bindsym $mod+Shift+m exec pactl set-sink-mute @DEFAULT_SINK@ toggle || wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
-bindsym $mod+p exec pavucontrol
-bindsym $mod+Shift+p exec helvum
-# push to talk
-bindsym --no-repeat $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
-bindsym --no-repeat --release $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+# keybindings
 
-# notifications
-bindsym $mod+x exec swaync-client -t
+  # windows
+    bindsym $mod+c kill
+    bindsym $mod+f fullscreen
+    bindsym $mod+t exec test $transformFocusedMonitor = 'normal' && swaymsg output $focusedMonitor transform 90 || swaymsg output $focusedMonitor transform normal
+    bindsym $mod+space floating toggle
+    bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm || LIBGL_ALWAYS_SOFTWARE=1 flatpak run org.wezfurlong.wezterm
+    bindsym $mod+d exec BEMENU_BACKEND=wayland bemenu-run -i -l 20 --fb "#30344680" --ff "#c6d0f5" --nb "#30344680" --nf "#c6d0f5" --tb "#30344680" --hb "#30344680" --tf "#e78284" --hf "#e5c890" --nf "#c6d0f5" --af "#c6d0f5" --ab "#30344680"
+    bindsym $mod+Shift+r reload
+    bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway ?' -b 'Yes' 'swaymsg exit'
+    # split
+    bindsym $mod+Shift+v splith
+    bindsym $mod+v splitv
+    # current container layouts
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
+    # move focus to parent container
+    bindsym $mod+a focus parent
+    # scratchpad
+    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+minus scratchpad show
+    # resizing
+    mode "resize" {
+      bindsym $left resize shrink width 10px
+      bindsym $down resize grow height 10px
+      bindsym $up resize shrink height 10px
+      bindsym $right resize grow width 10px
+      # Ditto, with arrow keys
+      bindsym Left resize shrink width 10px
+      bindsym Down resize grow height 10px
+      bindsym Up resize shrink height 10px
+      bindsym Right resize grow width 10px
+      # Return to default mode
+      bindsym Return mode "default"
+      bindsym Escape mode "default"
+    }
+    bindsym $mod+r mode "resize"
 
-# brightness
-bindsym $mod+b exec brightnessctl s +10
-bindsym $mod+Shift+b exec brightnessctl s 10-
+  # movement:
+    # focus
+      bindsym $mod+$left focus left
+      bindsym $mod+$down focus down
+      bindsym $mod+$up focus up
+      bindsym $mod+$right focus right
+      bindsym $mod+Left focus left
+      bindsym $mod+Down focus down
+      bindsym $mod+Up focus up
+      bindsym $mod+Right focus right
+      bindsym $mod+Shift+$left move left
+      bindsym $mod+Shift+$down move down
+      bindsym $mod+Shift+$up move up
+      bindsym $mod+Shift+$right move right
+    # workspaces:
+      bindsym $mod+1 workspace number 1
+      bindsym $mod+2 workspace number 2
+      bindsym $mod+3 workspace number 3
+      bindsym $mod+4 workspace number 4
+      bindsym $mod+5 workspace number 5
+      bindsym $mod+6 workspace number 6
+      bindsym $mod+7 workspace number 7
+      bindsym $mod+8 workspace number 8
+      bindsym $mod+9 workspace number 9
+      bindsym $mod+0 workspace number 10
+      bindsym $mod+Shift+1 move container to workspace number 1
+      bindsym $mod+Shift+2 move container to workspace number 2
+      bindsym $mod+Shift+3 move container to workspace number 3
+      bindsym $mod+Shift+4 move container to workspace number 4
+      bindsym $mod+Shift+5 move container to workspace number 5
+      bindsym $mod+Shift+6 move container to workspace number 6
+      bindsym $mod+Shift+7 move container to workspace number 7
+      bindsym $mod+Shift+8 move container to workspace number 8
+      bindsym $mod+Shift+9 move container to workspace number 9
+      bindsym $mod+Shift+0 move container to workspace number 10
 
-# screenshot
-bindsym $mod+Shift+s exec mkdir -p ~/media && grim -g "$(slurp)" ~/media/$(date +'%Y%m%d_%H%M%S').png
-
-# browser
-# bindsym $mod+o exec sh -c ' \
-# container=$(echo -e "\
-# element\n\
-# discord\n\
-# twitch\n\
-# google\n\
-# work\
-# " | bemenu) && \
-#   QT_QPA_PLATFORM=wayland QT_WAYLAND_DISABLE_WINDOWDECORATION=1 qutebrowser \
-#       -C ~/.config/qutebrowser/config.py \
-#       -B ~/.local/share/qutebrowser/containers/$container \
-# || qutebrowser \
-# '
-bindsym $mod+o exec firefox
-bindsym $mod+Shift+o exec cat ~/iruzo/quickmarks | $emptymenu | awk -F' ' '{print $NF}' | wl-copy $(cat)
-
-# discord
-bindsym $mod+g exec brave --app=https://discord.com/app || chromium --app=https://discord.com/app || chromium-browser --app=https://discord.com/app || firefox --new-instance https://discord.com/login || librewolf --kiosk https://discord.com/login
-
-# vm
-bindsym $mod+i exec gnome-boxes
-
-# keepassxc
-bindsym $mod+u exec keepassxc || flatpak run org.keepassxc.KeePassXC
-bindsym $mod+Shift+u exec cat '' 2> /dev/null | $emptymenu -x -p "password" | gpg --batch --yes --passphrase-fd 0 -d ~/iruzo/contacts.gpg | $emptymenu | awk -F'+' '{print $NF}' | wl-copy $(cat)
-
-# steam
-bindsym $mod+y exec steam || flatpak run com.valvesoftware.Steam
+  # personal
+    # volume
+      bindsym $mod+n exec pactl set-sink-volume @DEFAULT_SINK@ +05% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+      bindsym $mod+Shift+n exec pactl set-sink-volume @DEFAULT_SINK@ -05% || wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+      bindsym $mod+m exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+      bindsym $mod+Shift+m exec pactl set-sink-mute @DEFAULT_SINK@ toggle || wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+      bindsym $mod+p exec pavucontrol
+      bindsym $mod+Shift+p exec helvum
+    # push to talk
+      bindsym --no-repeat $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+      bindsym --no-repeat --release $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+    # notifications
+      bindsym $mod+x exec swaync-client -t
+    # brightness
+      bindsym $mod+b exec brightnessctl s +10
+      bindsym $mod+Shift+b exec brightnessctl s 10-
+    # screenshot
+      bindsym $mod+Shift+s exec mkdir -p ~/media && grim -g "$(slurp)" ~/media/$(date +'%Y%m%d_%H%M%S').png
+    # browser
+      bindsym $mod+o exec firefox
+      bindsym $mod+Shift+o exec cat ~/iruzo/quickmarks | $emptymenu | awk -F' ' '{print $NF}' | wl-copy $(cat)
+    # discord
+      bindsym $mod+g exec brave --app=https://discord.com/app || chromium --app=https://discord.com/app || chromium-browser --app=https://discord.com/app || firefox --new-instance https://discord.com/login || librewolf --kiosk https://discord.com/login
+    # vm
+      bindsym $mod+i exec gnome-boxes
+    # keepassxc
+      bindsym $mod+u exec keepassxc || flatpak run org.keepassxc.KeePassXC
+      bindsym $mod+Shift+u exec cat '' 2> /dev/null | $emptymenu -x -p "password" | gpg --batch --yes --passphrase-fd 0 -d ~/iruzo/contacts.gpg | $emptymenu | awk -F'+' '{print $NF}' | wl-copy $(cat)
+    # steam
+      bindsym $mod+y exec steam || flatpak run com.valvesoftware.Steam
