@@ -1,13 +1,5 @@
 # xwayland enable
 
-# enable pipewire
-# exec pipewire
-# exec pipewire-pulse
-
-# screencast on arch linux and nixos
-exec dbus-sway-environment
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-exec configure-gtk
 exec swaync
 
 # swayfx
@@ -117,13 +109,7 @@ input "type:touchpad" {
   tap enabled
 }
 
-# output
-output * res 1920x1080
-output DP-2 transform 270
-
-# output eDP-1 pos 0 0 res 1920x1080
-# workspace 1 output eDP-1
-
+# wallpaper
 set $wallpaper https://cdnb.artstation.com/p/assets/images/images/065/463/277/4k/alena-aenami-light-at-the-end-hd.jpg?1690416813
 set $lock https://cdnb.artstation.com/p/assets/images/images/065/463/277/4k/alena-aenami-light-at-the-end-hd.jpg?1690416813
 
