@@ -4,7 +4,6 @@ return {
     'echasnovski/mini.hipatterns',
     tag = 'v0.9.0',
     event = { 'BufReadPre', 'BufNewFile' },
-    event = 'VeryLazy',
     config = function()
       local hipatterns = require'mini.hipatterns'
       hipatterns.setup({
