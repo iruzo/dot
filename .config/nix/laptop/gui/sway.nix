@@ -2,23 +2,29 @@
 
 {
 
-  environment.systemPackages = with pkgs; [
-    swayfx
-    swaynotificationcenter
-    swaylock
-    wl-clipboard
-    bemenu
-    grim
-    slurp
-    brightnessctl
+  programs.sway = {
+    enable = true;
+    package = (
+      pkgs.swayfx.overrideAttrs (old: { passthru.providedSessions = [ "sway" ]; })
+    );
+    extraPackages = with pkgs; [
+      swaynotificationcenter
+      swaylock
+      wl-clipboard
+      bemenu
+      grim
+      slurp
+      brightnessctl
 
-    pcmanfm
-    gnome.gnome-logs
-    gnome.gnome-boxes
-  ];
+      pcmanfm
+      gnome.gnome-logs
+      gnome.gnome-boxes
+    ];
+  };
   services.gvfs.enable = true;        # needed for pcmanfm
   services.udisks2.enable = true;     # needed for gnome-disks
   programs.gnome-disks.enable = true; # gnome-disks
+
   services.dbus.enable = true;
   xdg.portal = {
     enable = true;
