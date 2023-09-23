@@ -243,6 +243,6 @@ bindsym $mod+q exec swaylock -i ~/.local/share/sway/lock
       bindsym $mod+i exec gnome-boxes
     # keepassxc
       bindsym $mod+u exec keepassxc || flatpak run org.keepassxc.KeePassXC
-      bindsym $mod+Shift+u exec cat '' 2> /dev/null | $emptymenu -x -p "password" | gpg --batch --yes --passphrase-fd 0 -d ~/iruzo/contacts.gpg | $emptymenu | awk -F'+' '{print $NF}' | wl-copy $(cat)
+      bindsym $mod+Shift+u exec cat ~/iruzo/contacts 2> /dev/null | $emptymenu | awk -F'-' '{print $NF}' | wl-copy $(cat)
     # steam
       bindsym $mod+y exec steam || flatpak run com.valvesoftware.Steam
