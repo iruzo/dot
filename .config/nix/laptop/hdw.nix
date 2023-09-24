@@ -16,7 +16,7 @@
       '';
       # kernelModules = [ "amdgpu" ];
     };
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_latest; # 6.5.1
 
     loader = {
       systemd-boot.enable = true;
@@ -42,22 +42,22 @@
   };
   powerManagement.enable = true; # laptop power features
 
-  # hardware = {
-  #   ksm.enable = true;
-  #   opengl = {
-  #     enable = true;
-  #     driSupport = true;      # vulkan
-  #     driSupport32Bit = true; # vulkan 32 bit
-  #     extraPackages = with pkgs; [
-  #       amdvlk                # can be used in addition to mesa radv drivers
-  #       rocm-opencl-icd       # opencl
-  #       rocm-opencl-runtime   # opencl
-  #     ];
-  #     extraPackages32 = with pkgs; [
-  #       driversi686Linux.amdvlk
-  #     ];
-  #   };
-  # };
+  hardware = {
+    ksm.enable = true;
+    opengl = {
+      enable = true;
+      driSupport = true;      # vulkan
+      driSupport32Bit = true; # vulkan 32 bit
+      extraPackages = with pkgs; [
+        amdvlk                # can be used in addition to mesa radv drivers
+        rocm-opencl-icd       # opencl
+        rocm-opencl-runtime   # opencl
+      ];
+      extraPackages32 = with pkgs; [
+        driversi686Linux.amdvlk
+      ];
+    };
+  };
 
   # Libvirtd (Qemu)
   virtualisation = {
