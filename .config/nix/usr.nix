@@ -13,6 +13,7 @@
       # anurati
       fira-code
       fira-code-symbols
+      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
       # pkgs.nur.repos.nekowinston.apple-sf-mono
     ];
     fontconfig = {

@@ -63,12 +63,17 @@ return {
             dependencies = {
               {
                 'L3MON4D3/LuaSnip',
-                tag = 'v1.2.1',
+                tag = 'v2.0.0',
                 dependencies = {
                   'rafamadriz/friendly-snippets',
+                  {
+                    'iruzo/pxmenu',
+                    cond = false,
+                  },
                 },
                 config = function()
                   require'luasnip.loaders.from_vscode'.lazy_load()
+                  -- require'luasnip.loaders.from_snipmate'.lazy_load({ paths = { "./my-cool-snippets" } })
                 end,
               }
             }
@@ -77,6 +82,14 @@ return {
         config = function(args)
           local cmp = require'cmp'
           require'cmp'.setup {
+            window = {
+              completion = {
+                border = 'rounded',
+              },
+              documentation = {
+                border = 'rounded',
+              },
+            },
             sources = cmp.config.sources({
               { name = 'nvim_lsp' },
               { name = 'luasnip' },

@@ -27,6 +27,7 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 bar {
   position bottom
   font "Fira Code bold 10"
+  gaps 10
 
   height 18
 
@@ -46,7 +47,7 @@ bar {
 
   status_command while ( echo \
       CPU: $(top -b -n1 | grep \"Cpu(s)\" | awk \'{print $2 + $4}\')% \| \
-      MEM: $(free -m | awk \'NR==2{printf \"%.2f%%\t\t\", $3*100/$2 }\') \| \
+      MEM: $(free -m | awk \'NR==2{printf $2-$7}\')MB \| \
       TEMP: $(($(cat /sys/class/thermal/thermal_zone0/temp || echo 1) / 1000))°C \| \
       DISK: $(df -h | awk \'$NF=="/"{printf \"%s\t\t\", $5}\') \| \
       $(pactl get-source-mute @DEFAULT_SOURCE@ || wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q "MUTED" && echo "Mute: yes" || echo "Mute: no") \| \
