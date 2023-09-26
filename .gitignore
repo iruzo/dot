@@ -57,6 +57,9 @@
 .config/hypr/*
 !.config/hypr/hyprland.conf
 
+# waybar
+!.config/waybar
+
 # aerc
 !.config/aerc
 .config/aerc/*
