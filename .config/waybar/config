@@ -46,7 +46,8 @@
       "max-length": 10,
       "tooltip": false,
       "warning": 70,
-      "critical": 90
+      "critical": 90,
+      "on-click": "wezterm start btop"
     },
     "network": {
       "interval": 2,
@@ -59,6 +60,7 @@
       "max-length": 20,
       "min-length": 6,
       "format-alt": "{essid}",
+      "on-click": "wezterm start nmtui"
     },
     "backlight": {
       // "device": "acpi_video1",
