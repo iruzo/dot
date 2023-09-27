@@ -9,7 +9,8 @@
   environment.systemPackages = (with pkgs; [
     wl-clipboard
     gtklock
-    bemenu
+    swaynotificationcenter
+    tofi
     (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
     swww
     grim
