@@ -60,6 +60,9 @@
 # waybar
 !.config/waybar
 
+# tofi
+!.config/tofi
+
 # aerc
 !.config/aerc
 .config/aerc/*
