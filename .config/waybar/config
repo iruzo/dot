@@ -25,7 +25,8 @@
   },
   "disk": {
     "format": "󰋊 {percentage_used}%",
-    "path": "/"
+    "path": "/",
+    "on-click": "gnome-disks"
   },
   "wlr/workspaces": {
     "format": "{icon}",
