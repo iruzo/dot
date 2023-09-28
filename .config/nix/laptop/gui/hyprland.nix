@@ -17,7 +17,7 @@
     slurp
     brightnessctl
 
-    pcmanfm
+    gnome.nautilus
     gnome.gnome-logs
     gnome.gnome-boxes
   ]);
@@ -27,7 +27,7 @@
       auth include login
     '';
   };
-  services.gvfs.enable = true;        # needed for pcmanfm
+  services.gvfs.enable = true;        # needed for nautilus
   services.udisks2.enable = true;     # needed for gnome-disks
   programs.gnome-disks.enable = true; # gnome-disks
 
