@@ -9,13 +9,13 @@
 
 .modules-left {
   background-color: #303446;
-  margin: 2px 2px 2px 2px;
+  margin: 10px 2px 2px 10px;
   border-radius: 15px;
 }
 
 .modules-right {
   background-color: #303446;
-  margin: 2px 2px 2px 2px;
+  margin: 10px 10px 2px 2px;
   border-radius: 15px;
 }
 
@@ -29,6 +29,7 @@
 #workspaces button{
     border-radius: 15px;
     margin-right: 10px;
+    margin-top: 10px;
     padding: 1px 10px;
     background: #303446;
     color: #c6d0f5;
