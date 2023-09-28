@@ -1,12 +1,22 @@
 *{
-    font-family: JetBrainsMono;
+    font-family: Fira Code;
     font-size: 13px;
+    /* font-weight: bold; */
     min-height: 0;
-    color: white;
+    color: #c6d0f5;
+    background-color: transparent;
 }
 
-window#waybar {
-    background-color: transparent;
+.modules-left {
+  background-color: #303446;
+  margin: 2px 2px 2px 2px;
+  border-radius: 15px;
+}
+
+.modules-right {
+  background-color: #303446;
+  margin: 2px 2px 2px 2px;
+  border-radius: 15px;
 }
 
 #workspaces{
@@ -20,7 +30,6 @@ window#waybar {
     border-radius: 15px;
     margin-right: 10px;
     padding: 1px 10px;
-    font-weight: bolder;
     background: #303446;
     color: #c6d0f5;
 }
@@ -40,8 +49,6 @@ window#waybar {
 #pulseaudio,
 #custom-vpn,
 #disk,
-#custom-recorder,
-#custom-audiorec,
 #battery,
 #clock,
 #network {

@@ -1,19 +1,26 @@
-background-color = #303446AA
-border-width = 0
-drun-launch = true
-font = Fira Code Bold
-font-size = 10
-height = 100%
-history = false
-num-results = 20
-outline-width = 0
+# general
+drun-launch    = true
+history        = false
+prompt-text    = "tofi: "
+
+# font
+font           = Fira Code Bold
+font-size      = 10
+
+# style
+border-width   = 0
+height         = 100%
+num-results    = 40
+outline-width  = 0
 padding-bottom = 10%
-padding-left = 10%
-padding-right = 10%
-padding-top = 10%
-prompt-color = #e78284
-prompt-text = "tofi: "
+padding-left   = 10%
+padding-right  = 10%
+padding-top    = 10%
 result-spacing = 3
-selection-color = #e5c890
-text-color = #c6d0f5
-width = 100%
+width          = 100%
+
+# frappe
+text-color       = #c6d0f5
+prompt-color     = #e78284
+selection-color  = #e5c890
+background-color = #303446AA
