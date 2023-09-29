@@ -1,3 +1,5 @@
+vim.g.mapleader = ' '
+
 vim.api.nvim_set_keymap('n', '?', ':noh <enter>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<S-s>', ':%sort u', { noremap = true })
 

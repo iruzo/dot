@@ -9,7 +9,7 @@ return {
     },
     cmd = 'Neotree',
     keys = {
-      { '<space>e', ':Neotree toggle=true position=right<CR>', silent = true, desc = 'File Explorer' },
+      { '<leader>e', ':Neotree toggle=true position=right<CR>', silent = true, desc = 'File Explorer' },
     },
     opts = true,
   },
