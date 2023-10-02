@@ -65,6 +65,8 @@ alias eject-usb='udisksctl power-off -b'
 alias bt-connect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf \$2}' | xargs bluetoothctl connect"
 alias bt-disconnect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf \$2}' | xargs bluetoothctl disconnect"
 
+alias png2webp='for file in *.png; do convert -quality 100 "$file" "${file%.png}.webp"; done'
+
 fetch() {
   # host
   echo $(echo "${COLOR_BCYAN}Γ host:${COLOR_RESET}" ) $(/bin/sh -c "cat /etc/hostname")
