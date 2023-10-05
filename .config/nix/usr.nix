@@ -78,10 +78,11 @@
       neovim      # text editor
       ripgrep     # finder
       keepassxc   # password manager
-      qutebrowser # used for citrix since citrix is cringe
       mpv         # image and video
+      obs-studio  # video-audio recorder
       zathura     # document viewer
-      pandoc      # ducment converter
+      pandoc      # document converter
+      imagemagick # image editor
       libreoffice # office
       mat2        # clean metadata
       # gpt4all     # run data models locally
