@@ -12,7 +12,6 @@
     swaynotificationcenter
     tofi
     (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
-    swww
     grim
     slurp
     brightnessctl

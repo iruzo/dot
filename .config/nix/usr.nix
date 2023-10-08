@@ -152,7 +152,8 @@
     chromium = {
       enable = true;
       extensions = [
-        "olhelnoplefjdmncknfphenjclimckaf" # Theme Catppuccin Frappe
+        "fjofdcgahcnlkdjapcbeonbnmjdnfcki" # Theme gruvbox
+        "njcgdakjdifgccdgnoiphpnihcfopcmj" # Theme devtools gruvbox
         # "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
         "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
         "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock Origin
@@ -233,12 +234,18 @@
         extensions.activeThemeID = "{5ee380f7-abda-467c-ae9a-d30bf8f0d1d6}";
       };
       ExtensionSettings = {
-        # catppuccin
-        "{5ee380f7-abda-467c-ae9a-d30bf8f0d1d6}" = {
+        # gruvbox
+        "{d3f8e52b-140d-41e8-ae4a-a9710ab6a886}" = {
           allowed_types = "theme";
           installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-frappe-lavender/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvbox-true-dark/latest.xpi";
         };
+        # catppuccin
+        # "{5ee380f7-abda-467c-ae9a-d30bf8f0d1d6}" = {
+        #   allowed_types = "theme";
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-frappe-lavender/latest.xpi";
+        # };
         # ublock
         "uBlock0@raymondhill.net" = {
           allowed_types = "extension";
