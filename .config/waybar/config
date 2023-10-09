@@ -7,7 +7,7 @@
 
   "modules-left": ["temperature","cpu","memory","disk","network"],
   "modules-center": ["wlr/workspaces"],
-  "modules-right":  ["tray","pulseaudio","backlight","battery","clock"],
+  "modules-right":  ["bluetooth", "tray","pulseaudio","backlight","battery","clock"],
 
   "temperature": {
     "format": " {temperatureC}°C",
@@ -33,6 +33,16 @@
     "on-click": "activate",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1",
+  },
+  "bluetooth": {
+     "format": "{icon}",
+     "interval": 30,
+     "format-icons": {
+        "enabled": "󰂯",
+        "disabled": "󰂲"
+     },
+     "on-click": "wezterm start bluetoothctl",
+     "tooltip-format": "{}"
   },
   "tray": {
     "icon-size": 16,
