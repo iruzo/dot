@@ -61,6 +61,7 @@ alias monitor-mempercent='ps axch -o cmd:15,%mem --sort=-%mem'
 alias monitor-cpu='ps axch -o cmd:15,%cpu --sort=-%cpu'
 alias weather='curl wttr.in/a-coruna?format="%t(%C)"'
 
+alias umount-ssh='fusermount -u'
 alias umount-usb='udisksctl umount -b'
 alias eject-usb='udisksctl power-off -b'
 

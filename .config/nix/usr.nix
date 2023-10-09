@@ -68,6 +68,7 @@
       git
       unzip
       btop                   # system monitor
+      sshfs                  # mount dirs through ssh
       helvum                 # control connections between audio inputs and outputs
       pavucontrol            # pulse audio volume control
       wezterm                # terminal emulator
