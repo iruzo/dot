@@ -29,6 +29,7 @@ if test -z "${XDG_RUNTIME_DIR}"; then
     fi
 fi
 
+export HISTFILE="$HOME/.bash_history" # yash history file
 export WLR_NO_HARDWARE_CURSORS=1
 export QEMU='-vga none -device virtio-gpu-pci -display gtk,gl=on'
 export EDITOR='nvim'
