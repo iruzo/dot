@@ -45,6 +45,7 @@
 !.config/btop
 .config/btop/*
 !.config/btop/btop.conf
+!.config/btop/themes
 
 # sway
 !.config/sway
@@ -67,8 +68,6 @@
 .config/aerc/*
 !.config/aerc/aerc.conf
 !.config/aerc/stylesets
-.config/aerc/stylesets/*
-!.config/aerc/stylesets/theme
 
 # mpv
 !.config/mpv

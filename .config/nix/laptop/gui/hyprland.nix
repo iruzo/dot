@@ -10,6 +10,7 @@
     wl-clipboard
     gtklock
     swaynotificationcenter
+    swaybg
     tofi
     (waybar.overrideAttrs (oldAttrs: { mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true "]; }))
     grim

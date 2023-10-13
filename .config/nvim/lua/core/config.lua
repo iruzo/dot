@@ -7,6 +7,7 @@ vim.api.nvim_command('autocmd BufNewFile,BufRead * if expand(\'%:t\') !~ \'\\.\'
 vim.api.nvim_command('autocmd BufRead,BufNewFile *.gpg :set filetype=gpg')
 vim.api.nvim_command('autocmd BufRead,BufNewFile *.pgp :set filetype=pgp')
 vim.api.nvim_command('autocmd BufRead,BufNewFile *.asc :set filetype=asc')
+vim.api.nvim_command('autocmd BufRead,BufNewFile *DOCKERFILE* :set filetype=dockerfile')
 -- vim.api.nvim_command('autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), " ")')
 
 function bd_all()

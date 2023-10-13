@@ -19,8 +19,8 @@ padding-top    = 10%
 result-spacing = 3
 width          = 100%
 
-# gruvbox-dark
-text-color       = #ebdbb2
-prompt-color     = #fb4934
-selection-color  = #fabd2f
-background-color = #282828AA
+# frappe
+text-color = #c6d0f5
+prompt-color = #e78284
+selection-color = #e5c890
+background-color = #303446AA

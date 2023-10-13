@@ -1,0 +1,181 @@
+* {
+  font-family: "Fira Code";
+  font-size: 13px;
+  min-height: 0;
+}
+
+window#waybar {
+  /* background-color: #303446; */
+  /* background-color: rgba(48,52,70,0.7); */
+  background: linear-gradient(#303446, transparent);
+  /* color: #303446; */
+  color: rgba(48,52,70,0.5);
+  transition-property: background-color;
+  transition-duration: .5s;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+#waybar.empty #window {
+  background-color: transparent;
+}
+
+#window {
+  margin: 2;
+  padding-left: 8;
+  padding-right: 8;
+  background-color: rgba(48,52,70,0.5);
+  font-size:14px;
+  font-weight: bold;
+}
+
+button {
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 0;
+  padding: 0 4px;
+  /* text-shadow: 2px 2px 2px black; */
+  background-color: transparent;
+  color: #c6d0f5;
+}
+
+button.hover {
+  background: inherit;
+  border-top: 2px solid #e78284;
+}
+
+button.active, button.focused {
+  color: #e5c890;
+  border-top: 2px solid #e5c890;
+}
+
+button.urgent {
+  background-color: #e78284;
+}
+
+#mode {
+  /* background-color: #303446; */
+  background-color: rgba(48,52,70,0.5);
+  border-bottom: 3px solid #c6d0f5;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#bluetooth,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#mpd {
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #c6d0f5;
+  /* text-shadow: 2px 2px 2px black; */
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+  margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+  margin-right: 0;
+}
+
+#clock {
+  font-size:14px;
+  font-weight: bold;
+}
+
+#battery icon {
+  color: red;
+}
+
+#battery.charging, #battery.plugged {
+  color: #c6d0f5;
+  background-color: #a6d189;
+}
+
+@keyframes blink {
+to {
+  background-color: #303446;
+  color: #c6d0f5;
+}
+}
+
+#battery.warning:not(.charging) {
+  background-color: #e78284;
+  color: #c6d0f5;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.critical:not(.charging) {
+  background-color: #e78284;
+  color: #c6d0f5;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+label:focus {
+  background-color: #303446;
+}
+
+#network.disconnected {
+  background-color: #e78284;
+}
+
+#temperature.critical {
+  background-color: #303446;
+}
+
+#idle_inhibitor.activated {
+  background-color: #303446;
+  color: #c6d0f5;
+}
+
+#tray > .passive {
+  -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: #303446;
+}
+
+/*
+
+window#waybar.solo {
+background-color: #c6d0f5;
+}
+
+window#waybar.termite {
+background-color: #3F3F3F;
+}
+
+window#waybar.chromium {
+background-color: #000000;
+border: none;
+}
+*/
+
