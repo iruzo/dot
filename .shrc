@@ -1,3 +1,10 @@
+# source bash global definitions
+if [ $(echo $SHELL | awk -F'/' '{printf $NF}') = 'bash' ]; then
+  if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+  fi
+fi
+
 # prompt
 gitrepo() {
   echo "$(git remote -v 2>/dev/null | grep "(fetch)" | awk -F'\t' '{print $1}')"/"$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')"
