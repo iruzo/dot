@@ -305,11 +305,11 @@
         #   installation_mode = "force_installed";
         #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/tab-volume/latest.xpi";
         # };
-        # vimium-ff
-        "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
+        # vim
+        "tridactyl.vim@cmcaine.co.uk" = {
           allowed_types = "theme";
           installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/tridactyl-vim/latest.xpi";
         };
         # languagetool
         "languagetool-webextension@languagetool.org" = {
