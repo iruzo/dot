@@ -18,9 +18,6 @@ vim.api.nvim_set_keymap('n', 'N', 'Nzzzv', { noremap = true })
 --clipboard
 vim.api.nvim_set_keymap('x', 'p', '\"_dP', { noremap = true })
 
---concat
-vim.api.nvim_set_keymap('n', 'J', 'mzJ`z', { noremap = true })
-
 --indent
 vim.api.nvim_set_keymap('v', '>', '>><Esc>gv', { noremap = true })
 vim.api.nvim_set_keymap('v', '<', '<<<Esc>gv', { noremap = true })
@@ -49,8 +46,7 @@ vim.api.nvim_set_keymap('n', 'gt', ':tag <c-r>=expand("<cword>")<cr> <enter>', {
 
 --lsp
 function superformat()
-  if vim.lsp.buf.format() then
-  else
+  if not vim.lsp.buf.format() then
     vim.api.nvim_command('normal gg=G')
   end
 end
