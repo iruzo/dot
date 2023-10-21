@@ -10,6 +10,9 @@ vim.api.nvim_command('autocmd BufRead,BufNewFile *.asc :set filetype=asc')
 vim.api.nvim_command('autocmd BufRead,BufNewFile *DOCKERFILE* :set filetype=dockerfile')
 -- vim.api.nvim_command('autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), " ")')
 
+-- autoformat email files on save
+vim.api.nvim_command('autocmd BufWrite *.eml* :%norm! gww<CR>:w<CR>')
+
 function bd_all()
   vim.api.nvim_command('%bd|e#');
 end
