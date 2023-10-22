@@ -75,17 +75,18 @@
       tor-browser-bundle-bin # tor
 
       # workspace
-      aerc        # mail
-      neovim      # text editor
-      ripgrep     # finder
-      keepassxc   # password manager
-      mpv         # image and video
-      obs-studio  # video-audio recorder
-      zathura     # document viewer
-      pandoc      # document converter
-      imagemagick # image editor
-      libreoffice # office
-      mat2        # clean metadata
+      aerc            # mail
+      neovim          # text editor
+      unstable.vscode # text editor
+      ripgrep         # finder
+      keepassxc       # password manager
+      mpv             # image and video
+      obs-studio      # video-audio recorder
+      zathura         # document viewer
+      pandoc          # document converter
+      imagemagick     # image editor
+      libreoffice     # office
+      mat2            # clean metadata
       # gpt4all     # run data models locally
 
       # tools
