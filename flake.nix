@@ -5,15 +5,22 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # flake-utils.url = "github:numtide/flake-utils";
+    flake-utils.url = "github:numtide/flake-utils";
     # nur.url = "github:nix-community/nur";
     # winstonnur.url = "github:nekowinston/nur"; # flake lock --update-input winstonnur
+    vscod-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.flake-compat.follows = "";
+      inputs.flake-utils.follows = "flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, ... } @ inputs: let
+  outputs = { self, nixpkgs, nixpkgs-unstable, vscod-extensions, ... } @ inputs: let
     system = "x86_64-linux";
     overlays = f: p: {
       unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
+      vscodext = vscod-extensions.extensions.${system};
     };
   in
   {
