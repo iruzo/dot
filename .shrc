@@ -119,6 +119,10 @@ supergitgrep() {
   git grep "$@" $(git rev-list --all)
 }
 
+superremove() {
+  git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $@" --prune-empty --tag-name-filter cat -- --all
+}
+
 termbin() {
   # if no args are passed, read stdin to check if they come from pipe
   if [ $# = 0 ]; then
