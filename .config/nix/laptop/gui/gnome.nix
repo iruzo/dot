@@ -33,7 +33,7 @@
       accents = [ "lavender" ];
       size = "compact";
       tweaks = [ "rimless" "black" ];
-      variant = "frappe";
+      variant = "mocha";
     })
     gnomeExtensions.forge
     gnomeExtensions.vitals

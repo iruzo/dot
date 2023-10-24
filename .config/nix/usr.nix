@@ -154,7 +154,7 @@
     chromium = {
       enable = true;
       extensions = [
-        "olhelnoplefjdmncknfphenjclimckaf" # Theme Catppuccin Frappe
+        "bkkmolkhemgaeaeggcmfbghljjjoofoh" # Theme Catppuccin Mocha
         # "fjofdcgahcnlkdjapcbeonbnmjdnfcki" # Theme gruvbox
         # "njcgdakjdifgccdgnoiphpnihcfopcmj" # Theme devtools gruvbox
         # "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
@@ -247,10 +247,10 @@
         #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvbox-true-dark/latest.xpi";
         # };
         # catppuccin
-        "{5ee380f7-abda-467c-ae9a-d30bf8f0d1d6}" = {
+        "{8446b178-c865-4f5c-8ccc-1d7887811ae3}" = {
           allowed_types = "theme";
           installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-frappe-lavender/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-lavender-git/latest.xpi";
         };
         # ublock
         "uBlock0@raymondhill.net" = {

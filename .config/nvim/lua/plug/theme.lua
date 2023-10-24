@@ -7,7 +7,7 @@ return {
     priority = 1000,
     config = function()
       require'catppuccin'.setup({
-        flavour = 'frappe',
+        flavour = 'mocha',
         transparent_background = true,
         color_overrides = {
           -- frappe = { -- gruvbox

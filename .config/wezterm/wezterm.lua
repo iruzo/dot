@@ -23,13 +23,18 @@ return {
   audible_bell = 'Disabled',
   -- wezterm.default_wsl_domains()
   default_prog = default_prog,
-  font = wezterm.font('Fira Code', { weight = 'Bold' }),
+  font = wezterm.font_with_fallback({
+    "Fira Code Bold"
+    -- "JetBrains Mono Bold",
+    -- "Noto Color Emoji",
+    -- "Symbols Nerd Font Mono",
+  }),
   -- font = wezterm.font('SF Mono'),
   window_background_opacity = 0.8,
   default_domain = default_domain,
   -- color_scheme = "Gruvbox dark, medium (base16)",
   -- color_scheme = "OneDark (base16)",
-  color_scheme = "Catppuccin Frappe",
+  color_scheme = "Catppuccin Mocha",
   -- font_size = 9.3,
   font_size = 12,
   use_fancy_tab_bar = false,

@@ -45,7 +45,7 @@ if not os.path.exists(config.configdir / "theme.py"):
                     file.writelines(themehtml.read().decode("utf-8"))
 if os.path.exists(config.configdir / "theme.py"):
     import theme
-    theme.setup(c, 'frappe', True)
+    theme.setup(c, 'mocha', True)
     # config.source('theme.py')
 
 # styles

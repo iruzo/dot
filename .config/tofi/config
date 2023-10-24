@@ -19,8 +19,8 @@ padding-top    = 10%
 result-spacing = 3
 width          = 100%
 
-# frappe
-text-color = #c6d0f5
-prompt-color = #e78284
-selection-color = #e5c890
-background-color = #303446AA
+# mocha
+text-color = #cdd6f4
+prompt-color = #f38ba8
+selection-color = #f9e2af
+background-color = #1e1e2eAA

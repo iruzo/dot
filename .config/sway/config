@@ -19,7 +19,7 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
   set $up k
   set $right l
   # personal
-  set $emptymenu BEMENU_BACKEND=wayland bemenu -i -l 20 --fb "#30344680" --ff "#c6d0f5" --nb "#30344680" --nf "#c6d0f5" --tb "#30344680" --hb "#30344680" --tf "#e78284" --hf "#e5c890" --nf "#c6d0f5" --af "#c6d0f5" --ab "#30344680"
+  set $emptymenu BEMENU_BACKEND=wayland bemenu -i -l 20 --fb "#1e1e2e" --ff "#cdd6f4" --nb "#1e1e2e" --nf "#cdd6f4" --tb "#1e1e2e" --hb "#1e1e2e" --tf "#f38ba8" --hf "#f9e2af" --nf "#cdd6f4" --af "#cdd6f4" --ab "#1e1e2e"
   set $focusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=name": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
   set $transformFocusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=transform": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
   floating_modifier $mod normal
@@ -84,17 +84,17 @@ bar {
     # urgent_workspace   #282C34 #282C34 #5c6370
     # binding_mode       #282C34 #282C34 #5c6370
 
-    # catppuccin frappe
-    background         #30344680
-    statusline         #c6d0f5
-    focused_statusline #c6d0f5
-    active_workspace   #30344680 #c6d0f5 #8caaee
-    focused_separator  #30344680
-    focused_workspace  #30344680 #30344680 #a6d189
-    active_workspace   #30344680 #30344680 #8caaee
-    inactive_workspace #30344680 #30344680 #51576d
-    urgent_workspace   #30344680 #30344680 #51576d
-    binding_mode       #30344680 #30344680 #51576d
+    # catppuccin mocha
+    background         #1e1e2e80
+    statusline         #cdd6f4
+    focused_statusline #cdd6f4
+    active_workspace   #1e1e2e80 #cdd6f4 #89b4fa
+    focused_separator  #1e1e2e80
+    focused_workspace  #1e1e2e80 #1e1e2e80 #a6e3a1
+    active_workspace   #1e1e2e80 #1e1e2e80 #89b4fa
+    inactive_workspace #1e1e2e80 #1e1e2e80 #45475a
+    urgent_workspace   #1e1e2e80 #1e1e2e80 #45475a
+    binding_mode       #1e1e2e80 #1e1e2e80 #45475a
 
   }
 
@@ -113,7 +113,7 @@ input "type:touchpad" {
 
 # wallpaper
 set $wallpaper https://cdnb.artstation.com/p/assets/images/images/065/463/277/4k/alena-aenami-light-at-the-end-hd.jpg?1690416813
-set $lock https://cdnb.artstation.com/p/assets/images/images/065/463/277/4k/alena-aenami-light-at-the-end-hd.jpg?1690416813
+set $lock https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-mocha-leaves.png
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
@@ -124,16 +124,16 @@ output * bg ~/.local/share/sway/wallpaper fill
 # window
 default_border pixel 1
 default_floating_border pixel 1
-client.focused #c6d0f5 #c6d0f5 #c6d0f5 #c6d0f5 #c6d0f5
-client.unfocused #51576d #51576d #51576d #51576d #51576d
-client.focused_inactive #51576d #51576d #51576d #51576d #51576d
+client.focused #cdd6f4 #cdd6f4 #cdd6f4 #cdd6f4 #cdd6f4
+client.unfocused #45475a #45475a #45475a #45475a #45475a
+client.focused_inactive #45475a #45475a #45475a #45475a #45475a
 gaps inner 10
 
 # catppuccin
 set $ctp-version v0.6.1
-exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Lavender-dark ]; then \
+exec_always if [ ! -e ~/.themes/Catppuccin-Mocha-Standard-Lavender-dark ]; then \
   mkdir -p ~/.themes \
-  && curl -L https://github.com/catppuccin/gtk/releases/download/$ctp-version/Catppuccin-Frappe-Standard-Lavender-dark.zip -o ~/.themes/catppuccin.zip \
+  && curl -L https://github.com/catppuccin/gtk/releases/download/$ctp-version/Catppuccin-Mocha-Standard-Lavender-dark.zip -o ~/.themes/catppuccin.zip \
   && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
   && rm -rf ~/.themes/catppuccin.zip; fi
 
@@ -149,7 +149,7 @@ bindsym $mod+q exec swaylock -i ~/.local/share/sway/lock
     bindsym $mod+t exec test $transformFocusedMonitor = 'normal' && swaymsg output $focusedMonitor transform 90 || swaymsg output $focusedMonitor transform normal
     bindsym $mod+space floating toggle
     bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm || LIBGL_ALWAYS_SOFTWARE=1 flatpak run org.wezfurlong.wezterm
-    bindsym $mod+d exec BEMENU_BACKEND=wayland bemenu-run -i -l 20 --fb "#30344680" --ff "#c6d0f5" --nb "#30344680" --nf "#c6d0f5" --tb "#30344680" --hb "#30344680" --tf "#e78284" --hf "#e5c890" --nf "#c6d0f5" --af "#c6d0f5" --ab "#30344680"
+    bindsym $mod+d exec BEMENU_BACKEND=wayland bemenu-run -i -l 20 --fb "#1e1e2e" --ff "#cdd6f4" --nb "#1e1e2e" --nf "#cdd6f4" --tb "#1e1e2e" --hb "#1e1e2e" --tf "#f38ba8" --hf "#f9e2af" --nf "#cdd6f4" --af "#cdd6f4" --ab "#1e1e2e"
     bindsym $mod+Shift+r reload
     bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway ?' -b 'Yes' 'swaymsg exit'
     # split
