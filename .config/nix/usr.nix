@@ -85,9 +85,10 @@
       obs-studio      # video-audio recorder
       zathura         # document viewer
       pandoc          # document converter
-      imagemagick     # image editor
+      gimp            # image editor
       libreoffice     # office
       mat2            # clean metadata
+      syncthing       # file synchronization
       # gpt4all     # run data models locally
 
       # tools
@@ -220,8 +221,7 @@
 
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox-wayland;
-    # forceWayland = true;
+    package = pkgs.firefox-esr;
     policies = {
       PasswordManagerEnabled = false;
       DisableFirefoxAccounts = true;
@@ -245,9 +245,7 @@
       };
       SearchEngines = {
         Default = "DuckDuckGo";
-        DefaultPrivate = "DuckDuckGo";
-        Force = true;
-        PreventInstalls = false;
+        PreventInstalls = true;
       };
       FirefoxHome = {
         Search = false;
@@ -269,10 +267,11 @@
       };
       Preferences = {
         browser.theme.content-theme = 0;
-        browser.compactmode.show = true;
+        "browser.compactmode.show" = { Value = true; Status = "default"; };
         browser.uidensity = 1;
-        toolkit.legacyUserProfileCustomizations.stylesheets = true;
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = { Value = true; Status = "default"; };
         extensions.activeThemeID = "{5ee380f7-abda-467c-ae9a-d30bf8f0d1d6}";
+        network.cookie.cookieBehavior = 5;
       };
       ExtensionSettings = {
         # gruvbox
