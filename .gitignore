@@ -47,6 +47,11 @@
 !.config/btop/btop.conf
 !.config/btop/themes
 
+# dwl
+!.config/dwl
+.config/dwl/*
+!.config/dwl/config.h
+
 # sway
 !.config/sway
 .config/sway/*
