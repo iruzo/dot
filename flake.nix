@@ -14,13 +14,27 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-thorium.url = "github:almahdi/nix-thorium";
+    dwl-source = {
+      url = "github:djpohly/dwl";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, vscod-extensions, ... } @ inputs: let
+  outputs = { self, nixpkgs, nixpkgs-unstable, vscod-extensions, flake-thorium, dwl-source, ... } @ inputs: let
     system = "x86_64-linux";
     overlays = f: p: {
       unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
       vscodext = vscod-extensions.extensions.${system};
+      dwl = p.dwl.overrideAttrs (oldAttrs: rec {
+        src = dwl-source;
+        conf = ./.config/dwl/config.h;
+        patches = [
+          # (p.fetchpatch { url = "https://github.com/djpohly/dwl/compare/main...faerryn:cursor_warp.patch"; sha256 = "sha256-h0BBgrXwYv6/GvYyANcVVIkGHJTbUJzpwT5GglLw0jY="; })
+          # (p.fetchpatch { url = "https://github.com/djpohly/dwl/compare/main...dm1tz:fmaster.patch"; sha256 = "sha256-MjARIxdJAusI91PrE8TKdL7JFnehK2d25So5mfNNND4="; })
+        ];
+      });
+      thorium = p.callPackage ./.config/nix/pkgs/thorium.nix {};
     };
   in
   {

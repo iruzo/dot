@@ -1,5 +1,39 @@
 {
   "nodes": {
+    "dwl-source": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1698864256,
+        "narHash": "sha256-U4X0zbYbT18Mxok9q0iSJfpOo6FCwojRyZgzXvTv/Qg=",
+        "owner": "djpohly",
+        "repo": "dwl",
+        "rev": "d6fabe3a150d2e464078c3269410d56e8bbeb54f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "djpohly",
+        "repo": "dwl",
+        "type": "github"
+      }
+    },
+    "flake-thorium": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1698576446,
+        "narHash": "sha256-wf7RJNnns1N1sk3KtrBsWAWGFVBp6snVqjTu/sFc7hM=",
+        "owner": "almahdi",
+        "repo": "nix-thorium",
+        "rev": "16cbc264b5e7baf09cb895e8c5a49f7d915399d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "almahdi",
+        "repo": "nix-thorium",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -20,16 +54,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1697851979,
-        "narHash": "sha256-lJ8k4qkkwdvi+t/Xc6Fn74kUuobpu9ynPGxNZR6OwoA=",
-        "owner": "nixos",
+        "lastModified": 1698318101,
+        "narHash": "sha256-gUihHt3yPD7bVqg+k/UVHgngyaJ3DMEBchbymBMvK1E=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "5550a85a087c04ddcace7f892b0bdc9d8bb080c8",
+        "rev": "63678e9f3d3afecfeafa0acead6239cdb447574c",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
-        "ref": "nixos-23.05",
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -50,10 +84,28 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1697851979,
+        "narHash": "sha256-lJ8k4qkkwdvi+t/Xc6Fn74kUuobpu9ynPGxNZR6OwoA=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5550a85a087c04ddcace7f892b0bdc9d8bb080c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-23.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "dwl-source": "dwl-source",
+        "flake-thorium": "flake-thorium",
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "vscod-extensions": "vscod-extensions"
       }

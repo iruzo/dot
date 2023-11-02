@@ -98,7 +98,7 @@
       prismlauncher
 
       # web apps
-      brave
+      thorium
       (pkgs.chromium.override {
         commandLineArgs = [
           "--disk-cache=$XDG_RUNTIME_DIR/chromium-cache"

@@ -7,6 +7,7 @@
       ./hdw.nix
       ./net.nix
       ./gui/hyprland.nix
+      # ./gui/dwl.nix
       ./nix.nix
     ];
 
