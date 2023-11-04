@@ -28,7 +28,7 @@
       vscodext = vscod-extensions.extensions.${system};
       dwl = p.dwl.overrideAttrs (oldAttrs: rec {
         src = dwl-source;
-        conf = ./.config/dwl/config.h;
+        # conf = (builtins.readFile "/home/ruzo/.config/dwl/config.h");
         patches = [
           # (p.fetchpatch { url = "https://github.com/djpohly/dwl/compare/main...faerryn:cursor_warp.patch"; sha256 = "sha256-h0BBgrXwYv6/GvYyANcVVIkGHJTbUJzpwT5GglLw0jY="; })
           # (p.fetchpatch { url = "https://github.com/djpohly/dwl/compare/main...dm1tz:fmaster.patch"; sha256 = "sha256-MjARIxdJAusI91PrE8TKdL7JFnehK2d25So5mfNNND4="; })
@@ -47,7 +47,8 @@
           nixpkgs.config.allowUnfree = true;
           imports =
           [
-            ./.config/nix/laptop/setup.nix
+            ./.config/nix/system/laptop/setup.nix
+            ./.config/nix/pkgs/gui/sway.nix
             ./.config/nix/usr.nix
           ];
         })];

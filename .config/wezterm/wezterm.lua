@@ -30,7 +30,7 @@ return {
     -- "Symbols Nerd Font Mono",
   }),
   -- font = wezterm.font('SF Mono'),
-  window_background_opacity = 0.8,
+  -- window_background_opacity = 0.8,
   default_domain = default_domain,
   -- color_scheme = "Gruvbox dark, medium (base16)",
   -- color_scheme = "OneDark (base16)",

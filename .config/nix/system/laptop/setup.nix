@@ -6,8 +6,6 @@
       /etc/nixos/hardware-configuration.nix
       ./hdw.nix
       ./net.nix
-      ./gui/hyprland.nix
-      # ./gui/dwl.nix
       ./nix.nix
     ];
 

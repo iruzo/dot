@@ -13,6 +13,7 @@
     [
       # Include the results of the hardware scan.
       ./systems/laptop/setup.nix
+      ./pkgs/gui/hyprland.nix
       ./usr.nix
     ];
 

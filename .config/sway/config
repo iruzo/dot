@@ -7,8 +7,8 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
   blur enable
   shadows enable
   corner_radius 10
-  layer_effects "panel" blur enable; shadows enable; corner_radius 10
-  layer_effects "menu" blur enable; shadows enable; corner_radius 10
+  layer_effects "panel" blur enable; shadows enable; # corner_radius 10
+  layer_effects "menu" blur enable; shadows enable; # corner_radius 10
 
 # variables
   # logo key. Use Mod1 for Alt.
@@ -25,9 +25,9 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
   floating_modifier $mod normal
 
 bar {
-  position bottom
+  position top
   font "Fira Code bold 10"
-  gaps 10
+  # gaps 10
 
   height 18
 
@@ -85,16 +85,28 @@ bar {
     # binding_mode       #282C34 #282C34 #5c6370
 
     # catppuccin mocha
-    background         #1e1e2e80
+    background         #1e1e2e
     statusline         #cdd6f4
     focused_statusline #cdd6f4
-    active_workspace   #1e1e2e80 #cdd6f4 #89b4fa
-    focused_separator  #1e1e2e80
-    focused_workspace  #1e1e2e80 #1e1e2e80 #a6e3a1
-    active_workspace   #1e1e2e80 #1e1e2e80 #89b4fa
-    inactive_workspace #1e1e2e80 #1e1e2e80 #45475a
-    urgent_workspace   #1e1e2e80 #1e1e2e80 #45475a
-    binding_mode       #1e1e2e80 #1e1e2e80 #45475a
+    active_workspace   #1e1e2e #cdd6f4 #89b4fa
+    focused_separator  #1e1e2e
+    focused_workspace  #1e1e2e #1e1e2e #a6e3a1
+    active_workspace   #1e1e2e #1e1e2e #89b4fa
+    inactive_workspace #1e1e2e #1e1e2e #45475a
+    urgent_workspace   #1e1e2e #1e1e2e #45475a
+    binding_mode       #1e1e2e #1e1e2e #45475a
+
+    # # catppuccin mocha alpha
+    # background         #1e1e2e80
+    # statusline         #cdd6f4
+    # focused_statusline #cdd6f4
+    # active_workspace   #1e1e2e80 #cdd6f4 #89b4fa
+    # focused_separator  #1e1e2e80
+    # focused_workspace  #1e1e2e80 #1e1e2e80 #a6e3a1
+    # active_workspace   #1e1e2e80 #1e1e2e80 #89b4fa
+    # inactive_workspace #1e1e2e80 #1e1e2e80 #45475a
+    # urgent_workspace   #1e1e2e80 #1e1e2e80 #45475a
+    # binding_mode       #1e1e2e80 #1e1e2e80 #45475a
 
   }
 
@@ -112,8 +124,8 @@ input "type:touchpad" {
 }
 
 # wallpaper
-set $wallpaper https://cdnb.artstation.com/p/assets/images/images/065/463/277/4k/alena-aenami-light-at-the-end-hd.jpg?1690416813
-set $lock https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-mocha-leaves.png
+set $wallpaper https://i.imgur.com/rEFTDXV.jpeg
+set $lock https://i.imgur.com/D0tBpc9.jpeg
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
@@ -239,7 +251,7 @@ bindsym $mod+q exec swaylock -i ~/.local/share/sway/lock
       bindsym $mod+o exec firefox
       bindsym $mod+Shift+o exec cat ~/iruzo/quickmarks | $emptymenu | awk -F' ' '{print $NF}' | wl-copy $(cat)
     # discord
-      bindsym $mod+g exec brave --app=https://discord.com/app || chromium --app=https://discord.com/app || chromium-browser --app=https://discord.com/app || firefox --new-instance https://discord.com/login || librewolf --kiosk https://discord.com/login
+      bindsym $mod+g exec thorium --app=https://discord.com/app || chromium --app=https://discord.com/app || chromium-browser --app=https://discord.com/app || firefox --new-instance https://discord.com/login || librewolf --kiosk https://discord.com/login
     # vm
       bindsym $mod+i exec gnome-boxes
     # keepassxc
