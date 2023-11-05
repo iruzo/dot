@@ -25,6 +25,9 @@ vim.api.nvim_set_keymap('v', '<', '<<<Esc>gv', { noremap = true })
 --find
 -- vim.api.nvim_set_keymap('n', '<space>h', ':vimgrep  */** | copen<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>', { noremap = true })
 
+-- block sum
+vim.api.nvim_set_keymap('v', '<C-s>', ':\'<,\'>!awk \'{print; sum+=$1}; END {print "Total: "sum}\'<CR>', { noremap = true })
+
 --replace
 vim.api.nvim_set_keymap('n', '<C-/>', ':%s///g<Left><Left>', { noremap = true })
 vim.api.nvim_set_keymap('v', '/', 'y/<C-R>=escape(@",\'/\\\')<CR><CR>', { noremap = true })
