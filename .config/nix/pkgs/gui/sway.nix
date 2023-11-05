@@ -16,12 +16,12 @@
       slurp
       brightnessctl
 
-      pcmanfm
+      gnome.nautilus
       gnome.gnome-logs
       gnome.gnome-boxes
     ];
   };
-  services.gvfs.enable = true;        # needed for pcmanfm
+  services.gvfs.enable = true;        # needed for nautilus and pcmanfm
   services.udisks2.enable = true;     # needed for gnome-disks
   programs.gnome-disks.enable = true; # gnome-disks
 
