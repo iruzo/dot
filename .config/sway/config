@@ -34,7 +34,7 @@ bar {
   # status_command while ( echo \
   #       $(swaymsg -t get_tree | grep -oP \'(?<=name\": \").*(?=\",)\' | sed \"$(swaymsg -t get_tree | grep focused | grep -oP \'(?<=: ).*(?=,)\' | grep -n true | cut -d: -f1)q;d\")  \| \
   #       $(top -b -n1 | grep \"Cpu(s)\" | awk \'{print $2 + $4}\')% \| \
-  #       $(free -m | awk \'NR==2{printf \"%.2f%%\t\t\", $3*100/$2 }\') \| \
+  #       $(free -m | awk \'NR==2{printf $2-$7}\') \| \
   #       $(($(cat /sys/class/thermal/thermal_zone0/temp || echo 1) / 1000))°C \| \
   #       $(df -h | awk \'$NF=="/"{printf \"%s\t\t\", $5}\') \| \
   #       $(pactl get-source-mute @DEFAULT_SOURCE@ || wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q "MUTED" && echo "Mute: yes" || echo "Mute: no") \| \
