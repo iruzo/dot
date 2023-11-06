@@ -111,15 +111,15 @@ return {
       },
     },
     config = function()
-      vim.api.nvim_set_keymap('n', 'mm',       ':lua vim.lsp.buf.hover()<CR>',             { noremap = true })
-      vim.api.nvim_set_keymap('n', 'gd',       ':lua vim.lsp.buf.definition()<CR>',        { noremap = true })
-      vim.api.nvim_set_keymap('n', 'gi',       ':lua vim.lsp.buf.implementation()<CR>',    { noremap = true })
-      vim.api.nvim_set_keymap('n', 'gr',       ':lua vim.lsp.buf.references()<CR>',        { noremap = true })
-      vim.api.nvim_set_keymap('n', 'rr',       ':lua vim.lsp.buf.rename()<CR>',            { noremap = true })
+      vim.api.nvim_set_keymap('n', 'mm',        ':lua vim.lsp.buf.hover()<CR>',             { noremap = true })
+      vim.api.nvim_set_keymap('n', 'gd',        ':lua vim.lsp.buf.definition()<CR>',        { noremap = true })
+      vim.api.nvim_set_keymap('n', 'gi',        ':lua vim.lsp.buf.implementation()<CR>',    { noremap = true })
+      vim.api.nvim_set_keymap('n', 'gr',        ':lua vim.lsp.buf.references()<CR>',        { noremap = true })
+      vim.api.nvim_set_keymap('n', 'rr',        ':lua vim.lsp.buf.rename()<CR>',            { noremap = true })
       vim.api.nvim_set_keymap('n', '<leader>a', ':lua vim.lsp.buf.code_action()<CR>',       { noremap = true })
       vim.api.nvim_set_keymap('x', '<leader>a', ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '<M-p>',    ':lua vim.diagnostic.goto_prev()<CR>',      { noremap = true })
-      vim.api.nvim_set_keymap('n', '<M-n>',    ':lua vim.diagnostic.goto_next()<CR>',      { noremap = true })
+      vim.api.nvim_set_keymap('n', '<M-p>',     ':lua vim.diagnostic.goto_prev()<CR>',      { noremap = true })
+      vim.api.nvim_set_keymap('n', '<M-n>',     ':lua vim.diagnostic.goto_next()<CR>',      { noremap = true })
     end
   },
 
