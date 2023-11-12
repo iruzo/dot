@@ -89,6 +89,7 @@
       libreoffice     # office
       mat2            # clean metadata
       syncthing       # file synchronization
+      element-desktop # chat
       # gpt4all     # run data models locally
 
       # tools
