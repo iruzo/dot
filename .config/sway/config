@@ -9,8 +9,8 @@ exec_always if [  ! -f ~/.config/swaync/style.css ]; then $(mkdir -p ~/.config/s
   blur enable
   shadows enable
   corner_radius 10
-  layer_effects "panel" blur enable; shadows enable; # corner_radius 10
-  layer_effects "menu" blur enable; shadows enable; # corner_radius 10
+  # layer_effects "panel" blur enable; shadows enable; # corner_radius 10
+  # layer_effects "menu" blur enable; shadows enable; # corner_radius 10
 
 # variables
   # logo key. Use Mod1 for Alt.
@@ -126,8 +126,8 @@ input "type:touchpad" {
 }
 
 # wallpaper
-set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-mocha-astronaut.jpg
-set $lock https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-mocha-astronaut.jpg
+set $wallpaper https://w.wallhaven.cc/full/1p/wallhaven-1pol63.png
+set $lock https://w.wallhaven.cc/full/zy/wallhaven-zyv2kg.png
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
