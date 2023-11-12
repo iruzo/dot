@@ -5,26 +5,26 @@ return {
   -- { 'codota/tabnine-nvim', build = './dl_binaries.sh' },
   -- { 'https://github.com/jpmcb/nvim-llama' }
 
-  {
-    'zbirenbaum/copilot.lua',
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({
-        panel = {
-          enabled = false,
-        },
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          debounce = 75,
-          keymap = {
-            accept = "<C-Enter>",
-          },
-        }
-      })
-    end
-  },
+  -- {
+  --   'zbirenbaum/copilot.lua',
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   config = function()
+  --     require("copilot").setup({
+  --       panel = {
+  --         enabled = false,
+  --       },
+  --       suggestion = {
+  --         enabled = true,
+  --         auto_trigger = true,
+  --         debounce = 75,
+  --         keymap = {
+  --           accept = "<C-Enter>",
+  --         },
+  --       }
+  --     })
+  --   end
+  -- },
 
   -- {
   --   "zbirenbaum/copilot-cmp",
