@@ -76,6 +76,11 @@ alias eject-usb='udisksctl power-off -b'
 alias bt-connect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf \$2}' | xargs bluetoothctl connect"
 alias bt-disconnect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf \$2}' | xargs bluetoothctl disconnect"
 
+alias android-fastboot-flash='sudo fastboot flash recovery'
+alias android-fastboot-reboot='sudo fastboot reboot'
+alias android-sdb-startserver='sudo adb start-server'
+alias android-adb-sideload='sudo adb sideload'
+
 alias png2webp='for file in *.png; do convert -quality 100 "$file" "${file%.png}.webp"; done'
 
 fetch() {
