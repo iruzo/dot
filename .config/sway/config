@@ -251,13 +251,13 @@ bindsym $mod+q exec swaylock -i ~/.local/share/sway/lock
       bindsym $mod+Shift+s exec mkdir -p ~/media && grim -g "$(slurp)" ~/media/$(date +'%Y%m%d_%H%M%S').png
     # browser
       bindsym $mod+o exec firefox
-      bindsym $mod+Shift+o exec cat ~/iruzo/quickmarks | $emptymenu | awk -F' ' '{print $NF}' | wl-copy $(cat)
+      bindsym $mod+Shift+o exec cat ~/own/quickmarks | $emptymenu | awk -F' ' '{print $NF}' | wl-copy $(cat)
     # discord
       bindsym $mod+g exec thorium --app=https://discord.com/app || chromium --app=https://discord.com/app || chromium-browser --app=https://discord.com/app || firefox --new-instance https://discord.com/login || librewolf --kiosk https://discord.com/login
     # vm
       bindsym $mod+i exec gnome-boxes
     # keepassxc
       bindsym $mod+u exec keepassxc || flatpak run org.keepassxc.KeePassXC
-      bindsym $mod+Shift+u exec cat ~/iruzo/contacts 2> /dev/null | $emptymenu | awk -F'-' '{print $NF}' | wl-copy $(cat)
+      bindsym $mod+Shift+u exec cat ~/own/contacts 2> /dev/null | $emptymenu | awk -F'-' '{print $NF}' | wl-copy $(cat)
     # steam
       bindsym $mod+y exec steam || flatpak run com.valvesoftware.Steam

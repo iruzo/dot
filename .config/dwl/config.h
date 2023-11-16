@@ -137,9 +137,9 @@ static const char *game[]            = { "steam",         NULL               };
 
 static const char *screenshot_area[]    = { "mkdir",         "-p",              "$HOME/media",          "&&",     "grim", "-g", "\"$(slurp)\"", "$HOME/media/$(date +'%Y%m%d_%H%M%S').png", NULL                    };
 static const char *screenshot_monitor[] = { "mkdir",         "-p",              "$HOME/media",          "&&",     "grim", "-g", "\"$(slurp      -o)\"",         "$HOME/media/$(date         +'%Y%m%d_%H%M%S').png", NULL };
-static const char *quickmarks[] = { "cat", "$HOME/iruzo/quickmarks", "2>", "/dev/null", "|", "bemenu", "|", "awk", "-F'-'", "'{print $NF}'", "|", "wl-copy", "$(cat)", NULL };
+static const char *quickmarks[] = { "cat", "$HOME/own/quickmarks", "2>", "/dev/null", "|", "bemenu", "|", "awk", "-F'-'", "'{print $NF}'", "|", "wl-copy", "$(cat)", NULL };
 static const char *discord[] = { "brave",         "--app",                 "https://discord.com/app", "||",                            "chromium",  "--app", "https://discord.com/app", "||",             "chromium-browser", "--app",                                    "https://discord.com/app", "||",                       "firefox", "--new-instance",           "https://discord.com/login", "||",       "librewolf",    "--kiosk", "https://discord.com/login", NULL };
-static const char *contact[] = { "cat", "$HOME/iruzo/contacts", "2>", "/dev/null", "|", "bemenu", "|", "awk", "-F'-'", "'{print $NF}'", "|", "wl-copy", "$(cat)", NULL };
+static const char *contact[] = { "cat", "$HOME/own/contacts", "2>", "/dev/null", "|", "bemenu", "|", "awk", "-F'-'", "'{print $NF}'", "|", "wl-copy", "$(cat)", NULL };
 
 static const Key keys[] = {
 
