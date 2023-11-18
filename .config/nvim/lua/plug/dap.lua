@@ -2,7 +2,7 @@ return {
 
   {
     'mfussenegger/nvim-dap',
-    tag = '0.6.0',
+    tag = '0.7.0',
     cmd = 'DapToggleBreakpoint',
     dependencies = {
       { 'theHamsta/nvim-dap-virtual-text', config = function() require'nvim-dap-virtual-text'.setup() end },

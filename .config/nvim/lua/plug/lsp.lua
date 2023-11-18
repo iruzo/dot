@@ -21,7 +21,7 @@ return {
         dependencies = {
           {
             'williamboman/mason.nvim',
-            tag = 'v1.5.0',
+            tag = 'stable',
             build = ':MasonUpdate',
             opts = true,
           },
@@ -63,7 +63,7 @@ return {
             dependencies = {
               {
                 'L3MON4D3/LuaSnip',
-                tag = 'v2.0.0',
+                tag = 'v2.1.0',
                 dependencies = {
                   'rafamadriz/friendly-snippets',
                   'iruzo/snip',
