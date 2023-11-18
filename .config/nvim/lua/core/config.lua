@@ -34,6 +34,7 @@ vim.opt.path = vim.opt.path + '**'
 vim.opt.wildignore = '**/.git/*,*_build/*,**/coverage/*,**/.cache/*,**/venv/*,**/svn/*,**/target/*'
 -- vim.opt.autochdir = true
 vim.opt.list = true
+vim.opt.listchars:append "eol:↴"
 vim.opt.lcs = 'tab:| ,trail:·'
 -- NEVER set title to true, it can create graphical bugs in gpu accelerated terminal emulators
 -- vim.opt.title = true
