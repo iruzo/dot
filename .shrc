@@ -125,8 +125,12 @@ supergitgrep() {
   git grep "$@" $(git rev-list --all)
 }
 
-superremove() {
+supergitfileremove() {
   git filter-branch --force --index-filter "git rm --cached --ignore-unmatch $@" --prune-empty --tag-name-filter cat -- --all
+}
+
+supergitstringremove() {
+  git filter-branch --tree-filter 'git grep -l $@ | xargs sed -i "" -e "s/$@//g"' -- --all
 }
 
 termbin() {
