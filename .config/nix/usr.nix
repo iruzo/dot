@@ -377,6 +377,12 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/simplediscordcrypt/latest.xpi";
         };
+        # amazon price tracker
+        "amptra@keepa.com" = {
+          allowed_types = "extension";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/keepa/latest.xpi";
+        };
       };
     };
   };
