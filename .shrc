@@ -68,11 +68,15 @@ alias monitor-mem='ps axch -o cmd:15,rss --sort=-rss | numfmt --from-unit=1024 -
 alias monitor-mempercent='ps axch -o cmd:15,%mem --sort=-%mem'
 alias monitor-cpu='ps axch -o cmd:15,%cpu --sort=-%cpu'
 alias weather='curl wttr.in/a-coruna?format="%t(%C)"'
+alias createswap='sudo fallocate -l 16G /swap && sudo chmod 600 /swap && sudo mkswap /swap && sudo swapon /swap'
+alias enableswap='sudo swapon /swap'
 
 alias umount-ssh='fusermount -u'
 alias umount-usb='udisksctl umount -b'
 alias eject-usb='udisksctl power-off -b'
 
+alias bt-connect-headphones="bluetoothctl devices | grep 'SH03' | awk -F' ' '{printf \$2}' | xargs bluetoothctl connect"
+alias bt-disconnect-headphones="bluetoothctl devices | grep 'SH03' | awk -F' ' '{printf \$2}' | xargs bluetoothctl disconnect"
 alias bt-connect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf \$2}' | xargs bluetoothctl connect"
 alias bt-disconnect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf \$2}' | xargs bluetoothctl disconnect"
 
