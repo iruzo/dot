@@ -2,9 +2,6 @@
 
 {
 
-  swapDevices = [{ device = "/swap"; size = 16*1024; randomEncryption.enable = true; }];
-  # swapDevices = lib.mkForce [ ]; # disable all swap
-
   boot = {
 
     kernel.sysctl = { "vm.swappiness" = 90; };
