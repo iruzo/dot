@@ -2,7 +2,12 @@
 
 {
 
+  swapDevices = [{ device = "/swap"; size = "16G"; }];
+  # swapDevices = lib.mkForce [ ]; # disable all swap
+
   boot = {
+
+    kernel.sysctl = { "vm.swappiness" = 90; }
 
     # Clear /tmp during boot
     tmp.cleanOnBoot = true;
