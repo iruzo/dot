@@ -1,10 +1,10 @@
-{ config, lib, pkgs, modulesPath, ... }:
+{ config, lib, pkgs, ... }:
 
 {
 
   boot = {
 
-    kernel.sysctl = { "vm.swappiness" = 90; };
+    kernel.sysctl = { "vm.swappiness" = 90; }; # cat /proc/sys/vm/swappiness
 
     # Clear /tmp during boot
     tmp.cleanOnBoot = true;
@@ -18,7 +18,7 @@
       '';
       # kernelModules = [ "amdgpu" ];
     };
-    kernelPackages = pkgs.linuxPackages_latest; # 6.5.1
+    kernelPackages = pkgs.linuxPackages_latest; # 6.5.8
 
     loader = {
       systemd-boot.enable = true;
