@@ -35,7 +35,10 @@
       tweaks = [ "rimless" "black" ];
       variant = "mocha";
     })
-    gnomeExtensions.forge
+    gnomeExtensions.blur-my-shell
+    # gnomeExtensions.dash-to-panel # turn dash into a bottom bar
+    # gnomeExtensions.dash-to-dock # macos like dash
+    gnomeExtensions.forge # tiling
     gnomeExtensions.vitals
     gnomeExtensions.bluetooth-battery
   ]);
