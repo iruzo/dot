@@ -299,6 +299,12 @@
           installation_mode = "force_installed";
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/clearurls/latest.xpi";
         };
+        # redirect to alternative privacy friendly frontends
+        "7esoorv3@alefvanoon.anonaddy.me" = {
+          allowed_types = "extension";
+          installation_mode = "force_installed";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/libredirect/latest.xpi";
+        };
         # dark reader
         "addon@darkreader.org" = {
           allowed_types = "extension";
