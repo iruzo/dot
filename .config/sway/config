@@ -126,8 +126,8 @@ input "type:touchpad" {
 }
 
 # wallpaper
-set $wallpaper https://w.wallhaven.cc/full/1p/wallhaven-1pol63.png
-set $lock https://w.wallhaven.cc/full/zy/wallhaven-zyv2kg.png
+set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/original-mountain.png
+set $lock https://raw.githubusercontent.com/iruzo/wp/main/original-mountain.png
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
@@ -153,7 +153,7 @@ exec_always if [ ! -e ~/.themes/Catppuccin-Mocha-Standard-Lavender-dark ]; then 
 
 # lock screen
 # bindsym $mod+q exec swaylock -c 000000
-bindsym $mod+q exec swaylock -i ~/.local/share/sway/lock
+bindsym $mod+q exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira Code'
 
 # keybindings
 
