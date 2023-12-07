@@ -48,8 +48,9 @@
           imports =
           [
             ./.config/nix/system/laptop/setup.nix
-            ./.config/nix/pkgs/gui/sway.nix
             ./.config/nix/usr.nix
+            ./.config/nix/pkgs/gui/sway.nix
+            # ./.config/nix/pkgs/gui/gnome.nix
           ];
         })];
       };

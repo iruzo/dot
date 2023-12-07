@@ -25,6 +25,9 @@
   services.udisks2.enable = true;     # needed for gnome-disks
   programs.gnome-disks.enable = true; # gnome-disks
 
+  services.tlp.enable = true;           # performance
+  # services.auto-cpufreq.enable = true;  # performance
+
   services.dbus.enable = true;
   xdg.portal = {
     enable = true;

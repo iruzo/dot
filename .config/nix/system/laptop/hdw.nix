@@ -41,6 +41,7 @@
       enable = true;
       autodetect = true;
     };
+    fwupd.enable = true;         # firmware upload
   };
   powerManagement.enable = true; # laptop power features
 
