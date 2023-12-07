@@ -152,8 +152,8 @@ exec_always if [ ! -e ~/.themes/Catppuccin-Mocha-Standard-Lavender-dark ]; then 
   && rm -rf ~/.themes/catppuccin.zip; fi
 
 # lock screen
-# bindsym $mod+q exec swaylock -c 000000
-bindsym $mod+q exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira Code'
+# bindsym $mod+Escape exec swaylock -c 000000
+bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira Code'
 
 # keybindings
 
@@ -165,7 +165,7 @@ bindsym $mod+q exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira Code
     bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm || LIBGL_ALWAYS_SOFTWARE=1 flatpak run org.wezfurlong.wezterm
     bindsym $mod+d exec BEMENU_BACKEND=wayland bemenu-run -i -l 20 --fb "#1e1e2e" --ff "#cdd6f4" --nb "#1e1e2e" --nf "#cdd6f4" --tb "#1e1e2e" --hb "#1e1e2e" --tf "#f38ba8" --hf "#f9e2af" --nf "#cdd6f4" --af "#cdd6f4" --ab "#1e1e2e"
     bindsym $mod+Shift+r reload
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway ?' -b 'Yes' 'swaymsg exit'
+    bindsym $mod+Shift+Escape exec swaynag -t warning -m 'Exit sway ?' -b 'Yes' 'swaymsg exit'
     # split
     bindsym $mod+Shift+v splith
     bindsym $mod+v splitv
@@ -249,6 +249,9 @@ bindsym $mod+q exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira Code
       bindsym $mod+Shift+b exec brightnessctl s 10-
     # screenshot
       bindsym $mod+Shift+s exec mkdir -p ~/media && grim -g "$(slurp)" ~/media/$(date +'%Y%m%d_%H%M%S').png
+      bindsym $mod+Shift+f exec mkdir -p ~/media && grim -g "$(slurp -o)" ~/media/$(date +'%Y%m%d_%H%M%S').png
+    # file manager
+      bindsym $mod+Shift+e exec nautilus
     # browser
       bindsym $mod+o exec firefox
       bindsym $mod+Shift+o exec cat ~/own/quickmarks | $emptymenu | awk -F'|' '{print $NF}' | tr ' ' '\n' | wl-copy
