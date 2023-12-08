@@ -86,17 +86,29 @@ bar {
     # urgent_workspace   #282C34 #282C34 #5c6370
     # binding_mode       #282C34 #282C34 #5c6370
 
-    # catppuccin mocha
-    background         #1e1e2e
-    statusline         #cdd6f4
-    focused_statusline #cdd6f4
-    active_workspace   #1e1e2e #cdd6f4 #89b4fa
-    focused_separator  #1e1e2e
-    focused_workspace  #1e1e2e #1e1e2e #a6e3a1
-    active_workspace   #1e1e2e #1e1e2e #89b4fa
-    inactive_workspace #1e1e2e #1e1e2e #45475a
-    urgent_workspace   #1e1e2e #1e1e2e #45475a
-    binding_mode       #1e1e2e #1e1e2e #45475a
+    # catppuccin macchiato
+    background         #24273a
+    statusline         #cad3f5
+    focused_statusline #cad3f5
+    active_workspace   #24273a #cad3f5 #8aadf4
+    focused_separator  #24273a
+    focused_workspace  #24273a #24273a #a6da95
+    active_workspace   #24273a #24273a #8aadf4
+    inactive_workspace #24273a #24273a #494d64
+    urgent_workspace   #24273a #24273a #494d64
+    binding_mode       #24273a #24273a #494d64
+
+    # # catppuccin mocha
+    # background         #1e1e2e
+    # statusline         #cdd6f4
+    # focused_statusline #cdd6f4
+    # active_workspace   #1e1e2e #cdd6f4 #89b4fa
+    # focused_separator  #1e1e2e
+    # focused_workspace  #1e1e2e #1e1e2e #a6e3a1
+    # active_workspace   #1e1e2e #1e1e2e #89b4fa
+    # inactive_workspace #1e1e2e #1e1e2e #45475a
+    # urgent_workspace   #1e1e2e #1e1e2e #45475a
+    # binding_mode       #1e1e2e #1e1e2e #45475a
 
     # # catppuccin mocha alpha
     # background         #1e1e2e80
@@ -126,8 +138,8 @@ input "type:touchpad" {
 }
 
 # wallpaper
-set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/original-mountain.png
-set $lock https://raw.githubusercontent.com/iruzo/wp/main/original-mountain.png
+set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/original-anime-cyberpunk-edgerunners.png
+set $lock https://raw.githubusercontent.com/iruzo/wp/main/original-anime-cyberpunk-edgerunners.png
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
@@ -145,9 +157,9 @@ gaps inner 10
 
 # catppuccin
 set $ctp-version v0.6.1
-exec_always if [ ! -e ~/.themes/Catppuccin-Mocha-Standard-Lavender-dark ]; then \
+exec_always if [ ! -e ~/.themes/Catppuccin-Macchiato-Standard-Lavender-dark ]; then \
   mkdir -p ~/.themes \
-  && curl -L https://github.com/catppuccin/gtk/releases/download/$ctp-version/Catppuccin-Mocha-Standard-Lavender-dark.zip -o ~/.themes/catppuccin.zip \
+  && curl -L https://github.com/catppuccin/gtk/releases/download/$ctp-version/Catppuccin-Macchiato-Standard-Lavender-dark.zip -o ~/.themes/catppuccin.zip \
   && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
   && rm -rf ~/.themes/catppuccin.zip; fi
 

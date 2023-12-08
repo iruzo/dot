@@ -192,6 +192,7 @@
       enable = true;
       extensions = [
         "bkkmolkhemgaeaeggcmfbghljjjoofoh" # Theme Catppuccin Mocha
+        "cmpdlhmnmjhihmcfnigoememnffkimlk" # Theme Catppuccin Macchiato
         # "fjofdcgahcnlkdjapcbeonbnmjdnfcki" # Theme gruvbox
         # "njcgdakjdifgccdgnoiphpnihcfopcmj" # Theme devtools gruvbox
         # "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
@@ -275,17 +276,23 @@
         network.cookie.cookieBehavior = 5;
       };
       ExtensionSettings = {
-        # gruvbox
+        # # gruvbox
         # "{d3f8e52b-140d-41e8-ae4a-a9710ab6a886}" = {
         #   allowed_types = "theme";
         #   installation_mode = "force_installed";
         #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvbox-true-dark/latest.xpi";
         # };
-        # catppuccin
-        "{8446b178-c865-4f5c-8ccc-1d7887811ae3}" = {
+        # # catppuccin mocha
+        # "{8446b178-c865-4f5c-8ccc-1d7887811ae3}" = {
+        #   allowed_types = "theme";
+        #   installation_mode = "force_installed";
+        #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-lavender-git/latest.xpi";
+        # };
+        # catppuccin macchiato
+        "{15cb5e64-94bd-41aa-91cf-751bb1a84972}" = {
           allowed_types = "theme";
           installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-lavender-git/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-macchiato-lavender2/latest.xpi";
         };
         # ublock
         "uBlock0@raymondhill.net" = {
@@ -347,11 +354,11 @@
         #   installation_mode = "force_installed";
         #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/tab-volume/latest.xpi";
         # };
-        # vim
-        "tridactyl.vim@cmcaine.co.uk" = {
-          allowed_types = "theme";
+        # vimium
+        "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
+          allowed_types = "extension";
           installation_mode = "force_installed";
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/tridactyl-vim/latest.xpi";
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
         };
         # languagetool
         "languagetool-webextension@languagetool.org" = {

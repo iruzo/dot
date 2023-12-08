@@ -7,10 +7,16 @@ return {
     priority = 1000,
     config = function()
       require'catppuccin'.setup({
-        flavour = 'mocha',
+        flavour = 'macchiato',
         -- transparent_background = true,
+        integrations = {
+          telescope = true,
+          mason = true,
+          -- harpoon = true,
+          -- neotest = true,
+        },
         color_overrides = {
-          -- frappe = { -- onedark
+          -- latte = { -- onedark
           --   rosewater = "",
           --   flamingo = "",
           --   pink = "",
@@ -38,7 +44,7 @@ return {
           --   mantle = "#21252b",
           --   crust = "#181a1f",
           -- },
-          macchiato = { -- gruvbox
+          frappe = { -- gruvbox
             rosewater = "#ffc6be",
             flamingo = "#f2594b",
             pink = "#d3869b",

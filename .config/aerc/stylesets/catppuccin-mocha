@@ -14,12 +14,14 @@ warning.fg="#f9e2af"
 success.fg="#94e2d5"
 
 border.bg="#1e1e2e"
+border.bold=true
 stack.bg="#1e1e2e"
 spinner.fg="#cdd6f4"
 
+statusline_default.fg="#cdd6f4"
 statusline_default.bg="#1e1e2e"
-statusline_error.fg="#f38ba8"
-statusline_error.reverse=true
+statusline_error.bold=true
+statusline_success.bold=true
 
 msglist_unread.bold=true
 msglist_unread.fg="#a6e3a1"
