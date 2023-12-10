@@ -57,6 +57,11 @@
 .config/sway/*
 !.config/sway/config
 
+# gnome
+!.config/gnome
+.config/gnome/*
+!.config/gnome/config.sh
+
 # hypr
 !.config/hypr
 .config/hypr/*
