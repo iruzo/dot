@@ -39,7 +39,6 @@
     gnomeExtensions.pano          # clipboard manager
     gnomeExtensions.pop-shell     # tiling
     gnomeExtensions.vitals
-    gnomeExtensions.bluetooth-battery
     gnomeExtensions.dash-to-panel # turn dash into a bottom bar
     # gnomeExtensions.dash-to-dock  # macos like dash
   ]);
