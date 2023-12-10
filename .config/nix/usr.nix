@@ -9,7 +9,7 @@
 
   fonts = {
     fontDir.enable = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       # anurati
       fira-code
       fira-code-symbols

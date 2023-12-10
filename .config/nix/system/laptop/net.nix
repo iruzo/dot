@@ -3,7 +3,7 @@
 {
 
   # networking
-  networking.hostName = "amnesia";
+  networking.hostName = "ruzo";
   networking.networkmanager.enable = true;
   # networking.dhcpcd.enable = true;
 
