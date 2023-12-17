@@ -31,6 +31,8 @@ bar {
   font "Fira Code bold 10"
   # gaps 10
 
+  bindsym button1 exec sh -c 'ps -ef | grep  "wvkbd" && pkill wvkbd || wvkbd-mobintl -l simple,special'
+
   height 18
 
   # status_command while ( echo \
@@ -278,7 +280,7 @@ bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira
       bindsym $mod+Shift+s exec mkdir -p ~/media && grim -g "$(slurp)" ~/media/$(date +'%Y%m%d_%H%M%S').png
       bindsym $mod+Shift+f exec mkdir -p ~/media && grim -g "$(slurp -o)" ~/media/$(date +'%Y%m%d_%H%M%S').png
     # file manager
-      bindsym $mod+Shift+e exec nautilus
+      bindsym $mod+Shift+e exec thunar
     # browser
       bindsym $mod+o exec firefox
       bindsym $mod+Shift+o exec cat ~/own/quickmarks | $emptymenu | awk -F'|' '{print $NF}' | tr ' ' '\n' | wl-copy
@@ -293,4 +295,4 @@ bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira
     # steam
       bindsym $mod+y exec steam || flatpak run com.valvesoftware.Steam
     # osk
-      bindsym $mod+q exec sh -c 'if pgrep "wvkbd" > /dev/null; then pkill wvkbd; else wvkbd-mobintl -l simple,special; fi'
+      bindsym $mod+q exec sh -c 'ps -ef | grep  "wvkbd" && pkill wvkbd || wvkbd-mobintl -l simple,special'
