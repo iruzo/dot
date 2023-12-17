@@ -41,12 +41,6 @@
 .config/emacs/*
 !.config/emacs/init.el
 
-# btop
-!.config/btop
-.config/btop/*
-!.config/btop/btop.conf
-!.config/btop/themes
-
 # dwl
 !.config/dwl
 .config/dwl/*
