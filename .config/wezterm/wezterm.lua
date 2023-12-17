@@ -43,7 +43,7 @@ return {
   keys = {
     { key = 'n', mods = 'CTRL|SHIFT', action = 'DisableDefaultAssignment' },
 
-    { key = 'l', mods = 'CTRL', action = wezterm.action.ClearScrollback 'ScrollbackAndViewport' },
+    { key = 'e', mods = 'CTRL', action = wezterm.action.ClearScrollback 'ScrollbackAndViewport' },
 
     { key = 'q', mods = 'CTRL|SHIFT', action = wezterm.action.CloseCurrentPane{ confirm = true } },
     { key = 'p', mods = 'CTRL|SHIFT', action = wezterm.action.PasteFrom('Clipboard') },
