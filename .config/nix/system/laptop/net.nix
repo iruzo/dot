@@ -31,4 +31,14 @@
   };
   services.blueman.enable = true;
 
+  # printing
+  services = {
+    printing.enable = true; # http://localhost:631/
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
+    };
+  };
+
 }
