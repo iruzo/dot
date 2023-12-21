@@ -34,7 +34,7 @@ return {
   default_domain = default_domain,
   -- color_scheme = "Gruvbox dark, medium (base16)",
   -- color_scheme = "OneDark (base16)",
-  color_scheme = "Catppuccin Mocha",
+  color_scheme = "Catppuccin Macchiato",
   -- font_size = 9.3,
   font_size = 10,
   use_fancy_tab_bar = false,
