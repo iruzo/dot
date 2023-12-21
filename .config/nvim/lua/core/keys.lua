@@ -54,6 +54,8 @@ function superformat()
   end
 end
 vim.api.nvim_set_keymap('n', '<C-f>', ':lua superformat()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('v', '<C-f>', ":=<CR>", { noremap = true })
+vim.api.nvim_set_keymap('x', '<C-f>', ":=<CR>", { noremap = true })
 
 --netrw
 -- vim.api.nvim_set_keymap('n', 'ee', ':Lexplore <CR>', { noremap = true })
