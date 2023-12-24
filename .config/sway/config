@@ -291,7 +291,7 @@ bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira
       bindsym $mod+Shift+o exec cat ~/own/quickmarks | $emptymenu | awk -F'|' '{print $NF}' | tr ' ' '\n' | wl-copy
       bindsym $mod+Shift+i exec cat ~/own/emoji | $emptymenu | awk '{for (i=2; i<=NF; i++) print $i}' | tr ' ' '\n' | wl-copy
     # discord
-      bindsym $mod+g exec thorium --app=https://discord.com/app || chromium --app=https://discord.com/app || chromium-browser --app=https://discord.com/app || firefox --new-instance https://discord.com/login || librewolf --kiosk https://discord.com/login
+      bindsym $mod+g exec firefox --new-window https://discord.com/login || chromium --app=https://discord.com/app || chromium-browser --app=https://discord.com/app
     # vm
       bindsym $mod+i exec gnome-boxes
     # keepassxc
