@@ -3,7 +3,11 @@
 exec_always pkill swaync && swaync
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
-exec_always if [  ! -f ~/.config/swaync/style.css ]; then $(mkdir -p ~/.config/swaync && curl -L https://github.com/catppuccin/swaync/releases/download/v0.1.2.1/mocha.css -o ~/.config/swaync/style.css); fi
+# swaync theme
+exec_always if [ ! -f ~/.config/swaync/style.css ]; then $(mkdir -p ~/.config/swaync && curl -L https://github.com/catppuccin/swaync/releases/download/v0.1.2.1/mocha.css -o ~/.config/swaync/style.css); fi
+
+# firefox userChrome
+exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then mkdir -p ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && curl https://raw.githubusercontent.com/ttntm/minimal-one-line-firefox/main/userChrome.css > ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css; fi
 
 # swayfx
   blur enable
