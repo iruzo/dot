@@ -20,6 +20,9 @@ border.fg=#181926
 border.bold=true
 
 msglist_unread.bold=true
+msglist_unread.fg="#a6da95"
+msglist_unread.selected.bg="#a6da95"
+msglist_unread.selected.fg="#1e1e2e"
 msglist_flagged.fg=#eed49f
 msglist_flagged.bold=true
 msglist_result.fg=#8aadf4
