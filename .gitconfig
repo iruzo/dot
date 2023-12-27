@@ -7,3 +7,9 @@
   helper = store
 [init]
   defaultBranch = main
+[push]
+  default = current
+  gpgSign = if-asked
+  autoSetupRemote = true
+[rebase]
+  autosquash = true
