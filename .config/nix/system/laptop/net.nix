@@ -2,19 +2,19 @@
 
 {
 
-  # networking
-  networking.hostName = "ruzo";
-  networking.networkmanager.enable = true;
-  # networking.dhcpcd.enable = true;
-
-  # Simple stateful dual-stack firewall
-  networking.firewall = {
-    enable = true;
-    allowPing = true;
-    allowedTCPPorts = [];
-    allowedUDPPorts = [];
-    logRefusedConnections = true;
-    checkReversePath = false; # for libvirtd
+  networking = {
+    hostName = "nixos";
+    # useDHCP = lib.mkDefault true;
+    networkmanager.enable = true;
+    # dhcpcd.enable = true;
+    firewall = { # Simple stateful dual-stack firewall
+      enable = true;
+      allowPing = true;
+      allowedTCPPorts = [];
+      allowedUDPPorts = [];
+      logRefusedConnections = true;
+      checkReversePath = false; # for libvirtd
+    };
   };
 
   # Enable the OpenSSH daemon.

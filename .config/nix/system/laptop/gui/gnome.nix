@@ -8,11 +8,10 @@
     desktopManager.gnome.enable = true;
     videoDrivers = [ "amdgpu" ];
   };
-
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
   ]) ++ (with pkgs.gnome; [
-    cheese           # webcam tool
+    # cheese           # webcam tool
     gnome-terminal   # terminal
     gedit            # text editor
     epiphany         # web browser
@@ -27,12 +26,14 @@
 
   environment.systemPackages = (with pkgs; [
     xclip
+    bemenu
     (catppuccin-gtk.override {
       accents = [ "lavender" ];
       size = "compact";
       tweaks = [ "rimless" "black" ];
       variant = "mocha";
     })
+    gnome.gnome-session
     gnome.gnome-boxes
     gnome.gnome-tweaks
     gnomeExtensions.blur-my-shell
@@ -42,9 +43,5 @@
     gnomeExtensions.dash-to-panel # turn dash into a bottom bar
     # gnomeExtensions.dash-to-dock  # macos like dash
   ]);
-
-  hardware.pulseaudio = {
-    enable = true;
-  };
 
 }

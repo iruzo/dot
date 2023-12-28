@@ -141,16 +141,6 @@ dconf write ${KEYS_MEDIA}/screensaver "['<Super>Escape']"
 dconf write ${KEYS_MEDIA}/home "['<Shift><Super>n']"
 # Launch email client
 dconf write ${KEYS_MEDIA}/email "['<Super>e']"
-# Launch terminal
-gsettings set org.gnome.desktop.default-applications.terminal exec 'wezterm'
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding "'<Super>Return'"
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command "'wezterm'"
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Lanzar Terminal'"
-# dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
-
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding "'<Super>o'"
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command "'firefox'"
-dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name "'browser'"
 # dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/']"
 # Launch web browser
 dconf write ${KEYS_MEDIA}/www "['<Shift><Super>Return']"
@@ -158,3 +148,66 @@ dconf write ${KEYS_MEDIA}/www "['<Shift><Super>Return']"
 dconf write ${KEYS_GNOME_WM}/close "['<Super>c']"
 
 dconf write ${KEYS_POP}/activate-launcher "['<Super>slash', '<Super>Space']"
+
+# personal
+# Set the keybindings for GNOME
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom11/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom12/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom13/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom14/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom15/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom16/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom17/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom18/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom19/' \
+  ]"
+
+# Set the keybinding commands
+gsettings set org.gnome.desktop.default-applications.terminal exec 'wezterm'
+
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding "'<Super>Return'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command "'wezterm'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name "'Lanzar Terminal'"
+
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/binding "'<Super>o'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/command "'firefox'"
+dconf write /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/name "'browser'"
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Increase Volume'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'pactl set-sink-volume @DEFAULT_SINK@ +05%'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Mod4>n'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Decrease Volume'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'pactl set-sink-volume @DEFAULT_SINK@ -05%'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Mod4><Shift>n'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Toggle Source Mute'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'pactl set-source-mute @DEFAULT_SOURCE@ toggle'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Mod4>m'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'Toggle Sink Mute'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Mod4><Shift>m'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ name 'Open PulseAudio Volume Control'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ command 'pavucontrol'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ binding '<Mod4>p'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ name 'Open Helvum'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ command 'helvum'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ binding '<Mod4><Shift>p'
+
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ name 'Push to Talk'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ command 'pactl set-source-mute @DEFAULT_SOURCE@ toggle'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins

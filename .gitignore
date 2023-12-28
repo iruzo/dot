@@ -18,6 +18,7 @@
 !.config/nix
 !flake.nix
 !flake.lock
+!home.nix
 
 # foot
 !.config/foot

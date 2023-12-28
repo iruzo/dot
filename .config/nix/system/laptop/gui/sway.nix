@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 # wallpaper
-# set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/original-anime-cyberpunk-edgerunners.png
+# set $wallpaper https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/gnome-45/backgrounds/keys-d.jpg?ref_type=heads
 # exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway/wallpaper && curl $wallpaper -o ~/.local/share/sway/wallpaper); && sleep 1 fi
 # output * bg ~/.local/share/sway/wallpaper fill
 let
@@ -31,10 +31,13 @@ in
       slurp
       brightnessctl
       wvkbd
+      vlc
 
-      # gnome.nautilus
+      gnome.nautilus
       gnome.gnome-logs
       gnome.gnome-boxes
+      gnome.cheese
+      gnome.eog
 
       greetd.gtkgreet
 
@@ -42,23 +45,21 @@ in
     ];
   };
   programs = {
-    thunar = {
-      enable = true;
-      plugins = with pkgs.xfce; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
-    };
     gnome-disks.enable = true; # gnome-disks
   };
   services = {
-    gvfs.enable = true;         # needed for nautilus, pcmanfm and thunar to mount devices
-    udisks2.enable = true;      # needed for gnome-disks
-    tlp.enable = true;          # performance
-    # auto-cpufreq.enable = true; # performance
+    gvfs.enable = true;                  # needed for nautilus, pcmanfm and thunar to mount devices
+    udisks2.enable = true;               # needed for gnome-disks
+    power-profiles-daemon.enable = true; # performance
+    # tlp.enable = true;                   # performance
+    # auto-cpufreq.enable = true;          # performance
     greetd = {
       enable = true;
       settings = {
+        initial_session = { # auto login
+          command = "${pkgs.swayfx}/bin/sway";
+          user = "amnesia";
+        };
         default_session = {
           command = ''
             ${pkgs.sway}/bin/sway --config ${swayConfig}
@@ -76,16 +77,6 @@ in
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-  };
-
-  # Enable Pipewire
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    wireplumber.enable = true;
   };
 
 }

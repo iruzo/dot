@@ -1,15 +1,33 @@
 { config, pkgs, lib, ... }:
 
 {
-  imports =
-    [
-      /etc/nixos/hardware-configuration.nix
-      ./hdw.nix
-      ./net.nix
-      ./nix.nix
+
+  nixpkgs.config.allowUnfree = true;
+
+  imports = [
+    ./hdw.nix
+    ./net.nix
+    ./nix.nix
+    ./gui/sway.nix
+    ./app.nix
+  ];
+
+  programs.ssh.startAgent = true;
+
+  users.users.amnesia = {
+    isNormalUser = true;
+    shell = pkgs.yash;
+
+    extraGroups = [
+      "wheel" # Enable ‘sudo’ for the user.
+      "video"
+      "audio"
+      "networkmanager"
+      "libvirtd"
+      # "docker" "lxd" # Allow access to the sockets without root
     ];
 
-  fileSystems."/".options = [ "noatime" "discard" ];
+  };
 
   # keyboard and internationalisation properties
   console.keyMap = "us";
@@ -27,12 +45,35 @@
   };
   time.timeZone = "Europe/Madrid";
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  fonts = {
+    fontDir.enable = true;
+    enableDefaultPackages = true;
+    packages = with pkgs; [
+      # anurati
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      liberation_ttf
+      fira-code
+      fira-code-symbols
+      (nerdfonts.override { fonts = [ "FiraCode" "NerdFontsSymbolsOnly" ]; })
+      # pkgs.nur.repos.nekowinston.apple-sf-mono
+    ];
+    fontconfig = {
+      defaultFonts = {
+        # serif = [ "SF Serif" ];
+        # sansSerif = [ "SF Serif" ];
+        # monospace = [ "SF Mono" ];
+        serif = [ "Fira Code" ];
+        sansSerif = [ "Fira Code" ];
+        monospace = [ "Fira Code" ];
+      };
+    };
+  };
 
   # this is required for mounting android phones over mtp://
   # services.gvfs.enable = true;
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 
 }
