@@ -2,14 +2,14 @@
 
 {
 
-  environment = {
-    systemPackages = with pkgs; [
-      home-manager
-      git
-      wezterm                # terminal emulator
-      neovim
-    ];
-  };
+  # environment = {
+  #   systemPackages = with pkgs; [
+  #     home-manager
+  #     git
+  #     wezterm                # terminal emulator
+  #     neovim
+  #   ];
+  # };
 
   programs = {
 
@@ -121,6 +121,12 @@
             installation_mode = "force_installed";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/libredirect/latest.xpi";
           };
+          # flags
+          "{1018e4d6-728f-4b20-ad56-37578a4de76b}" = {
+            allowed_types = "extension";
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/flagfox/latest.xpi";
+          };
           # dark reader
           "addon@darkreader.org" = {
             allowed_types = "extension";
@@ -132,6 +138,30 @@
             allowed_types = "extension";
             installation_mode = "force_installed";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/decentraleyes/latest.xpi";
+          };
+          # privacy badger
+          "jid1-MnnxcxisBPnSXQ@jetpack" = {
+            allowed_types = "extension";
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/privacy-badger17/latest.xpi";
+          };
+          # canvas blocker - prevent fingerprinting on js apis
+          "CanvasBlocker@kkapsner.de" = {
+            allowed_types = "extension";
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/canvasblocker/latest.xpi";
+          };
+          # ping blocker
+          "{8bd6d796-c31a-40ff-8cb1-92459b6443d9}" = {
+            allowed_types = "extension";
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ping-blocker/latest.xpi";
+          };
+          # sponsor block for youtube
+          "sponsorBlocker@ajay.app" = {
+            allowed_types = "extension";
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ping-blocker/latest.xpi";
           };
           # i still dont care about cookies
           "idcac-pub@guus.ninja" = {
@@ -193,6 +223,12 @@
             installation_mode = "force_installed";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/mailvelope/latest.xpi";
           };
+          # turbo download manager
+          "jid0-dsq67mf5kjjhiiju2dfb6kk8dfw@jetpack" = {
+            allowed_types = "extension";
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/turbo-download-manager/latest.xpi";
+          };
           # Discord container
           "@contain-discord" = {
             allowed_types = "extension";
@@ -204,6 +240,12 @@
             allowed_types = "extension";
             installation_mode = "force_installed";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/simplediscordcrypt/latest.xpi";
+          };
+          # augmented steam
+          "{1be309c5-3e4f-4b99-927d-bb500eb4fa88}" = {
+            allowed_types = "extension";
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/augmented-steam/latest.xpi";
           };
           # amazon price tracker
           "amptra@keepa.com" = {

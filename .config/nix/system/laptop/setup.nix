@@ -27,6 +27,13 @@
       # "docker" "lxd" # Allow access to the sockets without root
     ];
 
+    packages = with pkgs; [
+      home-manager
+      git
+      wezterm                # terminal emulator
+      neovim
+    ];
+
   };
 
   # keyboard and internationalisation properties
