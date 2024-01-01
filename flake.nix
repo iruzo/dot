@@ -12,6 +12,7 @@
     };
     nur-input.url = "github:nix-community/nur";
     # winstonnur.url = "github:nekowinston/nur"; # flake lock --update-input winstonnur
+    # pipewire-screenaudio-input.url = "github:IceDBorn/pipewire-screenaudio";
     vscod-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.flake-compat.follows = "";
@@ -26,6 +27,7 @@
       unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
       nur = import nur-input { nurpkgs = p; pkgs = p; };
       vscodext = vscod-extensions.extensions.${system};
+      # pipewire-screenaudio = pipewire-screenaudio-input;
     };
   in
   {

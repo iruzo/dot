@@ -26,6 +26,7 @@
     firefox = {
       enable = true;
       package = pkgs.firefox-esr;
+      # package = pkgs.firefox-esr.override { nativeMessagingHosts = [ pkgs.pipewire-screenaudio.packages.${pkgs.system}.default ]; });
       policies = {
         PasswordManagerEnabled = false;
         DisableFirefoxAccounts = true;
@@ -156,18 +157,24 @@
             installation_mode = "force_installed";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi";
           };
-          # # tab-volume
-          # "{a8e99fca-eb8f-410f-84e9-142eb055c162}" = {
-          #   allowed_types = "extension";
-          #   installation_mode = "force_installed";
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/tab-volume/latest.xpi";
-          # };
           # vimium
           "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
             allowed_types = "extension";
             installation_mode = "force_installed";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
           };
+          # # tab-volume
+          # "{a8e99fca-eb8f-410f-84e9-142eb055c162}" = {
+          #   allowed_types = "extension";
+          #   installation_mode = "force_installed";
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/tab-volume/latest.xpi";
+          # };
+          # # pipewire screenaudio
+          # "pipewire-screenaudio@icenjim" = {
+          #   allowed_types = "extension";
+          #   installation_mode = "force_installed";
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/pipewire-screenaudio/latest.xpi";
+          # };
           # languagetool
           "languagetool-webextension@languagetool.org" = {
             allowed_types = "extension";
