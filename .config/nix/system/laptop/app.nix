@@ -74,7 +74,7 @@
           "browser.compactmode.show" = { Value = true; Status = "default"; };
           browser.uidensity = 1;
           "toolkit.legacyUserProfileCustomizations.stylesheets" = { Value = true; Status = "default"; };
-          extensions.activeThemeID = "{eb8c4a94-e603-49ef-8e81-73d3c4cc04ff}";
+          extensions.activeThemeID = "{15cb5e64-94bd-41aa-91cf-751bb1a84972}";
           network.cookie.cookieBehavior = 5;
         };
         ExtensionSettings = {
@@ -84,24 +84,24 @@
           #   installation_mode = "force_installed";
           #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvbox-true-dark/latest.xpi";
           # };
-          # gruvbox dark
-          "{eb8c4a94-e603-49ef-8e81-73d3c4cc04ff}" = {
-            allowed_types = "theme";
-            installation_mode = "force_installed";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvbox-dark-theme/latest.xpi";
-          };
+          # # gruvbox dark
+          # "{eb8c4a94-e603-49ef-8e81-73d3c4cc04ff}" = {
+          #   allowed_types = "theme";
+          #   installation_mode = "force_installed";
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/gruvbox-dark-theme/latest.xpi";
+          # };
           # # catppuccin mocha
           # "{8446b178-c865-4f5c-8ccc-1d7887811ae3}" = {
           #   allowed_types = "theme";
           #   installation_mode = "force_installed";
           #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-mocha-lavender-git/latest.xpi";
           # };
-          # # catppuccin macchiato
-          # "{15cb5e64-94bd-41aa-91cf-751bb1a84972}" = {
-          #   allowed_types = "theme";
-          #   installation_mode = "force_installed";
-          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-macchiato-lavender2/latest.xpi";
-          # };
+          # catppuccin macchiato
+          "{15cb5e64-94bd-41aa-91cf-751bb1a84972}" = {
+            allowed_types = "theme";
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/catppuccin-macchiato-lavender2/latest.xpi";
+          };
           # ublock
           "uBlock0@raymondhill.net" = {
             allowed_types = "extension";

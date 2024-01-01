@@ -125,7 +125,7 @@
 
     ];
     sessionVariables = {
-      GTK_THEME = "Gruvbox-Dark-BL";
+      # GTK_THEME = "gruvbox-dark";
       # SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
 
       XDG_CACHE_HOME  = "$HOME/.cache";

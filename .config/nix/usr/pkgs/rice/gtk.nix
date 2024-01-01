@@ -7,19 +7,27 @@ let
 in {
 
   home.pointerCursor = {
-    name = "Numix-Cursor";
-    package = pkgs.numix-cursor-theme;
+    name = "Catppuccin-Macchiato-Lavender-Cursors";
+    package = pkgs.catppuccin-cursors.macchiatoLavender;
   };
 
   gtk = {
     enable = true;
     iconTheme = {
-      name = "Papirus Dark";
-      package = pkgs.papirus-icon-theme;
+       name = "Papirus-Dark";
+        package = pkgs.catppuccin-papirus-folders.override {
+          flavor = "macchiato";
+          accent = "lavender";
+        };
     };
     theme = {
-      name = "Gruvbox-Dark-BL";
-      package = pkgs.gruvbox-gtk-theme;
+      name = "Catppuccin-Macchiato-Compact-Lavender-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "lavender" ];
+        size = "compact";
+        tweaks = [ "rimless" ];
+        variant = "macchiato";
+      };
     };
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     gtk2.extraConfig = ''
@@ -34,6 +42,12 @@ in {
       gtk-xft-hintstyle = "hintslight";
       gtk-xft-rgba = "rgb";
     };
+  };
+
+  qt = {
+    enable = false;
+    platformTheme = "gtk";
+    style.name = "gtk2";
   };
 
   xdg = {

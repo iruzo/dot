@@ -43,7 +43,7 @@ export EDITOR='nvim'
 export VISUAL='nvim-qt'
 export GTK_THEME='Adwaita:dark'
 # export GTK_THEME='gruvbox:dark'
-export BEMENU_OPTS='-i -l 20 --fb "#1d2921" --ff "#ebdbb2" --nb "#1d2921" --nf "#ebdbb2" --tb "#1d2921" --hb "#1d2921" --tf "#fb4934" --hf "#fabd2f" --nf "#ebdbb2" --af "#ebdbb2" --ab "#1d2921"'
+export BEMENU_OPTS='-i -l 20 --fb "#24273a" --ff "#cad3f5" --nb "#24273a" --nf "#cad3f5" --tb "#24273a" --hb "#24273a" --tf "#ed8796" --hf "#eed49f" --nf "#cad3f5" --af "#cad3f5" --ab "#24273a"'
 
 # export GPG_TTY=$(tty)
 

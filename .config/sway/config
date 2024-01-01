@@ -4,7 +4,7 @@ exec_always pkill swaync && swaync
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 
 # swaync theme
-# exec_always if [ ! -f ~/.config/swaync/style.css ]; then $(mkdir -p ~/.config/swaync && curl -L https://github.com/catppuccin/swaync/releases/download/v0.1.2.1/mocha.css -o ~/.config/swaync/style.css); fi
+exec_always if [ ! -f ~/.config/swaync/style.css ]; then $(mkdir -p ~/.config/swaync && curl -L https://github.com/catppuccin/swaync/releases/download/v0.1.2.1/macchiato.css -o ~/.config/swaync/style.css); fi
 
 # firefox userChrome
 exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then mkdir -p ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && curl https://raw.githubusercontent.com/ttntm/minimal-one-line-firefox/main/userChrome.css > ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css; fi
@@ -25,7 +25,7 @@ exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep defa
   set $up k
   set $right l
   # personal
-  set $emptymenu BEMENU_BACKEND=wayland bemenu -i -l 20 --fb "#1d2021" --ff "#ebdbb2" --nb "#1d2021" --nf "#ebdbb2" --tb "#1d2021" --hb "#1d2021" --tf "#fb4934" --hf "#fabd2f" --nf "#ebdbb2" --af "#ebdbb2" --ab "#1d2021"
+  set $emptymenu BEMENU_BACKEND=wayland bemenu -i -l 20 --fb "#24273a" --ff "#cad3f5" --nb "#24273a" --nf "#cad3f5" --tb "#24273a" --hb "#24273a" --tf "#ed8796" --hf "#eed49f" --nf "#cad3f5" --af "#cad3f5" --ab "#24273a"
   set $focusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=name": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
   set $transformFocusedMonitor $(swaymsg -t get_outputs | grep -oP '(?<=transform": ").*(?=",)' | sed "$(swaymsg -t get_outputs | grep focused | grep -oP '(?<=: ).*(?=,)' | grep -n true | cut -d: -f1)q;d")
   floating_modifier $mod normal
@@ -84,17 +84,17 @@ bar {
     # urgent_workspace   #1d2021 #1d2021 #665c54
     # binding_mode       #1d2021 #1d2021 #665c54
 
-    # gruvbox alpha
-    background         #1d202100
-    statusline         #ebdbb2
-    focused_statusline #ebdbb2
-    active_workspace   #1d202100 #ebdbb2 #83a598
-    focused_separator  #1d202100
-    focused_workspace  #1d202100 #1d202100 #8bba7f
-    active_workspace   #1d202100 #1d202100 #83a598
-    inactive_workspace #1d202100 #1d202100 #665c54
-    urgent_workspace   #1d202100 #1d202100 #665c54
-    binding_mode       #1d202100 #1d202100 #665c54
+    # # gruvbox alpha
+    # background         #1d202100
+    # statusline         #ebdbb2
+    # focused_statusline #ebdbb2
+    # active_workspace   #1d202100 #ebdbb2 #83a598
+    # focused_separator  #1d202100
+    # focused_workspace  #1d202100 #1d202100 #8bba7f
+    # active_workspace   #1d202100 #1d202100 #83a598
+    # inactive_workspace #1d202100 #1d202100 #665c54
+    # urgent_workspace   #1d202100 #1d202100 #665c54
+    # binding_mode       #1d202100 #1d202100 #665c54
 
     # # onedark
     # background         #282C34
@@ -132,17 +132,17 @@ bar {
     # urgent_workspace   #24273a #24273a #494d64
     # binding_mode       #24273a #24273a #494d64
 
-    # # catppuccin macchiato alpha
-    # background         #24273a00
-    # statusline         #cad3f5
-    # focused_statusline #cad3f5
-    # active_workspace   #24273a00 #cad3f5 #8aadf4
-    # focused_separator  #24273a00
-    # focused_workspace  #24273a00 #24273a00 #a6da95
-    # active_workspace   #24273a00 #24273a00 #8aadf4
-    # inactive_workspace #24273a00 #24273a00 #494d64
-    # urgent_workspace   #24273a00 #24273a00 #494d64
-    # binding_mode       #24273a00 #24273a00 #494d64
+    # catppuccin macchiato alpha
+    background         #24273a00
+    statusline         #cad3f5
+    focused_statusline #cad3f5
+    active_workspace   #24273a00 #cad3f5 #8aadf4
+    focused_separator  #24273a00
+    focused_workspace  #24273a00 #24273a00 #a6da95
+    active_workspace   #24273a00 #24273a00 #8aadf4
+    inactive_workspace #24273a00 #24273a00 #494d64
+    urgent_workspace   #24273a00 #24273a00 #494d64
+    binding_mode       #24273a00 #24273a00 #494d64
 
     # # catppuccin mocha
     # background         #1e1e2e
@@ -189,8 +189,8 @@ workspace 4 output eDP-1
 workspace 5 output eDP-1
 
 # wallpaper
-set $wallpaper https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/gnome-45/backgrounds/keys-d.jpg?ref_type=heads
-set $lock https://gitlab.gnome.org/GNOME/gnome-backgrounds/-/raw/gnome-45/backgrounds/keys-d.jpg?ref_type=heads
+set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-mocha-leaves.png
+set $lock https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-mocha-leaves.png
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
@@ -201,9 +201,14 @@ output * bg ~/.local/share/sway/wallpaper fill
 # window
 default_border pixel 1
 default_floating_border pixel 1
-client.focused #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2
-client.unfocused #665c54 #665c54 #665c54 #665c54 #665c54
-client.focused_inactive #665c54 #665c54 #665c54 #665c54 #665c54
+# # gruvbox
+# client.focused #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2 #ebdbb2
+# client.unfocused #665c54 #665c54 #665c54 #665c54 #665c54
+# client.focused_inactive #665c54 #665c54 #665c54 #665c54 #665c54
+# catppuccin macchiato
+client.focused #b7bdf8 #b7bdf8 #b7bdf8 #b7bdf8 #b7bdf8
+client.unfocused #494d64 #494d64 #494d64 #494d64 #494d64
+client.focused_inactive #494d64 #494d64 #494d64 #494d64 #494d64
 gaps inner 10
 
 # gruvbox
@@ -228,7 +233,7 @@ bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira
     bindsym $mod+t exec test $transformFocusedMonitor = 'normal' && swaymsg output $focusedMonitor transform 90 || swaymsg output $focusedMonitor transform normal
     bindsym $mod+space floating toggle
     bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm || LIBGL_ALWAYS_SOFTWARE=1 flatpak run org.wezfurlong.wezterm
-    bindsym $mod+d exec BEMENU_BACKEND=wayland bemenu-run -i -l 20 --fb "#1d2021" --ff "#ebdbb2" --nb "#1d2021" --nf "#ebdbb2" --tb "#1d2021" --hb "#1d2021" --tf "#fb4934" --hf "#fabd2f" --nf "#ebdbb2" --af "#ebdbb2" --ab "#1d2021"
+    bindsym $mod+d exec BEMENU_BACKEND=wayland bemenu-run -i -l 20 --fb "#24273a" --ff "#cad3f5" --nb "#24273a" --nf "#cad3f5" --tb "#24273a" --hb "#24273a" --tf "#ed8796" --hf "#eed49f" --nf "#cad3f5" --af "#cad3f5" --ab "#24273a"
     bindsym $mod+Shift+r reload
     bindsym $mod+Shift+Escape exec swaynag -t warning -m 'Exit sway ?' -b 'Yes' 'swaymsg exit'
     # split

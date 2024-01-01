@@ -7,7 +7,7 @@
     chromium = {
       enable = true;
       extensions = [
-        "bkkmolkhemgaeaeggcmfbghljjjoofoh" # Theme Catppuccin Mocha
+        # "bkkmolkhemgaeaeggcmfbghljjjoofoh" # Theme Catppuccin Mocha
         "cmpdlhmnmjhihmcfnigoememnffkimlk" # Theme Catppuccin Macchiato
         # "fjofdcgahcnlkdjapcbeonbnmjdnfcki" # Theme gruvbox
         # "njcgdakjdifgccdgnoiphpnihcfopcmj" # Theme devtools gruvbox
@@ -43,7 +43,8 @@
         search.default = "DuckDuckGo";
         search.force = true;
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          gruvbox-dark-theme             # theme
+          # gruvbox-dark-theme             # theme
+          catppuccin-macchiato-lavender2 # theme
           web-archives                   # web arcuives
           clearurls                      # clean urls
           libredirect                    # redirect to alternative privacy friendly frontends
