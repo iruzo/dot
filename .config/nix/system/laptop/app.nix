@@ -121,11 +121,23 @@
             installation_mode = "force_installed";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/libredirect/latest.xpi";
           };
+          # user agent switcher
+          "{a6c4a591-f1b2-4f03-b3ff-767e5bedf4e7}" = {
+            allowed_types = "extension";
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/user-agent-string-switcher/latest.xpi";
+          };
           # flags
           "{1018e4d6-728f-4b20-ad56-37578a4de76b}" = {
             allowed_types = "extension";
             installation_mode = "force_installed";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/flagfox/latest.xpi";
+          };
+          # web archives
+          "{d07ccf11-c0cd-4938-a265-2a4d6ad01189}" = {
+            allowed_types = "extension";
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/view-page-archive/latest.xpi";
           };
           # dark reader
           "addon@darkreader.org" = {
@@ -161,7 +173,7 @@
           "sponsorBlocker@ajay.app" = {
             allowed_types = "extension";
             installation_mode = "force_installed";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/ping-blocker/latest.xpi";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/sponsorblock/latest.xpi";
           };
           # i still dont care about cookies
           "idcac-pub@guus.ninja" = {
