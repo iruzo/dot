@@ -71,12 +71,12 @@
           Fingerprinting = true;
         };
         Preferences = {
-          browser.theme.content-theme = 0;
-          "browser.compactmode.show" = { Value = true; Status = "default"; };
-          browser.uidensity = 1;
-          "toolkit.legacyUserProfileCustomizations.stylesheets" = { Value = true; Status = "default"; };
-          extensions.activeThemeID = "{15cb5e64-94bd-41aa-91cf-751bb1a84972}";
-          network.cookie.cookieBehavior = 5;
+          "browser.compactmode.show" = true;
+          "browser.theme.content-theme" = 0;
+          "browser.uidensity" = 1;
+          "extensions.activeThemeID" = "{15cb5e64-94bd-41aa-91cf-751bb1a84972}";
+          "network.cookie.cookieBehavior" = 5;
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         };
         ExtensionSettings = {
           # # gruvbox
