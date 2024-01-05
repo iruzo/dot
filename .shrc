@@ -70,6 +70,7 @@ alias monitor-cpu='ps axch -o cmd:15,%cpu --sort=-%cpu'
 alias weather='curl wttr.in/a-coruna?format="%t(%C)"'
 alias createswap='sudo fallocate -l 16G /swap && sudo chmod 600 /swap && sudo mkswap /swap && sudo swapon /swap'
 alias enableswap='sudo swapon /swap'
+alias port_listen='sudo netstat -tunlp'
 
 alias umount-ssh='fusermount -u'
 alias umount-usb='udisksctl umount -b'
