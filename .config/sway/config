@@ -13,7 +13,7 @@ exec_always if [ ! -f ~/.config/swaync/style.css ]; then $(mkdir -p ~/.config/sw
   blur enable
   shadows enable
   corner_radius 10
-  # layer_effects "panel" blur enable; shadows enable; # corner_radius 10
+  layer_effects "panel" blur enable; shadows enable; # corner_radius 10
   # layer_effects "menu" blur enable; shadows enable; # corner_radius 10
 
 # variables
