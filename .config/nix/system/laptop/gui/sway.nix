@@ -26,7 +26,7 @@ in
       swaynotificationcenter
       swaylock
       wl-clipboard
-      bemenu
+      tofi
       grim
       slurp
       brightnessctl
