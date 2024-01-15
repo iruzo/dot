@@ -7,7 +7,21 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 exec_always if [ ! -f ~/.config/swaync/style.css ]; then $(mkdir -p ~/.config/swaync && curl -L https://github.com/catppuccin/swaync/releases/download/v0.1.2.1/macchiato.css -o ~/.config/swaync/style.css); fi
 
 # firefox userChrome
-# exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then mkdir -p ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && curl https://raw.githubusercontent.com/crambaud/waterfall/main/userChrome.css > ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css; fi
+
+exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then \
+  mkdir -p ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && \
+  echo '\
+#TabsToolbar {\n\
+  visibility: collapse;\n\
+}\n\n\
+#back-button, #forward-button {\n\
+  display: none;\n\
+}\n\n\
+#main-window [lwthemetextcolor=\"bright\"] #navigator-toolbox > toolbar:not (#toolbar-menubar):not (#TabsToolbar) {\n\
+    background-color: transparent !important;\n\
+    background-image: none !important;\n\
+}\
+  ' > ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css; fi
 
 # exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then \
 #   mkdir -p ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && \
