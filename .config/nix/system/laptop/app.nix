@@ -193,18 +193,36 @@
             installation_mode = "force_installed";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/temporary-containers/latest.xpi";
           };
+          # auto tab discard
+          "{c2c003ee-bd69-42a2-b0e9-6f34222cb046}" = {
+            allowed_types = "extension";
+            installation_mode = "force_installed";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/auto-tab-discard/latest.xpi";
+          };
           # tampermonkey
           "firefox@tampermonkey.net" = {
             allowed_types = "extension";
             installation_mode = "force_installed";
             install_url = "https://addons.mozilla.org/firefox/downloads/latest/tampermonkey/latest.xpi";
           };
-          # vimium
-          "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
+          # # vimium
+          # "{d7742d87-e61d-4b78-b8a1-b469842139fa}" = {
+          #   allowed_types = "extension";
+          #   installation_mode = "force_installed";
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
+          # };
+          # tridactyl
+          "tridactyl.vim@cmcaine.co.uk" = {
             allowed_types = "extension";
             installation_mode = "force_installed";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/tridactyl-vim/latest.xpi";
           };
+          # # tabby
+          # "tabby@whatsyouridea.com" = {
+          #   allowed_types = "extension";
+          #   installation_mode = "force_installed";
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/tabby-window-tab-manager/latest.xpi";
+          # };
           # # tab-volume
           # "{a8e99fca-eb8f-410f-84e9-142eb055c162}" = {
           #   allowed_types = "extension";
