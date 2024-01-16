@@ -357,8 +357,8 @@ bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira
       bindsym $mod+b exec brightnessctl s +10
       bindsym $mod+Shift+b exec brightnessctl s 10-
     # screenshot
-      bindsym $mod+Shift+s exec mkdir -p ~/media && grim -g "$(slurp)" ~/media/$(date +'%Y%m%d_%H%M%S').png
-      bindsym $mod+Shift+f exec mkdir -p ~/media && grim -g "$(slurp -o)" ~/media/$(date +'%Y%m%d_%H%M%S').png
+      bindsym $mod+Shift+s exec mkdir -p ~/Pictures && grim -g "$(slurp)" ~/Pictures/$(date +'%Y%m%d_%H%M%S').png
+      bindsym $mod+Shift+f exec mkdir -p ~/Pictures && grim -g "$(slurp -o)" ~/Pictures/$(date +'%Y%m%d_%H%M%S').png
     # file manager
       bindsym $mod+Shift+e exec nautilus
     # browser
