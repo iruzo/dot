@@ -11,9 +11,6 @@ exec_always if [ ! -f ~/.config/swaync/style.css ]; then $(mkdir -p ~/.config/sw
 exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then \
   mkdir -p ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && \
   echo '\
-#TabsToolbar {\n\
-  visibility: collapse;\n\
-}\n\n\
 #back-button, #forward-button {\n\
   display: none;\n\
 }\n\n\
@@ -22,6 +19,10 @@ exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep defa
     background-image: none !important;\n\
 }\
   ' > ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css; fi
+
+# #TabsToolbar {\n\
+#   visibility: collapse;\n\
+# }\n\n\
 
 # exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then \
 #   mkdir -p ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && \
@@ -227,8 +228,8 @@ workspace 4 output eDP-1
 workspace 5 output eDP-1
 
 # wallpaper
-set $wallpaper https://i.redd.it/3440x1440-random-abstract-v0-s5vj7k3yw5bc1.png?s=20d6983b33a24952cc6673cc25c8cbfc314a5bf1
-set $lock https://i.redd.it/3440x1440-random-abstract-v0-s5vj7k3yw5bc1.png?s=20d6983b33a24952cc6673cc25c8cbfc314a5bf1
+set $wallpaper https://raw.githubusercontent.com/42Willow/dotfiles/main/hypr/wallpapers/Macchiato%20Kurzgesagt/macchiato-hald8-Ringed_Earth.jpg.jpg
+set $lock https://raw.githubusercontent.com/42Willow/dotfiles/main/hypr/wallpapers/Macchiato%20Kurzgesagt/macchiato-hald8-Ringed_Earth.jpg.jpg
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
@@ -363,7 +364,7 @@ bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira
       bindsym $mod+Shift+e exec nautilus
     # browser
       bindsym $mod+o exec firefox
-      bindsym $mod+Shift+o exec cat ~/own/quickmarks | $emptymenu | awk -F'|' '{print $NF}' | tr ' ' '\n' | wl-copy
+      bindsym $mod+Shift+o exec cat ~/own/quickmarks.md | $emptymenu | awk -F'|' '{print $NF}' | tr ' ' '\n' | wl-copy
       bindsym $mod+Shift+i exec cat ~/own/emoji | $emptymenu | awk '{for (i=2; i<=NF; i++) print $i}' | tr ' ' '\n' | wl-copy
     # discord
       bindsym $mod+g exec firefox --new-window https://discord.com/login || chromium --app=https://discord.com/app || chromium-browser --app=https://discord.com/app
