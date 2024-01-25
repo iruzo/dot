@@ -10,24 +10,14 @@ exec_always if [ ! -f ~/.config/swaync/style.css ]; then $(mkdir -p ~/.config/sw
 
 exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then \
   mkdir -p ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && \
-  echo '\
-#back-button, #forward-button {\n\
-  display: none;\n\
-}\n\n\
-#main-window [lwthemetextcolor=\"bright\"] #navigator-toolbox > toolbar:not (#toolbar-menubar):not (#TabsToolbar) {\n\
-    background-color: transparent !important;\n\
-    background-image: none !important;\n\
-}\
-  ' > ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css; fi
-
-# #TabsToolbar {\n\
-#   visibility: collapse;\n\
-# }\n\n\
-
-# exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then \
-#   mkdir -p ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && \
-#   curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/navbar_below_content.css > ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
-#   curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/autohide_tabstoolbar.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css; fi
+  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/status_inside_urlbar.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/selected_tab_as_urlbar.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/scrollable_menupopups.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/rounded_menupopups.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/round_ui_items.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/round_caption_buttons.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/autohide_navigation_button.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/navigation_buttons_inside_urlbar.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css; fi
 
 # cascade
 # exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then \
