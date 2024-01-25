@@ -211,12 +211,18 @@
           #   installation_mode = "force_installed";
           #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-ff/latest.xpi";
           # };
-          # tridactyl
-          "tridactyl.vim@cmcaine.co.uk" = {
+          # vimium-c
+          "vimium-c@gdh1995.cn" = {
             allowed_types = "extension";
             installation_mode = "force_installed";
-            install_url = "https://addons.mozilla.org/firefox/downloads/latest/tridactyl-vim/latest.xpi";
+            install_url = "https://addons.mozilla.org/firefox/downloads/latest/vimium-c/latest.xpi";
           };
+          # # tridactyl
+          # "tridactyl.vim@cmcaine.co.uk" = {
+          #   allowed_types = "extension";
+          #   installation_mode = "force_installed";
+          #   install_url = "https://addons.mozilla.org/firefox/downloads/latest/tridactyl-vim/latest.xpi";
+          # };
           # # tabby
           # "tabby@whatsyouridea.com" = {
           #   allowed_types = "extension";
