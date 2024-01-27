@@ -6,20 +6,30 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 # swaync theme
 exec_always if [ ! -f ~/.config/swaync/style.css ]; then $(mkdir -p ~/.config/swaync && curl -L https://github.com/catppuccin/swaync/releases/download/v0.1.2.1/macchiato.css -o ~/.config/swaync/style.css); fi
 
-# firefox userChrome
-
+# firefox userChrome qutebrowser
 exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then \
   mkdir -p ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && \
-  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/status_inside_urlbar.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
-  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/selected_tab_as_urlbar.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
-  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/scrollable_menupopups.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
-  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/rounded_menupopups.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
-  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/round_ui_items.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
-  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/round_caption_buttons.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
-  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/autohide_navigation_button.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
-  curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/navigation_buttons_inside_urlbar.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css; fi
+  curl https://raw.githubusercontent.com/Dook97/firefox-qutebrowser-userchrome/master/userChrome.css > ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+  sed -i 's/057/24273a/g' ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+  sed -i 's/333/181926/g' ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+  echo ' \n\
+#firefox-view-button { \n\
+  display: none !important; \n\
+}' >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css; fi
 
-# cascade
+# # firefox userChrome self-made
+# exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then \
+#   mkdir -p ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && \
+#   curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/status_inside_urlbar.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+#   curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/selected_tab_as_urlbar.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+#   curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/scrollable_menupopups.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+#   curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/rounded_menupopups.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+#   curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/round_ui_items.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+#   curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/round_caption_buttons.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+#   curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/autohide_navigation_button.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css && \
+#   curl https://raw.githubusercontent.com/MrOtherGuy/firefox-csshacks/master/chrome/navigation_buttons_inside_urlbar.css >> ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome/userChrome.css; fi
+
+# # firefox userChrome cascade
 # exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep default)/chrome/userChrome.css ]; then \
 #   rm -rf ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && \
 #   mkdir -p ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox | grep default)/chrome && \
@@ -218,8 +228,8 @@ workspace 4 output eDP-1
 workspace 5 output eDP-1
 
 # wallpaper
-set $wallpaper https://raw.githubusercontent.com/42Willow/dotfiles/main/hypr/wallpapers/Macchiato%20Kurzgesagt/macchiato-hald8-Ringed_Earth.jpg.jpg
-set $lock https://raw.githubusercontent.com/42Willow/dotfiles/main/hypr/wallpapers/Macchiato%20Kurzgesagt/macchiato-hald8-Ringed_Earth.jpg.jpg
+set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-macchiato-saturn.jpg
+set $lock https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-macchiato-saturn.jpg
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
@@ -263,7 +273,7 @@ bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira
     bindsym $mod+space floating toggle
     bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm || LIBGL_ALWAYS_SOFTWARE=1 flatpak run org.wezfurlong.wezterm
     # bindsym $mod+d exec BEMENU_BACKEND=wayland bemenu-run -i -l 20 --fb "#24273a" --ff "#cad3f5" --nb "#24273a" --nf "#cad3f5" --tb "#24273a" --hb "#24273a" --tf "#ed8796" --hf "#eed49f" --nf "#cad3f5" --af "#cad3f5" --ab "#24273a"
-    bindsym $mod+d exec tofi-run
+    bindsym $mod+d exec tofi-run | $(cat)
     bindsym $mod+Shift+r reload
     bindsym $mod+Shift+Escape exec swaynag -t warning -m 'Exit sway ?' -b 'Yes' 'swaymsg exit'
     # split
