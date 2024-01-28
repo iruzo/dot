@@ -31,7 +31,7 @@ in
       slurp
       brightnessctl
       wvkbd
-      vlc
+      mpv
 
       gnome.nautilus
       gnome.gnome-logs

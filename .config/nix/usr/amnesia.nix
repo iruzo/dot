@@ -24,17 +24,20 @@
       helvum                 # control connections between audio inputs and outputs
       pavucontrol            # pulse audio volume control
       noisetorch             # noise supression
-      wezterm                # terminal emulator
+      # wezterm                # terminal emulator
+      foot                   # terminal emulator
       tor-browser-bundle-bin # tor
       transmission-gtk       # torrent
       aerc                   # mail
       neovim                 # text editor
       ripgrep                # finder
       keepassxc              # password manager
+      zbar                   # bar code reader
       mpv                    # image and video
       obs-studio             # video-audio recorder
       zathura                # document viewer
       pandoc                 # document converter
+      imagemagick            # terminal image editor
       gimp                   # image editor
       libreoffice            # office
       mat2                   # clean metadata

@@ -4,10 +4,6 @@
 
   # environment = {
   #   systemPackages = with pkgs; [
-  #     home-manager
-  #     git
-  #     wezterm                # terminal emulator
-  #     neovim
   #   ];
   # };
 
