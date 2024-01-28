@@ -2,10 +2,9 @@ return {
 
   {
     'nvim-neo-tree/neo-tree.nvim',
-    tag = '3.12',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
-      { 'MunifTanjim/nui.nvim', tag = '0.1.0', },
+      { 'MunifTanjim/nui.nvim' },
     },
     cmd = 'Neotree',
     keys = {

@@ -2,7 +2,6 @@ return {
 
   {
     'nvim-focus/focus.nvim',
-    tag = 'v1.0.1',
     cmd = 'Focus',
     keys = {
       { '<C-w><C-v>', ':FocusSplitRight<CR>', silent = true, desc = 'split right' },

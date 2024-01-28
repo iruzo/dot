@@ -2,7 +2,6 @@ return {
 
   {
     'neovim/nvim-lspconfig',
-    tag = 'v0.1.6',
     event = { 'BufReadPre', 'BufNewFile' },
     cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
     dependencies = {
@@ -63,7 +62,6 @@ return {
             dependencies = {
               {
                 'L3MON4D3/LuaSnip',
-                tag = 'v2.1.0',
                 dependencies = {
                   'rafamadriz/friendly-snippets',
                   'iruzo/snip',

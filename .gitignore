@@ -36,6 +36,7 @@
 .config/nvim/*
 !.config/nvim/vimrc.sh
 !.config/nvim/init.lua
+!.config/nvim/lazy-lock.json
 !.config/nvim/lua
 
 # emacs

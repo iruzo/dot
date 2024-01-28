@@ -2,7 +2,6 @@ return {
 
   {
     'nanozuki/tabby.nvim',
-    tag = 'v2.3.0',
     keys = {
       { '<C-h>', ':tabprevious<CR>', silent = true, desc = 'tab previous' },
       { '<C-j>', ':tabnew<CR>', silent = true, desc = 'tab new' },

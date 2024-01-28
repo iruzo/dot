@@ -5,8 +5,8 @@ return {
     tag = 'stable',
     event = 'VeryLazy',
     dependencies = {
-      { 'MunifTanjim/nui.nvim', tag = '0.1.0', },
-      { 'rcarriga/nvim-notify', tag = 'v3.12.0', }
+      { 'MunifTanjim/nui.nvim' },
+      { 'rcarriga/nvim-notify' }
     },
     opts = {
       cmdline = {
