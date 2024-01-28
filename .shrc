@@ -56,6 +56,7 @@ e() {
   nvim "$@" || vim "$@" || vi "$@"
 }
 alias v='e'
+alias cal='cal -m'
 alias grep='grep -i --color=auto'
 alias dd='dd status=progress'
 alias curl='curl -L'
