@@ -14,6 +14,7 @@
 
   programs.ssh.startAgent = true;
 
+  users.defaultUserShell = pkgs.dash;
   users.users.amnesia = {
     isNormalUser = true;
     shell = pkgs.yash;
