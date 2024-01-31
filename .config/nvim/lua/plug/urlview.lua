@@ -5,9 +5,7 @@ return {
     cmd = 'UrlView',
     opts = true,
     dependencies = {
-      {
-        'nvim-telescope/telescope.nvim',
-      },
+      { 'nvim-telescope/telescope.nvim', version = '*' },
     },
     config = function()
       require("urlview").setup({

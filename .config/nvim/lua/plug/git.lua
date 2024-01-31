@@ -4,9 +4,9 @@ return {
     'NeogitOrg/neogit',
     cmd = 'Neogit',
     dependencies = {
-      { 'nvim-lua/plenary.nvim' },        -- required
-      { 'nvim-telescope/telescope.nvim' }, -- optional
-      'sindrets/diffview.nvim',                            -- optional
+      { 'nvim-lua/plenary.nvim', version = '*' },         -- required
+      { 'nvim-telescope/telescope.nvim', version = '*' }, -- optional
+      'sindrets/diffview.nvim',                           -- optional
     },
     cond = function()
       if vim.fn.isdirectory '.git' ~= 0 then
@@ -18,6 +18,7 @@ return {
 
   {
     'lewis6991/gitsigns.nvim',
+    version = '*',
     event = 'VeryLazy',
     cond = function()
       if vim.fn.isdirectory '.git' ~= 0 then
@@ -39,9 +40,9 @@ return {
     'pwntester/octo.nvim',
     cmd = 'Octo',
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      { 'nvim-telescope/telescope.nvim' },
-      'nvim-tree/nvim-web-devicons',
+      { 'nvim-lua/plenary.nvim', version = '*' },
+      { 'nvim-telescope/telescope.nvim', version = '*' },
+      { 'nvim-tree/nvim-web-devicons', version = '*' },
     },
     cond = function()
       if vim.fn.isdirectory '.git' ~= 0 then

@@ -2,17 +2,11 @@ return {
 
   {
     'neovim/nvim-lspconfig',
+    version = '*',
     event = { 'BufReadPre', 'BufNewFile' },
     cmd = { 'LspInfo', 'LspInstall', 'LspUninstall' },
     dependencies = {
-      {
-        'dnlhc/glance.nvim',
-        opts = true,
-        keys = {
-          { 'glr', ':Glance references<CR>',  silent = true, desc = 'lsp references' },
-          { 'gld', ':Glance definitions<CR>', silent = true, desc = 'lsp definitions' },
-        },
-      },
+      { 'nvim-telescope/telescope.nvim', version = '*' },
       {
         'williamboman/mason-lspconfig.nvim',
         tag = 'stable',
@@ -39,7 +33,9 @@ return {
         end
       },
       {
-        'simrat39/rust-tools.nvim',
+        'mrcjkb/rustaceanvim',
+        version = '*',
+        ft = { 'rust' },
         cond = function()
           local f=io.open('Cargo.toml','r')
           if f~=nil then io.close(f)
@@ -62,6 +58,7 @@ return {
             dependencies = {
               {
                 'L3MON4D3/LuaSnip',
+                version = '*',
                 dependencies = {
                   'rafamadriz/friendly-snippets',
                   'iruzo/snip',
@@ -109,15 +106,18 @@ return {
       },
     },
     config = function()
-      vim.api.nvim_set_keymap('n', 'mm',    ':lua vim.lsp.buf.hover()<CR>',             { noremap = true })
-      vim.api.nvim_set_keymap('n', 'gd',    ':lua vim.lsp.buf.definition()<CR>',        { noremap = true })
-      vim.api.nvim_set_keymap('n', 'gi',    ':lua vim.lsp.buf.implementation()<CR>',    { noremap = true })
-      vim.api.nvim_set_keymap('n', 'gr',    ':lua vim.lsp.buf.references()<CR>',        { noremap = true })
-      vim.api.nvim_set_keymap('n', 'rr',    ':lua vim.lsp.buf.rename()<CR>',            { noremap = true })
-      vim.api.nvim_set_keymap('n', '<C-a>', ':lua vim.lsp.buf.code_action()<CR>',       { noremap = true })
-      vim.api.nvim_set_keymap('x', '<C-a>', ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true })
-      vim.api.nvim_set_keymap('n', '<M-p>', ':lua vim.diagnostic.goto_prev()<CR>',      { noremap = true })
-      vim.api.nvim_set_keymap('n', '<M-n>', ':lua vim.diagnostic.goto_next()<CR>',      { noremap = true })
+      vim.api.nvim_set_keymap('n', 'mm',         ':lua vim.lsp.buf.hover()<CR>',             { noremap = true })
+      vim.api.nvim_set_keymap('n', 'rr',         ':lua vim.lsp.buf.rename()<CR>',            { noremap = true })
+      -- vim.api.nvim_set_keymap('n', 'gi',         ':lua vim.lsp.buf.implementation()<CR>',    { noremap = true })
+      -- vim.api.nvim_set_keymap('n', 'gd',         ':lua vim.lsp.buf.definition()<CR>',        { noremap = true })
+      -- vim.api.nvim_set_keymap('n', 'gr',         ':lua vim.lsp.buf.references()<CR>',        { noremap = true })
+      vim.api.nvim_set_keymap('n', 'gi',         ':Telescope lsp_implementations<CR>',       { noremap = true })
+      vim.api.nvim_set_keymap('n', 'gd',         ':Telescope lsp_definitions<CR>',           { noremap = true })
+      vim.api.nvim_set_keymap('n', 'gr',         ':Telescope lsp_references<CR>',            { noremap = true })
+      vim.api.nvim_set_keymap('n', '<C-a>',      ':lua vim.lsp.buf.code_action()<CR>',       { noremap = true })
+      vim.api.nvim_set_keymap('x', '<C-a>',      ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', '<M-p>',      ':lua vim.diagnostic.goto_prev()<CR>',      { noremap = true })
+      vim.api.nvim_set_keymap('n', '<M-n>',      ':lua vim.diagnostic.goto_next()<CR>',      { noremap = true })
     end
   },
 

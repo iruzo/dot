@@ -2,8 +2,9 @@ return {
 
   {
     'nvim-treesitter/nvim-treesitter',
+    version = '*',
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-context',
+      { 'nvim-treesitter/nvim-treesitter-context', version = '*' },
       'RRethy/nvim-treesitter-endwise',
       {
         'windwp/nvim-ts-autotag',

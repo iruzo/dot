@@ -2,8 +2,9 @@ return {
 
   {
     'NOSDuco/remote-sshfs.nvim',
+    version = '*',
     dependencies = {
-      { 'nvim-telescope/telescope.nvim' },
+      { 'nvim-telescope/telescope.nvim', version = '*' },
     },
     cmd = 'RemoteSSHFSConnect',
     keys = {

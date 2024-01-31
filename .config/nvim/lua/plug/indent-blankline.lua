@@ -2,6 +2,7 @@ return {
 
   {
     'lukas-reineke/indent-blankline.nvim',
+    version = '*',
     event = { 'BufReadPost', 'BufNewFile' },
     config = function()
       vim.opt.termguicolors = true

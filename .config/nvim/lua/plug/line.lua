@@ -2,8 +2,9 @@ return {
 
   {
     'nvim-lualine/lualine.nvim',
+    version = '*',
     dependencies = {
-      'nvim-tree/nvim-web-devicons'
+      { 'nvim-tree/nvim-web-devicons', version = '*' }
     },
     event = 'VeryLazy',
     opts = true,
