@@ -20,17 +20,17 @@
       man
       git
       btop                   # system monitor
+      bemenu                 # fuzzy menu
       sshfs                  # mount dirs through ssh
       helvum                 # control connections between audio inputs and outputs
       pavucontrol            # pulse audio volume control
       noisetorch             # noise supression
       # wezterm                # terminal emulator
       foot                   # terminal emulator
-      tor-browser-bundle-bin # tor
-      transmission-gtk       # torrent
-      aerc                   # mail
       neovim                 # text editor
+      aerc                   # mail
       ripgrep                # finder
+      calc                   # calculator
       keepassxc              # password manager
       zbar                   # bar code reader
       mpv                    # image and video
@@ -38,14 +38,17 @@
       zathura                # document viewer
       pandoc                 # document converter
       imagemagick            # terminal image editor
+      transmission-gtk       # torrent
+      tor-browser-bundle-bin # tor
       gimp                   # image editor
       libreoffice            # office
       mat2                   # clean metadata
       syncthing              # file synchronization
-      # gpt4all     # run data models locally
+      # gpt4all                # run data models locally
 
       # tools
       gcc
+      python3
 
       # games
       prismlauncher
