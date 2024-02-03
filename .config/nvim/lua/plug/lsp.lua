@@ -106,6 +106,11 @@ return {
       },
     },
     config = function()
+
+      vim.diagnostic.config {
+          float = { border = "rounded" },
+      }
+
       vim.api.nvim_set_keymap('n', 'mm',         ':lua vim.lsp.buf.hover()<CR>',             { noremap = true })
       vim.api.nvim_set_keymap('n', 'rr',         ':lua vim.lsp.buf.rename()<CR>',            { noremap = true })
       -- vim.api.nvim_set_keymap('n', 'gi',         ':lua vim.lsp.buf.implementation()<CR>',    { noremap = true })
@@ -118,6 +123,7 @@ return {
       vim.api.nvim_set_keymap('x', '<C-a>',      ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<M-p>',      ':lua vim.diagnostic.goto_prev()<CR>',      { noremap = true })
       vim.api.nvim_set_keymap('n', '<M-n>',      ':lua vim.diagnostic.goto_next()<CR>',      { noremap = true })
+
     end
   },
 
