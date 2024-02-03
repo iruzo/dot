@@ -57,30 +57,23 @@
     fontDir.enable = true;
     enableDefaultPackages = true;
     packages = with pkgs; [
-      # anurati
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-      liberation_ttf
       fira-code
       fira-code-symbols
       (nerdfonts.override { fonts = [ "FiraCode" "NerdFontsSymbolsOnly" ]; })
+      # anurati
       # pkgs.nur.repos.nekowinston.apple-sf-mono
     ];
     fontconfig = {
       defaultFonts = {
-        # serif = [ "SF Serif" ];
-        # sansSerif = [ "SF Serif" ];
-        # monospace = [ "SF Mono" ];
         serif = [ "Fira Code" ];
         sansSerif = [ "Fira Code" ];
         monospace = [ "Fira Code" ];
+        # serif = [ "SF Serif" ];
+        # sansSerif = [ "SF Serif" ];
+        # monospace = [ "SF Mono" ];
       };
     };
   };
-
-  # this is required for mounting android phones over mtp://
-  # services.gvfs.enable = true;
 
   system.stateVersion = "23.11";
 
