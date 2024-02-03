@@ -71,7 +71,7 @@ exec_always if [ ! -f ~/.mozilla/firefox/$(ls -1 ~/.mozilla/firefox/ | grep defa
 
 bar {
   position top
-  font "Fira Code bold 10"
+  font "Red Hat Text bold 10"
   # gaps 10
 
   bindsym button1 exec sh -c 'ps -ef | grep  "wvkbd" && pkill wvkbd || wvkbd-mobintl -l simple,special'

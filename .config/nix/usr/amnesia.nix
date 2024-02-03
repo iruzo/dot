@@ -129,6 +129,8 @@
       #   ];
       # })
 
+      # fonts
+      redhat-official-fonts
     ];
     sessionVariables = {
       # GTK_THEME = "gruvbox-dark";
@@ -145,5 +147,6 @@
       NIXOS_OZONE_WL = "1"; # force VSCode to run under wayland
     };
   };
+  fonts.fontconfig.enable = true;
 
 }

@@ -4,7 +4,7 @@ history          = false
 prompt-text      = "menu: "
 
 # font
-font             = Fira Code Bold
+font             = Red Hat Mono Bold
 font-size        = 10
 
 # style
