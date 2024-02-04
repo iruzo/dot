@@ -18,7 +18,14 @@ COLOR_BBLUE="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || prin
 COLOR_BPURPLE="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || printf '\033[1;35m')"
 COLOR_BCYAN="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || printf '\033[1;36m')"
 COLOR_BWHITE="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || printf '\033[1;37m')"
-PS1=$(echo "\n$COLOR_BBLUE\$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW\$(echo $USER)$COLOR_RESET $COLOR_BRED\$(gitrepo)$COLOR_RESET $COLOR_BCYAN\$(pwd | sed "s:${HOME}:~:g")$COLOR_RESET\n · ")
+
+script_shell="$(readlink /proc/$$/exe | sed "s/.*\///")"
+if [[ "${script_shell}" == "zsh" ]]
+then
+  PS1=$(echo '~> ')
+else
+  PS1=$(echo "\n$COLOR_BBLUE\$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW\$(echo $USER)$COLOR_RESET $COLOR_BRED\$(gitrepo)$COLOR_RESET $COLOR_BCYAN\$(pwd | sed "s:${HOME}:~:g")$COLOR_RESET\n · ")
+fi
 
 export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export PATH="$PATH:$HOME/.local/bin"
