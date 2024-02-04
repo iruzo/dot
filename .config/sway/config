@@ -359,16 +359,20 @@ bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira
       bindsym $mod+b exec brightnessctl s +10
       bindsym $mod+Shift+b exec brightnessctl s 10-
     # screenshot
-      bindsym $mod+Shift+s exec mkdir -p ~/Pictures && grim -g "$(slurp)" ~/Pictures/$(date +'%Y%m%d_%H%M%S').png && cat ~/Pictures/$(date +'%Y%m%d_%H%M%S').png | wl-copy
-      bindsym $mod+Shift+f exec mkdir -p ~/Pictures && grim -g "$(slurp -o)" ~/Pictures/$(date +'%Y%m%d_%H%M%S').png && cat ~/Pictures/$(date +'%Y%m%d_%H%M%S').png | wl-copy
+      bindsym $mod+Shift+s exec mkdir -p ~/Pictures/Screenshots && grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +'%Y%m%d_%H%M%S').png && cat ~/Pictures/Screenshots/$(date +'%Y%m%d_%H%M%S').png | wl-copy
+      bindsym $mod+Shift+f exec mkdir -p ~/Pictures/Screenshots && grim -g "$(slurp -o)" ~/Pictures/Screenshots/$(date +'%Y%m%d_%H%M%S').png && cat ~/Pictures/Screenshots/$(date +'%Y%m%d_%H%M%S').png | wl-copy
     # file manager
       bindsym $mod+Shift+e exec nautilus
     # browser
       bindsym $mod+o exec firefox
       bindsym $mod+Shift+o exec cat ~/own/quickmarks.md | $emptymenu | awk -F'|' '{print $NF}' | tr ' ' '\n' | wl-copy
       bindsym $mod+Shift+i exec cat ~/own/emoji | $emptymenu | awk '{for (i=2; i<=NF; i++) print $i}' | tr ' ' '\n' | wl-copy
-    # discord
-      bindsym $mod+g exec firefox --new-window https://discord.com/login || chromium --app=https://discord.com/app || chromium-browser --app=https://discord.com/app
+    # web apps
+      bindsym $mod+g exec $emptymenu <<< '\
+        firefox --new-window https://discord.com/login \n\
+        chromium --app=https://discord.com/app \n\
+        chromium-browser --app=https://discord.com/app \n\
+      ' | $(cat)
     # vm
       bindsym $mod+i exec gnome-boxes
     # keepassxc
