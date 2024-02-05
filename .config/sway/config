@@ -262,7 +262,7 @@ exec_always if [ ! -e ~/.themes/gruvbox ]; then $(mkdir -p ~/.themes && git clon
 
 # lock screen
 # bindsym $mod+Escape exec swaylock -c 000000
-bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Fira Code'
+bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Red Hat Text'
 
 # keybindings
 

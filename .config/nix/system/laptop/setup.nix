@@ -57,17 +57,15 @@
     fontDir.enable = true;
     enableDefaultPackages = true;
     packages = with pkgs; [
-      fira-code
-      fira-code-symbols
-      (nerdfonts.override { fonts = [ "FiraCode" "NerdFontsSymbolsOnly" ]; })
+      redhat-official-fonts
       # anurati
       # pkgs.nur.repos.nekowinston.apple-sf-mono
     ];
     fontconfig = {
       defaultFonts = {
-        serif = [ "Fira Code" ];
-        sansSerif = [ "Fira Code" ];
-        monospace = [ "Fira Code" ];
+        serif = [ "Red Hat Mono" ];
+        sansSerif = [ "Red Hat Mono" ];
+        monospace = [ "Red Hat Mono" ];
         # serif = [ "SF Serif" ];
         # sansSerif = [ "SF Serif" ];
         # monospace = [ "SF Mono" ];

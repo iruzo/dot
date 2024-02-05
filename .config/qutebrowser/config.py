@@ -96,22 +96,22 @@ def rewrite(request: qutebrowser.api.interceptor.Request):
 qutebrowser.api.interceptor.register(rewrite)
 
 # fonts
-c.fonts.hints = "bold default_size 'Fira Code'"
-c.fonts.keyhint = "bold default_size 'Fira Code'"
-c.fonts.prompts = "bold default_size 'Fira Code'"
-c.fonts.downloads = "bold default_size 'Fira Code'"
-c.fonts.statusbar = "bold default_size 'Fira Code'"
-c.fonts.contextmenu = "bold default_size 'Fira Code'"
-c.fonts.messages.info = "bold default_size 'Fira Code'"
-c.fonts.debug_console = "bold default_size 'Fira Code'"
-c.fonts.completion.entry = "bold default_size 'Fira Code'"
-c.fonts.completion.category = "bold default_size 'Fira Code'"
-c.fonts.web.family.cursive = "'Fira Code'"
-c.fonts.web.family.fantasy = "'Fira Code'"
-c.fonts.web.family.fixed = "'Fira Code'"
-c.fonts.web.family.serif = "'Fira Code'"
-c.fonts.web.family.sans_serif = "'Fira Code'"
-c.fonts.web.family.standard = "'Fira Code'"
+c.fonts.hints = "bold default_size 'Red Hat Text'"
+c.fonts.keyhint = "bold default_size 'Red Hat Text'"
+c.fonts.prompts = "bold default_size 'Red Hat Text'"
+c.fonts.downloads = "bold default_size 'Red Hat Text'"
+c.fonts.statusbar = "bold default_size 'Red Hat Text'"
+c.fonts.contextmenu = "bold default_size 'Red Hat Text'"
+c.fonts.messages.info = "bold default_size 'Red Hat Text'"
+c.fonts.debug_console = "bold default_size 'Red Hat Text'"
+c.fonts.completion.entry = "bold default_size 'Red Hat Text'"
+c.fonts.completion.category = "bold default_size 'Red Hat Text'"
+c.fonts.web.family.cursive = "'Red Hat Text'"
+c.fonts.web.family.fantasy = "'Red Hat Text'"
+c.fonts.web.family.fixed = "'Red Hat Text'"
+c.fonts.web.family.serif = "'Red Hat Text'"
+c.fonts.web.family.sans_serif = "'Red Hat Text'"
+c.fonts.web.family.standard = "'Red Hat Text'"
 
 # adblock
 c.content.blocking.enabled=True
