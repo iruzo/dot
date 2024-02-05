@@ -372,6 +372,7 @@ bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Red 
         firefox --new-window https://discord.com/login \n\
         chromium --app=https://discord.com/app \n\
         chromium-browser --app=https://discord.com/app \n\
+        firefox --new-window https://app.element.io \n\
       ' | $(cat)
     # vm
       bindsym $mod+i exec gnome-boxes
