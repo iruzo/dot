@@ -42,6 +42,7 @@
   "octo.nvim": { "branch": "master", "commit": "f8db415529f0a28f62484e49e3518b48e2b76644" },
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
   "remote-sshfs.nvim": { "branch": "main", "commit": "b207103fbf4c200d8641cd1d6fbba84c322c2d21" },
+  "rustaceanvim": { "branch": "master", "commit": "4af9aacd46572e25fca3e6f08706aabc5268a375" },
   "snip": { "branch": "main", "commit": "5a722e9d1dcf6941d8b1224c8cb7f42159194bd7" },
   "tabby.nvim": { "branch": "main", "commit": "9e537762cbb7647357eab22c61c7c5dda00138dd" },
   "tagalong.vim": { "branch": "main", "commit": "f22443178e695cf321fc668436b51fa6de8102c3" },
