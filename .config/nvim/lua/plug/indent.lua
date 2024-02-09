@@ -37,4 +37,11 @@ return {
     end
   },
 
+  {
+    'echasnovski/mini.indentscope',
+    version = '*',
+    event = { 'BufReadPost', 'BufNewFile' },
+    opts = true
+  }
+
 }
