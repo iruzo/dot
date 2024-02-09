@@ -9,6 +9,7 @@ return {
       require'catppuccin'.setup({
         flavour = 'macchiato',
         transparent_background = not vim.g.neovide,
+        term_colors = true,
         integrations = {
           telescope = true,
           mason = true,
