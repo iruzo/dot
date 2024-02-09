@@ -8,7 +8,7 @@ return {
     config = function()
       require'catppuccin'.setup({
         flavour = 'macchiato',
-        transparent_background = true,
+        transparent_background = not vim.g.neovide,
         integrations = {
           telescope = true,
           mason = true,
