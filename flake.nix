@@ -11,6 +11,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur-input.url = "github:nix-community/nur";
+    ghostty-url = {
+      url = "git+ssh://git@github.com/mitchellh/ghostty";
+    };
     # winstonnur.url = "github:nekowinston/nur"; # flake lock --update-input winstonnur
     # pipewire-screenaudio-input.url = "github:IceDBorn/pipewire-screenaudio";
     vscod-extensions = {
@@ -21,31 +24,23 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nur-input, vscod-extensions, ... } @ inputs: let
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nur-input, vscod-extensions, ghostty-url, ... } @ inputs: let
     system = "x86_64-linux";
     overlays = f: p: {
       unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
       nur = import nur-input { nurpkgs = p; pkgs = p; };
       vscodext = vscod-extensions.extensions.${system};
       # pipewire-screenaudio = pipewire-screenaudio-input;
+      ghostty = import ghostty-url.packages.x86_64-linux.default;
     };
   in
   {
-    homeConfigurations = {
+    inputs.home-manager.nixosModules.home-manager.homeConfigurations = {
       "amnesia" = home-manager.lib.homeManagerConfiguration {
         inherit nixpkgs-unstable;
         modules = [ ./.config/nix/usr/amnesia.nix ];
       };
     };
-    # homeConfigurations."amnesia" = home-manager.lib.homeManagerConfiguration {
-    #   inherit nixpkgs;
-    #   modules = [ ./home.nix ];
-    # };
-    # home-manager = {
-    #   users = {
-    #     amnesia = import ./.config/nix/usr/amnesia.nix;
-    #   };
-    # };
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         # system = "x86_64-linux";
@@ -59,6 +54,9 @@
             ./home.nix
             ./.config/nix/system/laptop/setup.nix
           ];
+          # environment.systemPackages = [
+          #   ghostty.packages.x86_64-linux.default
+          # ];
         })];
       };
     };
