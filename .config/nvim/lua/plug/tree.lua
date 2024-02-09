@@ -1,18 +1,13 @@
 return {
 
   {
-    'nvim-neo-tree/neo-tree.nvim',
+    'echasnovski/mini.files',
     version = '*',
-    dependencies = {
-      { 'nvim-lua/plenary.nvim', version = '*' },
-      { 'nvim-tree/nvim-web-devicons', version = '*' },
-      { 'MunifTanjim/nui.nvim', version = '*' },
-    },
-    cmd = 'Neotree',
-    keys = {
-      { '<leader>e', ':Neotree toggle=true position=right<CR>', silent = true, desc = 'File Explorer' },
-    },
+    event = 'VeryLazy',
     opts = true,
+    keys = {
+      { '<leader>e', ':lua MiniFiles.open()<CR>', silent = true, desc = 'File Explorer' },
+    },
   },
 
 }
