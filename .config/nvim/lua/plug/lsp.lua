@@ -42,7 +42,6 @@ return {
             return true
           end
         end,
-        opts = true,
       },
       -- Autocompletion
       {
@@ -119,8 +118,8 @@ return {
       vim.api.nvim_set_keymap('n', 'gi',         ':Telescope lsp_implementations<CR>',       { noremap = true })
       vim.api.nvim_set_keymap('n', 'gd',         ':Telescope lsp_definitions<CR>',           { noremap = true })
       vim.api.nvim_set_keymap('n', 'gr',         ':Telescope lsp_references<CR>',            { noremap = true })
-      vim.api.nvim_set_keymap('n', '<C-a>',      ':lua vim.lsp.buf.code_action()<CR>',       { noremap = true })
-      vim.api.nvim_set_keymap('x', '<C-a>',      ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true })
+      vim.api.nvim_set_keymap('n', 'ca',         ':lua vim.lsp.buf.code_action()<CR>',       { noremap = true })
+      vim.api.nvim_set_keymap('x', 'ca',         ':lua vim.lsp.buf.range_code_action()<CR>', { noremap = true })
       vim.api.nvim_set_keymap('n', '<M-p>',      ':lua vim.diagnostic.goto_prev()<CR>',      { noremap = true })
       vim.api.nvim_set_keymap('n', '<M-n>',      ':lua vim.diagnostic.goto_next()<CR>',      { noremap = true })
 
