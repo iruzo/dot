@@ -6,7 +6,13 @@ return {
     event = 'VeryLazy',
     dependencies = {
       { 'MunifTanjim/nui.nvim', version = '*' },
-      { 'rcarriga/nvim-notify', version = '*' }
+      {
+        'rcarriga/nvim-notify',
+        version = '*',
+        opts = {
+          background_color = '#ffffff',
+        }
+      }
     },
     opts = {
       cmdline = {
