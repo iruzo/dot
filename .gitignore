@@ -26,6 +26,11 @@
 .config/foot/*
 !.config/foot/foot.ini
 
+# kitty
+!.config/kitty
+.config/kitty/*
+!.config/kitty/kitty.conf
+
 # wezterm
 !.config/wezterm
 .config/wezterm/*
