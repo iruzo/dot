@@ -17,6 +17,7 @@
       curl
       unzip
 
+      dash
       man
       git
       btop                   # system monitor
@@ -25,8 +26,7 @@
       helvum                 # control connections between audio inputs and outputs
       pavucontrol            # pulse audio volume control
       noisetorch             # noise supression
-      # wezterm                # terminal emulator
-      foot                   # terminal emulator
+      kitty                  # terminal emulator
       neovim                 # text editor
       aerc                   # mail
       ripgrep                # finder

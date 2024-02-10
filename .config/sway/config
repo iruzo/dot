@@ -272,7 +272,7 @@ bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Red 
     bindsym $mod+t exec test $transformFocusedMonitor = 'normal' && swaymsg output $focusedMonitor transform 90 || swaymsg output $focusedMonitor transform normal
     bindsym $mod+space floating toggle
     # bindsym $mod+Return exec LIBGL_ALWAYS_SOFTWARE=1 wezterm || LIBGL_ALWAYS_SOFTWARE=1 flatpak run org.wezfurlong.wezterm
-    bindsym $mod+Return exec foot
+    bindsym $mod+Return exec kitty
     # bindsym $mod+d exec BEMENU_BACKEND=wayland bemenu-run -i -l 20 --fb "#24273a" --ff "#cad3f5" --nb "#24273a" --nf "#cad3f5" --tb "#24273a" --hb "#24273a" --tf "#ed8796" --hf "#eed49f" --nf "#cad3f5" --af "#cad3f5" --ab "#24273a"
     bindsym $mod+d exec tofi-run | $(cat)
     bindsym $mod+Shift+r reload
