@@ -13,11 +13,19 @@
   ];
 
   programs.ssh.startAgent = true;
+  programs.zsh = {
+    enable = true;
+    syntaxHighlighting.enable = true;
+    autosuggestions = {
+      enable = true;
+      async = true;
+    };
+  };
 
   users.defaultUserShell = pkgs.dash;
   users.users.amnesia = {
     isNormalUser = true;
-    shell = pkgs.yash;
+    shell = pkgs.zsh;
 
     extraGroups = [
       "wheel" # Enable ‘sudo’ for the user.
@@ -39,17 +47,19 @@
 
   # keyboard and internationalisation properties
   console.keyMap      = "us";
-  i18n.defaultLocale  = "en_US.UTF-8";
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS        = "es_ES.UTF-8";
-    LC_IDENTIFICATION = "es_ES.UTF-8";
-    LC_MEASUREMENT    = "es_ES.UTF-8";
-    LC_MONETARY       = "es_ES.UTF-8";
-    LC_NAME           = "es_ES.UTF-8";
-    LC_TELEPHONE      = "es_ES.UTF-8";
-    LC_NUMERIC        = "en_US.UTF-8";
-    LC_PAPER          = "en_US.UTF-8";
-    LC_TIME           = "en_US.UTF-8";
+  i18n = {
+    defaultLocale  = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS        = "es_ES.UTF-8";
+      LC_IDENTIFICATION = "es_ES.UTF-8";
+      LC_MEASUREMENT    = "es_ES.UTF-8";
+      LC_MONETARY       = "es_ES.UTF-8";
+      LC_NAME           = "es_ES.UTF-8";
+      LC_TELEPHONE      = "es_ES.UTF-8";
+      LC_NUMERIC        = "es_ES.UTF-8";
+      LC_PAPER          = "es_ES.UTF-8";
+      LC_TIME           = "en_DK.UTF-8";
+    };
   };
   time.timeZone = "Europe/Madrid";
 
