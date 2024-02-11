@@ -22,7 +22,7 @@ COLOR_BWHITE="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || pri
 PS1=$(echo "\n$COLOR_BBLUE\$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW\$(echo $USER)$COLOR_RESET $COLOR_BRED\$(gitrepo)$COLOR_RESET $COLOR_BCYAN\$(pwd | sed "s:${HOME}:~:g")$COLOR_RESET\n · ")
 # zsh
 precmd() {
-  PS1=$(echo -e "\n$COLOR_BBLUE$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW$(echo $USER)$COLOR_RESET $COLOR_BRED$(gitrepo)$COLOR_RESET $COLOR_BCYAN$(pwd | sed 's:${HOME}:~:g')$COLOR_RESET\n · ")
+  PS1=$(echo -e "\n$COLOR_BBLUE$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW$(echo $USER)$COLOR_RESET $COLOR_BRED$(gitrepo)$COLOR_RESET $COLOR_BCYAN$(pwd | sed s:${HOME}:~:g)$COLOR_RESET\n · ")
 }
 
 export PATH="$PATH:/var/lib/flatpak/exports/bin"
