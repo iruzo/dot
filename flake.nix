@@ -7,7 +7,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager?ref=release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur-input.url = "github:nix-community/nur";
@@ -35,10 +35,17 @@
     };
   in
   {
-    inputs.home-manager.nixosModules.home-manager.homeConfigurations = {
+    homeConfigurations = {
       "amnesia" = home-manager.lib.homeManagerConfiguration {
-        inherit nixpkgs-unstable;
+        extraSpecialArgs = {
+          inherit inputs;
+        };
         modules = [ ./.config/nix/usr/amnesia.nix ];
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = [overlays];
+          config.allowUnfree = true;
+        };
       };
     };
     nixosConfigurations = {
