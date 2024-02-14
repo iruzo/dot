@@ -57,8 +57,6 @@
           nixpkgs.config.allowUnfree = true;
           imports =
           [
-            inputs.home-manager.nixosModules.home-manager
-            ./home.nix
             ./.config/nix/system/laptop/setup.nix
           ];
           # environment.systemPackages = [

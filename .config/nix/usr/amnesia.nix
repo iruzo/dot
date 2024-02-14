@@ -27,7 +27,6 @@
       pavucontrol            # pulse audio volume control
       noisetorch             # noise supression
       kitty                  # terminal emulator
-      neovim                 # text editor
       aerc                   # mail
       ripgrep                # finder
       calc                   # calculator

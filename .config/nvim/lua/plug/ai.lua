@@ -5,26 +5,46 @@ return {
   -- { 'codota/tabnine-nvim', build = './dl_binaries.sh' },
   -- { 'https://github.com/jpmcb/nvim-llama' }
 
-  -- {
-  --   'zbirenbaum/copilot.lua',
-  --   cmd = "Copilot",
-  --   event = "InsertEnter",
-  --   config = function()
-  --     require("copilot").setup({
-  --       panel = {
-  --         enabled = false,
-  --       },
-  --       suggestion = {
-  --         enabled = true,
-  --         auto_trigger = true,
-  --         debounce = 75,
-  --         keymap = {
-  --           accept = "<C-Enter>",
-  --         },
-  --       }
-  --     })
-  --   end
-  -- },
+  {
+    'zbirenbaum/copilot.lua',
+    cmd = {
+      "Copilot",
+      "CopilotChat",
+    },
+    dependencies = {
+      {
+        'CopilotC-Nvim/CopilotChat.nvim',
+        event = "VeryLazy",
+        tag = 'stable',
+        build = function()
+          vim.cmd("UpdateRemotePlugins") -- You need to restart to make it works
+        end,
+        opts = true,
+        keys = {
+          { "<leader>ce", "<cmd>CopilotChatExplain<cr>",  desc = "CopilotChat - Explain code" },
+          { "<leader>ct", "<cmd>CopilotChatTests<cr>",    desc = "CopilotChat - Generate tests" },
+          { "<leader>cr", "<cmd>CopilotChatReview<cr>",   desc = "CopilotChat - Review code" },
+          { "<leader>ci", "<cmd>CopilotChatInPlace<cr>",   desc = "CopilotChat - Chat in place" },
+          { "<leader>cR", "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
+        }
+      }
+    },
+    config = function()
+      require("copilot").setup({
+        panel = {
+          enabled = false,
+        },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          debounce = 75,
+          keymap = {
+            accept = "<C-Enter>",
+          },
+        }
+      })
+    end
+  },
 
   -- {
   --   "zbirenbaum/copilot-cmp",
