@@ -19,7 +19,6 @@ return {
   {
     'lewis6991/gitsigns.nvim',
     version = '*',
-    event = 'VeryLazy',
     cond = function()
       if vim.fn.isdirectory '.git' ~= 0 then
         return true
