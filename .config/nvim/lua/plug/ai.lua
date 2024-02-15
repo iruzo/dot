@@ -14,7 +14,6 @@ return {
     dependencies = {
       {
         'CopilotC-Nvim/CopilotChat.nvim',
-        event = "VeryLazy",
         tag = 'stable',
         build = function()
           vim.cmd("UpdateRemotePlugins") -- You need to restart to make it works
