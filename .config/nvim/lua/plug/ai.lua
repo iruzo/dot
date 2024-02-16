@@ -20,11 +20,12 @@ return {
         end,
         opts = true,
         keys = {
-          { "<leader>ce", "<cmd>CopilotChatExplain<cr>",  desc = "CopilotChat - Explain code" },
-          { "<leader>ct", "<cmd>CopilotChatTests<cr>",    desc = "CopilotChat - Generate tests" },
-          { "<leader>cr", "<cmd>CopilotChatReview<cr>",   desc = "CopilotChat - Review code" },
-          { "<leader>ci", "<cmd>CopilotChatInPlace<cr>",   desc = "CopilotChat - Chat in place" },
-          { "<leader>cR", "<cmd>CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
+          { "<leader>cc", ":CopilotChat ",            desc = "CopilotChat - Question" },
+          { "<leader>ce", ":CopilotChatExplain<cr>",  desc = "CopilotChat - Explain code" },
+          { "<leader>ct", ":CopilotChatTests<cr>",    desc = "CopilotChat - Generate tests" },
+          { "<leader>cr", ":CopilotChatReview<cr>",   desc = "CopilotChat - Review code" },
+          { "<leader>ci", ":CopilotChatInPlace<cr>",  desc = "CopilotChat - Chat in place" },
+          { "<leader>cR", ":CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
         }
       }
     },
