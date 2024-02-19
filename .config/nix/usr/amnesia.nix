@@ -26,7 +26,6 @@
       helvum                 # control connections between audio inputs and outputs
       pavucontrol            # pulse audio volume control
       noisetorch             # noise supression
-      kitty                  # terminal emulator
       aerc                   # mail
       ripgrep                # finder
       calc                   # calculator
@@ -43,7 +42,6 @@
       libreoffice            # office
       mat2                   # clean metadata
       syncthing              # file synchronization
-      # gpt4all                # run data models locally
 
       # tools
       gcc
@@ -51,82 +49,6 @@
 
       # games
       prismlauncher
-
-      # (pkgs.chromium.override {
-      #   commandLineArgs = [
-      #     "--disk-cache=$XDG_RUNTIME_DIR/chromium-cache"
-      #     "--no-default-browser-check"
-      #     "--no-service-autorun"
-      #     "--disable-features=PreloadMediaEngagementData,MediaEngagementBypassAutoplayPolicies"
-      #     # Autoplay policy
-      #     "--document-user-activation-required"
-      #     # Enable Wayland support
-      #     "--enable-features=UseOzonePlatform"
-      #     "--ozone-platform-hint=auto"
-      #     # Disable global Google login
-      #     "--disable-sync-preferences"
-      #     # Reader mode
-      #     "--enable-reader-mode"
-      #     "--enable-dom-distiller"
-      #     # Dark mode
-      #     "--enable-features=WebUIDarkMode"
-      #     # Security stuff
-      #     "--disable-reading-from-canvas"
-      #     "--no-pings"
-      #     "--no-first-run"
-      #     "--no-experiments"
-      #     "--no-crash-upload"
-      #     # Chromecast
-      #     "--load-media-router-component-extension"
-      #     # GPU stuff
-      #     "--ignore-gpu-blocklist"
-      #     "--enable-gpu-rasterization"
-      #     #"--use-gl=egl"
-      #     "--enable-zero-copy"
-      #     # Accelerated decoding
-      #     "--enable-features=VaapiVideoDecoder"
-
-      #     "--disable-wake-on-wifi"
-      #     "--disable-breakpad"
-      #     "--disable-sync"
-      #     "--disable-speech-api"
-      #     "--disable-speech-synthesis-api"
-      #   ];
-      # })
-
-      # (vscode-with-extensions.override {
-      #   vscode = unstable.vscode;
-      #   vscodeExtensions = with pkgs.vscodext.vscode-marketplace; [
-      #     asvetliakov.vscode-neovim
-
-      #     catppuccin.catppuccin-vsc
-      #     catppuccin.catppuccin-vsc-icons
-
-      #     ms-vscode-remote.remote-ssh
-      #     ms-vscode-remote.remote-ssh-edit
-      #     ms-azuretools.vscode-docker
-
-      #     github.copilot
-      #     github.copilot-chat
-      #     github.vscode-pull-request-github
-      #     github.vscode-github-actions
-      #     github.remotehub
-      #     gitlab.gitlab-workflow
-
-      #     eamodio.gitlens                    # git
-      #     usernamehw.errorlens               # error on lines
-      #     pflannery.vscode-versionlens       # version checker
-      #     christian-kohler.path-intellisense # path autocompletion
-      #     aaron-bond.better-comments         # cool comments
-      #     mintlify.document                  # autogenerate docs
-      #     esbenp.prettier-vscode             # format code
-
-      #     redhat.vscode-yaml
-      #     rust-lang.rust-analyzer
-      #     ms-python.python
-      #     bbenoist.nix
-      #   ];
-      # })
 
       # fonts
       redhat-official-fonts

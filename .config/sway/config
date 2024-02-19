@@ -103,6 +103,8 @@ bar {
       KERNEL: $(uname -r | cut -d '-' -f1) \| \
       WIFI: $($(grep -q "enabled" <<<"$(nmcli radio wifi)") && echo on || echo off) \| \
       ETHERNET: $($(grep -q "ethernet" <<<"$(nmcli c show --active)") && echo on || echo off) \| \
+      powerprofile: $(echo $(powerprofilectl get | cat $(cat))) \| \
+      $(powerprofilectl version && echo POWERPROFILE: $(powerprofilectl get) \|) \
       BAT: $(cat /sys/class/power_supply/BAT0/capacity || echo plug)% \| \
       $(date +'%a %Y-%m-%d %H:%M:%S') \
   ); do sleep 1; done
@@ -173,8 +175,8 @@ bar {
 
     # catppuccin macchiato alpha
     background         #24273a00
-    statusline         #cad3f5
-    focused_statusline #cad3f5
+    statusline         #b7bdf8
+    focused_statusline #b7bdf8
     active_workspace   #24273a00 #cad3f5 #8aadf4
     focused_separator  #24273a00
     focused_workspace  #24273a00 #24273a00 #a6da95
