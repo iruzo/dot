@@ -355,6 +355,8 @@ bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Red 
     # push to talk
       bindsym --no-repeat $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
       bindsym --no-repeat --release $mod+z exec pactl set-source-mute @DEFAULT_SOURCE@ toggle || wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+    # camera on screen
+      bindsym $mod+Shift+c exec mpv /dev/video0
     # notifications
       bindsym $mod+x exec swaync-client -t
     # brightness
