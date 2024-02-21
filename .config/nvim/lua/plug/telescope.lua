@@ -14,9 +14,9 @@ return {
       { '<leader>u',  ':Telescope undo<CR>',                                                      silent = true, desc = 'telescope undo' },
       { '<leader>m',  ':Telescope man_pages<CR>',                                                 silent = true, desc = 'telescope man pages' },
       { '<leader>t',  ':Telescope colorscheme<CR>',                                               silent = true, desc = 'telescope colorscheme' },
+      { '<leader>h',  ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>', silent = true, desc = 'telescope live grep' },
 
       { '<leader>ff', ':Telescope git_files<CR>',                                                 silent = true, desc = 'telescope find git files' },
-      { '<leader>fg', ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>', silent = true, desc = 'telescope live grep' },
       { '<leader>fa', ':Telescope find_files<CR>',                                                silent = true, desc = 'telescope find files' },
       { '<leader>fb', ':Telescope buffers<CR>',                                                   silent = true, desc = 'telescope buffers' },
 
