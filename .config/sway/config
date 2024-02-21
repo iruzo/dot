@@ -103,8 +103,7 @@ bar {
       KERNEL: $(uname -r | cut -d '-' -f1) \| \
       WIFI: $($(grep -q "enabled" <<<"$(nmcli radio wifi)") && echo on || echo off) \| \
       ETHERNET: $($(grep -q "ethernet" <<<"$(nmcli c show --active)") && echo on || echo off) \| \
-      powerprofile: $(echo $(powerprofilectl get | cat $(cat))) \| \
-      $(powerprofilectl version && echo POWERPROFILE: $(powerprofilectl get) \|) \
+      POWERPROFILE: $(powerprofilesctl get) \| \
       BAT: $(cat /sys/class/power_supply/BAT0/capacity || echo plug)% \| \
       $(date +'%a %Y-%m-%d %H:%M:%S') \
   ); do sleep 1; done
@@ -369,7 +368,7 @@ bindsym $mod+Escape exec swaylock -e -u -i ~/.local/share/sway/lock --font 'Red 
       bindsym $mod+Shift+e exec nautilus
     # browser
       bindsym $mod+o exec firefox
-      bindsym $mod+Shift+o exec cat ~/own/quickmarks.md | $emptymenu | awk -F'|' '{print $NF}' | tr ' ' '\n' | wl-copy
+      bindsym $mod+Shift+o exec cat ~/own/quickmarks.txt | $emptymenu | awk -F'|' '{print $NF}' | tr ' ' '\n' | wl-copy
       bindsym $mod+Shift+i exec cat ~/own/emoji | $emptymenu | awk '{for (i=2; i<=NF; i++) print $i}' | tr ' ' '\n' | wl-copy
     # web apps
       bindsym $mod+g exec $emptymenu <<< '\
