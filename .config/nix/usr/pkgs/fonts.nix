@@ -1,14 +1,14 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
 
   home.packages = with pkgs; [
+    nerdfonts
+    redhat-official-fonts
     # anurati
-    (nerdfonts.override {fonts = [ "FiraCode" "NerdFontsSymbolsOnly" ];})
-    cascadia-code
-    victor-mono
-    ibm-plex
-    xkcd-font
   ];
+
+  # fonts.fontconfig.enable = true;
+  fonts.fontconfig.enable = lib.mkForce true;
 
 }

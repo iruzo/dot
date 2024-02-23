@@ -36,6 +36,7 @@
       zathura                # document viewer
       pandoc                 # document converter
       imagemagick            # terminal image editor
+      ffmpeg                 # terminal video editor
       transmission-gtk       # torrent
       tor-browser-bundle-bin # tor
       gimp                   # image editor
@@ -49,9 +50,6 @@
 
       # games
       prismlauncher
-
-      # fonts
-      redhat-official-fonts
     ];
     sessionVariables = {
       # GTK_THEME = "gruvbox-dark";
@@ -68,6 +66,5 @@
       NIXOS_OZONE_WL = "1"; # force VSCode to run under wayland
     };
   };
-  fonts.fontconfig.enable = true;
 
 }
