@@ -15,7 +15,6 @@
       url = "git+ssh://git@github.com/mitchellh/ghostty";
     };
     # winstonnur.url = "github:nekowinston/nur"; # flake lock --update-input winstonnur
-    # pipewire-screenaudio-input.url = "github:IceDBorn/pipewire-screenaudio";
     vscod-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.flake-compat.follows = "";
@@ -30,7 +29,6 @@
       unstable = import nixpkgs-unstable { inherit system; config.allowUnfree = true; };
       nur = import nur-input { nurpkgs = p; pkgs = p; };
       vscodext = vscod-extensions.extensions.${system};
-      # pipewire-screenaudio = pipewire-screenaudio-input;
       ghostty = import ghostty-url.packages.x86_64-linux.default;
     };
   in
