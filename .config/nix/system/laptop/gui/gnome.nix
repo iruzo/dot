@@ -10,9 +10,10 @@
   };
   environment.gnome.excludePackages = (with pkgs; [
     gnome-tour
+    gnome-console
   ]) ++ (with pkgs.gnome; [
-    # cheese           # webcam tool
-    gnome-terminal   # terminal
+    gnome-contacts
+    gnome-characters
     gedit            # text editor
     epiphany         # web browser
     geary            # email reader

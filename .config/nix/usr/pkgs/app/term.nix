@@ -19,7 +19,7 @@
       italic_font = "auto";
       bold_italic_font = "auto";
 
-      background_opacity = "0.6";
+      background_opacity = "1.0";
 
       foreground = "#CAD3F5";
       background = "#24273A";

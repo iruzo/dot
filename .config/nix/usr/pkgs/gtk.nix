@@ -11,6 +11,21 @@ in {
     package = pkgs.catppuccin-cursors.macchiatoLavender;
   };
 
+  xdg = {
+    configFile."gtk-4.0/assets" = {
+      source = "${themeDir}/gtk-4.0/assets";
+      recursive = true;
+    };
+    configFile."gtk-4.0/gtk.css".source = "${themeDir}/gtk-4.0/gtk.css";
+    configFile."gtk-4.0/gtk-dark.css".source = "${themeDir}/gtk-4.0/gtk-dark.css";
+  };
+
+  qt = {
+    enable = false;
+    platformTheme = "gtk";
+    style.name = "gtk2";
+  };
+
   gtk = {
     enable = true;
     iconTheme = {
@@ -43,20 +58,10 @@ in {
       gtk-xft-rgba = "rgb";
     };
   };
-
-  qt = {
-    enable = false;
-    platformTheme = "gtk";
-    style.name = "gtk2";
-  };
-
-  xdg = {
-    configFile."gtk-4.0/assets" = {
-      source = "${themeDir}/gtk-4.0/assets";
-      recursive = true;
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      cursor-theme = "Catppuccin-Macchiato-Lavender-Cursors";
     };
-    configFile."gtk-4.0/gtk.css".source = "${themeDir}/gtk-4.0/gtk.css";
-    configFile."gtk-4.0/gtk-dark.css".source = "${themeDir}/gtk-4.0/gtk-dark.css";
   };
 
 }

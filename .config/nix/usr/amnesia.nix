@@ -48,6 +48,10 @@
       gcc
       python3
 
+      # chat
+      vesktop
+      element-desktop
+
       # games
       prismlauncher
     ];

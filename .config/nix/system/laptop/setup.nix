@@ -8,7 +8,7 @@
     ./hdw.nix
     ./net.nix
     ./nix.nix
-    ./gui/sway.nix
+    ./gui/gnome.nix
     ./app.nix
   ];
 
@@ -39,7 +39,6 @@
     packages = with pkgs; [
       home-manager
       git
-      foot                # terminal emulator
       neovim
     ];
 
