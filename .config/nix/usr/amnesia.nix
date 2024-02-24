@@ -23,7 +23,7 @@
       btop                   # system monitor
       bemenu                 # fuzzy menu
       sshfs                  # mount dirs through ssh
-      helvum                 # control connections between audio inputs and outputs
+      helvum                 # control connections between audio inputs and outputs when using pipewire
       pavucontrol            # pulse audio volume control
       noisetorch             # noise supression
       aerc                   # mail
