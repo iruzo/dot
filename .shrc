@@ -71,6 +71,9 @@ alias ll='ls --color=auto -lahF'
 alias ff='coincidence=$(find . 2>/dev/null | BEMENU_BACKEND=curses bemenu); if [ -f $coincidence ]; then $EDITOR $coincidence; else cd $coincidence; fi'
 alias fh='coincidence=$(find ~ 2>/dev/null | BEMENU_BACKEND=curses bemenu); if [ -f $coincidence ]; then $EDITOR $coincidence; else cd $coincidence; fi'
 alias fg='coincidence=$(find / 2>/dev/null | BEMENU_BACKEND=curses bemenu); if [ -f $coincidence ]; then $EDITOR $coincidence; else cd $coincidence; fi'
+alias quickmarks="cat ~/own/quickmarks.txt | BEMENU_BACKEND=curses bemenu | awk -F'|' '{print $NF}' | tr ' ' '\\n'"
+alias contacts="cat ~/own/contacts.txt | BEMENU_BACKEND=curses bemenu | awk -F'|' '{print $NF}' | tr ' ' '\\n'"
+alias emoji="cat ~/own/emoji.txt | BEMENU_BACKEND=curses bemenu | awk -F'|' '{print $NF}' | tr ' ' '\\n'"
 alias monitor-mem='ps axch -o cmd:15,rss --sort=-rss | numfmt --from-unit=1024 --to=iec --field 2 2> /dev/null'
 alias monitor-mempercent='ps axch -o cmd:15,%mem --sort=-%mem'
 alias monitor-cpu='ps axch -o cmd:15,%cpu --sort=-%cpu'
