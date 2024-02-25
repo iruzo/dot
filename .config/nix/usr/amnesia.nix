@@ -56,7 +56,6 @@
       prismlauncher
     ];
     sessionVariables = {
-      # GTK_THEME = "gruvbox-dark";
       # SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
 
       XDG_CACHE_HOME  = "$HOME/.cache";
@@ -67,7 +66,7 @@
       # Not officially in the specification
       XDG_BIN_HOME = "$HOME/.local/bin";
 
-      NIXOS_OZONE_WL = "1"; # force VSCode to run under wayland
+      # NIXOS_OZONE_WL = "1"; # force VSCode to run under wayland
     };
   };
 

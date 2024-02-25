@@ -21,6 +21,10 @@
       inputs.flake-utils.follows = "flake-utils";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    firefox-gnome-theme = {
+      url = "github:rafaelmardojai/firefox-gnome-theme";
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nur-input, vscod-extensions, ghostty-url, ... } @ inputs: let

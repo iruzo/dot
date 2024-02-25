@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "firefox-gnome-theme": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707094435,
+        "narHash": "sha256-QZk/qZQVt1X53peCqB2qmWhpA3xtAVgY95pebSKaTFU=",
+        "owner": "rafaelmardojai",
+        "repo": "firefox-gnome-theme",
+        "rev": "d7db6e546d13de55fd70dc3204bd99195eb004c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rafaelmardojai",
+        "repo": "firefox-gnome-theme",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -272,6 +288,7 @@
     },
     "root": {
       "inputs": {
+        "firefox-gnome-theme": "firefox-gnome-theme",
         "flake-utils": "flake-utils",
         "ghostty-url": "ghostty-url",
         "home-manager": "home-manager",

@@ -11,15 +11,6 @@ in {
     package = pkgs.catppuccin-cursors.macchiatoLavender;
   };
 
-  xdg = {
-    configFile."gtk-4.0/assets" = {
-      source = "${themeDir}/gtk-4.0/assets";
-      recursive = true;
-    };
-    configFile."gtk-4.0/gtk.css".source = "${themeDir}/gtk-4.0/gtk.css";
-    configFile."gtk-4.0/gtk-dark.css".source = "${themeDir}/gtk-4.0/gtk-dark.css";
-  };
-
   qt = {
     enable = false;
     platformTheme = "gtk";
@@ -31,8 +22,8 @@ in {
     iconTheme = {
        name = "Papirus-Dark";
         package = pkgs.catppuccin-papirus-folders.override {
-          flavor = "macchiato";
           accent = "lavender";
+          flavor = "macchiato";
         };
     };
     theme = {
@@ -40,7 +31,7 @@ in {
       package = pkgs.catppuccin-gtk.override {
         accents = [ "lavender" ];
         size = "compact";
-        tweaks = [ "rimless" ];
+        # tweaks = [ "rimless" ];
         variant = "macchiato";
       };
     };
@@ -62,6 +53,27 @@ in {
     "org/gnome/desktop/interface" = {
       cursor-theme = "Catppuccin-Macchiato-Lavender-Cursors";
     };
+    "org/gnome/desktop/wm/preferences" = {
+      resize-with-right-button = true;
+    };
+    # rice
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = [
+        "blur-my-shell@aunetx"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
+        "gnome-shell-pano@oae"
+        "vitals@corecoding"
+      ];
+    };
+    "org/gnome/shell/extensions/user-theme" = {
+      name = "Catppuccin-Macchiato-Compact-Lavender-Dark";
+    };
+  };
+  xdg.configFile = {
+    "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
+    "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
+    "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
   };
 
 }

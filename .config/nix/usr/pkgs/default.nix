@@ -12,7 +12,7 @@
     ./app/term.nix
     ./app/nvim.nix
     ./app/vscode.nix
-    # ./app/browser.nix
+    ./app/browser.nix
 
   ];
 

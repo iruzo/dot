@@ -1,93 +1,29 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
 
-  programs = {
-
-    chromium = {
-      enable = true;
-      extensions = [
-        # "bkkmolkhemgaeaeggcmfbghljjjoofoh" # Theme Catppuccin Mocha
-        "cmpdlhmnmjhihmcfnigoememnffkimlk" # Theme Catppuccin Macchiato
-        # "fjofdcgahcnlkdjapcbeonbnmjdnfcki" # Theme gruvbox
-        # "njcgdakjdifgccdgnoiphpnihcfopcmj" # Theme devtools gruvbox
-        # "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
-        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
-        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock Origin
-        "edibdbjcniadpccecjdfdjjppcpchdlm" # I still dont care about cookies
-        "ldpochfccmkkmhdbclfhpagapcfdljkj" # Decentraleyes
-        "lckanjgmijmafbedllaakclkaicjfmnk" # Clear urls
-        "bhfakmaiadhflpjloimlagikhodjiefj" # History AutoDelete
-        "oldceeleldhonbafppcapldpdifcinji" # Grammar checker
-        "hfjbmagddngcpeloejdejnfgbamkjaeg" # Vimium C
-        "hlepfoohegkhhmjieoechaddaejaokhf" # Refined Github
-        "kajibbejlbohfaggdiogboambcijhkke" # Mailvelope
-        "hbplgmpfdabobhnadbfpknppljdfkiia" # SimpleDiscordCrypt
-      ];
-      # Enterprise policy list: https://chromeenterprise.google/policies/
-      # chrome://policy shows applied policies and syntax errors.
-      # extraOpts = {
-      #   "HomepageLocation" = "https://start.duckduckgo.com";
-      #   "DefaultSearchProviderSearchURL" = "https://duckduckgo.com/?q={searchTerms}";
-      #   "OsColorMode" = "dark";
-      #   "PasswordManagerEnabled" = false;
-      #   "BrowserSignin" = 0;
-      #   "SyncDisabled" = true;
-      #   "HardwareAccelerationModeEnabled" = true;
-      # };
-      package = (pkgs.chromium.override {
-        commandLineArgs = [
-          "--disk-cache=$XDG_RUNTIME_DIR/chromium-cache"
-          "--no-default-browser-check"
-          "--no-service-autorun"
-          "--disable-features=PreloadMediaEngagementData,MediaEngagementBypassAutoplayPolicies"
-          # Autoplay policy
-          "--document-user-activation-required"
-          # Enable Wayland support
-          "--enable-features=UseOzonePlatform"
-          "--ozone-platform-hint=auto"
-          # Disable global Google login
-          "--disable-sync-preferences"
-          # Reader mode
-          "--enable-reader-mode"
-          "--enable-dom-distiller"
-          # Dark mode
-          "--enable-features=WebUIDarkMode"
-          # Security stuff
-          "--disable-reading-from-canvas"
-          "--no-pings"
-          "--no-first-run"
-          "--no-experiments"
-          "--no-crash-upload"
-          # Chromecast
-          "--load-media-router-component-extension"
-          # GPU stuff
-          "--ignore-gpu-blocklist"
-          "--enable-gpu-rasterization"
-          #"--use-gl=egl"
-          "--enable-zero-copy"
-          # Accelerated decoding
-          "--enable-features=VaapiVideoDecoder"
-
-          "--disable-wake-on-wifi"
-          "--disable-breakpad"
-          "--disable-sync"
-          "--disable-speech-api"
-          "--disable-speech-synthesis-api"
-        ];
-      });
+  home = {
+    sessionVariables.BROWSER = "firefox";
+    file."firefox-gnome-theme" = {
+      target = ".mozilla/firefox/default/chrome/firefox-gnome-theme";
+      source = inputs.firefox-gnome-theme;
     };
+  };
+
+  programs = {
 
     firefox = {
       enable = true;
+      package = pkgs.firefox-esr;
       profiles.default = {
         search.default = "DuckDuckGo";
         search.force = true;
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-          # gruvbox-dark-theme             # theme
-          catppuccin-macchiato-lavender2 # theme
+          # catppuccin-macchiato-lavender2 # theme
           web-archives                   # web arcuives
           clearurls                      # clean urls
+          auto-tab-discard               # discard not used tabs
+          user-agent-string-switcher     # user agent switcher
           libredirect                    # redirect to alternative privacy friendly frontends
           darkreader                     # dark background
           decentraleyes                  # stop resource injection
@@ -98,12 +34,18 @@
           refined-github                 # better github ui
           temporary-containers           # temp containers
           ublock-origin                  # adblock
-          vimium                         # vim movements
+          vimium-c                       # vim movements
+          keepa                          # amazon price tracker
           # simplediscordcrypt             # discord message encrypt
           # discord-container              # discord container
-          keepa                          # amazon price tracker
         ];
         settings = {
+          userChrome = ''
+            @import "firefox-gnome-theme/userChrome.css";
+          '';
+          userContent = ''
+            @import "firefox-gnome-theme/userContent.css";
+          '';
           "app.normandy.api_url" = "";
           "app.normandy.enabled" = false;
           "app.shield.optoutstudies.enabled" = false;
@@ -111,6 +53,9 @@
           "beacon.enabled" = false;
           "breakpad.reportURL" = "";
           "browser.aboutConfig.showWarning" = false;
+          "browser.toolbars.bookmarks.showOtherBookmarks" = false;
+          "browser.toolbars.bookmarks.showInPrivateBrowsing" = false;
+          "browser.toolbars.bookmarks.visibility" = "never";
           "browser.cache.offline.enable" = false;
           "browser.theme.content-theme" = 0;
           "browser.compactmode.show" = { Value = true; Status = "default"; };
@@ -230,6 +175,80 @@
         };
       };
     };
+
+    # chromium = {
+    #   enable = true;
+    #   extensions = [
+    #     # "bkkmolkhemgaeaeggcmfbghljjjoofoh" # Theme Catppuccin Mocha
+    #     "cmpdlhmnmjhihmcfnigoememnffkimlk" # Theme Catppuccin Macchiato
+    #     # "fjofdcgahcnlkdjapcbeonbnmjdnfcki" # Theme gruvbox
+    #     # "njcgdakjdifgccdgnoiphpnihcfopcmj" # Theme devtools gruvbox
+    #     # "bkdgflcldnnnapblkhphbgpggdiikppg" # DuckDuckGo
+    #     "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+    #     "cjpalhdlnbpafiamejdnhcphjbkeiagm" # Ublock Origin
+    #     "edibdbjcniadpccecjdfdjjppcpchdlm" # I still dont care about cookies
+    #     "ldpochfccmkkmhdbclfhpagapcfdljkj" # Decentraleyes
+    #     "lckanjgmijmafbedllaakclkaicjfmnk" # Clear urls
+    #     "bhfakmaiadhflpjloimlagikhodjiefj" # History AutoDelete
+    #     "oldceeleldhonbafppcapldpdifcinji" # Grammar checker
+    #     "hfjbmagddngcpeloejdejnfgbamkjaeg" # Vimium C
+    #     "hlepfoohegkhhmjieoechaddaejaokhf" # Refined Github
+    #     "kajibbejlbohfaggdiogboambcijhkke" # Mailvelope
+    #     "hbplgmpfdabobhnadbfpknppljdfkiia" # SimpleDiscordCrypt
+    #   ];
+    #   # Enterprise policy list: https://chromeenterprise.google/policies/
+    #   # chrome://policy shows applied policies and syntax errors.
+    #   # extraOpts = {
+    #   #   "HomepageLocation" = "https://start.duckduckgo.com";
+    #   #   "DefaultSearchProviderSearchURL" = "https://duckduckgo.com/?q={searchTerms}";
+    #   #   "OsColorMode" = "dark";
+    #   #   "PasswordManagerEnabled" = false;
+    #   #   "BrowserSignin" = 0;
+    #   #   "SyncDisabled" = true;
+    #   #   "HardwareAccelerationModeEnabled" = true;
+    #   # };
+    #   package = (pkgs.chromium.override {
+    #     commandLineArgs = [
+    #       "--disk-cache=$XDG_RUNTIME_DIR/chromium-cache"
+    #       "--no-default-browser-check"
+    #       "--no-service-autorun"
+    #       "--disable-features=PreloadMediaEngagementData,MediaEngagementBypassAutoplayPolicies"
+    #       # Autoplay policy
+    #       "--document-user-activation-required"
+    #       # Enable Wayland support
+    #       "--enable-features=UseOzonePlatform"
+    #       "--ozone-platform-hint=auto"
+    #       # Disable global Google login
+    #       "--disable-sync-preferences"
+    #       # Reader mode
+    #       "--enable-reader-mode"
+    #       "--enable-dom-distiller"
+    #       # Dark mode
+    #       "--enable-features=WebUIDarkMode"
+    #       # Security stuff
+    #       "--disable-reading-from-canvas"
+    #       "--no-pings"
+    #       "--no-first-run"
+    #       "--no-experiments"
+    #       "--no-crash-upload"
+    #       # Chromecast
+    #       "--load-media-router-component-extension"
+    #       # GPU stuff
+    #       "--ignore-gpu-blocklist"
+    #       "--enable-gpu-rasterization"
+    #       #"--use-gl=egl"
+    #       "--enable-zero-copy"
+    #       # Accelerated decoding
+    #       "--enable-features=VaapiVideoDecoder"
+
+    #       "--disable-wake-on-wifi"
+    #       "--disable-breakpad"
+    #       "--disable-sync"
+    #       "--disable-speech-api"
+    #       "--disable-speech-synthesis-api"
+    #     ];
+    #   });
+    # };
 
   };
 
