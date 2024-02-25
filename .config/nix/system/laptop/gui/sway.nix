@@ -53,20 +53,20 @@ in
     power-profiles-daemon.enable = true; # performance
     # tlp.enable = true;                   # performance
     # auto-cpufreq.enable = true;          # performance
-    greetd = {
-      enable = true;
-      settings = {
-        initial_session = { # auto login
-          command = "${pkgs.swayfx}/bin/sway";
-          user = "amnesia";
-        };
-        default_session = {
-          command = ''
-            ${pkgs.sway}/bin/sway --config ${swayConfig}
-            '';
-        };
-      };
-    };
+    # greetd = {
+    #   enable = true;
+    #   settings = {
+    #     initial_session = { # auto login
+    #       command = "${pkgs.swayfx}/bin/sway";
+    #       user = "amnesia";
+    #     };
+    #     default_session = {
+    #       command = ''
+    #         ${pkgs.sway}/bin/sway --config ${swayConfig}
+    #         '';
+    #     };
+    #   };
+    # };
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -75,10 +75,10 @@ in
       wireplumber.enable = true;
     };
   };
-  environment.etc."greetd/environments".text = ''
-    sway
-    sh
-  '';
+  # environment.etc."greetd/environments".text = ''
+  #   sway
+  #   sh
+  # '';
 
   services.dbus.enable = true;
   xdg.portal = {

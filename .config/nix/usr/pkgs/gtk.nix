@@ -51,6 +51,8 @@ in {
   };
   dconf.settings = {
     "org/gnome/desktop/interface" = {
+      font-name = "Red Hat Text 10";
+      monospace-font-name = "Red Hat Mono 10";
       cursor-theme = "Catppuccin-Mocha-Lavender-Cursors";
     };
     "org/gnome/desktop/wm/preferences" = {
@@ -64,6 +66,8 @@ in {
       move-to-monitor-down = [ "<Super><Shift>j" ];
       move-to-monitor-up = [ "<Super><Shift>k" ];
       move-to-monitor-right = [ "<Super><Shift>l" ];
+      switch-to-workspace-left = [ "<Super><Shift>Tab" ];
+      switch-to-workspace-right = [ "<Super>Tab" ];
     };
     # rice
     "org/gnome/shell" = {

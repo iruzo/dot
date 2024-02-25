@@ -46,7 +46,7 @@ export WLR_NO_HARDWARE_CURSORS=1
 export QEMU='-vga none -device virtio-gpu-pci -display gtk,gl=on'
 export EDITOR='nvim'
 export VISUAL='nvim-qt'
-export GTK_THEME='Adwaita:dark'
+export GTK_THEME='Catppuccin-Mocha-Compact-Lavender-Dark'
 # export GTK_THEME='gruvbox:dark'
 export BEMENU_OPTS='-i -l 20 --fb "#24273a" --ff "#cad3f5" --nb "#24273a" --nf "#cad3f5" --tb "#24273a" --hb "#24273a" --tf "#ed8796" --hf "#eed49f" --nf "#cad3f5" --af "#cad3f5" --ab "#24273a"'
 
