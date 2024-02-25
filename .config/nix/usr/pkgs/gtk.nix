@@ -7,8 +7,8 @@ let
 in {
 
   home.pointerCursor = {
-    name = "Catppuccin-Macchiato-Lavender-Cursors";
-    package = pkgs.catppuccin-cursors.macchiatoLavender;
+    name = "Catppuccin-Mocha-Lavender-Cursors";
+    package = pkgs.catppuccin-cursors.mochaLavender;
   };
 
   qt = {
@@ -23,16 +23,16 @@ in {
        name = "Papirus-Dark";
         package = pkgs.catppuccin-papirus-folders.override {
           accent = "lavender";
-          flavor = "macchiato";
+          flavor = "mocha";
         };
     };
     theme = {
-      name = "Catppuccin-Macchiato-Compact-Lavender-Dark";
+      name = "Catppuccin-Mocha-Compact-Lavender-Dark";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "lavender" ];
         size = "compact";
         # tweaks = [ "rimless" ];
-        variant = "macchiato";
+        variant = "mocha";
       };
     };
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
@@ -51,10 +51,19 @@ in {
   };
   dconf.settings = {
     "org/gnome/desktop/interface" = {
-      cursor-theme = "Catppuccin-Macchiato-Lavender-Cursors";
+      cursor-theme = "Catppuccin-Mocha-Lavender-Cursors";
     };
     "org/gnome/desktop/wm/preferences" = {
       resize-with-right-button = true;
+    };
+    # keybindings
+    "org/gnome/desktop/wm/keybindings" = {
+      close = [ "<Super>c" ];
+      toggle-fullscreen = [ "<Super>f" ];
+      move-to-monitor-left = [ "<Super><Shift>h" ];
+      move-to-monitor-down = [ "<Super><Shift>j" ];
+      move-to-monitor-up = [ "<Super><Shift>k" ];
+      move-to-monitor-right = [ "<Super><Shift>l" ];
     };
     # rice
     "org/gnome/shell" = {
@@ -67,7 +76,7 @@ in {
       ];
     };
     "org/gnome/shell/extensions/user-theme" = {
-      name = "Catppuccin-Macchiato-Compact-Lavender-Dark";
+      name = "Catppuccin-Mocha-Compact-Lavender-Dark";
     };
   };
   xdg.configFile = {

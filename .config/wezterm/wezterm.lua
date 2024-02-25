@@ -37,7 +37,7 @@ return {
   -- color_scheme = "Gruvbox dark, hard (base16)",
   -- color_scheme = "Batman",
   -- color_scheme = "OneDark (base16)",
-  color_scheme = "Catppuccin Macchiato",
+  color_scheme = "Catppuccin Mocha",
   -- font_size = 9.3,
   font_size = 8,
   use_fancy_tab_bar = false,
