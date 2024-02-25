@@ -74,14 +74,6 @@
     };
     # homed.enable = true;         # home directory encryption
     fwupd.enable = true;         # firmware upload
-
-    pipewire = {
-      enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      pulse.enable = true;
-      wireplumber.enable = true;
-    };
   };
   powerManagement.enable = true; # laptop power features
 
@@ -94,14 +86,11 @@
       driSupport32Bit = true; # vulkan 32 bit
       extraPackages = with pkgs; [
         amdvlk                # can be used in addition to mesa radv drivers
-        rocm-opencl-icd       # opencl
-        rocm-opencl-runtime   # opencl
       ];
       extraPackages32 = with pkgs; [
         driversi686Linux.amdvlk
       ];
     };
-    pulseaudio.enable = false;
   };
 
   # Libvirtd (Qemu)
