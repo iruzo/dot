@@ -1,7 +1,7 @@
 vim.api.nvim_command('autocmd BufRead,BufWrite * if ! &bin | silent! %s/\\s\\+$//ge | endif')
 vim.api.nvim_command('autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != "c" | checktime | endif')
 -- filetype syntax
-vim.api.nvim_command('autocmd BufNewFile,BufRead * if expand(\'%:t\') !~ \'\\.\' | set syntax=sh | endif')
+-- vim.api.nvim_command('autocmd BufNewFile,BufRead * if expand(\'%:t\') !~ \'\\.\' | set syntax=sh | endif')
 -- vim.api.nvim_command('autocmd BufNewFile,BufRead *.nix :set filetype=perl')
 -- new filetype gpg, pgp, asc
 vim.api.nvim_command('autocmd BufRead,BufNewFile *.gpg :set filetype=gpg')
