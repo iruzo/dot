@@ -229,8 +229,8 @@ workspace 4 output eDP-1
 workspace 5 output eDP-1
 
 # wallpaper
-set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-macchiato-saturn.jpg
-set $lock https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-macchiato-saturn.jpg
+set $wallpaper https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-mocha-astronaut.jpg
+set $lock https://raw.githubusercontent.com/iruzo/wp/main/catppuccin-mocha-astronaut.jpg
 
 exec_always if [  ! -f ~/.local/share/sway/wallpaper ]; then $(mkdir -p ~/.local/share/sway && curl $wallpaper -o ~/.local/share/sway/wallpaper); fi
 exec_always if [  ! -f ~/.local/share/sway/lock ]; then $(mkdir -p ~/.local/share/sway && curl $lock -o ~/.local/share/sway/lock); fi
