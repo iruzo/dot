@@ -73,10 +73,9 @@ in {
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
-        "blur-my-shell@aunetx"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
-        "gnome-shell-pano@oae"
-        "vitals@corecoding"
+        "Vitals@CoreCoding.com"
+        "pano@elhan.io"
       ];
     };
     "org/gnome/shell/extensions/user-theme" = {
