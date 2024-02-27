@@ -123,7 +123,7 @@
           "media.autoplay.default" = 1;
           "media.autoplay.enabled" = false;
           "media.navigator.enabled" = false;
-          "media.peerconnection.enabled" = false;
+          "media.peerconnection.enabled" = true; # webrtc
           "media.video_stats.enabled" = false;
           "network.IDN_show_punycode" = true;
           "network.allow-experiments" = false;
