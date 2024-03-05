@@ -1,0 +1,41 @@
+/* GitHub Dark colors from VS Code */
+window {
+    background-color: #24292e;
+    border: 2px solid #444d56;
+}
+
+#input {
+    border: 2px solid #444d56;
+    background-color: #1f2428;
+    color: #e1e4e8;
+    margin: 4px;
+    padding: 4px;
+}
+
+#inner-box {
+    background-color: #24292e;
+}
+
+#outer-box {
+    margin: 2px;
+    padding: 10px;
+    background-color: #24292e;
+}
+
+#scroll {
+    margin: 4px;
+}
+
+#text {
+    color: #e1e4e8;
+    margin: 2px;
+    padding: 2px;
+}
+
+#entry:selected {
+    background-color: #2b3036;
+}
+
+#text:selected {
+    color: #58a6ff;
+}
