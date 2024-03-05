@@ -1,0 +1,94 @@
+return {
+
+  -- {
+  --   "yetone/avante.nvim",
+  --   version = false, -- Never set this value to "*"! Never!
+  --   cmd = {
+  --     'AvanteChat',
+  --   },
+  --   build = "make",
+  --   opts = {
+  --     -- debug = false,
+  --     -- behaviour = {
+  --     --   show_extended_thinking = false,
+  --     -- },
+  --     -- hooks = {
+  --     --   format_response = function(txt)
+  --     --     return (txt:gsub("<think>.-</think>", ""))
+  --     --   end,
+  --     -- },
+  --     provider = "ollama",
+  --     providers = {
+  --       ollama = {
+  --         endpoint = "http://192.168.8.243:50001",
+  --         model = "deepseek-r1:14b",
+  --         api_key = "",
+  --         disable_tool = true, -- disable tools!
+  --         extra_request_body = {
+  --           timeout = 30000,
+  --           temperature = 0.75,
+  --           -- max_completion_tokens = 8192,
+  --           reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
+
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   dependencies = {
+  --     { 'nvim-lua/plenary.nvim', version = '*' },
+  --     { 'github/copilot.vim', version = '*', cmd = 'Copilot' },
+  --   },
+  --   cmd = {
+  --     'CodeCompanion',
+  --     'CodeCompanionActions',
+  --     'CodeCompanionChat',
+  --     'CodeCompanionCmd'
+  --   },
+  --   config = function()
+  --     local function is_copilot_available()
+  --       if vim.g.copilot_token and vim.g.copilot_token ~= "" then
+  --         return true
+  --       end
+  --       local token = os.getenv("GITHUB_COPILOT_TOKEN")
+  --       if token and token ~= "" then
+  --         return true
+  --       end
+  --       return false
+  --     end
+  --
+  --     local selected_adapter = is_copilot_available() and "copilot" or "deepseek"
+  --
+  --     require("codecompanion").setup({
+  --       adapters = {
+  --         copilot = function()
+  --           return require("codecompanion.adapters").extend("copilot", {
+  --             -- Copilot-specific configurations (if any)
+  --           })
+  --         end,
+  --         deepseek = function()
+  --           return require("codecompanion.adapters").extend("ollama", {
+  --             env = {
+  --               url = "http://192.168.8.243:50001",
+  --             },
+  --             headers = {
+  --               ["Content-Type"] = "application/json",
+  --             },
+  --             schema = {
+  --               model = { default = "deepseek-coder-v2:latest" },
+  --             },
+  --           })
+  --         end,
+  --       },
+  --       strategies = {
+  --         chat   = { adapter = selected_adapter },
+  --         inline = { adapter = selected_adapter },
+  --         agent  = { adapter = selected_adapter },
+  --       },
+  --     })
+  --   end,
+  -- }
+
+}
