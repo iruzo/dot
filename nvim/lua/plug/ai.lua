@@ -1,0 +1,45 @@
+return {
+
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   config = true,
+  --   dependencies = {
+  --     { 'nvim-lua/plenary.nvim', version = '*' },
+  --     'nvim-treesitter/nvim-treesitter',
+  --     -- {
+  --     --   'github/copilot.vim',
+  --     --   version = '*',
+  --     --   cmd = 'Copilot'
+  --     -- }
+  --   },
+  --   cmd = {
+  --     'CodeCompanion',
+  --     'CodeCompanionActions',
+  --     'CodeCompanionChat',
+  --     'CodeCompanionCmd'
+  --   },
+  --   opts = {
+  --     adapters = {
+  --       ollama_local = function()
+  --         return require("codecompanion.adapters").extend("ollama", {
+  --           env = {
+  --             url = "http://localhost:50001",
+  --           },
+  --           headers = {
+  --             ["Content-Type"] = "application/json",
+  --           },
+  --           schema = {
+  --             model = { default = "deepseek-r1:1.5b" },
+  --           },
+  --         })
+  --       end,
+  --     },
+  --     strategies = {
+  --       chat   = { adapter = "ollama_local" },
+  --       inline = { adapter = "ollama_local" },
+  --       agent  = { adapter = "ollama_local" },
+  --     },
+  --   },
+  -- },
+
+}
