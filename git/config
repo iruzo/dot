@@ -1,0 +1,15 @@
+[core]
+  editor = nvim || vim || vi
+[user]
+  email = amnesia
+  name = amnesia
+[credential]
+  helper = store
+[init]
+  defaultBranch = main
+[push]
+  default = current
+  gpgSign = if-asked
+  autoSetupRemote = true
+[rebase]
+  autosquash = true

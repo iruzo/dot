@@ -1,10 +1,3 @@
-# source bash global definitions
-if [ $(echo $SHELL | awk -F'/' '{printf $NF}') = 'bash' ]; then
-  if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-  fi
-fi
-
 # prompt
 gitrepo() {
   echo "$(git remote -v 2>/dev/null | grep "(fetch)" | awk -F'\t' '{print $1}')"/"$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')"
@@ -18,72 +11,237 @@ COLOR_BBLUE="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || prin
 COLOR_BPURPLE="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || printf '\033[1;35m')"
 COLOR_BCYAN="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || printf '\033[1;36m')"
 COLOR_BWHITE="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || printf '\033[1;37m')"
+# PS1=$(echo "\n$COLOR_BBLUE\$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW\$(echo $USER)$COLOR_RESET $COLOR_BRED\$(gitrepo)$COLOR_RESET $COLOR_BCYAN\$(pwd | sed "s:${HOME}:~:g")$COLOR_RESET\n · ")
+# # zsh
+# precmd() {
+#   PS1=$(echo -e "\n$COLOR_BBLUE$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW$(echo $USER)$COLOR_RESET $COLOR_BRED$(gitrepo)$COLOR_RESET $COLOR_BCYAN$(pwd | sed s:${HOME}:~:g)$COLOR_RESET\n · ")
+# }
 
-PS1=$(echo "\n$COLOR_BBLUE\$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW\$(echo $USER)$COLOR_RESET $COLOR_BRED\$(gitrepo)$COLOR_RESET $COLOR_BCYAN\$(pwd | sed "s:${HOME}:~:g")$COLOR_RESET\n · ")
-# zsh
-precmd() {
-  PS1=$(echo -e "\n$COLOR_BBLUE$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW$(echo $USER)$COLOR_RESET $COLOR_BRED$(gitrepo)$COLOR_RESET $COLOR_BCYAN$(pwd | sed s:${HOME}:~:g)$COLOR_RESET\n · ")
-}
-
-export PATH="$PATH:/var/lib/flatpak/exports/bin"
+# export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:/usr/sbin"
-export PATH="$PATH:/usr/bin"
-export PATH="$PATH:/sbin"
-export PATH="$PATH:/bin"
+# export PATH="$PATH:/usr/sbin"
+# export PATH="$PATH:/usr/bin"
+# export PATH="$PATH:/sbin"
+# export PATH="$PATH:/bin"
 
-# runtime-dir
-if test -z "${XDG_RUNTIME_DIR}"; then
-    export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
-    if ! test -d "${XDG_RUNTIME_DIR}"; then
-        mkdir "${XDG_RUNTIME_DIR}"
-        chmod 0700 "${XDG_RUNTIME_DIR}"
-    fi
-fi
-
-export HISTFILE="$HOME/.bash_history" # yash history file
-export WLR_NO_HARDWARE_CURSORS=1
-export QEMU='-vga none -device virtio-gpu-pci -display gtk,gl=on'
-export EDITOR='nvim'
-export VISUAL='nvim-qt'
-export GTK_THEME='Catppuccin-Mocha-Compact-Lavender-Dark'
-# export GTK_THEME='gruvbox:dark'
-export BEMENU_OPTS='-i -l 20 --fb "#24273a" --ff "#cad3f5" --nb "#24273a" --nf "#cad3f5" --tb "#24273a" --hb "#24273a" --tf "#ed8796" --hf "#eed49f" --nf "#cad3f5" --af "#cad3f5" --ab "#24273a"'
-
+export NIXPKGS_ALLOW_UNFREE=1
+export NP_RUNTIME=bwrap
 # export GPG_TTY=$(tty)
+export ANDROID_HOME='/storage/emulated/0'
 
 # alias sway='WLR_RENDERER=vulkan WLR_DRM_DEVICES=/dev/dri/card0:/dev/dri/card1 sway'
 alias xwayland="env -u WAYLAND_DISPLAY"
 alias grubupdate="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias killwindows="ps -aux | grep windows | awk -Fa '{ print $2 }' | awk -F0.0 '{ print $1 }' | xargs kill -9"
 
+ct() {
+  name="main"
+  mount_home=no
+  gpu=no
+  image="docker.io/archlinux/archlinux:latest"
+
+  for arg do
+    [ "$arg" = "--help" ] && { printf 'Usage: %s [-n NAME] [-h]\n' "ct" >&2; return 0; }
+  done
+
+  OPTIND=1
+  while getopts "n:i:hg" opt; do
+    case "$opt" in
+      n) name=$OPTARG ;;
+      i) image=$OPTARG ;;
+      h) mount_home=yes ;;
+      g) gpu=yes ;;
+      \?|:) printf 'Usage: %s [-n NAME] [-i IMAGE] [-h]\n  -n NAME    Container name suffix (creates ct-NAME, default: ct)\n  -h         Enable home directory mounting\n  -g         Enable gpu\n' "ct" >&2; return 1 ;;
+    esac
+  done
+  shift $((OPTIND - 1))
+  container_name="ct-$name"
+
+  # WAYLAND volume is for clipboard
+  gui_args="-v /run/user/$(id -u):/run/user/$(id -u) \
+      -e WAYLAND_DISPLAY \
+      -e XDG_RUNTIME_DIR"
+
+  # mount home dir
+  mount_args=""
+  if [ "$mount_home" = "yes" ]; then
+    mount_args="-v $HOME:/root/user_home:rslave"
+  fi
+
+  # gpu
+  dri=""
+  if [ "$gpu" = "yes" ]; then
+    dri="--device=/dev/dri:/dev/dri"
+  fi
+
+  # shm-size is needed to prevent chromium apps from crashing inside the container since podmans default is 64m
+  podman container exists "$container_name" 2>/dev/null || podman container create -it \
+    --workdir /root \
+    --shm-size=1g \
+    $gui_args \
+    $dri \
+    --security-opt label=disable $mount_args \
+    --name "$container_name" \
+    "$image"
+    # sh -c 'exec /bin/sh'
+
+  if ! podman inspect "$container_name" --format='{{.State.Running}}' 2>/dev/null | grep -q true; then
+    podman start "$container_name"
+    podman exec -it "$container_name" /bin/bash
+  else
+    podman exec -it "$container_name" /bin/bash
+  fi
+}
+ct-setup() {
+  if command -v pacman > /dev/null 2>&1; then
+    pacman -Sy --needed archlinux-keyring --noconfirm && pacman -Syyuu gcc openssh git curl unzip wl-clipboard nvim mergiraf chromium --noconfirm
+  fi
+
+  mkdir -p $HOME/.config && ln -s $PWD/user_home/.config/nvim $HOME/.config/
+  mkdir -p $HOME/.config && ln -s $PWD/user_home/.config/git $HOME/.config/
+  mkdir -p $HOME/.config && ln -s $PWD/user_home/.config/.shrc $HOME/.config/.shrc
+  echo "source $HOME/.config/.shrc" >> $HOME/.bashrc
+  ln -s $PWD/user_home/Documents/.claude $HOME/
+  ln -s $PWD/user_home/Documents/.codex $HOME/
+  rm -rf $HOME/.ssh && ln -s $PWD/user_home/.ssh $HOME/
+}
+
+vm() {
+  os="linux"
+  name="main"
+  dist="arch" # tails, fedora, ubuntu, ...
+
+  for arg do
+    [ "$arg" = "--help" ] && { printf 'Usage: %s [-o linux/windows] [-n NAME] [-d DIST]\n' "vm" >&2; return 0; }  # use "exit 0" if not in a function
+  done
+
+  OPTIND=1
+  while getopts "o:n:d:h" opt; do
+    case "$opt" in
+      o) os=$OPTARG ;;
+      n) name=$OPTARG ;;
+      d) dist=$OPTARG ;;
+      h) printf 'Usage: %s [-o linux/windows] [-n NAME] [-d DIST]\n' "vm" >&2; return 0 ;; # or: exit 0
+      \?|:) usage; return 1 ;; # or: exit 1
+    esac
+  done
+  shift $((OPTIND - 1))
+  name="vm-$name"
+
+  is_port_free=no
+  podman ps -a --format '{{.Ports}}' \
+  | tr ', ' '\n' \
+  | awk 'match($0,/([0-9]+)->/,m){print m[1]}' \
+  | grep -qx 40000 && is_port_free=no || is_port_free=yes
+  port="40000:8006"
+  if [ "$is_port_free" = no ]; then
+    port="127.0.0.1::8006"
+  fi
+
+  is_ssh_port_free=no
+  podman ps -a --format '{{.Ports}}' \
+  | tr ', ' '\n' \
+  | awk 'match($0,/([0-9]+)->/,m){print m[1]}' \
+  | grep -qx 2222 && is_ssh_port_free=no || is_ssh_port_free=yes
+  ssh_port="2222:22"
+  if [ "$is_ssh_port_free" = no ]; then
+    ssh_port="127.0.0.1::22"
+  fi
+
+  mkdir -p "$HOME"/Desktop/shared
+  if [ "$os" = "linux" ]; then
+    podman run -d -p "$port" -p "$ssh_port" \
+    --device=/dev/kvm \
+    --device=/dev/net/tun \
+    --cap-add NET_ADMIN \
+    -e RAM_SIZE="4G" \
+    -e CPU_CORES="6" \
+    -e DISK_SIZE="64G" \
+    -e BOOT_MODE="legacy" \
+    -e DISK_TYPE="ide" \
+    -e BOOT="$dist" \
+    -v "$HOME"/Desktop/shared:/shared:z \
+    --name "$name" \
+    docker.io/qemux/qemu
+  fi
+  if [ "$os" = "windows" ]; then
+    # shared dir on windows is at "\\20.20.20.1" or "\\host.lan\Data"
+    # sunshine ports: 47984, 47989, 48010
+    # 40001 configured for custom rdp
+    podman run -d -p "$port" -p 40001:3389 \
+    --device=/dev/kvm \
+    --device=/dev/net/tun \
+    --cap-add NET_ADMIN \
+    -e RAM_SIZE="10G" \
+    -e CPU_CORES="8" \
+    -e DISK_SIZE="64G" \
+    -v "$HOME"/Desktop/shared:/data:z \
+    --name "$name" \
+    docker.io/dockurr/windows:latest
+  fi
+
+}
+
+alias setup-arch='sudo pacman -Syyuu --noconfirm less openssh git neovim rust-analyzer deno && sudo systemctl enable --now sshd'
+alias setup-termux='echo "source $HOME/.config/.shrc" > $HOME/.bashrc && pkg install neovim termux-api'
+alias setup-fonts-symbols='rm -rf ~/.local/share/fonts && mkdir -p ~/.local/share/fonts && curl https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/NerdFontsSymbolsOnly.zip -o ~/.local/share/fonts/NerdFontsSymbolsOnly.zip && cd ~/.local/share/fonts && unzip NerdFontsSymbolsOnly.zip && rm NerdFontsSymbolsOnly.zip && fc-cache -f -v && fc-list | grep NerdFont'
+alias setup-podman-compose='sh -c "$(curl -sSL https://raw.githubusercontent.com/containers/podman-compose/main/scripts/download_and_build_podman-compose.sh)"'
+
 e() {
-  nvim "$@" || vim "$@" || vi "$@"
+  nvim "$@" || flatpak run io.neovim.nvim "$@" || vim "$@" || vi "$@"
 }
 alias v='e'
 alias d='dash'
-alias cal='cal -m'
-alias grep='grep -i --color=auto'
-alias dd='dd status=progress'
-alias curl='curl -L'
+alias ..='cd ..'
 alias ls='ls --color=auto'
 alias ll='ls --color=auto -lahF'
-alias ff='coincidence=$(find . 2>/dev/null | BEMENU_BACKEND=curses bemenu); if [ -f $coincidence ]; then $EDITOR $coincidence; else cd $coincidence; fi'
-alias fh='coincidence=$(find ~ 2>/dev/null | BEMENU_BACKEND=curses bemenu); if [ -f $coincidence ]; then $EDITOR $coincidence; else cd $coincidence; fi'
-alias fg='coincidence=$(find / 2>/dev/null | BEMENU_BACKEND=curses bemenu); if [ -f $coincidence ]; then $EDITOR $coincidence; else cd $coincidence; fi'
-alias quickmarks="cat ~/own/quickmarks | BEMENU_BACKEND=curses bemenu | awk -F'|' '{print $NF}' | tr ' ' '\\n'"
-alias contacts="cat ~/own/contacts | BEMENU_BACKEND=curses bemenu | awk -F'|' '{print $NF}' | tr ' ' '\\n'"
-alias emoji="cat ~/own/emoji | BEMENU_BACKEND=curses bemenu | awk -F'|' '{print $NF}' | tr ' ' '\\n'"
+alias dd='dd status=progress'
+alias grep='grep -i --color=auto'
+alias curl='curl -L'
+alias shred='shred -v -z'
+alias rsync='rsync --progress --no-perms --no-owner --no-group'
+alias cal='cal -m'
 alias monitor-mem='ps axch -o cmd:15,rss --sort=-rss | numfmt --from-unit=1024 --to=iec --field 2 2> /dev/null'
 alias monitor-mempercent='ps axch -o cmd:15,%mem --sort=-%mem'
 alias monitor-cpu='ps axch -o cmd:15,%cpu --sort=-%cpu'
 alias reload-cache-fonts='fc-cache -fv'
-alias weather='curl "wttr.in/a-coruna?format=\"%t(%C)\""'
 alias publicip='curl ipinfo.io/json'
 alias createswap='sudo fallocate -l 16G /swap && sudo chmod 600 /swap && sudo mkswap /swap && sudo swapon /swap'
 alias enableswap='sudo swapon /swap'
-alias port_listen='sudo netstat -tunlp'
+alias port_listen='sudo ss -tunlp'
 alias edit_crontab='sudo crontab -e'
+alias goodbye='flatpak update -y && rpm-ostree upgrade && systemctl poweroff'
+alias pxsonar='sh <(curl -L https://raw.githubusercontent.com/iruzo/pxsonar/main/pxsonar.sh)'
+alias claude-deno='IS_SANDBOX=1 deno run --allow-all npm:@anthropic-ai/claude-code --dangerously-skip-permissions'
+alias codex-deno='deno run --allow-all npm:@openai/codex'
+alias nix-install-home-manager='nix profile install nixpkgs#home-manager'
+
+alias clean_chromium='rm -rf $HOME/.config/chromium 2> /dev/null && rm -rf $XDG_CONFIG_HOME/chromium 2> /dev/null && rm -rf $HOME/.cache/chromium 2> /dev/null'
+alias clean_nvim='rm $HOME/.local/share/nvim/ -rf && rm $HOME/.local/state/nvim/ -rf && rm $HOME/.cache/nvim/ -rf'
+
+alias container_openwebui='podman run -d --rm --replace -p 50002:8080 --name open-webui ghcr.io/open-webui/open-webui:main'
+alias container_buildkit='podman run -d --rm --replace -p 1234:1234 --name buildkitd --privileged moby/buildkit:latest --addr tcp://0.0.0.0:1234'
+alias container_ollama='mkdir -p "$HOME"/.local/share/ml/models && podman run -d --rm --replace -p 50001:11434 --name ollama -v $HOME/.local/share/ml/models:/root/.ollama:z docker.io/ollama/ollama && podman exec -it ollama ollama pull deepseek-r1:1.5b'
+alias container_ollama_amd='mkdir -p "$HOME"/.local/share/ml/models && podman run -d --rm --replace -p 50001:11434 --name ollama --device /dev/kfd --device /dev/dri -v $HOME/.local/share/ml/models:/root/.ollama:z docker.io/ollama/ollama:rocm && podman exec -it ollama ollama pull deepseek-r1:14b'
+alias container_cloudflare_tunnel='podman run --rm --replace --network host --name cloudflare-tunnel docker.io/cloudflare/cloudflared:latest tunnel --url '
+alias container_nextcloud='mkdir -p $HOME/Documents/.nextcloud && podman run -d --rm --replace --name nextcloud --cap-add=NET_BIND_SERVICE --userns=keep-id -p 30001:80 -v $HOME/Documents/.nextcloud:/var/www/html:z docker.io/library/nextcloud:latest'
+alias container_radicale='podman image inspect radicale >/dev/null 2>&1 || podman build -t radicale https://github.com/Kozea/Radicale.git#master && mkdir -p $HOME/Documents/agenda && podman run -d --rm --replace -p 5232:5232 --name radicale -e RADICALE_CONFIG_AUTH_TYPE=none -v $HOME/Documents/agenda/:/data:z radicale'
+alias container_mediabrowser_public='podman image inspect mediabrowser >/dev/null 2>&1 || podman build -t mediabrowser https://github.com/iruzo/mediabrowser.git && podman run -d --rm --replace -p 30003:30003 --name mediabrowser -v $HOME/Public/:/data:z mediabrowser'
+# http://localhost:8888/?q=%s
+alias container_searx='podman run -d --rm --name searx -p 8888:8080 docker.io/searxng/searxng:latest'
+# whip endpoint: http://localhost:8889/mystream/whip
+# stream webui: http://localhost:8888/mystream/
+alias container_mediamtx='podman run -d --rm --name mediamtx -it -e MTX_RTSPTRANSPORTS=tcp -e MTX_WEBRTCADDITIONALHOSTS=localhost -p 8554:8554 -p 1935:1935 -p 8888:8888 -p 8889:8889 -p 8890:8890/udp -p 8189:8189/udp docker.io/bluenviron/mediamtx:1'
+alias container_damselfly_public='podman run -d --rm --replace -p 30003:6363 --name damselfly -v $HOME/Public/:/pictures:z docker.io/webreaper/damselfly:latest'
+alias container_syncthing_documents='podman run -d --rm --replace -p 30008:8384 -p 22000:22000/tcp -p 22000:22000/udp -p 21027:21027/udp --name syncthing -e PUID=$PUID -e PGID=$PGID -v $HOME/Documents:/var/syncthing:z docker.io/syncthing/syncthing:latest'
+alias container_vscode='podman run -d --rm --replace --name code-server -p 60000:8080 -v $HOME/Desktop/shared/:/home/coder/project:z -e DOCKER_USER=$USER -e PASSWORD=a docker.io/codercom/code-server:latest'
+alias container_excalidraw='podman run -d --rm --replace --name excalidraw -p 60000:80 docker.io/excalidraw/excalidraw:latest'
+alias container_drawio='podman run -d --rm --replace --name drawio -p 60000:8080 docker.io/jgraph/drawio'
+container_onlyoffice() {
+  local compose_file=$HOME/.config/svc/onlyoffice-compose.yaml
+  trap "podman compose -f $compose_file down -t 0" EXIT INT TERM
+  podman compose -f $compose_file up
+}
 
 alias umount-ssh='fusermount -u'
 alias umount-usb='udisksctl umount -b'
@@ -94,12 +252,28 @@ alias bt-disconnect-headphones="bluetoothctl devices | grep 'SH03' | awk -F' ' '
 alias bt-connect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf \$2}' | xargs bluetoothctl connect"
 alias bt-disconnect-trackpad="bluetoothctl devices | grep 'Magic Trackpad' | awk -F' ' '{printf \$2}' | xargs bluetoothctl disconnect"
 
-alias android-fastboot-flash='sudo fastboot flash recovery'
+alias android-fastboot-flash='sudo fastboot flash recovery' # param: recovery.img
 alias android-fastboot-reboot='sudo fastboot reboot'
 alias android-sdb-startserver='sudo adb start-server'
 alias android-adb-sideload='sudo adb sideload'
+alias android-podman-fastboot-flash='sudo podman run --rm -it --privileged -v /dev/bus/usb:/dev/bus/usb:z -v ./Downloads:/app:z docker.io/mparker17/fastboot flash recovery /app/recovery.img' # then reboot with Volume Up + Power button, keep until the logo appear on the screen
+alias android-podman-adb-sideload='sudo podman run --rm -it --privileged -v /dev/bus/usb:/dev/bus/usb:z -v ./Downloads:/app:z docker.io/catmasterlim/adb adb -d sideload /app/package.zip'
 
 alias png2webp='for file in *.png; do convert -quality 100 "$file" "${file%.png}.webp"; done'
+video2webm() {
+  ffmpeg  -i $1 -lossless 1 output.webm
+}
+alias compresspdf='gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default -dQUIET -dDetectDuplicateImages -dCompressFonts=true -r150 -o output.pdf'
+
+delete_empty_dirs() {
+  find "$1" -mindepth 1 -type d -print0 | sort -rz | while IFS= read -r -d $'\0' dir; do
+    local num_archivos=$(find "$dir" -mindepth 1 -type f | wc -l)
+    if [ "$num_archivos" -eq 0 ]; then
+      echo "Empty dir: $dir"
+      rmdir "$dir"
+    fi
+  done
+}
 
 fetch() {
   # host
@@ -113,7 +287,7 @@ fetch() {
   # terminal
   echo $(echo "${COLOR_BGREEN}| terminal:${COLOR_RESET}" ) $(echo $TERM)
   # product
-  echo $(echo "${COLOR_BPURPLE}| product:${COLOR_RESET}") $(/bin/sh -c "cat /sys/devices/virtual/dmi/id/product_name")
+  echo $(echo "${COLOR_BPURPLE}| product:${COLOR_RESET}") $(/bin/sh -c "cat /sys/devices/virtual/dmi/id/chassis_vendor") $(/bin/sh -c "cat /sys/devices/virtual/dmi/id/product_version") $(/bin/sh -c "cat /sys/devices/virtual/dmi/id/product_name")
   # bios
   echo $(echo "${COLOR_BPURPLE}| bios:${COLOR_RESET}") $(/bin/sh -c "cat /sys/devices/virtual/dmi/id/bios_version")
   # cpu
@@ -122,17 +296,21 @@ fetch() {
   lspci 2> /dev/null | grep -q -wi VGA && echo $(echo "${COLOR_BPURPLE}| gpu:${COLOR_RESET}" ) $(lspci | grep VGA)
   lspci 2> /dev/null | grep -q -wi Display && echo $(echo "${COLOR_BPURPLE}| gpu:${COLOR_RESET}" ) $(lspci | grep Display)
   # status
-  echo $(echo "${COLOR_BRED}| temp:${COLOR_RESET}" ) $(($(/bin/sh -c "cat /sys/class/thermal/thermal_zone0/temp" || echo 1) / 1000))°C
+  echo $(echo "${COLOR_BRED}| temp:${COLOR_RESET}" ) $(($(/bin/sh -c "cat /sys/class/thermal/thermal_zone0/temp" 2> /dev/null || echo 1) / 1000))°C
   echo $(echo "${COLOR_BRED}| cpu:${COLOR_RESET}" ) $(top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}')%
   echo $(echo "${COLOR_BRED}| mem:${COLOR_RESET}" ) $(free -m | awk 'NR==2{printf "%.2f%%\t\t", $3*100/$2 }')
   echo $(echo "${COLOR_BRED}| disk:${COLOR_RESET}" ) $(df -h 2> /dev/null | awk '$NF=="/"{printf "%s\t\t", $5}')
-  echo $(echo "${COLOR_BBLUE}| mic:${COLOR_RESET}" ) $(pactl -v 2> /dev/null && pactl get-source-mute @DEFAULT_SOURCE@ || wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep -q "MUTED" && echo "muted" || echo "unmuted")
-  echo $(echo "${COLOR_BBLUE}| vol:${COLOR_RESET}" ) $(pactl -v 2> /dev/null && pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '(?<=front-left: ).*(?=front-right: )' | grep -oP '(?<=/ ).*(?= /)' | awk -F': ' '{printf $2}' || wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk -F': ' '{printf $2}')
+  echo $(echo "${COLOR_BBLUE}| mic:${COLOR_RESET}" ) $(pactl -v 2> /dev/null && pactl get-source-mute @DEFAULT_SOURCE@ || wpctl get-volume @DEFAULT_AUDIO_SOURCE@ 2> /dev/null | grep -q "MUTED" && echo "muted" || echo "unmuted")
+  echo $(echo "${COLOR_BBLUE}| vol:${COLOR_RESET}" ) $(pactl -v 2> /dev/null && pactl get-sink-volume @DEFAULT_SINK@ | grep -oP '(?<=front-left: ).*(?=front-right: )' | grep -oP '(?<=/ ).*(?= /)' | awk -F': ' '{printf $2}' || wpctl get-volume @DEFAULT_AUDIO_SINK@ 2> /dev/null | awk -F': ' '{printf $2}')
   echo $(echo "${COLOR_BYELLOW}| bat:${COLOR_RESET}" ) $(/bin/sh -c "cat /sys/class/power_supply/BAT0/capacity")%
   # uptime
   echo $(echo "${COLOR_BYELLOW}| uptime:${COLOR_RESET}" ) $(uptime | awk -F',' '{print $1}' | awk -F' ' '{print $NF}')
   # date and cal
   echo "${COLOR_BYELLOW}L $(date) ${COLOR_RESET}" && (cal --color=always | sed 's/^/  /')
+}
+
+superdubyextension() {
+  find . -type f -exec du -b {} \; | grep -v 'git/' | awk 'BEGIN{CONVFMT="%.2f"}{split($2,a,".");ext=(length(a)>1)?a[length(a)]:"no_extension";size[ext]+=$1}END{for(ext in size){if(size[ext]<1024){printf "%s: %d B\n",ext,size[ext]}else if(size[ext]<1024*1024){printf "%s: %.2f KB\n",ext,size[ext]/1024}else if(size[ext]<1024*1024*1024){printf "%s: %.2f MB\n",ext,size[ext]/(1024*1024)}else{printf "%s: %.2f GB\n",ext,size[ext]/(1024*1024*1024)}}}' | sort -rn -k2
 }
 
 superstatus() {
@@ -171,4 +349,125 @@ termbin() {
     fi
   fi
   echo $args | nc termbin.com 9999
+}
+
+setup-gnome-keybindings() {
+
+  # set the default number of workspaces
+  gsettings set org.gnome.mutter dynamic-workspaces false
+  gsettings set org.gnome.desktop.wm.preferences num-workspaces 10
+
+  # move and resize with super + click
+  gsettings set org.gnome.desktop.wm.preferences resize-with-right-button true
+
+  # focus always on mouse
+  # gsettings set org.gnome.desktop.wm.preferences focus-mode 'sloppy'
+  # gsettings set org.gnome.desktop.wm.preferences focus-mode 'click'
+
+  if [ $# -eq 0 ]; then
+    # Reset media-keys custom keybindings to default
+    gsettings reset-recursively org.gnome.settings-daemon.plugins.media-keys
+
+    # Reset shell keybindings to default
+    gsettings reset-recursively org.gnome.shell.keybindings
+  fi
+
+  # Clear existing custom keybindings
+  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[]"
+
+  # Set custom keybindings
+  gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "[ \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/' \
+  ]"
+
+  # Keybinding for nvim-qt
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Open nvim'
+  # gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "toolbox run --container default /bin/sh -c \"XDG_CONFIG_HOME=$HOME/.config HOME=$HOME/Desktop/.tb/default /bin/bash --rcfile $HOME/.config/.shrc -c 'nvim-qt --maximized'\""
+  # gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command "gnome-terminal --window --maximize -- toolbox run --container default /bin/sh -c \"XDG_CONFIG_HOME=$HOME/.config HOME=$HOME/Desktop/.tb/default /bin/bash --rcfile $HOME/.config/.shrc -c nvim\""
+  # gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'ptyxis -- distrobox enter tb-personal -- sh -c "HOME=$HOME/.local/share/containers/homes/tb-personal nvim"'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'ptyxis -- podman container exec -it ct-main nvim'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding "'<Super>d'"
+
+  # Keybinding for Default Terminal
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Open Terminal'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'ptyxis --new-window'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding "'<Super>Return'"
+
+  # Keybinding for Nautilus
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Open Nautilus'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'nautilus --no-default-window --browser'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding "'<Super>g'"
+
+  # Keybinding for mute microphone
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'Toggle Microphone'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding "'<Super>z'"
+
+  # Keybinding for firefox based web browser
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ name 'Open web browser'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ command "flatpak run net.mullvad.MullvadBrowser"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ binding "'<Super>b'"
+
+  # Keybinding for quickmarks
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ name 'Open quickmarks'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ command "ptyxis -- podman container exec -it ct-main nvim -c \"NvmenuShell cut -d'|' -f2 | tr ' ' '\n'\" /root/user_home/Documents/text/personal.general.quickmarks"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ binding "'<Super><Shift>k'"
+
+  # Keybinding for ascii emojis
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ name 'Open emojis'
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ command "ptyxis -- podman container exec -it ct-main nvim -c \"NvmenuShell cut -d' ' -f2- | tr ' ' '\n'\" /root/user_home/Documents/text/personal.general.emojis.md"
+  gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ binding "'<Super><Shift>j'"
+
+  # Keybinding for maximizing the focused window
+  gsettings set org.gnome.desktop.wm.keybindings maximize "['<Super>f']"
+
+  # Keybinding for closing the focused window
+  gsettings set org.gnome.desktop.wm.keybindings close "['<Super>c']"
+
+  # Remove default keybindings
+  gsettings set org.gnome.shell.keybindings switch-to-application-1 "[]"
+  gsettings set org.gnome.shell.keybindings switch-to-application-2 "[]"
+  gsettings set org.gnome.shell.keybindings switch-to-application-3 "[]"
+  gsettings set org.gnome.shell.keybindings switch-to-application-4 "[]"
+  gsettings set org.gnome.shell.keybindings switch-to-application-5 "[]"
+  gsettings set org.gnome.shell.keybindings switch-to-application-6 "[]"
+  gsettings set org.gnome.shell.keybindings switch-to-application-7 "[]"
+  gsettings set org.gnome.shell.keybindings switch-to-application-8 "[]"
+  gsettings set org.gnome.shell.keybindings switch-to-application-9 "[]"
+
+  # Keybindings for switching to workspaces
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Super>q']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-2 "['<Super>w']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-3 "['<Super>e']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-4 "['<Super>r']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Super>t']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Super>y']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-7 "['<Super>u']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-8 "['<Super>i']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-9 "['<Super>o']"
+  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-10 "['<Super>p']"
+
+  # Keybindings for moving windows to workspaces
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-1 "['<Super><Shift>q']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-2 "['<Super><Shift>w']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-3 "['<Super><Shift>e']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-4 "['<Super><Shift>r']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-5 "['<Super><Shift>t']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-6 "['<Super><Shift>y']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-7 "['<Super><Shift>u']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-8 "['<Super><Shift>i']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-9 "['<Super><Shift>o']"
+  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-10 "['<Super><Shift>p']"
+
+  # Keybinding for changing windows
+  gsettings set org.gnome.desktop.wm.keybindings switch-applications "[]"
+  gsettings set org.gnome.desktop.wm.keybindings switch-applications-backward "[]"
+  gsettings set org.gnome.desktop.wm.keybindings switch-windows "['<Super>Tab']"
+
 }
