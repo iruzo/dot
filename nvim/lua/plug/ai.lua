@@ -1,0 +1,92 @@
+return {
+
+  -- { 'tzachar/cmp-tabnine', build = './install.sh', dependencies = 'hrsh7th/nvim-cmp', }
+  -- { 'tzachar/cmp-tabnine', build = 'powershell ./install.ps1', dependencies = 'hrsh7th/nvim-cmp', }
+  -- { 'codota/tabnine-nvim', build = './dl_binaries.sh' },
+  -- { 'https://github.com/jpmcb/nvim-llama' }
+
+  -- {
+  --   'olimorris/codecompanion.nvim',
+  --   version = '*',
+  --   dependencies = {
+  --     { 'nvim-lua/plenary.nvim', version = '*' },
+  --     'nvim-treesitter/nvim-treesitter',
+  --     {
+  --       'github/copilot.vim',
+  --       version = '*',
+  --       cmd = 'Copilot'
+  --     }
+  --   },
+  --   cmd = {
+  --     'CodeCompanion',
+  --     'CodeCompanionActions',
+  --     'CodeCompanionChat',
+  --     'CodeCompanionCmd'
+  --   },
+  --   config = true
+  -- }
+
+  -- {
+  --   'zbirenbaum/copilot.lua',
+  --   cmd = {
+  --     "Copilot",
+  --     "CopilotChat",
+  --   },
+  --   dependencies = {
+  --     {
+  --       'CopilotC-Nvim/CopilotChat.nvim',
+  --       tag = 'stable',
+  --       build = function()
+  --         vim.cmd("UpdateRemotePlugins") -- You need to restart to make it works
+  --       end,
+  --       opts = true,
+  --       keys = {
+  --         { "<leader>cc", ":CopilotChat ",            desc = "CopilotChat - Question" },
+  --         { "<leader>ce", ":CopilotChatExplain<cr>",  desc = "CopilotChat - Explain code" },
+  --         { "<leader>ct", ":CopilotChatTests<cr>",    desc = "CopilotChat - Generate tests" },
+  --         { "<leader>cr", ":CopilotChatReview<cr>",   desc = "CopilotChat - Review code" },
+  --         { "<leader>ci", ":CopilotChatInPlace<cr>",  desc = "CopilotChat - Chat in place" },
+  --         { "<leader>cR", ":CopilotChatRefactor<cr>", desc = "CopilotChat - Refactor code" },
+  --       }
+  --     }
+  --   },
+  --   config = function()
+  --     require("copilot").setup({
+  --       panel = {
+  --         enabled = false,
+  --       },
+  --       suggestion = {
+  --         enabled = true,
+  --         auto_trigger = true,
+  --         debounce = 75,
+  --         keymap = {
+  --           accept = "<C-Enter>",
+  --         },
+  --       }
+  --     })
+  --   end
+  -- },
+
+  -- {
+  --   "zbirenbaum/copilot-cmp",
+  --   config = function ()
+  --     require("copilot_cmp").setup()
+  --   end
+  -- }
+
+  -- {
+  --   'jackMort/ChatGPT.nvim',
+  --   event = "VeryLazy",
+  --   config = function()
+  --     require("chatgpt").setup({
+  --       api_key_cmd = "cat /var/home/amnesia/.api/key/chatgpt",
+  --     })
+  --   end,
+  --   dependencies = {
+  --     'MunifTanjim/nui.nvim',
+  --     'nvim-lua/plenary.nvim',
+  --     'nvim-telescope/telescope.nvim'
+  --   }
+  -- }
+
+}
