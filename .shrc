@@ -1,10 +1,3 @@
-# source bash global definitions
-if [ $(echo $SHELL | awk -F'/' '{printf $NF}') = 'bash' ]; then
-  if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-  fi
-fi
-
 # prompt
 gitrepo() {
   echo "$(git remote -v 2>/dev/null | grep "(fetch)" | awk -F'\t' '{print $1}')"/"$(git branch 2>/dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')"
@@ -18,12 +11,11 @@ COLOR_BBLUE="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || prin
 COLOR_BPURPLE="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || printf '\033[1;35m')"
 COLOR_BCYAN="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || printf '\033[1;36m')"
 COLOR_BWHITE="$({ exists tput && tput bold && tput setaf 6; } 2>/dev/null || printf '\033[1;37m')"
-
-PS1=$(echo "\n$COLOR_BBLUE\$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW\$(echo $USER)$COLOR_RESET $COLOR_BRED\$(gitrepo)$COLOR_RESET $COLOR_BCYAN\$(pwd | sed "s:${HOME}:~:g")$COLOR_RESET\n · ")
-# zsh
-precmd() {
-  PS1=$(echo -e "\n$COLOR_BBLUE$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW$(echo $USER)$COLOR_RESET $COLOR_BRED$(gitrepo)$COLOR_RESET $COLOR_BCYAN$(pwd | sed s:${HOME}:~:g)$COLOR_RESET\n · ")
-}
+# PS1=$(echo "\n$COLOR_BBLUE\$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW\$(echo $USER)$COLOR_RESET $COLOR_BRED\$(gitrepo)$COLOR_RESET $COLOR_BCYAN\$(pwd | sed "s:${HOME}:~:g")$COLOR_RESET\n · ")
+# # zsh
+# precmd() {
+#   PS1=$(echo -e "\n$COLOR_BBLUE$(git status -s 2> /dev/null)$COLOR_RESET\n $COLOR_BGREEN·$COLOR_RESET $COLOR_BYELLOW$(echo $USER)$COLOR_RESET $COLOR_BRED$(gitrepo)$COLOR_RESET $COLOR_BCYAN$(pwd | sed s:${HOME}:~:g)$COLOR_RESET\n · ")
+# }
 
 export PATH="$PATH:/var/lib/flatpak/exports/bin"
 export PATH="$PATH:$HOME/.local/bin"
@@ -32,30 +24,32 @@ export PATH="$PATH:/usr/bin"
 export PATH="$PATH:/sbin"
 export PATH="$PATH:/bin"
 
-# runtime-dir
-if test -z "${XDG_RUNTIME_DIR}"; then
-    export XDG_RUNTIME_DIR=/tmp/${UID}-runtime-dir
-    if ! test -d "${XDG_RUNTIME_DIR}"; then
-        mkdir "${XDG_RUNTIME_DIR}"
-        chmod 0700 "${XDG_RUNTIME_DIR}"
-    fi
-fi
-
-export HISTFILE="$HOME/.bash_history" # yash history file
-export WLR_NO_HARDWARE_CURSORS=1
-export QEMU='-vga none -device virtio-gpu-pci -display gtk,gl=on'
-export EDITOR='nvim'
-export VISUAL='nvim-qt'
-export GTK_THEME='Catppuccin-Mocha-Compact-Lavender-Dark'
-# export GTK_THEME='gruvbox:dark'
+export NIXPKGS_ALLOW_UNFREE=1
 export BEMENU_OPTS='-i -l 20 --fb "#24273a" --ff "#cad3f5" --nb "#24273a" --nf "#cad3f5" --tb "#24273a" --hb "#24273a" --tf "#ed8796" --hf "#eed49f" --nf "#cad3f5" --af "#cad3f5" --ab "#24273a"'
-
 # export GPG_TTY=$(tty)
 
 # alias sway='WLR_RENDERER=vulkan WLR_DRM_DEVICES=/dev/dri/card0:/dev/dri/card1 sway'
 alias xwayland="env -u WAYLAND_DISPLAY"
 alias grubupdate="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias killwindows="ps -aux | grep windows | awk -Fa '{ print $2 }' | awk -F0.0 '{ print $1 }' | xargs kill -9"
+
+tb(){
+
+  if [ -n "$1" ]; then
+
+    mkdir -p ~/Desktop/.containers/$1
+    toolbox create $1
+    toolbox run --container $1 /bin/sh -c "XDG_CONFIG_HOME=$HOME/.config HOME=$HOME/Desktop/.containers/$1 /bin/bash"
+
+  else
+
+    mkdir -p ~/Desktop/.containers/default
+    toolbox create default
+    toolbox run --container default /bin/sh -c "XDG_CONFIG_HOME=$HOME/.config HOME=$HOME/Desktop/.containers/default /bin/bash"
+
+  fi
+
+}
 
 e() {
   nvim "$@" || vim "$@" || vi "$@"

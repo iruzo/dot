@@ -42,7 +42,7 @@
         extraSpecialArgs = {
           inherit inputs;
         };
-        modules = [ ./.config/nix/usr/amnesia.nix ];
+        modules = [ ./nix/usr/amnesia.nix ];
         pkgs = import nixpkgs {
           inherit system;
           overlays = [overlays];
@@ -59,7 +59,7 @@
           nixpkgs.config.allowUnfree = true;
           imports =
           [
-            ./.config/nix/system/laptop/setup.nix
+            ./nix/system/laptop/setup.nix
           ];
           # environment.systemPackages = [
           #   ghostty.packages.x86_64-linux.default
