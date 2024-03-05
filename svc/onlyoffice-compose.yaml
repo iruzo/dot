@@ -1,0 +1,17 @@
+version: '3'
+services:
+  onlyoffice-document-server:
+    image: docker.io/onlyoffice/documentserver
+    environment:
+      - JWT_ENABLED=false
+    restart: always
+
+  onlyoffice-community-server:
+    image: docker.io/onlyoffice/communityserver
+    depends_on:
+      - document-server
+    environment:
+      - DOCUMENT_SERVER_PORT_80_TCP_ADDR=document-server
+    ports:
+      - "63000:80"
+    restart: always
