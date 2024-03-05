@@ -1,87 +1,27 @@
 /*
-!.gitignore
+!git
+!config
 
 # general
-!.profile
 !.shrc
-!.bashrc
-!.yashrc
-!.zshrc
-!.bash_profile
-!.yash_profile
 !.gitconfig
 
-# config
-!.config/
-.config/*
+# nvim
+!nvim
+nvim/*
+!nvim/init.lua
+!nvim/lazy-lock.json
+!nvim/lua
 
-# nix
-!.config/nix
-!flake.nix
-!flake.lock
-!home.nix
-
-# foot
-!.config/foot
-.config/foot/*
-!.config/foot/foot.ini
+# i3/sway
+!i3
+i3/*
+!i3/config
+!sway
+sway/*
+!sway/config
 
 # wezterm
-!.config/wezterm
-.config/wezterm/*
-!.config/wezterm/wezterm.lua
-
-# nvim
-!.config/nvim
-.config/nvim/*
-!.config/nvim/vimrc.sh
-!.config/nvim/init.lua
-!.config/nvim/lazy-lock.json
-!.config/nvim/lua
-
-# emacs
-!.config/emacs
-.config/emacs/*
-!.config/emacs/init.el
-
-# dwl
-!.config/dwl
-.config/dwl/*
-!.config/dwl/config.h
-
-# sway
-!.config/sway
-.config/sway/*
-!.config/sway/config
-
-# gnome
-!.config/gnome
-.config/gnome/*
-!.config/gnome/config.sh
-
-# hypr
-!.config/hypr
-.config/hypr/*
-!.config/hypr/hyprland.conf
-
-# waybar
-!.config/waybar
-
-# tofi
-!.config/tofi
-
-# aerc
-!.config/aerc
-.config/aerc/*
-!.config/aerc/aerc.conf
-!.config/aerc/stylesets
-
-# mpv
-!.config/mpv
-.config/mpv/*
-!.config/mpv/mpv.conf
-
-# qutebrowser
-!.config/qutebrowser
-.config/qutebrowser/*
-!.config/qutebrowser/config.py
+!wezterm
+wezterm/*
+!wezterm/wezterm.lua
