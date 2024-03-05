@@ -1,0 +1,26 @@
+@media print {
+  @page {
+    margin: 0; /* Removes default printer margins */
+  }
+
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  .markdown-preview {
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .markdown-preview section {
+    margin: 0 auto !important;
+    padding: 0 !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    page-break-after: always;
+  }
+}
